@@ -9,7 +9,7 @@
 #pragma mark - 服务器地址
 
     //外网发布
-#define BaseOnlyUrl                @"https://"
+#define BaseOnlyUrl                @"http://59.110.12.181:18084/Android"
 
 
 
