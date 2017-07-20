@@ -49,6 +49,7 @@
 		90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AB1F1F3985008106D2 /* PersonInfo.m */; };
 		90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */; };
 		90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07B21F1F3BAB008106D2 /* LoginManager.m */; };
+		A8F13A781F20FD8900D04525 /* NSString+YYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F13A771F20FD8900D04525 /* NSString+YYCategory.m */; };
 		BD8C57B76D85A3BD4D84921C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71F8DB1A9A54FD282B636CD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +142,8 @@
 		90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		90CF07B11F1F3BAB008106D2 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		90CF07B21F1F3BAB008106D2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		A8F13A761F20FD8900D04525 /* NSString+YYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YYCategory.h"; sourceTree = "<group>"; };
+		A8F13A771F20FD8900D04525 /* NSString+YYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YYCategory.m"; sourceTree = "<group>"; };
 		F71F8DB1A9A54FD282B636CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -377,6 +380,7 @@
 				90CF07501F1F318F008106D2 /* AnYiYun.pch */,
 				90CF07511F1F31E8008106D2 /* BaseMecro.h */,
 				90CF07531F1F3300008106D2 /* Network */,
+				A8F13A751F20FD1200D04525 /* NSStringCategory */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -559,6 +563,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		A8F13A751F20FD1200D04525 /* NSStringCategory */ = {
+			isa = PBXGroup;
+			children = (
+				A8F13A761F20FD8900D04525 /* NSString+YYCategory.h */,
+				A8F13A771F20FD8900D04525 /* NSString+YYCategory.m */,
+			);
+			name = NSStringCategory;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -721,6 +734,7 @@
 				90A2EC661F208F68008088C4 /* UIImageLabel.m in Sources */,
 				90CF07841F1F3464008106D2 /* NSString+Date.m in Sources */,
 				901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */,
+				A8F13A781F20FD8900D04525 /* NSString+YYCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
