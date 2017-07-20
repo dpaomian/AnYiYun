@@ -52,30 +52,30 @@
 
 + (void)setRootViewByCacheInfo
 {
-//    BOOL everLoginSuccess = [PersonInfo shareInstance].loginSuccess;
-//    if (everLoginSuccess==YES)
-//        {
+    BOOL everLoginSuccess = [PersonInfo shareInstance].loginSuccess;
+    if (everLoginSuccess==YES)
+        {
         NSString *account = [BaseHelper filterNullObj:[PersonInfo shareInstance].accountID];
         NSString *password = [BaseHelper filterNullObj:[PersonInfo shareInstance].password];
         
         LoadingViewController *loadingVC = [[LoadingViewController alloc] initWithCacheAccount:account password:password];
         BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loadingVC];
         kWindow.rootViewController = navigation;
-//    }
-//    else
-//        {
-//            //默认根视图是登录页面
-//        LoginViewController *loginVC = [[LoginViewController alloc] init];
-//        BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
-//        kWindow.rootViewController = navigation;
-//        
-//            //首次登录,首次启动APP（启动页面）
-//        BOOL isFirstApp = [BaseCacheHelper getBOOLValueForKey:kFirstApp];
-//        if (!isFirstApp) {
-//            FirstLaunchView *launchV = [[FirstLaunchView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height) delegate:self];
-//            [kWindow.rootViewController.view addSubview:launchV];
-//        }
-//    }
+    }
+    else
+        {
+            //默认根视图是登录页面
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
+        kWindow.rootViewController = navigation;
+        
+            //首次登录,首次启动APP（启动页面）
+        BOOL isFirstApp = [BaseCacheHelper getBOOLValueForKey:kFirstApp];
+        if (!isFirstApp) {
+            FirstLaunchView *launchV = [[FirstLaunchView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height) delegate:self];
+            [kWindow.rootViewController.view addSubview:launchV];
+        }
+    }
 }
 
 

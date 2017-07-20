@@ -10,5 +10,10 @@
 
 @interface LoginManager : AFNManager
 
+/**获取登录 API*/
++ (void)loginWithAccount:(NSString *)account
+                    inVC:(UIViewController *)vc
+completionBlockWithSuccess:(requestBlockSuccess)success
+                 failure:(requestFailure)failure;
 
 @end
