@@ -751,7 +751,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: li hongfan (WPJC6UW3LZ)";
 				DEVELOPMENT_TEAM = J8Y4VA83US;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/wwr/Desktop/AnYiYun/AnYiYun/Common/AnYiYun.pch;
+				GCC_PREFIX_HEADER = AnYiYun/Common/AnYiYun.pch;
 				INFOPLIST_FILE = AnYiYun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -771,7 +771,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ShenZhen City heardlearn Co., Ltd. (J8Y4VA83US)";
 				DEVELOPMENT_TEAM = J8Y4VA83US;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/wwr/Desktop/AnYiYun/AnYiYun/Common/AnYiYun.pch;
+				GCC_PREFIX_HEADER = AnYiYun/Common/AnYiYun.pch;
 				INFOPLIST_FILE = AnYiYun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
