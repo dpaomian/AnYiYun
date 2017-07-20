@@ -8,6 +8,8 @@
 
 #import "RootTabBarViewController.h"
 #import "HomeMainViewController.h"
+#import "DailyMainViewController.h"
+#import "EquipmentMainViewController.h"
 #import "MeMainViewController.h"
 
 @interface RootTabBarViewController ()
@@ -21,6 +23,8 @@
     [super viewDidLoad];
     
     [self addChildVC:[[HomeMainViewController alloc] init] title:@"首页" image:@"ic_tab_home_gray" selectedImage:@"ic_tab_home_blue"];
+     [self addChildVC:[[MeMainViewController alloc] init] title:@"日报" image:@"ic_tab_me_gray" selectedImage:@"ic_tab_me_blue"];
+     [self addChildVC:[[MeMainViewController alloc] init] title:@"设备说" image:@"ic_tab_me_gray" selectedImage:@"ic_tab_me_blue"];
     [self addChildVC:[[MeMainViewController alloc] init] title:@"我的" image:@"ic_tab_me_gray" selectedImage:@"ic_tab_me_blue"];
 }
 
