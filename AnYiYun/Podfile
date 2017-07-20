@@ -1,0 +1,8 @@
+platform :ios, ‘8.0’
+pod 'AFNetworking'
+pod 'MJExtension'
+pod 'SDWebImage'
+pod 'Masonry'
+pod 'MJRefresh'
+pod 'MBProgressHUD'
+pod 'TMCache'

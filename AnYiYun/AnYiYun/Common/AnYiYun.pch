@@ -1,0 +1,45 @@
+//
+//  AnYiYun.pch
+//  AnYiYun
+//
+//  Created by wwr on 2017/7/19.
+//  Copyright © 2017年 wwr. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+    //基本配置
+#import "BaseNavigationViewController.h"
+#import "BaseViewController.h"
+#import "BaseCategory.h"
+#import "BaseMecro.h"
+#import "BaseDefine.h"
+#import "AppDelegate.h"
+
+
+    //工具类
+#import "BaseCacheHelper.h"
+#import "BaseHelper.h"
+#import "StatusBarOverlay.h"
+
+    //网络
+#import "BaseAFNRequest.h"
+
+    //第三方类库
+#import "MJExtension.h"
+#import "MBProgressHUD.h"
+#import <UIImageView+WebCache.h>
+#import "MJRefresh.h"
+#import "BaseReachability.h"
+#import "Masonry.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+
+    //当前用户单例
+#import "PersonInfo.h"
+
+#endif
+
