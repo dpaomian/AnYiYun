@@ -40,17 +40,19 @@ static PersonInfo *instance = nil;
 - (void)initWithDic:(NSDictionary *)dic
 {
     NSDictionary *dictionary = [BaseHelper filterNullObj:dic];
-    _username = [BaseHelper filterNullObj:dictionary[@"username"]];
-    _accountID = [BaseHelper filterNullObj:dictionary[@"usercode"]];
+    _accountID = [BaseHelper filterNullObj:dictionary[@"id"]];
+    _comId = [BaseHelper filterNullObj:dictionary[@"comId"]];
     _loginSuccess = [dictionary[@"loginSuccess"] boolValue];
 }
 
 - (void)initWithCacheDic:(NSDictionary *)dic
 {
     NSDictionary *dictionary = [BaseHelper filterNullObj:dic];
-    _username = dictionary[@"username"];
+    _loginTextAccount = dictionary[@"loginTextAccount"];
     _accountID = dictionary[@"accountID"];
     _password = dictionary[@"password"];
+    _username = dictionary[@"username"];
+    _comId = dictionary[@"comId"];
     _loginSuccess = [dictionary[@"loginSuccess"] boolValue];
     
 }

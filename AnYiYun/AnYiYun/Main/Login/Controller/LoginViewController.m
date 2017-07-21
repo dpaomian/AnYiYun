@@ -59,6 +59,10 @@
     _userNameField.returnKeyType = UIReturnKeyNext;
     _userNameField.placeholder = @"用户名/手机号码";
     _userNameField.font = [UIFont systemFontOfSize:14];
+    if ([PersonInfo shareInstance].loginTextAccount.length>0)
+    {
+        _userNameField.text = [PersonInfo shareInstance].loginTextAccount;
+    }
     [inputView addSubview:_userNameField];
     
     UILabel *lineLabel = [[UILabel alloc]init];
@@ -127,7 +131,7 @@
         }
     else
         {
-        [PersonInfo shareInstance].accountID = account;//保存账号为用户输入的值
+        [PersonInfo shareInstance].loginTextAccount = account;//保存账号为用户输入的值
         }
     if (!password.length)
         {
@@ -135,12 +139,11 @@
         return;
         }
         //缓存输入框内容
-    NSString *passwordMD5 = [[password MD5String] uppercaseString];
-    [PersonInfo shareInstance].password = passwordMD5;
+    NSString *passwordSHA = [password SHA256];
+    [PersonInfo shareInstance].password = passwordSHA;
     [BaseCacheHelper setPersonInfo];
     
     [LoginManager loginWithAccount:account inVC:self completionBlockWithSuccess:^() {
-        
         MAIN(^{
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             RootTabBarViewController *tabVC = [[RootTabBarViewController alloc] init];

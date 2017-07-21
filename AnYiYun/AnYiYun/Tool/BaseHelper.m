@@ -232,8 +232,7 @@
 + (NSDictionary *)dictionaryAppendDictionary:(NSDictionary *)param
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
-    [dic setValue:@"" forKey:@"token"];
-    [dic setValue:@"" forKey:@"basetoken"];
+    [dic setValue:[BaseHelper isSpaceString:[PersonInfo shareInstance].accountID andReplace:@""] forKey:@"userSign"];
     return dic;
 }
 

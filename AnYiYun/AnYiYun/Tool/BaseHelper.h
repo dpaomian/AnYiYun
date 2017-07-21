@@ -35,9 +35,6 @@
 + (CGFloat)heightWithAttString:(NSString *)contentString widthLabelWidth:(CGFloat)width textFont:(UIFont *)font withNumberLine:(CGFloat)numberLine withMultiple:(CGFloat)multiple;
     //计算按钮的宽度 传入标题值 跟最大宽度
 +(CGFloat)leftBtnWidth:(NSString *)contentString maxOfWidth:(CGFloat)maxWidth andFontSize:(CGFloat)fontSize;
-    //计算带表情的字符串
-+ (CGSize)getTextViewSizeWithMessage:(NSString *)string maxSize:(CGSize)size;
-
 #pragma mark - 其他
     //弹出框提示
 + (void)waringInfo:(NSString *)msgInfo;

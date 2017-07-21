@@ -195,7 +195,7 @@
         return;
     }
     
-    urlString = [NSString stringWithFormat:@"%@?q=addfile",BaseOnlyUrl];
+    urlString = [NSString stringWithFormat:@"%@?q=addfile",BASE_PLAN_URL];
     
     DLog(@"上传文件地址前缀 = %@",urlString);
 
@@ -356,7 +356,7 @@
         return;
     }
     
-    urlString = [NSString stringWithFormat:@"%@?q=addfile",BaseOnlyUrl];
+    urlString = [NSString stringWithFormat:@"%@?q=addfile",BASE_PLAN_URL];
     DLog(@"上传文件地址前缀 = %@",urlString);
     
     //1.创建管理者对象
