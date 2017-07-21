@@ -29,10 +29,49 @@
     [super viewDidLoad];
     
     [self pictureRequestAction];
+    [self makeView];
     
 }
 
+-(void)moduleBtnClick:(UIButton *)sender
+{
+    
+}
 
+#pragma mark - 设置View
+
+-(void)makeView
+{
+    NSArray *titleArray = @[@"能源管理",@"供配电",@"电气火灾",@"全部"];
+    
+    CGFloat btnWidth = (kScreen_Width-3*1)/titleArray.count;
+    
+    for (int i=0; i<4; i++)
+    {
+    CGFloat xx = i%4*(btnWidth+1);
+    CGFloat yy = i/4*btnWidth+AD_Height;
+    
+    UIButton *useBtn = [[UIButton alloc]initWithFrame: CGRectMake(xx, yy, btnWidth, btnWidth)];
+    useBtn.backgroundColor = [UIColor whiteColor];
+    useBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [useBtn setTitle:titleArray[i] forState:UIControlStateNormal];
+    [useBtn setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
+    useBtn.tag = i+100;
+    [useBtn addTarget:self action:@selector(moduleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:useBtn];
+    
+    UILabel *lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(xx+btnWidth, yy, 1, btnWidth)];
+    lineLabel.backgroundColor = kAPPTableViewLineColor;
+    [self.view addSubview:lineLabel];
+
+    }
+    
+    UILabel *bottomLineLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, btnWidth+AD_Height, kScreen_Width, 1)];
+    bottomLineLabel.backgroundColor = kAPPTableViewLineColor;
+    [self.view addSubview:bottomLineLabel];
+}
+
+#pragma mark - 广告图请求
 -  (void)pictureRequestAction
 {
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/banner",BASE_PLAN_URL];
@@ -96,7 +135,7 @@
         self.adView.imageURLStringsGroup = allImageUrls;
         self.adView.imageContentsGroup = allImageContents;
         self.adView.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
-        _adBgView.frame = CGRectMake(0, 0 , kScreen_Width, AD_Height+kScreen_TopSpace);
+        _adBgView.frame = CGRectMake(0, 0 , kScreen_Width, AD_Height);
         }
     else
         {
@@ -110,7 +149,7 @@
 {
     if (!_adBgView)
         {
-        _adBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, AD_Height+kScreen_TopSpace)];
+        _adBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, AD_Height)];
         _adBgView.backgroundColor = [UIColor clearColor];
         [_adBgView addSubview:self.adView];
         }

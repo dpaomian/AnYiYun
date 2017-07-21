@@ -41,7 +41,7 @@
     //给所有的链接都拼加当前用户
     NSString *myUrl = self.myUrl;
     myWebView = [[WKWebView alloc]init];
-    myWebView.frame = CGRectMake(0, kScreen_TopSpace, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-kScreen_TopSpace);
+    myWebView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT);
     
     NSURL *url = [NSURL URLWithString:myUrl];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];

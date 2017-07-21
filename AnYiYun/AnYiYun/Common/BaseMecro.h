@@ -36,7 +36,7 @@
 #define NAV_HEIGHT       64 //nav的高度
 #define TAB_HEIGHT       49 //tab的高度
 #define kScreen_LeftSpace  14 //内容距屏幕左侧间距
-#define kScreen_TopSpace   8 //内容距屏幕顶部间距/cell分区间距
+#define kScreen_CellSpace   8 //内容距屏幕顶部间距/cell分区间距
 
 /**字体大小*/
     //#define SYSFONT_(a)      [UIFont fontWithName:nil size:a]
