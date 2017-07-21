@@ -137,8 +137,12 @@
                 
                 if ([responseObject isKindOfClass:[NSData class]]) {
                     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+                    
+                    DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:dictionary]);
                     successBlock(dictionary);
-                }else{
+                }
+                else{
+                     DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:responseObject]);
                     successBlock(responseObject);
                 }
                 
@@ -159,10 +163,15 @@
                 
                 if ([responseObject isKindOfClass:[NSData class]]) {
                     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+                    
+                    DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:dictionary]);
                     successBlock(dictionary);
-                }else{
+                }
+                else{
+                    DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:responseObject]);
                     successBlock(responseObject);
                 }
+
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
