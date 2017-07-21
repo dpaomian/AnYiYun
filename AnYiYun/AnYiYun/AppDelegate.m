@@ -25,6 +25,9 @@
     
     [BaseLaunchConfig launchingFlowConfig];
     
+    
+    NSLog(@"%@",[@"123456" SHA256]);
+    
     return YES;
 }
 
