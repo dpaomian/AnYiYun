@@ -29,20 +29,20 @@
     [self.superiorButton buttonClickedHandle:^(UIButton *sender) {
         if (ws.dateModel.isDay) {
             [ws changeDate:-1];
-            _dateChangeHandle([NSString stringWithFormat:@"%.2d/%.2d",_dateModel.day,_dateModel.month]);
+            _dateChangeHandle(_dateModel.navigationYear, _dateModel.navigationMonth,_dateModel.navigationDay);
         } else {
             [ws changeDate:-1];
-            _dateChangeHandle([NSString stringWithFormat:@"%.2d/%.2d",_dateModel.year,_dateModel.month]);
+            _dateChangeHandle(_dateModel.navigationYear, _dateModel.navigationMonth,_dateModel.navigationDay);
         }
     }];
     /*点击选择下一天或下个月*/
     [self.nextButton buttonClickedHandle:^(UIButton *sender) {
         if (ws.dateModel.isDay) {
             [ws changeDate:1];
-            _dateChangeHandle([NSString stringWithFormat:@"%.2d/%.2d",_dateModel.day,_dateModel.month]);
+            _dateChangeHandle(_dateModel.navigationYear, _dateModel.navigationMonth,_dateModel.navigationDay);
         } else {
             [ws changeDate:1];
-            _dateChangeHandle([NSString stringWithFormat:@"%.2d/%.2d",_dateModel.year,_dateModel.month]);
+            _dateChangeHandle(_dateModel.navigationYear, _dateModel.navigationMonth,_dateModel.navigationDay);
         }
     }];
 }
@@ -75,11 +75,11 @@
     NSDateComponents *components = [_calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.calendarDate];
         //    现在时间
     NSDateComponents *nowComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.calendarDate];
-    _dateModel.day  = components.day;
-    _dateModel.month = components.month;
-    _dateModel.year = components.year;
-    if (_dateModel.year == nowComponents.year && _dateModel.month == nowComponents.month) {
-        _dateModel.day  = nowComponents.day;
+    _dateModel.navigationDay  = components.day;
+    _dateModel.navigationMonth = components.month;
+    _dateModel.navigationYear = components.year;
+    if (_dateModel.navigationYear == nowComponents.year && _dateModel.navigationMonth == nowComponents.month) {
+        _dateModel.navigationDay  = nowComponents.day;
     }else{}
     
         //    日历从周日开始 周日 周一。。。。。
@@ -131,9 +131,9 @@
     if(_calendar == nil){
         _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         NSDateComponents *components = [_calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.calendarDate];
-        _dateModel.day  = components.day;
-        _dateModel.month = components.month;
-        _dateModel.year = components.year;
+        _dateModel.navigationDay  = components.day;
+        _dateModel.navigationMonth = components.month;
+        _dateModel.navigationYear = components.year;
     }
 }
 

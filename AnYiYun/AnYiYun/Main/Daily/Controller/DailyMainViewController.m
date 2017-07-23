@@ -32,12 +32,21 @@
     _calendarTitleView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYCalendarView class]) owner:nil options:nil][0];
     _calendarTitleView.calendarDate = [NSDate date];
     [_calendarTitleView updateDate: [NSDate date]];
+    _calendarTitleView.isNavigation = YES;
     _calendarTitleView.bounds = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH/2.0f, 44.0f);
     /*设置默认日起为当日*/
-    [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.day,_datemodel.month] forState:UIControlStateNormal];
+    [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.navigationMonth,_datemodel.navigationDay] forState:UIControlStateNormal];
     self.navigationItem.titleView = _calendarTitleView;
-    _calendarTitleView.dateChangeHandle = ^(NSString *dateString){
+    _calendarTitleView.dateChangeHandle = ^(NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay){
+        NSString *dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
+        if (ws.datemodel.isDay) {
+            dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
+        } else {
+            dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyYear,yyMonth];
+        }
         [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
+        [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
+        [ws dailyRequestAction];
     };
     
     /*点击弹出日历*/
@@ -81,10 +90,12 @@
 -(void)indexDidChangeForSegmentedControl:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
         _datemodel.isDay = YES;
-        [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.day,_datemodel.month] forState:UIControlStateNormal];
+        [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.navigationMonth,_datemodel.navigationDay] forState:UIControlStateNormal];
+        [self dailyRequestAction];
     } else {
         _datemodel.isDay = NO;
-        [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.year,_datemodel.month] forState:UIControlStateNormal];
+        [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.navigationYear,_datemodel.navigationMonth] forState:UIControlStateNormal];
+        [self dailyRequestAction];
     }
 }
 /*!
@@ -97,18 +108,103 @@
     
     _datemodel = [YYCalendarModel shareModel];
     _datemodel.isDay = YES;
-    _datemodel.year = dateComponents.year;
-    _datemodel.month = dateComponents.month;
-    _datemodel.day = dateComponents.day;
+    _datemodel.navigationYear = dateComponents.year;
+    _datemodel.navigationMonth = dateComponents.month;
+    _datemodel.navigationDay= dateComponents.day;
+}
+
+- (void)createPlaceHoldLable {
+    _placeHoldLable = [[UILabel alloc] initWithFrame:CGRectMake(8.0f, 64.0f, SCREEN_WIDTH-8.0f, 64.0f)];
+    _placeHoldLable.hidden = YES;
+    _placeHoldLable.numberOfLines = 0;
+    _placeHoldLable.textColor = UIColorFromRGB(0x000000);
+    _placeHoldLable.textAlignment = NSTextAlignmentCenter;
+    _placeHoldLable.font = [UIFont systemFontOfSize:15.0f];
+    [self.view addSubview:_placeHoldLable];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     /*初始化model对象，方便取当前年月日*/
     [self datemodelInit];
+    /*默认加载当日日报*/
+    [self dailyRequestAction];
     /*配置导航*/
     [self configurationNavigationController];
-    NSLog(@"%@",[PersonInfo shareInstance].accountID);
+    
+    _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    _webView.delegate = self;
+    _webView.scalesPageToFit = YES;
+    _webView.backgroundColor = UIColorFromRGB(0xFFFFFF);
+    _webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_webView];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|[_webView]|"
+                               options:1.0
+                               metrics:nil
+                               views:NSDictionaryOfVariableBindings(_webView)]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:|[_webView]|"
+                               options:1.0
+                               metrics:nil
+                               views:NSDictionaryOfVariableBindings(_webView)]];
+    
+    /*创建一个lalel做别用，当没有日报或月报时用来展示文字提示*/
+    [self createPlaceHoldLable];
+}
+
+- (void)dailyRequestAction {
+    
+    [MBProgressHUD showMessage:@""];
+    
+    NSString *dailyString = [NSString stringWithFormat:@"%.2d%.2d%.2d",_datemodel.navigationYear,_datemodel.navigationMonth,_datemodel.navigationDay];
+    if (_datemodel.isDay) {
+        dailyString = [NSString stringWithFormat:@"%.2d%.2d%.2d",_datemodel.navigationYear,_datemodel.navigationMonth,_datemodel.navigationDay];
+    } else {
+        dailyString = [NSString stringWithFormat:@"%.2d%.2d",_datemodel.navigationYear,_datemodel.navigationMonth];
+    }
+    
+    __weak DailyMainViewController *ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,_datemodel.isDay ? @"rest/page/report":@"rest/page/monthReport"];
+    NSDictionary *parameters = @{@"userSign":[PersonInfo shareInstance].accountID,@"date":dailyString};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:parameters
+        progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [MBProgressHUD hideHUD];
+            NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+            if ([!result?@"":result length] > 0) {
+                ws.webView.hidden = NO;
+                ws.placeHoldLable.hidden = YES;
+                NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:result]];
+                [ws.webView loadRequest:request];
+            } else {
+                ws.webView.hidden = YES;
+                ws.placeHoldLable.hidden = NO;
+                ws.placeHoldLable.text = ws.datemodel.isDay?@"您所选择的日期没有日报":@"您所选择的月份没有月报";
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+        }];
+}
+
+#pragma mark -
+#pragma mark UIWebViewDelegate -
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return YES;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [MBProgressHUD showMessage:@"加载中..."];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [MBProgressHUD hideHUD];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [MBProgressHUD showError:@"加载失败"];
 }
 
 - (void)didReceiveMemoryWarning {

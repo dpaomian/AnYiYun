@@ -58,6 +58,7 @@
 		90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AB1F1F3985008106D2 /* PersonInfo.m */; };
 		90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */; };
 		90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07B21F1F3BAB008106D2 /* LoginManager.m */; };
+		A86694791F248D140097999D /* MBProgressHUD+YY.m in Sources */ = {isa = PBXBuildFile; fileRef = A86694781F248D140097999D /* MBProgressHUD+YY.m */; };
 		A89FBFC51F230257001405E8 /* YYCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFC41F230257001405E8 /* YYCalendarView.m */; };
 		A89FBFC71F230280001405E8 /* YYCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89FBFC61F230280001405E8 /* YYCalendarView.xib */; };
 		A89FBFCB1F23040A001405E8 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCA1F23040A001405E8 /* UIButton+Category.m */; };
@@ -176,6 +177,8 @@
 		90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		90CF07B11F1F3BAB008106D2 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		90CF07B21F1F3BAB008106D2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		A86694771F248D140097999D /* MBProgressHUD+YY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+YY.h"; sourceTree = "<group>"; };
+		A86694781F248D140097999D /* MBProgressHUD+YY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+YY.m"; sourceTree = "<group>"; };
 		A89FBFC31F230257001405E8 /* YYCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYCalendarView.h; path = AnYiYun/Main/Daily/YYCalendarView.h; sourceTree = SOURCE_ROOT; };
 		A89FBFC41F230257001405E8 /* YYCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YYCalendarView.m; path = AnYiYun/Main/Daily/YYCalendarView.m; sourceTree = SOURCE_ROOT; };
 		A89FBFC61F230280001405E8 /* YYCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YYCalendarView.xib; path = AnYiYun/Main/Daily/YYCalendarView.xib; sourceTree = SOURCE_ROOT; };
@@ -464,6 +467,7 @@
 		90CF07331F1F2F59008106D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A86694761F248CF70097999D /* MBProgressHUDCategory */,
 				90CF07501F1F318F008106D2 /* AnYiYun.pch */,
 				90CF07511F1F31E8008106D2 /* BaseMecro.h */,
 				90CF07531F1F3300008106D2 /* Network */,
@@ -654,6 +658,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		A86694761F248CF70097999D /* MBProgressHUDCategory */ = {
+			isa = PBXGroup;
+			children = (
+				A86694771F248D140097999D /* MBProgressHUD+YY.h */,
+				A86694781F248D140097999D /* MBProgressHUD+YY.m */,
+			);
+			name = MBProgressHUDCategory;
+			sourceTree = "<group>";
+		};
 		A89FBFC81F23040A001405E8 /* UIButtonCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,6 +826,7 @@
 				90CF07A21F1F38D5008106D2 /* SJAvatarBrowser.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				90CF07811F1F3464008106D2 /* NSDateFormatter+Category.m in Sources */,
+				A86694791F248D140097999D /* MBProgressHUD+YY.m in Sources */,
 				90CF07A91F1F3955008106D2 /* StatusBarOverlay.m in Sources */,
 				90272BE21F224382000B1DC0 /* TAPageControl.m in Sources */,
 				90CF073C1F1F2FAE008106D2 /* BaseViewController.m in Sources */,
@@ -963,6 +977,7 @@
 			baseConfigurationReference = 617F75F35450880E537C172C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: li hongfan (WPJC6UW3LZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: li hongfan (WPJC6UW3LZ)";
 				DEVELOPMENT_TEAM = J8Y4VA83US;
@@ -983,6 +998,7 @@
 			baseConfigurationReference = 1B9BBA670C09FB1001076AA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ShenZhen City heardlearn Co., Ltd. (J8Y4VA83US)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ShenZhen City heardlearn Co., Ltd. (J8Y4VA83US)";
 				DEVELOPMENT_TEAM = J8Y4VA83US;

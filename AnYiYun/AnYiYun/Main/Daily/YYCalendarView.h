@@ -27,9 +27,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *dateButton;
 /*!下级按钮*/
 @property (strong, nonatomic) IBOutlet UIButton *nextButton;
-
+/*!是否是在导航上使用，默认YES*/
+@property (assign, nonatomic) BOOL              isNavigation;
 /*!日期发生改变时的回调*/
-@property (copy, nonatomic) void (^dateChangeHandle)(NSString *dateString);
+@property (copy, nonatomic) void (^dateChangeHandle)(NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay);
 
 -(void)updateDate:(NSDate*)date;
 

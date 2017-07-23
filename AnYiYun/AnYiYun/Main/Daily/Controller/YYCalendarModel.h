@@ -13,6 +13,14 @@
 
 /*!日/月去分，YES日、NO月*/
 @property (nonatomic, assign) BOOL                  isDay;
+
+/*!在导航上使用  年*/
+@property (nonatomic, assign) NSInteger             navigationYear;
+/*!在导航上使用  月*/
+@property (nonatomic, assign) NSInteger             navigationMonth;
+/*!在导航上使用  日*/
+@property (nonatomic, assign) NSInteger             navigationDay;
+
 /*!年*/
 @property (nonatomic, assign) NSInteger             year;
 /*!月*/

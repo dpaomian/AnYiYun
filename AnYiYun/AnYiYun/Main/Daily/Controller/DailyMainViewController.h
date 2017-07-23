@@ -9,10 +9,16 @@
 #import "BaseViewController.h"
 #import "YYCalendarView.h"
 #import "CalendarViewController.h"
+#import "MBProgressHUD+YY.h"
 
 /**
  日报
  */
-@interface DailyMainViewController : BaseViewController
+@interface DailyMainViewController : BaseViewController <UIWebViewDelegate>
+
+/*!webView*/
+@property (strong, nonatomic) UIWebView *webView;
+/*!webview需要加载的地址*/
+@property (strong, nonatomic) UILabel   *placeHoldLable;
 
 @end
