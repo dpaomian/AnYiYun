@@ -14,11 +14,19 @@
 
 /*!日历*/
 @property (nonatomic, strong) NSCalendar *calendar;
+/*!在导航使用日报时记录时间*/
+@property (nonatomic, strong) NSDate                            *dailyDate;
+/*!在导航使用月报时记录时间*/
+@property (nonatomic, strong) NSDate                            *monthDate;
+/*!在使用日历时记录时间*/
+@property (nonatomic, strong) NSDate                            *calendarDate;
 
-@property (nonatomic, strong) NSDate                            *calendarDate;//日历现在是什么时间
-@property (nonatomic, strong) NSMutableArray                    *allDays;//每个月开始几天（上个月）+本月天数+最后几天( 下个月)
-@property (nonatomic, strong) NSMutableArray                    *firstDays;//每个月刚开始几天（上个月）
-@property (nonatomic, strong) NSMutableArray                    *lastDays;//每个月最后几天（下个月）
+/*!每个月开始几天（上个月）+本月天数+最后几天( 下个月)*/
+@property (nonatomic, strong) NSMutableArray                    *allDays;
+/*!每个月刚开始几天（上个月）*/
+@property (nonatomic, strong) NSMutableArray                    *firstDays;
+/*!每个月最后几天（下个月）*/
+@property (nonatomic, strong) NSMutableArray                    *lastDays;
 
 
 /*!上级按钮*/

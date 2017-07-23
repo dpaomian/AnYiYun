@@ -15,6 +15,10 @@
 @property (nonatomic, strong) YYCalendarView *calendarTitleView;
 /*!导航中间的日期显示*/
 @property (nonatomic, strong) NSArray *weekDaysArray;
+/*!collectionView需要的高度*/
+//@property (nonatomic, assign) CGFloat collectionViewHeight;
+/*!当collectionview的高度需要变化时，需要通过该数组调整约束*/
+@property (nonatomic, strong) NSMutableArray *constraintMutableArray;
 
 @end
 
@@ -29,6 +33,8 @@
     
     _calendarModel = [YYCalendarModel shareModel];
     _weekDaysArray = @[@"日",@"一",@"二",@"三",@"四",@"五",@"六"];
+    _constraintMutableArray = [NSMutableArray array];
+    
     
     CGFloat currentWith = (SCREEN_WIDTH-16.0f-6.0f)/7.0f;
     NSInteger lines = [_calendarModel.allDays count]/7;
@@ -38,8 +44,18 @@
     navigationView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:navigationView];
     UIView *navigationBottomView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, NAV_HEIGHT+1.0f, SCREEN_WIDTH, NAV_HEIGHT-20.0f)];
-    navigationBottomView.backgroundColor = [UIColor redColor];
+    navigationBottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:navigationBottomView];
+    
+    UIButton *touchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    touchButton.translatesAutoresizingMaskIntoConstraints = NO;
+    touchButton.backgroundColor = UIColorFromRGBA(0x000000, 0.4);
+    [touchButton buttonClickedHandle:^(UIButton *sender) {
+        [ws dismissViewControllerAnimated:NO completion:^{
+            
+        }];
+    }];
+    [self.view addSubview:touchButton];
     
     
     _calendarTitleView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYCalendarView class]) owner:nil options:nil][0];
@@ -53,6 +69,28 @@
     self.navigationItem.titleView = _calendarTitleView;
     _calendarTitleView.dateChangeHandle = ^(NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay){
         [ws.calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d年%.2d月",yyYear,yyMonth] forState:UIControlStateNormal];
+        NSInteger lines = [ws.calendarModel.allDays count]/7;
+        CGFloat collectionViewHeight = (currentWith+1.0f) * lines+4.0f+20.88f+4.0f;
+        [ws.view removeConstraints:ws.constraintMutableArray];
+        [ws.constraintMutableArray removeAllObjects];
+        [ws.constraintMutableArray addObject:[NSLayoutConstraint
+                                            constraintWithItem:ws.calendarCollectionView
+                                            attribute:NSLayoutAttributeHeight
+                                            relatedBy:NSLayoutRelationEqual
+                                            toItem:nil
+                                            attribute:NSLayoutAttributeHeight
+                                            multiplier:1.0
+                                            constant:collectionViewHeight]];
+        [ws.constraintMutableArray addObject:[NSLayoutConstraint
+                                            constraintWithItem:touchButton
+                                            attribute:NSLayoutAttributeHeight
+                                            relatedBy:NSLayoutRelationEqual
+                                            toItem:nil
+                                            attribute:NSLayoutAttributeHeight
+                                            multiplier:1.0
+                                            constant:SCREEN_HEIGHT - collectionViewHeight - NAV_HEIGHT-NAV_HEIGHT+28.88f]];
+        [ws.view addConstraints:ws.constraintMutableArray];
+        [ws.calendarCollectionView reloadData];
     };
     
     /*点击弹出日历*/
@@ -77,16 +115,6 @@
     _calendarCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
     _calendarCollectionView.allowsMultipleSelection = NO;
     [self.view addSubview:_calendarCollectionView];
-    
-    UIButton *touchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    touchButton.translatesAutoresizingMaskIntoConstraints = NO;
-    touchButton.backgroundColor = UIColorFromRGBA(0x000000, 0.4);
-    [touchButton buttonClickedHandle:^(UIButton *sender) {
-        [ws dismissViewControllerAnimated:NO completion:^{
-            
-        }];
-    }];
-    [self.view addSubview:touchButton];
     
     
     [self.view addConstraint:[NSLayoutConstraint
@@ -123,14 +151,14 @@
                                options:1.0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(_calendarTitleView)]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:_calendarCollectionView
-                              attribute:NSLayoutAttributeHeight
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:nil
-                              attribute:NSLayoutAttributeHeight
-                              multiplier:1.0
-                              constant:collectionViewHeight]];
+    [_constraintMutableArray addObject:[NSLayoutConstraint
+                                        constraintWithItem:_calendarCollectionView
+                                        attribute:NSLayoutAttributeHeight
+                                        relatedBy:NSLayoutRelationEqual
+                                        toItem:nil
+                                        attribute:NSLayoutAttributeHeight
+                                        multiplier:1.0
+                                        constant:collectionViewHeight]];
     [self.view addConstraint:[NSLayoutConstraint
                               constraintWithItem:touchButton
                               attribute:NSLayoutAttributeTop
@@ -144,14 +172,15 @@
                                options:1.0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(touchButton)]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:touchButton
-                              attribute:NSLayoutAttributeHeight
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:nil
-                              attribute:NSLayoutAttributeHeight
-                              multiplier:1.0
-                              constant:SCREEN_HEIGHT - collectionViewHeight - NAV_HEIGHT-NAV_HEIGHT-44.0f]];
+    [_constraintMutableArray addObject:[NSLayoutConstraint
+                                        constraintWithItem:touchButton
+                                        attribute:NSLayoutAttributeHeight
+                                        relatedBy:NSLayoutRelationEqual
+                                        toItem:nil
+                                        attribute:NSLayoutAttributeHeight
+                                        multiplier:1.0
+                                        constant:SCREEN_HEIGHT - collectionViewHeight - NAV_HEIGHT-NAV_HEIGHT+28.88f]];
+    [self.view addConstraints:_constraintMutableArray];
 }
 
 #pragma mark -
@@ -169,7 +198,7 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YYCalendarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYCalendarCollectionViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    cell.backgroundColor = [UIColor whiteColor];
     if (indexPath.section == 0) {
         cell.titleLable.text = _weekDaysArray[indexPath.row];
         cell.titleLable.textColor = UIColorFromRGB(0x3D3D3D);

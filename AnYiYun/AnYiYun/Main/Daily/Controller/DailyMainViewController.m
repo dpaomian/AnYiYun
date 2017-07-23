@@ -30,7 +30,8 @@
     self.navigationItem.leftBarButtonItem = dailyButttonItem;
     
     _calendarTitleView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYCalendarView class]) owner:nil options:nil][0];
-    _calendarTitleView.calendarDate = [NSDate date];
+    _calendarTitleView.dailyDate = [NSDate date];
+    _calendarTitleView.monthDate = [NSDate date];
     [_calendarTitleView updateDate: [NSDate date]];
     _calendarTitleView.isNavigation = YES;
     _calendarTitleView.bounds = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH/2.0f, 44.0f);
@@ -94,7 +95,7 @@
         [self dailyRequestAction];
     } else {
         _datemodel.isDay = NO;
-        [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.navigationYear,_datemodel.navigationMonth] forState:UIControlStateNormal];
+        [_calendarTitleView.dateButton setTitle:[NSString stringWithFormat:@"%.2d/%.2d",_datemodel.monthNavigationYear,_datemodel.monthNavigationMonth] forState:UIControlStateNormal];
         [self dailyRequestAction];
     }
 }
@@ -111,6 +112,8 @@
     _datemodel.navigationYear = dateComponents.year;
     _datemodel.navigationMonth = dateComponents.month;
     _datemodel.navigationDay= dateComponents.day;
+    _datemodel.monthNavigationYear = dateComponents.year;
+    _datemodel.monthNavigationMonth = dateComponents.month;
 }
 
 - (void)createPlaceHoldLable {
