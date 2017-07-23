@@ -13,5 +13,6 @@
 @interface CalendarViewController : BaseViewController <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) UICollectionView *calendarCollectionView;
+@property (copy, nonatomic) void (^choiceDateHandle)(NSDate *currentDate, NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay);
 
 @end

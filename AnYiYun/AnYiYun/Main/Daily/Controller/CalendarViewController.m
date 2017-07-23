@@ -73,22 +73,8 @@
         CGFloat collectionViewHeight = (currentWith+1.0f) * lines+4.0f+20.88f+4.0f;
         [ws.view removeConstraints:ws.constraintMutableArray];
         [ws.constraintMutableArray removeAllObjects];
-        [ws.constraintMutableArray addObject:[NSLayoutConstraint
-                                            constraintWithItem:ws.calendarCollectionView
-                                            attribute:NSLayoutAttributeHeight
-                                            relatedBy:NSLayoutRelationEqual
-                                            toItem:nil
-                                            attribute:NSLayoutAttributeHeight
-                                            multiplier:1.0
-                                            constant:collectionViewHeight]];
-        [ws.constraintMutableArray addObject:[NSLayoutConstraint
-                                            constraintWithItem:touchButton
-                                            attribute:NSLayoutAttributeHeight
-                                            relatedBy:NSLayoutRelationEqual
-                                            toItem:nil
-                                            attribute:NSLayoutAttributeHeight
-                                            multiplier:1.0
-                                            constant:SCREEN_HEIGHT - collectionViewHeight - NAV_HEIGHT-NAV_HEIGHT+28.88f]];
+        [ws.constraintMutableArray addObject:[NSLayoutConstraint constraintWithItem:ws.calendarCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:collectionViewHeight]];
+        [ws.constraintMutableArray addObject:[NSLayoutConstraint constraintWithItem:touchButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:SCREEN_HEIGHT - collectionViewHeight - NAV_HEIGHT-NAV_HEIGHT+28.88f]];
         [ws.view addConstraints:ws.constraintMutableArray];
         [ws.calendarCollectionView reloadData];
     };
@@ -117,69 +103,16 @@
     [self.view addSubview:_calendarCollectionView];
     
     
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:_calendarTitleView
-                              attribute:NSLayoutAttributeTop
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:navigationView
-                              attribute:NSLayoutAttributeBottom
-                              multiplier:1.0
-                              constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:_calendarTitleView
-                              attribute:NSLayoutAttributeHeight
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:nil
-                              attribute:NSLayoutAttributeHeight
-                              multiplier:1.0
-                              constant:NAV_HEIGHT-20.0f]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:_calendarCollectionView
-                              attribute:NSLayoutAttributeTop
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:navigationView
-                              attribute:NSLayoutAttributeBottom
-                              multiplier:1.0
-                              constant:NAV_HEIGHT-20.0f]];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:|[_calendarCollectionView]|"
-                               options:1.0
-                               metrics:nil
-                               views:NSDictionaryOfVariableBindings(_calendarCollectionView)]];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:|-44-[_calendarTitleView]-44-|"
-                               options:1.0
-                               metrics:nil
-                               views:NSDictionaryOfVariableBindings(_calendarTitleView)]];
-    [_constraintMutableArray addObject:[NSLayoutConstraint
-                                        constraintWithItem:_calendarCollectionView
-                                        attribute:NSLayoutAttributeHeight
-                                        relatedBy:NSLayoutRelationEqual
-                                        toItem:nil
-                                        attribute:NSLayoutAttributeHeight
-                                        multiplier:1.0
-                                        constant:collectionViewHeight]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:touchButton
-                              attribute:NSLayoutAttributeTop
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:_calendarCollectionView
-                              attribute:NSLayoutAttributeBottom
-                              multiplier:1.0
-                              constant:0]];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:|[touchButton]|"
-                               options:1.0
-                               metrics:nil
-                               views:NSDictionaryOfVariableBindings(touchButton)]];
-    [_constraintMutableArray addObject:[NSLayoutConstraint
-                                        constraintWithItem:touchButton
-                                        attribute:NSLayoutAttributeHeight
-                                        relatedBy:NSLayoutRelationEqual
-                                        toItem:nil
-                                        attribute:NSLayoutAttributeHeight
-                                        multiplier:1.0
-                                        constant:SCREEN_HEIGHT - collectionViewHeight - NAV_HEIGHT-NAV_HEIGHT+28.88f]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_calendarTitleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:navigationView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_calendarTitleView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:NAV_HEIGHT-20.0f]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_calendarCollectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:navigationView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:NAV_HEIGHT-20.0f]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_calendarCollectionView]|" options:1.0 metrics:nil
+  views:NSDictionaryOfVariableBindings(_calendarCollectionView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-44-[_calendarTitleView]-44-|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_calendarTitleView)]];
+    [_constraintMutableArray addObject:[NSLayoutConstraint constraintWithItem:_calendarCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:collectionViewHeight]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:touchButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_calendarCollectionView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[touchButton]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(touchButton)]];
+    [_constraintMutableArray addObject:[NSLayoutConstraint constraintWithItem:touchButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:SCREEN_HEIGHT - collectionViewHeight - NAV_HEIGHT-NAV_HEIGHT+28.88f]];
     [self.view addConstraints:_constraintMutableArray];
 }
 
@@ -202,10 +135,12 @@
     if (indexPath.section == 0) {
         cell.titleLable.text = _weekDaysArray[indexPath.row];
         cell.titleLable.textColor = UIColorFromRGB(0x3D3D3D);
+        cell.markImageView.image = nil;
     } else {
         cell.titleLable.textColor = UIColorFromRGB(0x000000);
         if (indexPath.row <[_calendarModel.firstDays count] || indexPath.row >([_calendarModel.allDays count] - [_calendarModel.firstDays count])) {
             cell.titleLable.text = @"";
+            cell.markImageView.image = nil;
         } else {
             
             NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -215,7 +150,7 @@
             if (_calendarModel.year == dateComponents.year &&
                 _calendarModel.month == dateComponents.month &&
                 [[_calendarModel allDays][indexPath.row] integerValue] == dateComponents.day) {
-                cell.markImageView.image = [UIImage imageNamed:@"daily_selected.png"];
+                cell.markImageView.image = [UIImage imageNamed:@"daily.png"];
             } else {
                 cell.markImageView.image = nil;
             }
@@ -235,7 +170,12 @@
         indexPath.section == 0) {
         return;
     } else {
-        NSLog(@"点击的 %d年%d月%@日",_calendarModel.year,_calendarModel.month,[_calendarModel allDays][indexPath.row]);
+        if (_choiceDateHandle) {
+            _choiceDateHandle(_calendarTitleView.calendarDate ,_calendarModel.year,_calendarModel.month,[[_calendarModel allDays][indexPath.row] integerValue]);
+        }
+        [self dismissViewControllerAnimated:NO completion:^{
+            
+        }];
     }
 }
 

@@ -46,7 +46,6 @@
             dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyYear,yyMonth];
         }
         [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
-        [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
         [ws dailyRequestAction];
     };
     
@@ -55,6 +54,21 @@
         CalendarViewController *calenderVC = [[CalendarViewController alloc] init];
         calenderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         calenderVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        calenderVC.choiceDateHandle = ^(NSDate *currentDate, NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay){
+            NSLog(@"点击的 %d年%d月%d日",yyYear,yyMonth,yyDay);
+            ws.datemodel.navigationYear = yyYear;
+            ws.datemodel.navigationMonth = yyMonth;
+            ws.datemodel.navigationDay= yyDay;
+            ws.calendarTitleView.dailyDate = currentDate;
+            NSString *dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
+            if (ws.datemodel.isDay) {
+                dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
+            } else {
+                dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyYear,yyMonth];
+            }
+            [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
+            [ws dailyRequestAction];
+        };
         [ws.tabBarController presentViewController:calenderVC animated:NO completion:^{
             
         }];
