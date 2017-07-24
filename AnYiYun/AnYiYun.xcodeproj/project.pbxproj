@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FC1F26204C00CFED87 /* UserInfoCell.m */; };
+		901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FE1F2620B800CFED87 /* YYCalendarModel.m */; };
+		901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901788021F2620D200CFED87 /* YYCalendarCollectionViewCell.m */; };
+		901788081F2620D200CFED87 /* YYCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 901788031F2620D200CFED87 /* YYCalendarCollectionViewCell.xib */; };
+		901788091F2620D200CFED87 /* YYCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 901788051F2620D200CFED87 /* YYCalendarView.m */; };
+		9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 901788061F2620D200CFED87 /* YYCalendarView.xib */; };
+		901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */ = {isa = PBXBuildFile; fileRef = 9017880C1F26213700CFED87 /* MBProgressHUD+YY.m */; };
+		901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9017880E1F26213700CFED87 /* NSString+YYCategory.m */; };
+		901788131F26213700CFED87 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 901788101F26213700CFED87 /* UIButton+Category.m */; };
 		901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A081B1F20E32F009488C1 /* DailyMainViewController.m */; };
 		901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A081E1F20E366009488C1 /* EquipmentMainViewController.m */; };
 		901A08261F20E3AA009488C1 /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A08231F20E3AA009488C1 /* HomeMainViewController.m */; };
@@ -69,21 +78,29 @@
 		A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF5D1F26051800B5F2D2 /* LoadDatectionHeaderView.xib */; };
 		A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */; };
 		A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */; };
-		A86694791F248D140097999D /* MBProgressHUD+YY.m in Sources */ = {isa = PBXBuildFile; fileRef = A86694781F248D140097999D /* MBProgressHUD+YY.m */; };
-		A89FBFC51F230257001405E8 /* YYCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFC41F230257001405E8 /* YYCalendarView.m */; };
-		A89FBFC71F230280001405E8 /* YYCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89FBFC61F230280001405E8 /* YYCalendarView.xib */; };
-		A89FBFCB1F23040A001405E8 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCA1F23040A001405E8 /* UIButton+Category.m */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
-		A89FBFD51F231A79001405E8 /* YYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFD41F231A79001405E8 /* YYCalendarModel.m */; };
-		A89FBFEB1F235D13001405E8 /* YYCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFE91F235D13001405E8 /* YYCalendarCollectionViewCell.m */; };
-		A89FBFEC1F235D13001405E8 /* YYCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89FBFEA1F235D13001405E8 /* YYCalendarCollectionViewCell.xib */; };
-		A8F13A781F20FD8900D04525 /* NSString+YYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F13A771F20FD8900D04525 /* NSString+YYCategory.m */; };
 		BD8C57B76D85A3BD4D84921C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71F8DB1A9A54FD282B636CD /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B9BBA670C09FB1001076AA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		617F75F35450880E537C172C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		901787FB1F26204C00CFED87 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		901787FC1F26204C00CFED87 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
+		901787FE1F2620B800CFED87 /* YYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCalendarModel.m; sourceTree = "<group>"; };
+		901788001F2620BF00CFED87 /* YYCalendarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCalendarModel.h; sourceTree = "<group>"; };
+		901788011F2620D200CFED87 /* YYCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCalendarCollectionViewCell.h; sourceTree = "<group>"; };
+		901788021F2620D200CFED87 /* YYCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCalendarCollectionViewCell.m; sourceTree = "<group>"; };
+		901788031F2620D200CFED87 /* YYCalendarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYCalendarCollectionViewCell.xib; sourceTree = "<group>"; };
+		901788041F2620D200CFED87 /* YYCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCalendarView.h; sourceTree = "<group>"; };
+		901788051F2620D200CFED87 /* YYCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCalendarView.m; sourceTree = "<group>"; };
+		901788061F2620D200CFED87 /* YYCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYCalendarView.xib; sourceTree = "<group>"; };
+		9017880B1F26213700CFED87 /* MBProgressHUD+YY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+YY.h"; sourceTree = "<group>"; };
+		9017880C1F26213700CFED87 /* MBProgressHUD+YY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+YY.m"; sourceTree = "<group>"; };
+		9017880D1F26213700CFED87 /* NSString+YYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YYCategory.h"; sourceTree = "<group>"; };
+		9017880E1F26213700CFED87 /* NSString+YYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YYCategory.m"; sourceTree = "<group>"; };
+		9017880F1F26213700CFED87 /* UIButton+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
+		901788101F26213700CFED87 /* UIButton+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Category.m"; sourceTree = "<group>"; };
 		901A081A1F20E32F009488C1 /* DailyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyMainViewController.h; sourceTree = "<group>"; };
 		901A081B1F20E32F009488C1 /* DailyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyMainViewController.m; sourceTree = "<group>"; };
 		901A081D1F20E366009488C1 /* EquipmentMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentMainViewController.h; sourceTree = "<group>"; };
@@ -207,22 +224,8 @@
 		A810BF5F1F260A1400B5F2D2 /* LoadDatectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadDatectionCell.h; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.h; sourceTree = SOURCE_ROOT; };
 		A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadDatectionCell.m; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.m; sourceTree = SOURCE_ROOT; };
 		A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadDatectionCell.xib; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.xib; sourceTree = SOURCE_ROOT; };
-		A86694771F248D140097999D /* MBProgressHUD+YY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+YY.h"; sourceTree = "<group>"; };
-		A86694781F248D140097999D /* MBProgressHUD+YY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+YY.m"; sourceTree = "<group>"; };
-		A89FBFC31F230257001405E8 /* YYCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYCalendarView.h; path = AnYiYun/Main/Daily/YYCalendarView.h; sourceTree = SOURCE_ROOT; };
-		A89FBFC41F230257001405E8 /* YYCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YYCalendarView.m; path = AnYiYun/Main/Daily/YYCalendarView.m; sourceTree = SOURCE_ROOT; };
-		A89FBFC61F230280001405E8 /* YYCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YYCalendarView.xib; path = AnYiYun/Main/Daily/YYCalendarView.xib; sourceTree = SOURCE_ROOT; };
-		A89FBFC91F23040A001405E8 /* UIButton+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
-		A89FBFCA1F23040A001405E8 /* UIButton+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Category.m"; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		A89FBFD31F231A79001405E8 /* YYCalendarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYCalendarModel.h; path = AnYiYun/Main/Daily/Controller/YYCalendarModel.h; sourceTree = SOURCE_ROOT; };
-		A89FBFD41F231A79001405E8 /* YYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YYCalendarModel.m; path = AnYiYun/Main/Daily/Controller/YYCalendarModel.m; sourceTree = SOURCE_ROOT; };
-		A89FBFE81F235D13001405E8 /* YYCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYCalendarCollectionViewCell.h; path = AnYiYun/Main/Daily/Controller/YYCalendarCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
-		A89FBFE91F235D13001405E8 /* YYCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YYCalendarCollectionViewCell.m; path = AnYiYun/Main/Daily/Controller/YYCalendarCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
-		A89FBFEA1F235D13001405E8 /* YYCalendarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YYCalendarCollectionViewCell.xib; path = AnYiYun/Main/Daily/Controller/YYCalendarCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
-		A8F13A761F20FD8900D04525 /* NSString+YYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YYCategory.h"; sourceTree = "<group>"; };
-		A8F13A771F20FD8900D04525 /* NSString+YYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YYCategory.m"; sourceTree = "<group>"; };
 		F71F8DB1A9A54FD282B636CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -280,8 +283,8 @@
 		901A08141F20E2E3009488C1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A89FBFD31F231A79001405E8 /* YYCalendarModel.h */,
-				A89FBFD41F231A79001405E8 /* YYCalendarModel.m */,
+				901788001F2620BF00CFED87 /* YYCalendarModel.h */,
+				901787FE1F2620B800CFED87 /* YYCalendarModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -289,12 +292,12 @@
 		901A08151F20E2E3009488C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A89FBFC31F230257001405E8 /* YYCalendarView.h */,
-				A89FBFC41F230257001405E8 /* YYCalendarView.m */,
-				A89FBFC61F230280001405E8 /* YYCalendarView.xib */,
-				A89FBFE81F235D13001405E8 /* YYCalendarCollectionViewCell.h */,
-				A89FBFE91F235D13001405E8 /* YYCalendarCollectionViewCell.m */,
-				A89FBFEA1F235D13001405E8 /* YYCalendarCollectionViewCell.xib */,
+				901788011F2620D200CFED87 /* YYCalendarCollectionViewCell.h */,
+				901788021F2620D200CFED87 /* YYCalendarCollectionViewCell.m */,
+				901788031F2620D200CFED87 /* YYCalendarCollectionViewCell.xib */,
+				901788041F2620D200CFED87 /* YYCalendarView.h */,
+				901788051F2620D200CFED87 /* YYCalendarView.m */,
+				901788061F2620D200CFED87 /* YYCalendarView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -474,6 +477,12 @@
 			isa = PBXGroup;
 			children = (
 				90CF07911F1F347D008106D2 /* BaseCategory.h */,
+				9017880B1F26213700CFED87 /* MBProgressHUD+YY.h */,
+				9017880C1F26213700CFED87 /* MBProgressHUD+YY.m */,
+				9017880D1F26213700CFED87 /* NSString+YYCategory.h */,
+				9017880E1F26213700CFED87 /* NSString+YYCategory.m */,
+				9017880F1F26213700CFED87 /* UIButton+Category.h */,
+				901788101F26213700CFED87 /* UIButton+Category.m */,
 				90CF075D1F1F3464008106D2 /* NSDate+Category.h */,
 				90CF075E1F1F3464008106D2 /* NSDate+Category.m */,
 				90CF075F1F1F3464008106D2 /* NSDateFormatter+Category.h */,
@@ -514,12 +523,9 @@
 		90CF07331F1F2F59008106D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A86694761F248CF70097999D /* MBProgressHUDCategory */,
 				90CF07501F1F318F008106D2 /* AnYiYun.pch */,
 				90CF07511F1F31E8008106D2 /* BaseMecro.h */,
 				90CF07531F1F3300008106D2 /* Network */,
-				A8F13A751F20FD1200D04525 /* NSStringCategory */,
-				A89FBFC81F23040A001405E8 /* UIButtonCategory */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -611,6 +617,8 @@
 		90CF07481F1F3107008106D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				901787FB1F26204C00CFED87 /* UserInfoCell.h */,
+				901787FC1F26204C00CFED87 /* UserInfoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -707,33 +715,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		A86694761F248CF70097999D /* MBProgressHUDCategory */ = {
-			isa = PBXGroup;
-			children = (
-				A86694771F248D140097999D /* MBProgressHUD+YY.h */,
-				A86694781F248D140097999D /* MBProgressHUD+YY.m */,
-			);
-			name = MBProgressHUDCategory;
-			sourceTree = "<group>";
-		};
-		A89FBFC81F23040A001405E8 /* UIButtonCategory */ = {
-			isa = PBXGroup;
-			children = (
-				A89FBFC91F23040A001405E8 /* UIButton+Category.h */,
-				A89FBFCA1F23040A001405E8 /* UIButton+Category.m */,
-			);
-			path = UIButtonCategory;
-			sourceTree = "<group>";
-		};
-		A8F13A751F20FD1200D04525 /* NSStringCategory */ = {
-			isa = PBXGroup;
-			children = (
-				A8F13A761F20FD8900D04525 /* NSString+YYCategory.h */,
-				A8F13A771F20FD8900D04525 /* NSString+YYCategory.m */,
-			);
-			name = NSStringCategory;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -796,13 +777,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A89FBFC71F230280001405E8 /* YYCalendarView.xib in Resources */,
+				901788081F2620D200CFED87 /* YYCalendarCollectionViewCell.xib in Resources */,
 				90A2EC6E1F209E98008088C4 /* main_back_white@2x.png in Resources */,
+				9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */,
 				A810BF591F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib in Resources */,
 				A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */,
 				90CF072B1F1F2BFC008106D2 /* LaunchScreen.storyboard in Resources */,
 				90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */,
-				A89FBFEC1F235D13001405E8 /* YYCalendarCollectionViewCell.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
 			);
@@ -865,9 +846,10 @@
 			files = (
 				90CF07201F1F2BFC008106D2 /* AppDelegate.m in Sources */,
 				90272BE11F224382000B1DC0 /* TADotView.m in Sources */,
+				901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */,
+				901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */,
 				90272BDF1F224382000B1DC0 /* TAAbstractDotView.m in Sources */,
 				90CF07421F1F3078008106D2 /* RootTabBarViewController.m in Sources */,
-				A89FBFEB1F235D13001405E8 /* YYCalendarCollectionViewCell.m in Sources */,
 				A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */,
 				90272BE41F224382000B1DC0 /* SDCycleScrollView.m in Sources */,
 				90CF07821F1F3464008106D2 /* NSDictionary+Extension.m in Sources */,
@@ -880,7 +862,7 @@
 				90CF07A21F1F38D5008106D2 /* SJAvatarBrowser.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				90CF07811F1F3464008106D2 /* NSDateFormatter+Category.m in Sources */,
-				A86694791F248D140097999D /* MBProgressHUD+YY.m in Sources */,
+				901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */,
 				90CF07A91F1F3955008106D2 /* StatusBarOverlay.m in Sources */,
 				90272BE21F224382000B1DC0 /* TAPageControl.m in Sources */,
 				90CF073C1F1F2FAE008106D2 /* BaseViewController.m in Sources */,
@@ -891,6 +873,7 @@
 				A810BF471F25ECEB00B5F2D2 /* EnergyManagementViewController.m in Sources */,
 				90CF078B1F1F3464008106D2 /* UITableView+Extension.m in Sources */,
 				A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */,
+				901788091F2620D200CFED87 /* YYCalendarView.m in Sources */,
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
 				90CF074E1F1F313F008106D2 /* MeMainViewController.m in Sources */,
 				901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */,
@@ -899,8 +882,8 @@
 				90CF07591F1F3300008106D2 /* BaseReachability.m in Sources */,
 				90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */,
 				90CF078A1F1F3464008106D2 /* UITabBar+badge.m in Sources */,
-				A89FBFCB1F23040A001405E8 /* UIButton+Category.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
+				901788131F26213700CFED87 /* UIButton+Category.m in Sources */,
 				90CF07941F1F35B1008106D2 /* BaseLaunchConfig.m in Sources */,
 				90CF07851F1F3464008106D2 /* NSString+Extension.m in Sources */,
 				90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */,
@@ -909,10 +892,9 @@
 				90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */,
 				90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */,
 				A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */,
-				A89FBFD51F231A79001405E8 /* YYCalendarModel.m in Sources */,
 				90CF071D1F1F2BFC008106D2 /* main.m in Sources */,
-				A89FBFC51F230257001405E8 /* YYCalendarView.m in Sources */,
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
+				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
 				90CF07861F1F3464008106D2 /* UIBarButtonItem+Extension.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
@@ -920,11 +902,11 @@
 				901A08261F20E3AA009488C1 /* HomeMainViewController.m in Sources */,
 				90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */,
 				90CF07881F1F3464008106D2 /* UIImage+Extension.m in Sources */,
+				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
 				90CF073F1F1F304C008106D2 /* BaseNavigationViewController.m in Sources */,
 				90A2EC661F208F68008088C4 /* UIImageLabel.m in Sources */,
 				90CF07841F1F3464008106D2 /* NSString+Date.m in Sources */,
 				901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */,
-				A8F13A781F20FD8900D04525 /* NSString+YYCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
