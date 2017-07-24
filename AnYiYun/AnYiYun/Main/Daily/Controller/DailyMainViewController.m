@@ -60,6 +60,8 @@
             ws.datemodel.navigationMonth = yyMonth;
             ws.datemodel.navigationDay= yyDay;
             ws.calendarTitleView.dailyDate = currentDate;
+            NSDateComponents *components = [ws.calendarTitleView.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:ws.calendarTitleView.dailyDate];
+            [ws.calendarTitleView updateDate:[ws.calendarTitleView.calendar dateFromComponents:components]];
             NSString *dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
             if (ws.datemodel.isDay) {
                 dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];

@@ -32,6 +32,12 @@
 @property (nonatomic, assign) NSInteger             month;
 /*!日*/
 @property (nonatomic, assign) NSInteger             day;
+/*!当前选中的年*/
+@property (nonatomic, assign) NSInteger             selectedYear;
+/*!当前选中的月*/
+@property (nonatomic, assign) NSInteger             selectedMonth;
+/*!当前选中的日*/
+@property (nonatomic, assign) NSInteger             selectedDay;
 /*!每个月开始几天（上个月）+本月天数+最后几天( 下个月)*/
 @property (nonatomic, strong) NSArray               *allDays;
 /*!每个月刚开始几天（上个月）*/

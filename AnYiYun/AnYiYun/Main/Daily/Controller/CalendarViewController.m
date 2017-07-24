@@ -60,8 +60,18 @@
     
     _calendarTitleView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYCalendarView class]) owner:nil options:nil][0];
     _calendarTitleView.isNavigation = NO;
-    _calendarTitleView.calendarDate = [NSDate date];
-    [_calendarTitleView updateDate: [NSDate date]];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    NSString *dateString = [NSString stringWithFormat:@"%.2d%.2d%.2d",_calendarModel.year,_calendarModel.month,_calendarModel.day];
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    if (_calendarModel.year==0 ||  _calendarModel.month == 0 ||_calendarModel.day ==0) {
+        _calendarTitleView.calendarDate = [NSDate date];
+        [_calendarTitleView updateDate: [NSDate date]];
+    } else {
+        _calendarTitleView.calendarDate = date;
+        [_calendarTitleView updateDate: date];
+    }
     _calendarTitleView.translatesAutoresizingMaskIntoConstraints = NO;
     _calendarTitleView.bounds = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH/2.0f, 44.0f);
     /*设置默认日起为当日*/
@@ -138,7 +148,11 @@
         cell.markImageView.image = nil;
     } else {
         cell.titleLable.textColor = UIColorFromRGB(0x000000);
-        if (indexPath.row <[_calendarModel.firstDays count] || indexPath.row >([_calendarModel.allDays count] - [_calendarModel.firstDays count])) {
+        
+        /*计算出当月有多少天 */
+        NSInteger currentCount = [_calendarModel.allDays count] - [_calendarModel.firstDays count] - [_calendarModel.lastDays count];
+        
+        if (indexPath.row <[_calendarModel.firstDays count] || indexPath.row >= (currentCount +[_calendarModel.firstDays count])) {
             cell.titleLable.text = @"";
             cell.markImageView.image = nil;
         } else {
@@ -154,7 +168,13 @@
             } else {
                 cell.markImageView.image = nil;
             }
-            
+            if (_calendarModel.year == _calendarModel.selectedYear &&
+                _calendarModel.month == _calendarModel.selectedMonth &&
+                [[_calendarModel allDays][indexPath.row] integerValue] == _calendarModel.selectedDay) {
+                cell.markImageView.image = [UIImage imageNamed:@"daily_selected.png"];
+            } else {
+                
+            }
             cell.titleLable.text = _calendarModel.allDays[indexPath.row];
         }
     }
@@ -165,13 +185,27 @@
 #pragma mark UICollectionViewDelegate -
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger currentCount = [_calendarModel.allDays count] - [_calendarModel.firstDays count] - [_calendarModel.lastDays count];
+    
     if (indexPath.row <[_calendarModel.firstDays count] ||
-        indexPath.row >([_calendarModel.allDays count] - [_calendarModel.firstDays count]) ||
+        indexPath.row > indexPath.row >= (currentCount +[_calendarModel.firstDays count]) ||
         indexPath.section == 0) {
         return;
     } else {
+        
+        NSInteger dateDay = [[_calendarModel allDays][indexPath.row] integerValue];
+        _calendarModel.selectedYear = _calendarModel.year;
+        _calendarModel.selectedMonth = _calendarModel.month;
+        _calendarModel.selectedDay = dateDay;
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyyMMdd"];
+        NSString *dateString = [NSString stringWithFormat:@"%.2d%.2d%.2d",_calendarModel.selectedYear,_calendarModel.selectedMonth,_calendarModel.selectedDay];
+        NSDate *date = [dateFormatter dateFromString:dateString];
+        
+        [_calendarTitleView updateDate:date];
         if (_choiceDateHandle) {
-            _choiceDateHandle(_calendarTitleView.calendarDate ,_calendarModel.year,_calendarModel.month,[[_calendarModel allDays][indexPath.row] integerValue]);
+            _choiceDateHandle(_calendarTitleView.calendarDate ,_calendarModel.selectedYear,_calendarModel.selectedMonth,_calendarModel.selectedDay);
         }
         [self dismissViewControllerAnimated:NO completion:^{
             
