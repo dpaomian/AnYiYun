@@ -16,7 +16,7 @@
 completionBlockWithSuccess:(requestBlockSuccess)success
                  failure:(requestFailure)failure
 {
-    NSString *accountString = [BaseHelper isSpaceString:[PersonInfo shareInstance].accountID andReplace:[PersonInfo shareInstance].loginTextAccount];
+    NSString *accountString = [BaseHelper isSpaceString:[PersonInfo shareInstance].loginTextAccount andReplace:@""];
     
     if (accountString.length>0)
         {

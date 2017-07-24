@@ -35,6 +35,13 @@
 + (CGFloat)heightWithAttString:(NSString *)contentString widthLabelWidth:(CGFloat)width textFont:(UIFont *)font withNumberLine:(CGFloat)numberLine withMultiple:(CGFloat)multiple;
     //计算按钮的宽度 传入标题值 跟最大宽度
 +(CGFloat)leftBtnWidth:(NSString *)contentString maxOfWidth:(CGFloat)maxWidth andFontSize:(CGFloat)fontSize;
+
+#pragma mark  - 文件操作
+/**单个文件的大小*/
++ (long long)getFileSizeAtPath:(NSString*)filePath;
+/**遍历文件夹获得文件夹大小，返回多少M*/
++ (float )getFolderSizeAtPath:(NSString *)folderPath;
+
 #pragma mark - 其他
     //弹出框提示
 + (void)waringInfo:(NSString *)msgInfo;
