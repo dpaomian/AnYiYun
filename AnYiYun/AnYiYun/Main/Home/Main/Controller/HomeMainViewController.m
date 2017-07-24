@@ -35,7 +35,11 @@
 
 -(void)moduleBtnClick:(UIButton *)sender
 {
-    
+    if (sender.tag == 100) {
+        EnergyManagementViewController *energyVC = [[EnergyManagementViewController alloc]init];
+        energyVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:energyVC animated:YES];
+    }
 }
 
 #pragma mark - 设置View

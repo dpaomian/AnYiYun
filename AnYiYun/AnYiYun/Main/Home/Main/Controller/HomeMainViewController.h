@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "EnergyManagementViewController.h"
 
 /**
  首页
