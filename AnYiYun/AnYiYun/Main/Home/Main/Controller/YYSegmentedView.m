@@ -59,7 +59,7 @@
     } else {
         cell.selected = NO;
         [cell.lineButton setBackgroundColor:UIColorFromRGBA(0x5987F8, 0.0)];
-        cell.titleLable.textColor = UIColorFromRGB(0x666666);
+        cell.titleLable.textColor = UIColorFromRGB(0x000000);
     }
     return cell;
 }

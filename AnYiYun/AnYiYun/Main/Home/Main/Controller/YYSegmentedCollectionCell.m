@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _titleLable.textColor = UIColorFromRGB(0x000000);
 }
 
 @end

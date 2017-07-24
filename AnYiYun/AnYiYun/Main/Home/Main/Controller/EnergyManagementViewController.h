@@ -10,6 +10,7 @@
 #import "LoadDetectionViewController.h"
 #import "EnergyConsumptionStatisticsViewController.h"
 #import "YYSegmentedView.h"
+#import "FilterCollectionView.h"
 
 /*!能源管理*/
 @interface EnergyManagementViewController : BaseViewController

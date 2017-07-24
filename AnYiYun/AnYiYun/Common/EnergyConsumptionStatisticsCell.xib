@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="72" id="KGk-i7-Jjw" customClass="EnergyConsumptionStatisticsCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-6层电源总进线:电度示数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28x-Gw-lOF">
+                        <rect key="frame" x="8" y="8" width="145" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="all_icon_16" translatesAutoresizingMaskIntoConstraints="NO" id="EzG-Ba-ua7">
+                        <rect key="frame" x="155" y="10" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="HT7-X7-ByO"/>
+                            <constraint firstAttribute="width" constant="12" id="aeM-mt-2h1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4444.58kWh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNI-ti-snt">
+                        <rect key="frame" x="238" y="8" width="74" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昨日电量:999.99kWh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Lx-2K-wjC">
+                        <rect key="frame" x="14" y="31" width="100" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日电量:999.99kWh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpf-K2-sVJ">
+                        <rect key="frame" x="168" y="31" width="100" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上月电量:999.99kWh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AK7-kE-wdK">
+                        <rect key="frame" x="14" y="51" width="100" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当月电量:999.99kWh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjk-Xe-6Xq">
+                        <rect key="frame" x="168" y="51" width="100" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="28x-Gw-lOF" firstAttribute="centerY" secondItem="EzG-Ba-ua7" secondAttribute="centerY" id="0My-li-1ud"/>
+                    <constraint firstItem="28x-Gw-lOF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="14j-1z-dGQ"/>
+                    <constraint firstItem="Hjk-Xe-6Xq" firstAttribute="leading" secondItem="mpf-K2-sVJ" secondAttribute="leading" id="4wa-fa-2cK"/>
+                    <constraint firstItem="7Lx-2K-wjC" firstAttribute="top" secondItem="28x-Gw-lOF" secondAttribute="bottom" constant="8" id="8D0-nG-j78"/>
+                    <constraint firstItem="7Lx-2K-wjC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="Buj-Yy-jaR"/>
+                    <constraint firstItem="AK7-kE-wdK" firstAttribute="centerY" secondItem="Hjk-Xe-6Xq" secondAttribute="centerY" id="ExI-t8-Tjb"/>
+                    <constraint firstItem="AK7-kE-wdK" firstAttribute="leading" secondItem="7Lx-2K-wjC" secondAttribute="leading" id="HUV-Qk-eIC"/>
+                    <constraint firstItem="AK7-kE-wdK" firstAttribute="top" secondItem="7Lx-2K-wjC" secondAttribute="bottom" constant="8" id="aO5-aZ-nsa"/>
+                    <constraint firstItem="28x-Gw-lOF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="c3p-tB-tyK"/>
+                    <constraint firstItem="EzG-Ba-ua7" firstAttribute="leading" secondItem="28x-Gw-lOF" secondAttribute="trailing" constant="2" id="c5e-6d-lhk"/>
+                    <constraint firstItem="mpf-K2-sVJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="8" id="fkc-5t-n9p"/>
+                    <constraint firstItem="7Lx-2K-wjC" firstAttribute="centerY" secondItem="mpf-K2-sVJ" secondAttribute="centerY" id="ksZ-XN-yxP"/>
+                    <constraint firstItem="28x-Gw-lOF" firstAttribute="centerY" secondItem="pNI-ti-snt" secondAttribute="centerY" id="qH2-a3-taP"/>
+                    <constraint firstAttribute="trailing" secondItem="pNI-ti-snt" secondAttribute="trailing" constant="8" id="tIl-B7-raF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="TodayLab" destination="mpf-K2-sVJ" id="CVp-sX-3zY"/>
+                <outlet property="allTitleLab" destination="28x-Gw-lOF" id="U87-Qr-FVW"/>
+                <outlet property="allValueLab" destination="pNI-ti-snt" id="ogi-36-COQ"/>
+                <outlet property="lastmonthLab" destination="AK7-kE-wdK" id="ZVk-dH-gbb"/>
+                <outlet property="monthLab" destination="Hjk-Xe-6Xq" id="Fry-sV-dQx"/>
+                <outlet property="yesteDayLab" destination="7Lx-2K-wjC" id="D6T-U4-xby"/>
+            </connections>
+            <point key="canvasLocation" x="-72" y="-163"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="all_icon_16" width="30" height="30"/>
+    </resources>
+</document>

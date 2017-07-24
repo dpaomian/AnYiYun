@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
+#import "EnergyConsumptionStatisticsCell.h"
 
 /*!能耗统计*/
 @interface EnergyConsumptionStatisticsViewController : BaseTableViewController
