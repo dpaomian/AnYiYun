@@ -18,6 +18,10 @@
 @property (nonatomic, copy) NSString *password;
 /**公司id*/
 @property (nonatomic, copy) NSString *comId;
+/**公司名称*/
+@property (nonatomic, copy) NSString *comName;
+/**公司logo*/
+@property (nonatomic, copy) NSString *comLogoUrl;
 /**姓名*/
 @property (nonatomic, copy) NSString *username;
 

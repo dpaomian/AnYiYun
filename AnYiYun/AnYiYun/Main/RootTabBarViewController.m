@@ -22,10 +22,10 @@
 {
     [super viewDidLoad];
     
-    [self addChildVC:[[HomeMainViewController alloc] init] title:@"首页" image:@"ic_tab_home_gray" selectedImage:@"ic_tab_home_blue"];
-     [self addChildVC:[[DailyMainViewController alloc] init] title:@"日报" image:@"ic_tab_me_gray" selectedImage:@"ic_tab_me_blue"];
-     [self addChildVC:[[EquipmentMainViewController alloc] init] title:@"设备说" image:@"ic_tab_me_gray" selectedImage:@"ic_tab_me_blue"];
-    [self addChildVC:[[MeMainViewController alloc] init] title:@"我的" image:@"ic_tab_me_gray" selectedImage:@"ic_tab_me_blue"];
+    [self addChildVC:[[HomeMainViewController alloc] init] title:@"首页" image:@"bottom_btn_1" selectedImage:@"ic_tab_home_blue"];
+     [self addChildVC:[[DailyMainViewController alloc] init] title:@"日报" image:@"bottom_btn_2" selectedImage:@"ic_tab_me_blue"];
+     [self addChildVC:[[EquipmentMainViewController alloc] init] title:@"设备说" image:@"bottom_btn_3" selectedImage:@"ic_tab_me_blue"];
+    [self addChildVC:[[MeMainViewController alloc] init] title:@"我的" image:@"bottom_btn_4" selectedImage:@"ic_tab_me_blue"];
 }
 
 

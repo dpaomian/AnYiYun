@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 个人资料cell
+ */
 @interface UserInfoCell : UITableViewCell
+
+/**left*/
+@property (nonatomic, strong) UILabel *leftLabel;
+
+/**right*/
+@property (nonatomic, strong) UILabel *rightLabel;
+
+@property (nonatomic, strong) UIImageView *headerImageView;
+
+@property (nonatomic, strong)UIView *bottomLineView;
 
 @end

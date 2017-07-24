@@ -53,6 +53,8 @@ static PersonInfo *instance = nil;
     _password = dictionary[@"password"];
     _username = dictionary[@"username"];
     _comId = dictionary[@"comId"];
+    _comName = dictionary[@"comName"];
+    _comLogoUrl = dictionary[@"comLogoUrl"];
     _loginSuccess = [dictionary[@"loginSuccess"] boolValue];
     
 }

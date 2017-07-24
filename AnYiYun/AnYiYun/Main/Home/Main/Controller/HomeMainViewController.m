@@ -46,6 +46,7 @@
 
 -(void)makeView
 {
+    NSArray *imageArray = @[@"home_icon_n.png",@"home_icon_g.png",@"home_icon_d.png",@"home_icon_q.png"];
     NSArray *titleArray = @[@"能源管理",@"供配电",@"电气火灾",@"全部"];
     
     CGFloat btnWidth = (kScreen_Width-3*1)/titleArray.count;
@@ -57,9 +58,20 @@
     
     UIButton *useBtn = [[UIButton alloc]initWithFrame: CGRectMake(xx, yy, btnWidth, btnWidth)];
     useBtn.backgroundColor = [UIColor whiteColor];
-    useBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [useBtn setTitle:titleArray[i] forState:UIControlStateNormal];
-    [useBtn setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
+    
+    UIImageView  *itemImgView = [[UIImageView alloc]initWithFrame:CGRectMake((btnWidth-40)/2, (btnWidth-60)/3, 40, 40)];
+    itemImgView.image = [UIImage imageNamed:imageArray[i]];
+    [useBtn addSubview:itemImgView];
+    
+    UILabel  *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (btnWidth-60)/3*2+40, btnWidth, 20)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.numberOfLines = 2;
+    titleLabel.font = [UIFont systemFontOfSize:16];
+    titleLabel.textColor = RGB(51, 51, 51);
+    titleLabel.text = titleArray[i];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [useBtn addSubview:titleLabel];
+    
     useBtn.tag = i+100;
     [useBtn addTarget:self action:@selector(moduleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:useBtn];
