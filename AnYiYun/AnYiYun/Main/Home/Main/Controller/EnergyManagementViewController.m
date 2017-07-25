@@ -17,8 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadRequestAction];
-    
     self.title = @"能源管理";
     
     _selectedInedex = 0;
@@ -56,11 +54,11 @@
     _currentViewController = _loadDetectionVC;
     [self addChildViewController:_currentViewController];
     [self.view addSubview:_currentViewController.view];
+
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    FilterCollectionView *collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 64.0f+44.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 64.0f - 44.0f) collectionViewLayout:layout];
-    collectionView.backgroundColor = UIColorFromRGBA(0x000000, 0.4f);
+//    FilterCollectionView *collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 64.0f+44.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 64.0f - 44.0f) collectionViewLayout:layout];
+    FilterCollectionView *collectionView = [FilterCollectionView shareFilter];
+    collectionView.frame = CGRectMake(0.0f, 64.0f+44.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 64.0f - 44.0f);
     [self.view addSubview:collectionView];
 }
 
@@ -78,50 +76,6 @@
             _currentViewController = oldController;
         }
     }];
-}
-
-- (void)loadRequestAction {
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/allOrg"];
-    NSDictionary *parameters = @{@"userSign":[PersonInfo shareInstance].accountID};
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:urlString
-      parameters:parameters
-        progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [MBProgressHUD hideHUD];
-            NSLog(@" rest/busiData/allOrg %@",responseObject);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [MBProgressHUD hideHUD];
-        }];
-    
-    NSString *urlString1 = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/deviceLocation"];
-    NSDictionary *parameters1 = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [manager GET:urlString1
-      parameters:parameters1
-        progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [MBProgressHUD hideHUD];
-            NSLog(@"rest/busiData/deviceLocation %@",responseObject);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [MBProgressHUD hideHUD];
-        }];
-    
-    
-    NSString *urlString2 = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/deviceOrder"];
-    NSDictionary *parameters2 = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [manager GET:urlString2
-      parameters:parameters2
-        progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [MBProgressHUD hideHUD];
-            NSLog(@"rest/busiData/deviceOrder %@",responseObject);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [MBProgressHUD hideHUD];
-        }];
 }
 
 - (void)didReceiveMemoryWarning {
