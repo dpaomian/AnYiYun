@@ -38,6 +38,8 @@
 		90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BE71F2246AE000B1DC0 /* PublicWebViewController.m */; };
 		90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BEA1F224833000B1DC0 /* HomeModel.m */; };
 		909E1A8F1F2782DF008EECAF /* BusinessItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */; };
+		909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 909E1A911F279086008EECAF /* HomeAdverCell.m */; };
+		909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 909E1A941F2790DC008EECAF /* HomeMessageCell.m */; };
 		90A2EC661F208F68008088C4 /* UIImageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2EC651F208F68008088C4 /* UIImageLabel.m */; };
 		90A2EC691F209C43008088C4 /* FirstLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2EC681F209C43008088C4 /* FirstLaunchView.m */; };
 		90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A2EC6B1F209E98008088C4 /* main_back@2x.png */; };
@@ -163,6 +165,10 @@
 		90272BEA1F224833000B1DC0 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
 		909E1A8D1F2782DF008EECAF /* BusinessItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessItemViewController.h; sourceTree = "<group>"; };
 		909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessItemViewController.m; sourceTree = "<group>"; };
+		909E1A901F279086008EECAF /* HomeAdverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdverCell.h; sourceTree = "<group>"; };
+		909E1A911F279086008EECAF /* HomeAdverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdverCell.m; sourceTree = "<group>"; };
+		909E1A931F2790DC008EECAF /* HomeMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMessageCell.h; sourceTree = "<group>"; };
+		909E1A941F2790DC008EECAF /* HomeMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMessageCell.m; sourceTree = "<group>"; };
 		90A2EC641F208F68008088C4 /* UIImageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageLabel.h; sourceTree = "<group>"; };
 		90A2EC651F208F68008088C4 /* UIImageLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageLabel.m; sourceTree = "<group>"; };
 		90A2EC671F209C43008088C4 /* FirstLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstLaunchView.h; path = AnYiYun/Libs/StatusBarOverlay/FirstLaunchView.h; sourceTree = SOURCE_ROOT; };
@@ -463,6 +469,10 @@
 				A821B11A1F26CE23008B6678 /* FilterCollectionCell.h */,
 				A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */,
 				A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */,
+				909E1A901F279086008EECAF /* HomeAdverCell.h */,
+				909E1A911F279086008EECAF /* HomeAdverCell.m */,
+				909E1A931F2790DC008EECAF /* HomeMessageCell.h */,
+				909E1A941F2790DC008EECAF /* HomeMessageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1001,6 +1011,7 @@
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
 				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
 				90CF07861F1F3464008106D2 /* UIBarButtonItem+Extension.m in Sources */,
+				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
 				A8C4B13C1F26594C00E5F682 /* FilterCollectionView.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
@@ -1009,6 +1020,7 @@
 				90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */,
 				90CF07881F1F3464008106D2 /* UIImage+Extension.m in Sources */,
 				901788251F2637BD00CFED87 /* ChangePwdViewController.m in Sources */,
+				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
 				A821B11D1F26CE23008B6678 /* FilterCollectionCell.m in Sources */,
 				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,
