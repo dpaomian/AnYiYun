@@ -16,7 +16,7 @@
 
 #define TableFooterHelght 40
 
-@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     NSArray *_sectionOneArray,*_sectionTwoArray;
 }
@@ -144,6 +144,8 @@
     return nil;
 }
 
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *textTitle =@"";
@@ -167,6 +169,29 @@
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
+            }
+        else if ([textTitle isEqualToString:@"清除缓存"])
+            {
+            NSString *messageString = @"本次清除内容包括:\n 1.网络数据缓存; \n 2.所有图片缓存; \n 3.消息中心缓存。";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您确定要清除本地缓存么？" message:messageString delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alert.tag = 100;
+            [alert show];
+            }
+        }
+}
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==100)
+        {
+        if (buttonIndex == 1)
+            {
+            DLog(@"确定");
+            }
+        else
+            {
+            DLog(@"取消");
             }
         }
 }

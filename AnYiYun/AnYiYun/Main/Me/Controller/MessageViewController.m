@@ -14,10 +14,13 @@
 
 @implementation MessageViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.title = @"消息";
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

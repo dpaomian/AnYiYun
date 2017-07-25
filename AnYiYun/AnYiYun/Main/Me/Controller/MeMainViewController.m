@@ -197,7 +197,7 @@
     
     if (textTitle.length>0)
     {
-        if ([textTitle isEqualToString:@"帐号切换"])
+        if ([textTitle isEqualToString:@"咨询"])
             {
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
             vc.titleStr = @"咨询";

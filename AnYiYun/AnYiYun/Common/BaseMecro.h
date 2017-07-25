@@ -54,7 +54,7 @@
 
 #define kAPPOrangeColor         [UIColor orangeColor]
 #define kAPPBlueColor           RGB(24, 159, 242)//RGB(246,246,248)
-#define kAPPNavColor            RGB(51, 51, 51) //导航栏标题颜色
+#define kAPPNavColor            RGB(255, 255, 255) //导航栏标题颜色
 #define kAPPTableViewLineColor  RGB(222, 222, 222)
 #define kAppBackgrondColor      RGB(239, 239, 244)
 #define kAppTitleBlackColor     RGB(51, 51, 51)   //一级标题颜色 黑色

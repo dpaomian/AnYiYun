@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"安易云";
+    
     [self pictureRequestAction];
     [self makeView];
     

@@ -24,7 +24,6 @@
         self.interactivePopGestureRecognizer.delegate = weakSelf;
     }
     self.delegate = weakSelf;
-    
 }
 
 + (void)initialize
@@ -58,9 +57,9 @@
         {
         [[UINavigationBar appearance] setTranslucent:NO];
         }
-    [naviAppearance setBackgroundImage:[UIImage imageNamed:@"nav_background_gray.png"] forBarMetrics:UIBarMetricsDefault];
+    [naviAppearance setBackgroundImage:[UIImage imageWithColor:RGB(51, 51, 51) size:CGSizeMake(SCREEN_WIDTH, NAV_HEIGHT)] forBarMetrics:UIBarMetricsDefault];
     [naviAppearance setTitleTextAttributes:@{NSForegroundColorAttributeName:kAPPNavColor, NSFontAttributeName:SYSFONT_(18.5)}];
-    [naviAppearance setShadowImage:[[UIImage imageNamed:@"nav_background_gray_shadow.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [naviAppearance setShadowImage:[[UIImage imageWithColor:[UIColor clearColor] size:CGSizeMake(SCREEN_WIDTH, 0.5)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -82,7 +81,7 @@
     }
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"main_back" hightImageName:@"main_back" target:self action:@selector(backAction)];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"main_back_white" hightImageName:@"main_back_white" target:self action:@selector(backAction)];
     }
     [super pushViewController:viewController animated:animated];
 }
