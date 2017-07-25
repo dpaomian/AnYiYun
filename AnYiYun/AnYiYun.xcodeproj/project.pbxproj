@@ -87,6 +87,11 @@
 		A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF5D1F26051800B5F2D2 /* LoadDatectionHeaderView.xib */; };
 		A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */; };
 		A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */; };
+		A821B11D1F26CE23008B6678 /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */; };
+		A821B11E1F26CE23008B6678 /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */; };
+		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
+		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
+		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
 		A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */; };
 		A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */; };
@@ -254,6 +259,15 @@
 		A810BF5F1F260A1400B5F2D2 /* LoadDatectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadDatectionCell.h; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.h; sourceTree = SOURCE_ROOT; };
 		A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadDatectionCell.m; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.m; sourceTree = SOURCE_ROOT; };
 		A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadDatectionCell.xib; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.xib; sourceTree = SOURCE_ROOT; };
+		A821B11A1F26CE23008B6678 /* FilterCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCollectionCell.h; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.h; sourceTree = SOURCE_ROOT; };
+		A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCollectionCell.m; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.m; sourceTree = SOURCE_ROOT; };
+		A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterCollectionCell.xib; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.xib; sourceTree = SOURCE_ROOT; };
+		A821B11F1F26E661008B6678 /* FilterCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyModel.h; sourceTree = "<group>"; };
+		A821B1201F26E661008B6678 /* FilterCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyModel.m; sourceTree = "<group>"; };
+		A821B1221F26E66D008B6678 /* BuildingModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingModle.h; sourceTree = "<group>"; };
+		A821B1231F26E66D008B6678 /* BuildingModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingModle.m; sourceTree = "<group>"; };
+		A821B1251F26E676008B6678 /* SortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortModel.h; sourceTree = "<group>"; };
+		A821B1261F26E676008B6678 /* SortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortModel.m; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		A8C4B12F1F26342800E5F682 /* EnergyConsumptionStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnergyConsumptionStatisticsCell.h; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.h; sourceTree = SOURCE_ROOT; };
@@ -412,6 +426,12 @@
 			children = (
 				90272BE91F224833000B1DC0 /* HomeModel.h */,
 				90272BEA1F224833000B1DC0 /* HomeModel.m */,
+				A821B11F1F26E661008B6678 /* FilterCompanyModel.h */,
+				A821B1201F26E661008B6678 /* FilterCompanyModel.m */,
+				A821B1221F26E66D008B6678 /* BuildingModle.h */,
+				A821B1231F26E66D008B6678 /* BuildingModle.m */,
+				A821B1251F26E676008B6678 /* SortModel.h */,
+				A821B1261F26E676008B6678 /* SortModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,6 +455,9 @@
 				A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */,
 				A8C4B13A1F26594C00E5F682 /* FilterCollectionView.h */,
 				A8C4B13B1F26594C00E5F682 /* FilterCollectionView.m */,
+				A821B11A1F26CE23008B6678 /* FilterCollectionCell.h */,
+				A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */,
+				A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -853,6 +876,7 @@
 				90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
+				A821B11E1F26CE23008B6678 /* FilterCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,6 +986,7 @@
 				90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */,
 				A810BF511F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				A810BF4B1F25EDB400B5F2D2 /* BaseTableViewController.m in Sources */,
+				A821B1271F26E676008B6678 /* SortModel.m in Sources */,
 				90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */,
 				90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */,
 				A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */,
@@ -979,12 +1004,15 @@
 				90CF07881F1F3464008106D2 /* UIImage+Extension.m in Sources */,
 				901788251F2637BD00CFED87 /* ChangePwdViewController.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
+				A821B11D1F26CE23008B6678 /* FilterCollectionCell.m in Sources */,
+				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,
 				90CF073F1F1F304C008106D2 /* BaseNavigationViewController.m in Sources */,
 				90A2EC661F208F68008088C4 /* UIImageLabel.m in Sources */,
 				90CF07841F1F3464008106D2 /* NSString+Date.m in Sources */,
 				9017882F1F263B2200CFED87 /* YYQRCode.m in Sources */,
 				901788221F26349E00CFED87 /* ShareViewController.m in Sources */,
 				901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */,
+				A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
