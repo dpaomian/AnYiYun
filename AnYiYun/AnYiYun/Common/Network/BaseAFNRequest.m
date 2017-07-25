@@ -135,16 +135,8 @@
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
-                if ([responseObject isKindOfClass:[NSData class]]) {
-                    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
-                    
-                    DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:dictionary]);
-                    successBlock(dictionary);
-                }
-                else{
-                     DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:responseObject]);
-                    successBlock(responseObject);
-                }
+                DLog(@"返回结果 responseObject = %@",responseObject);
+                successBlock(responseObject);
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
@@ -161,16 +153,8 @@
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
-                if ([responseObject isKindOfClass:[NSData class]]) {
-                    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
-                    
-                    DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:dictionary]);
-                    successBlock(dictionary);
-                }
-                else{
-                    DLog(@"返回结果 dictionary = %@",[BaseHelper dictionaryToJson:responseObject]);
-                    successBlock(responseObject);
-                }
+                DLog(@"返回结果 responseObject = %@",responseObject);
+                successBlock(responseObject);
 
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
