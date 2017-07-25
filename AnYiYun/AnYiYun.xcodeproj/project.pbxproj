@@ -37,6 +37,7 @@
 		90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BDE1F224382000B1DC0 /* UIView+SDExtension.m */; };
 		90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BE71F2246AE000B1DC0 /* PublicWebViewController.m */; };
 		90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BEA1F224833000B1DC0 /* HomeModel.m */; };
+		909E1A8F1F2782DF008EECAF /* BusinessItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */; };
 		90A2EC661F208F68008088C4 /* UIImageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2EC651F208F68008088C4 /* UIImageLabel.m */; };
 		90A2EC691F209C43008088C4 /* FirstLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2EC681F209C43008088C4 /* FirstLaunchView.m */; };
 		90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A2EC6B1F209E98008088C4 /* main_back@2x.png */; };
@@ -160,6 +161,8 @@
 		90272BE71F2246AE000B1DC0 /* PublicWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublicWebViewController.m; path = AnYiYun/Libs/PublicWebViewController.m; sourceTree = SOURCE_ROOT; };
 		90272BE91F224833000B1DC0 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
 		90272BEA1F224833000B1DC0 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		909E1A8D1F2782DF008EECAF /* BusinessItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessItemViewController.h; sourceTree = "<group>"; };
+		909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessItemViewController.m; sourceTree = "<group>"; };
 		90A2EC641F208F68008088C4 /* UIImageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageLabel.h; sourceTree = "<group>"; };
 		90A2EC651F208F68008088C4 /* UIImageLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageLabel.m; sourceTree = "<group>"; };
 		90A2EC671F209C43008088C4 /* FirstLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstLaunchView.h; path = AnYiYun/Libs/StatusBarOverlay/FirstLaunchView.h; sourceTree = SOURCE_ROOT; };
@@ -411,6 +414,8 @@
 			children = (
 				901A08221F20E3AA009488C1 /* HomeMainViewController.h */,
 				901A08231F20E3AA009488C1 /* HomeMainViewController.m */,
+				909E1A8D1F2782DF008EECAF /* BusinessItemViewController.h */,
+				909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */,
 				A810BF441F25ECEB00B5F2D2 /* EnergyManagementViewController.h */,
 				A810BF451F25ECEB00B5F2D2 /* EnergyManagementViewController.m */,
 				A810BF4C1F25EDF700B5F2D2 /* LoadDetectionViewController.h */,
@@ -949,6 +954,7 @@
 				A810BF4E1F25EDF700B5F2D2 /* LoadDetectionViewController.m in Sources */,
 				9017881C1F26347600CFED87 /* MessageViewController.m in Sources */,
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
+				909E1A8F1F2782DF008EECAF /* BusinessItemViewController.m in Sources */,
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
 				90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */,
 				9017881F1F26349000CFED87 /* SettingViewController.m in Sources */,
