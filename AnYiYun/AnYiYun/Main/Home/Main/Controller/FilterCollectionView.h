@@ -20,13 +20,17 @@
 /*!楼的筛选*/
 @property (nonatomic, strong) NSMutableArray *buildingMutableArray;
 /*!楼的筛选*/
-@property (nonatomic, strong) NSMutableDictionary   *sortDictionary;
+@property (nonatomic, strong) NSMutableArray *sortMutableArray;
 /*!去分被选中项  默认为  0*/
 @property (nonatomic, assign) NSInteger      selectedIndex;
+/*!折叠还是隐藏。 YES为折叠*/
+@property (nonatomic, assign) NSInteger      isFold;
 
 + (FilterCollectionView *)shareFilter;
 
 /*!加载、刷新筛选项的数据*/
 - (void)loadItemsAction;
+/*!重新初始化筛选框*/
+- (void)iteminitialization;
 
 @end

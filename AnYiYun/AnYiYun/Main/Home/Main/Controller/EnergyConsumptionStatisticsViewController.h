@@ -10,6 +10,8 @@
 #import "EnergyConsumptionStatisticsCell.h"
 
 /*!能耗统计*/
-@interface EnergyConsumptionStatisticsViewController : BaseTableViewController
+@interface EnergyConsumptionStatisticsViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @end

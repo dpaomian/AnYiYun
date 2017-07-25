@@ -21,14 +21,14 @@
     
     _selectedInedex = 0;
 
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 44.0f)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
     view.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:view];
     
         
     __weak EnergyManagementViewController *ws = self;
     
-    _stateView = [[YYSegmentedView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 44.0f)];
+    _stateView = [[YYSegmentedView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
     _stateView.backgroundColor = [UIColor yellowColor];
     _stateView.selectedIndex = 0;
     _stateView.titlesArray = @[@"负荷监测",@"能耗统计"];
@@ -47,7 +47,7 @@
     [self.view addSubview:_stateView];
     
     _loadDetectionVC = [[LoadDetectionViewController alloc] init];
-    [_loadDetectionVC.view setFrame:CGRectMake(0, NAV_HEIGHT+44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-(NAV_HEIGHT+44.0f))];
+    [_loadDetectionVC.view setFrame:CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-(NAV_HEIGHT+44.0f))];
     
     _energyConsumptionStatisticsVC = [[EnergyConsumptionStatisticsViewController alloc] init];
     
@@ -57,14 +57,15 @@
 
     
 //    FilterCollectionView *collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 64.0f+44.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 64.0f - 44.0f) collectionViewLayout:layout];
-    FilterCollectionView *collectionView = [FilterCollectionView shareFilter];
-    collectionView.frame = CGRectMake(0.0f, 64.0f+44.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 64.0f - 44.0f);
-    [self.view addSubview:collectionView];
+    [FilterCollectionView shareFilter].frame = CGRectMake(0.0f, 44.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 44.0f-NAV_HEIGHT);
+    [FilterCollectionView shareFilter].selectedIndex = 1;
+    [[FilterCollectionView shareFilter] iteminitialization];
+    [self.view addSubview:[FilterCollectionView shareFilter]];
 }
 
 /*切换各个标签内容*/
 - (void)replaceController:(UIViewController *)oldController newController:(UIViewController *)nowController{
-    nowController.view.frame = CGRectMake(0, NAV_HEIGHT+44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-(NAV_HEIGHT+44.0f));
+    nowController.view.frame = CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
     [self addChildViewController:nowController];
     [self transitionFromViewController:oldController toViewController:nowController duration:0.3 options:UIViewAnimationOptionTransitionNone animations:nil completion:^(BOOL finished) {
         if (finished) {

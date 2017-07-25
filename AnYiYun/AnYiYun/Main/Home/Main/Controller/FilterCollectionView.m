@@ -36,7 +36,6 @@
         progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"******1`1111*****");
             [ws companyAddAll];
             if ([responseObject isKindOfClass:[NSArray class]]) {
                 NSArray *roomsArray = (NSArray *)responseObject;
@@ -78,7 +77,6 @@
         progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"*****222222222******");
             [ws buildingAddAll];
             if ([responseObject isKindOfClass:[NSArray class]]) {
                 NSArray *buildingsArray = (NSArray *)responseObject;
@@ -110,16 +108,55 @@
         progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [_sortDictionary removeAllObjects];
-            [_sortDictionary setObject:@"智能排序" forKey:@"500"];
-            [_sortDictionary addEntriesFromDictionary:responseObject];
-            NSLog(@"rest/busiData/deviceOrder %@",_sortDictionary);
+            [_sortMutableArray removeAllObjects];
+            NSMutableDictionary *_sortDic = [NSMutableDictionary dictionary];
+            [_sortDic setObject:@"智能排序" forKey:@"500"];
+            [_sortDic addEntriesFromDictionary:responseObject];
+            [[_sortDic allKeys] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                SortModel *model = [[SortModel alloc] init];
+                NSString *keyString = obj;
+                NSString *valueSting = _sortDic[keyString];
+                model.idF = keyString;
+                model.name = valueSting;
+                model.isSelected = NO;
+                [_sortMutableArray addObject:model];
+            }];
             [ws reloadData];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [_sortDictionary removeAllObjects];
-            [_sortDictionary setObject:@"智能排序" forKey:@"500"];
+            [_sortMutableArray removeAllObjects];
+            SortModel *model = [[SortModel alloc] init];
+            model.idF = @"500";
+            model.name = @"智能排序";
+            model.isSelected = NO;
+            [_sortMutableArray addObject:model];
             [ws reloadData];
         }];
+}
+
+- (void)iteminitialization {
+    self.hidden = NO;
+    [_screenMutableArray removeAllObjects];
+    [_screenMutableArray addObjectsFromArray:@[@{@"name":@"供电室",@"isSelected":@NO,@"searchValue":@""},
+                                                @{@"name":@"楼",@"isSelected":@NO,@"searchValue":@""},
+                                                @{@"name":@"排序",@"isSelected":@NO,@"searchValue":@""},
+                                                @{@"name":@"搜索",@"isSelected":@NO,@"searchValue":@""}]];
+    
+    [_roomMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        FilterCompanyModel * model = obj;
+        model.isSelected = NO;
+        [_roomMutableArray replaceObjectAtIndex:idx withObject:model];
+    }];
+    [_buildingMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BuildingModle * model = obj;
+        model.isSelected = NO;
+        [_buildingMutableArray replaceObjectAtIndex:idx withObject:model];
+    }];
+    [_sortMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        SortModel * model = obj;
+        model.isSelected = NO;
+        [_sortMutableArray replaceObjectAtIndex:idx withObject:model];
+    }];
+    [self reloadData];
 }
 
 - (void)loadItemsAction {
@@ -127,7 +164,6 @@
     /*使用NSURLRequestReloadRevalidatingCacheData缓存策略，验证本地数据与远程数据是否相同，如果不同则下载远程数据，否则使用本地数据*/
     manager.requestSerializer.cachePolicy = NSURLRequestReloadRevalidatingCacheData;
     [self loadCommpanyItemsWithManager:manager];
-    
 }
 
 - (void)companyAddAll {
@@ -163,10 +199,13 @@
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         
-        _selectedIndex = 1;
+        self.scrollEnabled = NO;
+        
+        _selectedIndex = 0;
         _roomMutableArray = [NSMutableArray array];
         _buildingMutableArray = [NSMutableArray array];
-        _sortDictionary = [NSMutableDictionary dictionary];
+        _sortMutableArray = [NSMutableArray array];
+        
         _screenMutableArray = [@[@{@"name":@"供电室",@"isSelected":@NO,@"searchValue":@""},
                                  @{@"name":@"楼",@"isSelected":@NO,@"searchValue":@""},
                                  @{@"name":@"排序",@"isSelected":@NO,@"searchValue":@""},
@@ -191,22 +230,23 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     NSInteger screenItemCount = [_screenMutableArray count];
+    NSInteger touchCount = self.isFold?0:1;
     
     if (_selectedIndex == 0) {
         /*全未选中*/
-        return [_screenMutableArray count] +1;
+        return [_screenMutableArray count] +touchCount;
     } else if (_selectedIndex == 1) {
         /*供电室*/
-        return screenItemCount +1 + [_roomMutableArray count];
+        return screenItemCount +touchCount + [_roomMutableArray count];
     } else if (_selectedIndex == 2) {
         /*楼*/
-        return screenItemCount +1 + [_buildingMutableArray count];
+        return screenItemCount +touchCount + [_buildingMutableArray count];
     } else if (_selectedIndex == 3) {
         /*排序*/
-        return screenItemCount + 1 + [[_sortDictionary allKeys] count];
+        return screenItemCount + touchCount + [_sortMutableArray count];
     } else if (_selectedIndex == [_screenMutableArray count]) {
         /*搜索*/
-        return screenItemCount + 1 + 1;
+        return screenItemCount + touchCount + 1;
     } else {
         return  screenItemCount;
     }
@@ -217,7 +257,7 @@
     NSInteger screenItemCount = [_screenMutableArray count];
     NSInteger roomItemCount = [_roomMutableArray count];
     NSInteger buildingItemCount = [_buildingMutableArray count];
-    NSInteger sortItemCount = [[_sortDictionary allKeys] count];
+    NSInteger sortItemCount = [_sortMutableArray count];
     
     FilterCollectionCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterCollectionCell" forIndexPath:indexPath];
     cell.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
@@ -235,7 +275,7 @@
             cell.leadingConstraints.constant = 0;
         } else {
             cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
-            NSDictionary *titleItemDictionary = _screenMutableArray[indexPath.row];
+            NSDictionary *titleItemDictionary = [NSDictionary dictionaryWithDictionary:_screenMutableArray[indexPath.row]];
             cell.titleLable.text = titleItemDictionary[@"name"];
             cell.cornerImageView.hidden = NO;
             BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
@@ -247,7 +287,7 @@
         /*供电室*/
         if (indexPath.row < 4) {
             cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
-            NSDictionary *titleItemDictionary = _screenMutableArray[indexPath.row];
+            NSDictionary *titleItemDictionary = [NSDictionary dictionaryWithDictionary:_screenMutableArray[indexPath.row]];
             cell.titleLable.text = titleItemDictionary[@"name"];
             cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.leadingConstraints.constant = 0;
@@ -279,7 +319,7 @@
         /*楼*/
         if (indexPath.row < 4) {
             cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
-            NSDictionary *titleItemDictionary = _screenMutableArray[indexPath.row];
+            NSDictionary *titleItemDictionary = [NSDictionary dictionaryWithDictionary:_screenMutableArray[indexPath.row]];
             cell.titleLable.text = titleItemDictionary[@"name"];
             cell.cornerImageView.hidden = NO;
             BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
@@ -311,7 +351,7 @@
         /*排序*/
         if (indexPath.row < 4) {
             cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
-            NSDictionary *titleItemDictionary = _screenMutableArray[indexPath.row];
+            NSDictionary *titleItemDictionary = [NSDictionary dictionaryWithDictionary:_screenMutableArray[indexPath.row]];
             cell.titleLable.text = titleItemDictionary[@"name"];
             cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.leadingConstraints.constant = 0;
@@ -320,15 +360,16 @@
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
         } else  if (indexPath.row >= screenItemCount && indexPath.row < screenItemCount+sortItemCount) {
             cell.cornerImageView.hidden = YES;
-            SortModel *sortModel = [[SortModel alloc] init];
-            sortModel.dic = _sortDictionary;
-            NSArray *keysArray = [sortModel.dic allKeys];
+            SortModel *sortModel = _sortMutableArray[indexPath.row-screenItemCount];
             cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
-            NSString *keyString = keysArray[indexPath.row - screenItemCount];
-            cell.titleLable.text = sortModel.dic[keyString];
+            cell.titleLable.text = sortModel.name;
             cell.titleLable.textAlignment = NSTextAlignmentLeft;
             cell.leadingConstraints.constant = 20;
-            cell.rightImageView.hidden = NO;
+            if (sortModel.isSelected) {
+                cell.rightImageView.hidden = NO;
+            } else {
+                cell.rightImageView.hidden = YES;
+            }
         } else {
             cell.cornerImageView.hidden = YES;
             cell.contentView.backgroundColor = UIColorFromRGBA(0x000000, 0.4f);
@@ -360,7 +401,7 @@
     NSInteger screenItemCount = [_screenMutableArray count];
     NSInteger roomItemCount = [_roomMutableArray count];
     NSInteger buildingItemCount = [_buildingMutableArray count];
-    NSInteger sortItemCount = [[_sortDictionary allKeys] count];
+    NSInteger sortItemCount = [_sortMutableArray count];
     
     if (_selectedIndex == 0) {
         /*全未选中*/
@@ -417,14 +458,16 @@
 }
 //点击每个item实现的方法：
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    __weak FilterCollectionView *ws = self;
     NSInteger screenItemCount = [_screenMutableArray count];
     NSInteger roomItemCount = [_roomMutableArray count];
     NSInteger buildingItemCount = [_buildingMutableArray count];
-    NSInteger sortItemCount = [[_sortDictionary allKeys] count];
+    NSInteger sortItemCount = [_sortMutableArray count];
     if (indexPath.row < 4) {
         _selectedIndex = indexPath.row +1;
     } else {
-        
+        self.hidden = self.isFold?:YES;
     }
     if (_selectedIndex == 0) {
         /*全未选中*/
@@ -443,6 +486,16 @@
             [titleItemDictionary setObject:commanyModel.companyName forKey:@"name"];
             [titleItemDictionary setObject:@YES forKey:@"isSelected"];
             [_screenMutableArray replaceObjectAtIndex:0 withObject:titleItemDictionary];
+            [_sortMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                FilterCompanyModel *companyM = _sortMutableArray[idx];
+                if (companyM.isSelected) {
+                    companyM.isSelected = NO;
+                    [ws.sortMutableArray replaceObjectAtIndex:idx withObject:companyM];
+                    *stop = YES;
+                }else {}
+            }];
+            commanyModel.isSelected = YES;
+            [_roomMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:commanyModel];
         } else {
             return;
         }
@@ -456,6 +509,16 @@
             [titleItemDictionary setObject:buildingModel.name forKey:@"name"];
             [titleItemDictionary setObject:@YES forKey:@"isSelected"];
             [_screenMutableArray replaceObjectAtIndex:1 withObject:titleItemDictionary];
+            [_sortMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                BuildingModle *buildingM = _sortMutableArray[idx];
+                if (buildingM.isSelected) {
+                    buildingM.isSelected = NO;
+                    [ws.sortMutableArray replaceObjectAtIndex:idx withObject:buildingM];
+                    *stop = YES;
+                }else {}
+            }];
+            buildingModel.isSelected = YES;
+            [_buildingMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:buildingModel];
         } else {
             return;
         }
@@ -464,11 +527,21 @@
         if (indexPath.row <4) {
             _selectedIndex = indexPath.row +1;
         } else  if (indexPath.row >= screenItemCount && !(indexPath.row == screenItemCount+sortItemCount)) {
-            NSString *keyString = [_sortDictionary allKeys][indexPath.row-screenItemCount];
+            SortModel *sortModel = _sortMutableArray[indexPath.row-screenItemCount];
             NSMutableDictionary *titleItemDictionary = [NSMutableDictionary dictionaryWithDictionary:_screenMutableArray[2]];
-            [titleItemDictionary setObject:_sortDictionary[keyString] forKey:@"name"];
+            [titleItemDictionary setObject:sortModel.name forKey:@"name"];
             [titleItemDictionary setObject:@YES forKey:@"isSelected"];
             [_screenMutableArray replaceObjectAtIndex:2 withObject:titleItemDictionary];
+            [_sortMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                SortModel *sortM = _sortMutableArray[idx];
+                if (sortM.isSelected) {
+                    sortM.isSelected = NO;
+                    [ws.sortMutableArray replaceObjectAtIndex:idx withObject:sortM];
+                    *stop = YES;
+                }else {}
+            }];
+            sortModel.isSelected = YES;
+            [_sortMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:sortModel];
         } else {
             return;
         }

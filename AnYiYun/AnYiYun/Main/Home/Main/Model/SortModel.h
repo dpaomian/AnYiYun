@@ -13,6 +13,8 @@
 
 + (instancetype)shareModel;
 
-@property (nonatomic, strong) NSDictionary *dic;
+@property (nonatomic, copy) NSString *idF;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) BOOL   isSelected;
 
 @end

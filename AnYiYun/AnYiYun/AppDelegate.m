@@ -10,6 +10,7 @@
 #import "BaseNavigationViewController.h"
 #import "RootTabBarViewController.h"
 #import "BaseLaunchConfig.h"
+#import "FilterCollectionView.h"
 
 @interface AppDelegate ()
 
@@ -25,8 +26,8 @@
     
     [BaseLaunchConfig launchingFlowConfig];
     
-    
-    NSLog(@"%@",[@"123456" SHA256]);
+    /*初始化筛选框*/
+    [FilterCollectionView shareFilter];
     
     return YES;
 }
