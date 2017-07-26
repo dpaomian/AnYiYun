@@ -22,8 +22,7 @@
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    self.allCollectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:layout];
-//    [self.allCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([AllApplicationReusableView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"AllApplicationReusableView"];
+    self.allCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-NAV_HEIGHT) collectionViewLayout:layout];
     [self.allCollectionView registerClass:[AllApplicationReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"AllApplicationReusableView"];
     [self.allCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([AllApplicationCollectionViewCell class]) bundle:nil]  forCellWithReuseIdentifier:@"AllApplicationCollectionViewCell"];
     _allCollectionView.delegate = self;

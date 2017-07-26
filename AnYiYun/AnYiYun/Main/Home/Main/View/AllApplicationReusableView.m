@@ -18,6 +18,10 @@
         [self addSubview:_titleLab];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_titleLab attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_titleLab attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:20]];
+        
+        UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.88f)];
+        lineview.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:lineview];
     }
     return self;
 }

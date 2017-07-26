@@ -9,6 +9,8 @@
 #import "BaseViewController.h"
 #import "EnergyManagementViewController.h"
 #import "BusinessItemViewController.h"
+#import "PowerDistributionRootViewController.h"
+#import "ElectricalFireRootViewController.h"
 
 /**
  首页

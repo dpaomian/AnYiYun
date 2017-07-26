@@ -1,14 +1,14 @@
 //
-//  YYSegmentedView.m
+//  YYTabBarView.m
 //  AnYiYun
 //
-//  Created by 韩亚周 on 17/7/24.
+//  Created by 韩亚周 on 17/7/26.
 //  Copyright © 2017年 wwr. All rights reserved.
 //
 
-#import "YYSegmentedView.h"
+#import "YYTabBarView.h"
 
-@implementation YYSegmentedView
+@implementation YYTabBarView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -19,8 +19,12 @@
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         flowLayout.scrollDirection=UICollectionViewScrollDirectionHorizontal;
         
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 1.0f)];
+        lineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:lineView];
+        
         self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-        [_collectionView registerNib:[UINib nibWithNibName:@"YYSegmentedCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"YYSegmentedCollectionCell"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"YYTabBarCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"YYTabBarCollectionCell"];
         _collectionView.delegate=self;
         _collectionView.dataSource=self;
         _collectionView.scrollsToTop = NO;
@@ -36,7 +40,7 @@
                               metrics:nil
                               views:NSDictionaryOfVariableBindings(_collectionView)]];
         [self addConstraints:[NSLayoutConstraint
-                              constraintsWithVisualFormat:@"V:|[_collectionView]|"
+                              constraintsWithVisualFormat:@"V:|-1-[_collectionView]|"
                               options:1.0
                               metrics:nil
                               views:NSDictionaryOfVariableBindings(_collectionView)]];
@@ -50,16 +54,14 @@
     return [self.titlesArray count];
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    YYSegmentedCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYSegmentedCollectionCell" forIndexPath:indexPath];
-    cell.titleLable.text = [NSString stringWithFormat:@"%@",_titlesArray[indexPath.row]];
+    YYTabBarCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YYTabBarCollectionCell" forIndexPath:indexPath];
+    cell.titleLab.text = [NSString stringWithFormat:@"%@",_titlesArray[indexPath.row]];
     if (indexPath.row == _selectedIndex) {
         cell.selected = YES;
-        [cell.lineButton setBackgroundColor:UIColorFromRGB(0x5987F8)];
-        cell.titleLable.textColor = UIColorFromRGB(0x5987F8);
+        cell.titleLab.textColor = UIColorFromRGB(0x5987F8);
     } else {
         cell.selected = NO;
-        [cell.lineButton setBackgroundColor:UIColorFromRGBA(0x5987F8, 0.0)];
-        cell.titleLable.textColor = UIColorFromRGB(0x000000);
+        cell.titleLab.textColor = UIColorFromRGB(0x000000);
     }
     return cell;
 }
@@ -75,7 +77,7 @@
 #pragma mark UICollectionViewDelegateFlowLayout -
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((SCREEN_WIDTH)/([_titlesArray count]), 44.0f);
+    return CGSizeMake((SCREEN_WIDTH)/([_titlesArray count]), 48.0f);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

@@ -21,9 +21,9 @@
     
     _selectedInedex = 0;
 
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
+    /*UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
     view.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:view];
+    [self.view addSubview:view];*/
     
         
     __weak EnergyManagementViewController *ws = self;
