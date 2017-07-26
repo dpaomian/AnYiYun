@@ -7,11 +7,14 @@
 //
 
 #import "BaseViewController.h"
-
+#import "FilterCollectionView.h"
+#import "RealtimeMonitoringListModel.h"
 
 /*!实时监测*/
 @interface RealtimeMonitoringViewController : BaseViewController
 
+@property (weak, nonatomic) FilterCollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray   *listMutableArray;
 
 @end

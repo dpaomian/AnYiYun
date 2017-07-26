@@ -90,6 +90,7 @@
 		A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF5D1F26051800B5F2D2 /* LoadDatectionHeaderView.xib */; };
 		A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */; };
 		A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */; };
+		A81AB5981F2901260098D203 /* RealtimeMonitoringListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A81AB5971F2901260098D203 /* RealtimeMonitoringListModel.m */; };
 		A821B11D1F26CE23008B6678 /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */; };
 		A821B11E1F26CE23008B6678 /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */; };
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
@@ -286,6 +287,8 @@
 		A810BF5F1F260A1400B5F2D2 /* LoadDatectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadDatectionCell.h; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.h; sourceTree = SOURCE_ROOT; };
 		A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadDatectionCell.m; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.m; sourceTree = SOURCE_ROOT; };
 		A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadDatectionCell.xib; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.xib; sourceTree = SOURCE_ROOT; };
+		A81AB5961F2901260098D203 /* RealtimeMonitoringListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringListModel.h; sourceTree = "<group>"; };
+		A81AB5971F2901260098D203 /* RealtimeMonitoringListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringListModel.m; sourceTree = "<group>"; };
 		A821B11A1F26CE23008B6678 /* FilterCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCollectionCell.h; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.h; sourceTree = SOURCE_ROOT; };
 		A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCollectionCell.m; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.m; sourceTree = SOURCE_ROOT; };
 		A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterCollectionCell.xib; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.xib; sourceTree = SOURCE_ROOT; };
@@ -511,6 +514,8 @@
 				A821B1231F26E66D008B6678 /* BuildingModle.m */,
 				A821B1251F26E676008B6678 /* SortModel.h */,
 				A821B1261F26E676008B6678 /* SortModel.m */,
+				A81AB5961F2901260098D203 /* RealtimeMonitoringListModel.h */,
+				A81AB5971F2901260098D203 /* RealtimeMonitoringListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1106,6 +1111,7 @@
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
 				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
 				A84FA2EB1F28859F006F3DB4 /* AlarmInformationViewController.m in Sources */,
+				A81AB5981F2901260098D203 /* RealtimeMonitoringListModel.m in Sources */,
 				90CF07861F1F3464008106D2 /* UIBarButtonItem+Extension.m in Sources */,
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
 				A8C4B13C1F26594C00E5F682 /* FilterCollectionView.m in Sources */,

@@ -101,6 +101,11 @@
         }];
 }
 
+- (NSArray *)sortKeysWithDic:(NSDictionary *)dic {
+    NSArray *sortedKeys = [[dic allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    return sortedKeys;
+}
+
 - (void)loadSortItemsWithManager:(AFHTTPSessionManager *)manager {
     __weak FilterCollectionView *ws = self;
     NSString *urlString2 = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/deviceOrder"];
@@ -110,16 +115,19 @@
         progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            DLog(@"responseObject :%@",responseObject);
+
             [_sortMutableArray removeAllObjects];
-            NSMutableDictionary *_sortDic = [NSMutableDictionary dictionary];
-            [_sortDic setObject:@"智能排序" forKey:@"500"];
-            [_sortDic addEntriesFromDictionary:responseObject];
-            [[_sortDic allKeys] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableDictionary *sortDic = [NSMutableDictionary dictionary];
+            [sortDic setObject:@"智能排序" forKey:@"500"];
+            [sortDic addEntriesFromDictionary:responseObject];
+            [[ws sortKeysWithDic:sortDic] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 SortModel *model = [[SortModel alloc] init];
                 NSString *keyString = obj;
-                NSString *valueSting = _sortDic[keyString];
+                NSString *valueSting = sortDic[keyString];
                 model.idF = keyString;
                 model.name = valueSting;
+                NSLog(@"%@",model.idF);
                 model.isSelected = NO;
                 [_sortMutableArray addObject:model];
             }];
@@ -520,11 +528,11 @@
             [titleItemDictionary setObject:commanyModel.companyName forKey:@"name"];
             [titleItemDictionary setObject:@YES forKey:@"isSelected"];
             [_screenMutableArray replaceObjectAtIndex:0 withObject:titleItemDictionary];
-            [_sortMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                FilterCompanyModel *companyM = _sortMutableArray[idx];
+            [_roomMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                FilterCompanyModel *companyM = ws.roomMutableArray[idx];
                 if (companyM.isSelected) {
                     companyM.isSelected = NO;
-                    [ws.sortMutableArray replaceObjectAtIndex:idx withObject:companyM];
+                    [ws.roomMutableArray replaceObjectAtIndex:idx withObject:companyM];
                     *stop = YES;
                 }else {}
             }];
@@ -546,11 +554,11 @@
             [titleItemDictionary setObject:buildingModel.name forKey:@"name"];
             [titleItemDictionary setObject:@YES forKey:@"isSelected"];
             [_screenMutableArray replaceObjectAtIndex:1 withObject:titleItemDictionary];
-            [_sortMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                BuildingModle *buildingM = _sortMutableArray[idx];
+            [_buildingMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                BuildingModle *buildingM = ws.buildingMutableArray[idx];
                 if (buildingM.isSelected) {
                     buildingM.isSelected = NO;
-                    [ws.sortMutableArray replaceObjectAtIndex:idx withObject:buildingM];
+                    [ws.buildingMutableArray replaceObjectAtIndex:idx withObject:buildingM];
                     *stop = YES;
                 }else {}
             }];
@@ -573,7 +581,7 @@
             [titleItemDictionary setObject:@YES forKey:@"isSelected"];
             [_screenMutableArray replaceObjectAtIndex:2 withObject:titleItemDictionary];
             [_sortMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                SortModel *sortM = _sortMutableArray[idx];
+                SortModel *sortM = ws.sortMutableArray[idx];
                 if (sortM.isSelected) {
                     sortM.isSelected = NO;
                     [ws.sortMutableArray replaceObjectAtIndex:idx withObject:sortM];
