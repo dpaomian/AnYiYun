@@ -8,6 +8,9 @@
 
 #import "BaseViewController.h"
 
-@interface EquipmentMainViewController : BaseViewController
+@interface EquipmentMainViewController : BaseViewController <UIWebViewDelegate>
+
+/*!webView*/
+@property (strong, nonatomic) UIWebView *webView;
 
 @end
