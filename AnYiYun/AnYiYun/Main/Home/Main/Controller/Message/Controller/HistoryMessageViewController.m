@@ -1,26 +1,24 @@
 //
-//  MessageViewController.m
+//  HistoryMessageViewController.m
 //  AnYiYun
 //
-//  Created by wwr on 2017/7/24.
+//  Created by wwr on 2017/7/26.
 //  Copyright © 2017年 wwr. All rights reserved.
 //
 
-#import "MessageViewController.h"
+#import "HistoryMessageViewController.h"
 
-@interface MessageViewController ()
+@interface HistoryMessageViewController ()
 
 @end
 
-@implementation MessageViewController
+@implementation HistoryMessageViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.title = @"消息";
-    
-    
+     self.title = @"历史消息";
 }
 
 - (void)didReceiveMemoryWarning {
