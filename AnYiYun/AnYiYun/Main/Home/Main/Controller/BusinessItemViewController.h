@@ -7,10 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import "AllApplicationReusableView.h"
+#import "AllApplicationCollectionViewCell.h"
 
 /**
  全部模块入口
  */
-@interface BusinessItemViewController : BaseViewController
+@interface BusinessItemViewController : BaseViewController  <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, strong) UICollectionView    *allCollectionView;
 
 @end

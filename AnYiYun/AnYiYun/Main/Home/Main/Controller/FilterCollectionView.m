@@ -10,6 +10,8 @@
 
 @interface FilterCollectionView ()
 
+/*!备选项是否为折叠状态。 YES为折叠*/
+@property (nonatomic, assign) BOOL      isFoldItem;
 /*!筛选项*/
 @property (nonatomic, strong) NSMutableArray *screenMutableArray;
 
@@ -200,6 +202,7 @@
     if (self) {
         
         self.scrollEnabled = NO;
+        _isFoldItem = NO;
         
         _selectedIndex = 0;
         _roomMutableArray = [NSMutableArray array];
@@ -230,23 +233,43 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     NSInteger screenItemCount = [_screenMutableArray count];
-    NSInteger touchCount = self.isFold?0:1;
+    NSInteger touchCount = 1;
     
     if (_selectedIndex == 0) {
         /*全未选中*/
-        return [_screenMutableArray count] +touchCount;
+        if (self.isFoldItem) {
+            return  screenItemCount;
+        } else {
+            return [_screenMutableArray count] +touchCount;
+        }
     } else if (_selectedIndex == 1) {
         /*供电室*/
-        return screenItemCount +touchCount + [_roomMutableArray count];
+        if (self.isFoldItem) {
+            return  screenItemCount;
+        } else {
+            return screenItemCount +touchCount + [_roomMutableArray count];
+        }
     } else if (_selectedIndex == 2) {
         /*楼*/
-        return screenItemCount +touchCount + [_buildingMutableArray count];
+        if (self.isFoldItem) {
+            return  screenItemCount;
+        } else {
+            return screenItemCount +touchCount + [_buildingMutableArray count];
+        }
     } else if (_selectedIndex == 3) {
         /*排序*/
-        return screenItemCount + touchCount + [_sortMutableArray count];
+        if (self.isFoldItem) {
+            return  screenItemCount;
+        } else {
+            return screenItemCount + touchCount + [_sortMutableArray count];
+        }
     } else if (_selectedIndex == [_screenMutableArray count]) {
         /*搜索*/
-        return screenItemCount + touchCount + 1;
+        if (self.isFoldItem) {
+            return  screenItemCount;
+        } else {
+            return screenItemCount + touchCount + 1;
+        }
     } else {
         return  screenItemCount;
     }
@@ -466,15 +489,26 @@
     NSInteger sortItemCount = [_sortMutableArray count];
     if (indexPath.row < 4) {
         _selectedIndex = indexPath.row +1;
+        _isFoldItem = NO;
+        if (_foldHandle) {
+            _foldHandle(self,_isFoldItem);
+        }
     } else {
-        self.hidden = self.isFold?:YES;
+        self.hidden = self.isFold?NO:YES;
+        _isFoldItem = YES;
+        if (_foldHandle) {
+            _foldHandle(self,_isFoldItem);
+        }
     }
     if (_selectedIndex == 0) {
         /*全未选中*/
         if (indexPath.row <4) {
             _selectedIndex = indexPath.row +1;
         } else {
-            return;
+            _isFoldItem = YES;
+            if (_foldHandle) {
+                _foldHandle(self,_isFoldItem);
+            }
         }
     } else if (_selectedIndex == 1) {
         /*供电室*/
@@ -497,7 +531,10 @@
             commanyModel.isSelected = YES;
             [_roomMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:commanyModel];
         } else {
-            return;
+            _isFoldItem = YES;
+            if (_foldHandle) {
+            _foldHandle(self,_isFoldItem);
+        }
         }
     } else if (_selectedIndex == 2) {
         /*楼*/
@@ -520,7 +557,10 @@
             buildingModel.isSelected = YES;
             [_buildingMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:buildingModel];
         } else {
-            return;
+            _isFoldItem = YES;
+            if (_foldHandle) {
+                _foldHandle(self,_isFoldItem);
+            }
         }
     } else if (_selectedIndex == 3) {
         /*排序*/
@@ -543,14 +583,20 @@
             sortModel.isSelected = YES;
             [_sortMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:sortModel];
         } else {
-            return;
+            _isFoldItem = YES;
+            if (_foldHandle) {
+                _foldHandle(self,_isFoldItem);
+            }
         }
     } else {
         /*搜索*/
         if (indexPath.row <4) {
             _selectedIndex = indexPath.row +1;
         } else if (indexPath.row == 5)  {
-            
+            _isFoldItem = YES;
+            if (_foldHandle) {
+                _foldHandle(self,_isFoldItem);
+            }
         } else {
             
         }

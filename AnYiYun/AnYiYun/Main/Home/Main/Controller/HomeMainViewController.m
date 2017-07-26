@@ -61,6 +61,14 @@
         EnergyManagementViewController *energyVC = [[EnergyManagementViewController alloc]init];
         energyVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:energyVC animated:YES];
+    } else if (sender.tag == 101){
+        
+    }  else if (sender.tag == 102){
+        
+    } else {
+        BusinessItemViewController *allApplicationVC = [[BusinessItemViewController alloc]init];
+        allApplicationVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:allApplicationVC animated:YES];
     }
 }
 

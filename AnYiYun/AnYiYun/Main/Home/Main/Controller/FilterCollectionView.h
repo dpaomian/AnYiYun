@@ -24,7 +24,9 @@
 /*!去分被选中项  默认为  0*/
 @property (nonatomic, assign) NSInteger      selectedIndex;
 /*!折叠还是隐藏。 YES为折叠*/
-@property (nonatomic, assign) NSInteger      isFold;
+@property (nonatomic, assign) BOOL           isFold;
+
+@property (nonatomic, copy) void (^foldHandle)(FilterCollectionView *myCollectionView, BOOL isFold);
 
 + (FilterCollectionView *)shareFilter;
 

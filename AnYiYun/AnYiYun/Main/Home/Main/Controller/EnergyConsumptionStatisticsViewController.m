@@ -11,6 +11,8 @@
 
 @interface EnergyConsumptionStatisticsViewController ()
 
+@property (nonatomic, strong) NSMutableArray *constraintsMutableArray;
+
 @end
 
 @implementation EnergyConsumptionStatisticsViewController
@@ -19,6 +21,9 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    _constraintsMutableArray = [NSMutableArray array];
+    
+    __weak EnergyConsumptionStatisticsViewController *ws = self;
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -33,11 +38,22 @@
     [collectionView iteminitialization];
     collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     collectionView.isFold = YES;
+    collectionView.foldHandle = ^(FilterCollectionView *myCollectionView, BOOL isFold){
+        [ws.view removeConstraints:ws.constraintsMutableArray];
+        [ws.constraintsMutableArray removeAllObjects];
+        if (isFold) {
+            [ws.constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[myCollectionView(==34)]" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(myCollectionView)]];
+        } else {
+            [ws.constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[myCollectionView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(myCollectionView)]];
+        }
+        [ws.view addConstraints:ws.constraintsMutableArray];
+    };
     [self.view addSubview:collectionView];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
+    [_constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView(==34)]" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
+    [self.view addConstraints:_constraintsMutableArray];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-34-[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
 }
 
