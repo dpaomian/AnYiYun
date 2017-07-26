@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 /**
- 消息
+ 消息中心
  */
 @interface MessageViewController : BaseViewController
 

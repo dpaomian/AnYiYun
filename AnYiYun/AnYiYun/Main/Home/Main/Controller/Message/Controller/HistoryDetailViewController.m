@@ -1,30 +1,22 @@
 //
-//  BaseViewController.m
+//  HistoryDetailViewController.m
 //  AnYiYun
 //
-//  Created by wwr on 2017/7/19.
+//  Created by wwr on 2017/7/26.
 //  Copyright © 2017年 wwr. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "HistoryDetailViewController.h"
 
-@interface BaseViewController ()
+@interface HistoryDetailViewController ()
 
 @end
 
-@implementation BaseViewController
+@implementation HistoryDetailViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
