@@ -60,6 +60,9 @@
     
     _calendarTitleView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYCalendarView class]) owner:nil options:nil][0];
     _calendarTitleView.isNavigation = NO;
+    [_calendarTitleView.dateButton setTitleColor:UIColorFromRGB(0x515151) forState:UIControlStateNormal];
+    [_calendarTitleView.nextButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
+    [_calendarTitleView.superiorButton setImage:[UIImage imageNamed:@"minus.png"] forState:UIControlStateNormal];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMdd"];
@@ -118,7 +121,7 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_calendarCollectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:navigationView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:NAV_HEIGHT-20.0f]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_calendarCollectionView]|" options:1.0 metrics:nil
   views:NSDictionaryOfVariableBindings(_calendarCollectionView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-44-[_calendarTitleView]-44-|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_calendarTitleView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-64-[_calendarTitleView]-64-|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_calendarTitleView)]];
     [_constraintMutableArray addObject:[NSLayoutConstraint constraintWithItem:_calendarCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:collectionViewHeight]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:touchButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_calendarCollectionView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[touchButton]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(touchButton)]];
