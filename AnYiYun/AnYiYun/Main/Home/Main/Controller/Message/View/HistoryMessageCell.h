@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MessageModel.h"
 
 @interface HistoryMessageCell : UITableViewCell
+
+-(void)setCellContentWithModel:(MessageModel *)itemModel;
 
 @end

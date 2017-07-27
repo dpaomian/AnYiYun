@@ -1,4 +1,7 @@
 platform :ios, ‘8.0’
+
+def pods
+
 pod 'AFNetworking'
 pod 'MJExtension'
 pod 'SDWebImage'
@@ -6,3 +9,12 @@ pod 'Masonry'
 pod 'MJRefresh'
 pod 'MBProgressHUD'
 pod 'TMCache'
+pod 'FMDB'
+
+end
+
+target 'AnYiYun' do
+
+pods
+
+end
