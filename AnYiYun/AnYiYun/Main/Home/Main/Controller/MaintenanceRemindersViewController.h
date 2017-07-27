@@ -7,10 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import "RealtimeMonitoringListModel.h"
+#import "RealtimeMonitoringChildCell.h"
 
 /*!维保提醒*/
 @interface MaintenanceRemindersViewController : BaseViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray   *listMutableArray;
+@property (nonatomic, strong) NSMutableDictionary   *conditionDic;
 
 @end

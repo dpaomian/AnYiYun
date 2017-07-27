@@ -125,6 +125,8 @@
 		A84FA3051F289C6B006F3DB4 /* RealtimeMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA3021F289C6B006F3DB4 /* RealtimeMonitoringViewController.m */; };
 		A84FA3081F28A570006F3DB4 /* ElectricalFireRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA3071F28A570006F3DB4 /* ElectricalFireRootViewController.m */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
+		A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */; };
+		A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */; };
 		A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */; };
 		A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */; };
 		A8C4B13C1F26594C00E5F682 /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B13B1F26594C00E5F682 /* FilterCollectionView.m */; };
@@ -359,6 +361,9 @@
 		A84FA3071F28A570006F3DB4 /* ElectricalFireRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireRootViewController.m; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringChildCell.h; sourceTree = "<group>"; };
+		A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringChildCell.m; sourceTree = "<group>"; };
+		A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealtimeMonitoringChildCell.xib; sourceTree = "<group>"; };
 		A8C4B12F1F26342800E5F682 /* EnergyConsumptionStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnergyConsumptionStatisticsCell.h; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.h; sourceTree = SOURCE_ROOT; };
 		A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnergyConsumptionStatisticsCell.m; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.m; sourceTree = SOURCE_ROOT; };
 		A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnergyConsumptionStatisticsCell.xib; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.xib; sourceTree = SOURCE_ROOT; };
@@ -586,6 +591,9 @@
 				A84FA2DE1F287E06006F3DB4 /* YYTabBarCollectionCell.h */,
 				A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */,
 				A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */,
+				A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */,
+				A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */,
+				A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1074,6 +1082,7 @@
 				A810BF591F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib in Resources */,
 				A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */,
 				A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */,
+				A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */,
 				90CF072B1F1F2BFC008106D2 /* LaunchScreen.storyboard in Resources */,
 				90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
@@ -1142,6 +1151,7 @@
 				90272BE11F224382000B1DC0 /* TADotView.m in Sources */,
 				901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */,
 				901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */,
+				A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */,
 				90272BDF1F224382000B1DC0 /* TAAbstractDotView.m in Sources */,
 				A84FA2CC1F283FB4006F3DB4 /* AllApplicationReusableView.m in Sources */,
 				90CF07421F1F3078008106D2 /* RootTabBarViewController.m in Sources */,
