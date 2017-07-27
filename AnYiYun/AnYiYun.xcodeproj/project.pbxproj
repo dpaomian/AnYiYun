@@ -28,6 +28,8 @@
 		901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A081E1F20E366009488C1 /* EquipmentMainViewController.m */; };
 		901A08261F20E3AA009488C1 /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A08231F20E3AA009488C1 /* HomeMainViewController.m */; };
 		902407421F2A2BD7001E2F38 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902407411F2A2BD7001E2F38 /* LocationViewController.m */; };
+		902407451F2A336A001E2F38 /* HistoryMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 902407441F2A336A001E2F38 /* HistoryMessageCell.m */; };
+		902407481F2A337B001E2F38 /* HistoryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 902407471F2A337B001E2F38 /* HistoryDetailCell.m */; };
 		90272BDF1F224382000B1DC0 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BD21F224382000B1DC0 /* TAAbstractDotView.m */; };
 		90272BE01F224382000B1DC0 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BD41F224382000B1DC0 /* TAAnimatedDotView.m */; };
 		90272BE11F224382000B1DC0 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BD61F224382000B1DC0 /* TADotView.m */; };
@@ -177,6 +179,10 @@
 		901A08231F20E3AA009488C1 /* HomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainViewController.m; sourceTree = "<group>"; };
 		902407401F2A2BD7001E2F38 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		902407411F2A2BD7001E2F38 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		902407431F2A336A001E2F38 /* HistoryMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryMessageCell.h; sourceTree = "<group>"; };
+		902407441F2A336A001E2F38 /* HistoryMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryMessageCell.m; sourceTree = "<group>"; };
+		902407461F2A337B001E2F38 /* HistoryDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDetailCell.h; sourceTree = "<group>"; };
+		902407471F2A337B001E2F38 /* HistoryDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDetailCell.m; sourceTree = "<group>"; };
 		90272BD11F224382000B1DC0 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		90272BD21F224382000B1DC0 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
 		90272BD31F224382000B1DC0 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
@@ -685,6 +691,10 @@
 				905D5C931F28D4AF00DF4DF9 /* MessageMaintainCell.m */,
 				905D5C9E1F28EB7C00DF4DF9 /* MessageTopView.h */,
 				905D5C9F1F28EB7C00DF4DF9 /* MessageTopView.m */,
+				902407431F2A336A001E2F38 /* HistoryMessageCell.h */,
+				902407441F2A336A001E2F38 /* HistoryMessageCell.m */,
+				902407461F2A337B001E2F38 /* HistoryDetailCell.h */,
+				902407471F2A337B001E2F38 /* HistoryDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1247,11 +1257,13 @@
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
 				A8C4B13C1F26594C00E5F682 /* FilterCollectionView.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
+				902407481F2A337B001E2F38 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
 				90CF079E1F1F375B008106D2 /* BaseHelper.m in Sources */,
 				901A08261F20E3AA009488C1 /* HomeMainViewController.m in Sources */,
 				90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */,
 				90CF07881F1F3464008106D2 /* UIImage+Extension.m in Sources */,
+				902407451F2A336A001E2F38 /* HistoryMessageCell.m in Sources */,
 				901788251F2637BD00CFED87 /* ChangePwdViewController.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,

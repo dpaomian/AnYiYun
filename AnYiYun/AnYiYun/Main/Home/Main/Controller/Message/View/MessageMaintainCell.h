@@ -11,14 +11,8 @@
 
 @protocol MessageMaintainCellDeleagte <NSObject>
 
-    //待处理
+    //已处理
 -(void)dealMaintainButtonActionWithItem:(MessageModel *)contentModel;
-    //报修
--(void)repairMaintainButtonActionWithItem:(MessageModel *)contentModel;
-    //曲线
--(void)curveMaintainButtonActionWithItem:(MessageModel *)contentModel;
-    //定位
--(void)locationMaintainActionWithItem:(MessageModel *)contentModel;
 @end
 
 

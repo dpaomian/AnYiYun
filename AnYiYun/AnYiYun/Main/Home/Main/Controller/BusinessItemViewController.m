@@ -10,6 +10,10 @@
 
 @interface BusinessItemViewController ()
 
+@property (nonatomic,strong)NSArray *sectionOneArray;
+@property (nonatomic,strong)NSArray *sectionTwoArray;
+@property (nonatomic,strong)NSArray *sectionThreeArray;
+
 @end
 
 @implementation BusinessItemViewController
@@ -19,6 +23,10 @@
     [super viewDidLoad];
     
     self.title = @"全部应用";
+    
+    _sectionOneArray = @[@{@"icon":@"",@"title":@"电",@"index":@""},
+                         ];
+    
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -47,7 +55,8 @@
     }
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
     AllApplicationReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                             withReuseIdentifier:@"AllApplicationReusableView"
                                                                                    forIndexPath:indexPath];

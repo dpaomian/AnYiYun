@@ -99,7 +99,7 @@
 {
     if (!_leftImgView) {
         _leftImgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 20, 20)];
-        _leftImgView.image = [UIImage imageNamed:@"main_test.png"];
+        _leftImgView.image = [UIImage imageNamed:@"all_icon_14.png"];
     }
     return _leftImgView;
 }
