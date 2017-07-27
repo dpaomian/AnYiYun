@@ -27,6 +27,7 @@
 		901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A081B1F20E32F009488C1 /* DailyMainViewController.m */; };
 		901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A081E1F20E366009488C1 /* EquipmentMainViewController.m */; };
 		901A08261F20E3AA009488C1 /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A08231F20E3AA009488C1 /* HomeMainViewController.m */; };
+		902407421F2A2BD7001E2F38 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902407411F2A2BD7001E2F38 /* LocationViewController.m */; };
 		90272BDF1F224382000B1DC0 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BD21F224382000B1DC0 /* TAAbstractDotView.m */; };
 		90272BE01F224382000B1DC0 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BD41F224382000B1DC0 /* TAAnimatedDotView.m */; };
 		90272BE11F224382000B1DC0 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BD61F224382000B1DC0 /* TADotView.m */; };
@@ -174,6 +175,8 @@
 		901A081E1F20E366009488C1 /* EquipmentMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentMainViewController.m; sourceTree = "<group>"; };
 		901A08221F20E3AA009488C1 /* HomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainViewController.h; sourceTree = "<group>"; };
 		901A08231F20E3AA009488C1 /* HomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainViewController.m; sourceTree = "<group>"; };
+		902407401F2A2BD7001E2F38 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		902407411F2A2BD7001E2F38 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		90272BD11F224382000B1DC0 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		90272BD21F224382000B1DC0 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
 		90272BD31F224382000B1DC0 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
@@ -503,6 +506,7 @@
 		901A08211F20E3AA009488C1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9024073F1F2A2BBE001E2F38 /* Location_定位 */,
 				905D5C761F28CF0000DF4DF9 /* Message_消息中心 */,
 				901A08221F20E3AA009488C1 /* HomeMainViewController.h */,
 				901A08231F20E3AA009488C1 /* HomeMainViewController.m */,
@@ -596,6 +600,16 @@
 				A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9024073F1F2A2BBE001E2F38 /* Location_定位 */ = {
+			isa = PBXGroup;
+			children = (
+				902407401F2A2BD7001E2F38 /* LocationViewController.h */,
+				902407411F2A2BD7001E2F38 /* LocationViewController.m */,
+			);
+			name = "Location_定位";
+			path = Location;
 			sourceTree = "<group>";
 		};
 		90272BCF1F224382000B1DC0 /* SDCycleScrollView */ = {
@@ -1225,6 +1239,7 @@
 				90CF071D1F1F2BFC008106D2 /* main.m in Sources */,
 				901788191F262CD400CFED87 /* CompanyModel.m in Sources */,
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
+				902407421F2A2BD7001E2F38 /* LocationViewController.m in Sources */,
 				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
 				A84FA2EB1F28859F006F3DB4 /* AlarmInformationViewController.m in Sources */,
 				A81AB5981F2901260098D203 /* RealtimeMonitoringListModel.m in Sources */,

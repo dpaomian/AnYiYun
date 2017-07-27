@@ -12,13 +12,14 @@
 #import "MessageMaintainCell.h"
 #import "MessageTopView.h"
 #import "PromptView.h"
+#import "LocationViewController.h"
 
-@interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate>
+@interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate,UIAlertViewDelegate>
 {
     NSInteger    selectViewTag;
     UITableView *_currentTabelView;
 }
-
+@property (nonatomic, strong) MessageModel *selectModel;
 @property (nonatomic, strong) UIScrollView *scrolView;
 @property (nonatomic, strong) PromptView *promptView;
 @property (nonatomic, strong) MessageTopView *topView;
@@ -107,6 +108,7 @@
          [_alarmDataSource addObject:item];
      }
       [_alarmTableView reloadData];
+     [self endRefreshing];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"获取告警信息失败：%@",error);
@@ -137,6 +139,7 @@
          [_examDataSource addObject:item];
          }
      [_examTableView reloadData];
+     [self endRefreshing];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"获取待检修信息失败：%@",error);
@@ -167,13 +170,92 @@
          [_maintainDataSource addObject:item];
          }
      [_maintainTableView reloadData];
+     [self endRefreshing];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"获取待保养 失败：%@",error);
          }];
 }
 
+    //选择已处理
+-(void)dealMessageRequestWithType:(NSString *)type
+{
+    NSString *urlString;
+    NSDictionary *param;
+    if ([type intValue]==1)
+        {
+        urlString = [NSString stringWithFormat:@"%@rest/process/bugP",BASE_PLAN_URL];
+        param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                                @"bugId":_selectModel.messageId,
+                                @"type":@"1"};
+    }
+    if ([type intValue]==2)
+        {
+        urlString = [NSString stringWithFormat:@"%@rest/process/todoP",BASE_PLAN_URL];
+        param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                  @"bugId":_selectModel.messageId,
+                  @"type":@"1"};
+        }
+    if ([type intValue]==3)
+        {
+        urlString = [NSString stringWithFormat:@"%@rest/process/todoP",BASE_PLAN_URL];
+        param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                  @"bugId":_selectModel.messageId,
+                  @"type":@"2"};
+        }
+    
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    [MBProgressHUD showMessage:@"提交中..."];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     [MBProgressHUD hideHUD];
+        BOOL dealState = (BOOL)responseObject;
+     if (dealState==NO)
+         {
+         [BaseHelper waringInfo:@"提交失败"];
+     }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             [MBProgressHUD hideHUD];
+             DLog(@"处理失败：%@",error);
+         }];
 
+}
+
+    //选择报修
+-(void)maintainMessageRequestWithBugId:(NSString *)bugId
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugS",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"bugId":bugId,
+                            @"type":@"1"};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    [MBProgressHUD showMessage:@"提交中..."];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     [MBProgressHUD hideHUD];
+     BOOL dealState = (BOOL)responseObject;
+     if (dealState==NO)
+         {
+         [BaseHelper waringInfo:@"提交失败"];
+         }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             [MBProgressHUD hideHUD];
+             DLog(@"报修失败：%@",error);
+         }];
+    
+}
 
 #pragma mark - Private methods
 
@@ -268,7 +350,119 @@
     [self dataRequest];
 }
 
-#pragma mark -
+#pragma mark - MessageAlarmCellDeleagte
+    //待处理
+-(void)dealAlarmButtonActionWithItem:(MessageModel *)contentModel
+{
+    _selectModel = contentModel;
+    
+    NSString *message = @"您确认要选择“已处理”么？";
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = 100;
+    [alertView show];
+    
+}
+    //报修
+-(void)repairAlarmButtonActionWithItem:(MessageModel *)contentModel
+{
+    _selectModel = contentModel;
+
+    NSString *message = @"您确认要选择“报修”么？";
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = 101;
+    [alertView show];
+}
+    //曲线
+-(void)curveAlarmButtonActionWithItem:(MessageModel *)contentModel
+{
+    _selectModel = contentModel;
+
+}
+    //定位
+-(void)locationAlarmActionWithItem:(MessageModel *)contentModel
+{
+    _selectModel = contentModel;
+
+    LocationViewController *vc = [[LocationViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.itemModel = contentModel;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - MessageExamCellDeleagte
+    //已处理
+-(void)dealExamButtonActionWithItem:(MessageModel *)contentModel
+{
+    _selectModel = contentModel;
+    
+    NSString *message = @"您确认要选择“已处理”么？";
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = 102;
+    [alertView show];
+}
+#pragma mark - MessageMaintainCellDeleagte
+    //待处理
+-(void)dealMaintainButtonActionWithItem:(MessageModel *)contentModel
+{
+    _selectModel = contentModel;
+    
+    NSString *message = @"您确认要选择“已处理”么？";
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = 103;
+    [alertView show];
+}
+    //报修
+-(void)repairMaintainButtonActionWithItem:(MessageModel *)contentModel
+{
+    [self repairMaintainButtonActionWithItem:contentModel];
+}
+
+    //曲线
+-(void)curveMaintainButtonActionWithItem:(MessageModel *)contentModel
+{
+    [self curveMaintainButtonActionWithItem:contentModel];
+}
+
+    //定位
+-(void)locationMaintainActionWithItem:(MessageModel *)contentModel
+{
+    [self locationMaintainActionWithItem:contentModel];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==100)
+        {
+        if (buttonIndex==1)
+            {
+            [self dealMessageRequestWithType:@"1"];
+        }
+    }
+    
+    if (alertView.tag==101)
+        {
+        if (buttonIndex==1)
+            {
+            [self maintainMessageRequestWithBugId:_selectModel.messageId];
+            }
+        }
+    if (alertView.tag==102)
+        {
+        if (buttonIndex==1)
+            {
+            [self dealMessageRequestWithType:@"2"];
+            }
+        }
+    if (alertView.tag==103)
+        {
+        if (buttonIndex==1)
+            {
+            [self dealMessageRequestWithType:@"3"];
+            }
+        }
+}
+
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
