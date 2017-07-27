@@ -8,6 +8,10 @@
 
 #import "RealtimeMonitoringListModel.h"
 
+@implementation RealtimeMonitoringListModelList
+
+@end
+
 @implementation RealtimeMonitoringListModel
 
 @end

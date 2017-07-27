@@ -17,15 +17,26 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psj-Yu-X8h">
                     <rect key="frame" x="0.0" y="0.0" width="385" height="65"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CW8-zZ-Ck8">
+                            <rect key="frame" x="0.0" y="0.0" width="385" height="65"/>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="CW8-zZ-Ck8" firstAttribute="leading" secondItem="Psj-Yu-X8h" secondAttribute="leading" id="6NJ-Cl-L5l"/>
+                        <constraint firstAttribute="trailing" secondItem="CW8-zZ-Ck8" secondAttribute="trailing" id="U0a-W4-oMw"/>
+                        <constraint firstAttribute="bottom" secondItem="CW8-zZ-Ck8" secondAttribute="bottom" id="hcX-BJ-bHy"/>
+                        <constraint firstItem="CW8-zZ-Ck8" firstAttribute="top" secondItem="Psj-Yu-X8h" secondAttribute="top" id="oaP-g5-12X"/>
+                    </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq4-CG-eYy">
-                    <rect key="frame" x="8" y="18" width="28" height="28"/>
+                    <rect key="frame" x="8" y="21" width="22" height="22"/>
                     <state key="normal" image="icon_Bottom"/>
                     <state key="selected" image="icon_Top"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-6层电源总进线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htK-mp-j9V">
-                    <rect key="frame" x="44" y="23" width="115" height="18"/>
+                    <rect key="frame" x="38" y="23" width="115" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -65,13 +76,14 @@
                 <outlet property="markButton" destination="lq4-CG-eYy" id="yFf-hP-Hbe"/>
                 <outlet property="tailImage" destination="nyL-HL-ZPP" id="KD1-5i-IyC"/>
                 <outlet property="titleLab" destination="htK-mp-j9V" id="384-hI-hbQ"/>
+                <outlet property="touchButton" destination="CW8-zZ-Ck8" id="v48-fn-GOf"/>
             </connections>
             <point key="canvasLocation" x="28.5" y="22.5"/>
         </view>
     </objects>
     <resources>
         <image name="all_icon_16" width="30" height="30"/>
-        <image name="icon_Bottom" width="28" height="28"/>
-        <image name="icon_Top" width="28" height="28"/>
+        <image name="icon_Bottom" width="22" height="22"/>
+        <image name="icon_Top" width="22" height="22"/>
     </resources>
 </document>

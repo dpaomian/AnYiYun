@@ -21,5 +21,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *contentLab;
 /*!尾部的小图片*/
 @property (strong, nonatomic) IBOutlet UIImageView *tailImage;
+@property (strong, nonatomic) IBOutlet UIButton *touchButton;
+
+/*!区头被点击*/
+@property (nonatomic, copy) void (^headerTouchHandle)(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected);
+
+@property (nonatomic, copy) void (^headerTouch)();
 
 @end

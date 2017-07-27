@@ -27,7 +27,7 @@
     [BaseLaunchConfig launchingFlowConfig];
     
     /*初始化筛选框*/
-    [FilterCollectionView shareFilter];
+//    [FilterCollectionView shareFilter];
     
     return YES;
 }

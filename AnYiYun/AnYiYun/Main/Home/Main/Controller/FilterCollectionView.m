@@ -537,6 +537,9 @@
                 }else {}
             }];
             commanyModel.isSelected = YES;
+            if (_choiceHandle) {
+                _choiceHandle(self, commanyModel,_selectedIndex);
+            }
             [_roomMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:commanyModel];
         } else {
             _isFoldItem = YES;
@@ -563,6 +566,9 @@
                 }else {}
             }];
             buildingModel.isSelected = YES;
+            if (_choiceHandle) {
+                _choiceHandle(self, buildingModel,_selectedIndex);
+            }
             [_buildingMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:buildingModel];
         } else {
             _isFoldItem = YES;
@@ -589,6 +595,9 @@
                 }else {}
             }];
             sortModel.isSelected = YES;
+            if (_choiceHandle) {
+                _choiceHandle(self, sortModel,_selectedIndex);
+            }
             [_sortMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:sortModel];
         } else {
             _isFoldItem = YES;

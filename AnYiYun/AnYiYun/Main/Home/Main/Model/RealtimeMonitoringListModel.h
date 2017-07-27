@@ -6,6 +6,38 @@
 //  Copyright © 2017年 wwr. All rights reserved.
 //
 
+/*!每个区的数据中一个对象*/
+@interface RealtimeMonitoringListModelList : NSObject
+
+/*!设备ID*/
+@property (nonatomic, copy) NSString *device_id;
+/*!设备名称*/
+@property (nonatomic, copy) NSString *device_name;
+/*!是否显示曲线图*/
+@property (nonatomic, assign) BOOL   displayIcon;
+/*!设备类型*/
+@property (nonatomic, copy) NSString *idF;
+/*!测点名称*/
+@property (nonatomic, copy) NSString *point_name;
+/*!测点状态*/
+@property (nonatomic, copy) NSString *point_state;
+/*!测点类型*/
+@property (nonatomic, copy) NSString *point_type;
+/*!测点数据单位*/
+@property (nonatomic, copy) NSString *point_unit;
+/*!测点值*/
+@property (nonatomic, copy) NSString *point_value;
+/*!测点Sid*/
+@property (nonatomic, copy) NSString *sid;
+/*!根据设备排序*/
+@property (nonatomic, copy) NSString *sortDevice;
+/*!装置ID*/
+@property (nonatomic, copy) NSString *terminal_id;
+/*!装置类型*/
+@property (nonatomic, copy) NSString *terminal_type;
+
+@end
+
 #import <Foundation/Foundation.h>
 
 /*!实时监测列表的model*/
@@ -31,5 +63,7 @@
 @property (nonatomic, copy) NSString *state;
 /*!是否为选中状态，如果选中对应的区则展开，默认折叠*/
 @property (nonatomic, assign) BOOL   isFold;
+/*!改对象中的子数据*/
+@property (nonatomic, strong) NSMutableArray   *itemsMutableArray;
 
 @end
