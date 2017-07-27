@@ -43,9 +43,14 @@
 -(void)setCellContentWithModel:(MessageModel *)itemModel
 {
     _useModel = itemModel;
-    _titleLabel.text = @"[告警]报警事件";
-    _timeLabel.text = @"7-15 测试";
-    _contentLabel.text = @"测试数据 3楼照明配电箱 xxx";
+    _titleLabel.text = itemModel.messageTitle;
+    _timeLabel.text = @"";
+    NSString *time = itemModel.time;
+    if (time.length>14) {
+        NSString *useTime = [itemModel.time substringFromIndex:5];
+        _timeLabel.text = useTime;
+    }
+    _contentLabel.text =itemModel.messageContent;
 }
 
 
@@ -54,7 +59,7 @@
     //已处理
 -(void)dealButtonAction:(id)sender
 {
-    [_cellDelegate dealButtonActionWithItem:_useModel];
+    [_cellDelegate dealExamButtonActionWithItem:_useModel];
 }
 
 #pragma mark - getter
@@ -85,7 +90,7 @@
 - (UILabel *)contentLabel
 {
     if (!_contentLabel) {
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 30)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, SCREEN_WIDTH-40, 30)];
         _contentLabel.textColor = kAppTitleGrayColor;
         _contentLabel.font = SYSFONT_(13);
         _contentLabel.backgroundColor = [UIColor clearColor];
@@ -96,7 +101,7 @@
 - (UILabel *)middleLineLabel
 {
     if (!_middleLineLabel) {
-        _middleLineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, SCREEN_WIDTH, 0.5)];
+        _middleLineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 74.5, SCREEN_WIDTH, 0.5)];
         _middleLineLabel.backgroundColor = kAPPTableViewLineColor;
     }
     return _middleLineLabel;
@@ -105,12 +110,12 @@
 - (JXLayoutButton *)dealButton
 {
     if (!_dealButton) {
-        _dealButton = [[JXLayoutButton alloc] initWithFrame:CGRectMake(0, 71, SCREEN_WIDTH, 39)];
+        _dealButton = [[JXLayoutButton alloc] initWithFrame:CGRectMake(0, 75, SCREEN_WIDTH, 39)];
         [_dealButton setTitle:@"已处理" forState:UIControlStateNormal];
         [_dealButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
         _dealButton.titleLabel.font = SYSFONT_(13);
         [_dealButton setImage:[UIImage imageNamed:@"main_test.png"] forState:UIControlStateNormal];
-        _dealButton.layoutStyle = JXLayoutButtonStyleUpImageDownTitle;
+        _dealButton.layoutStyle = JXLayoutButtonStyleLeftImageRightTitle;
         [_dealButton addTarget:self action:@selector(dealButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         _dealButton.imageSize = CGSizeMake(20, 20);
     }

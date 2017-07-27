@@ -54,8 +54,6 @@
     return self;
 }
 
-
-
 -(void)setCellContentWithType:(NSString *)type withDay:(NSString *)day
 {
     descLabel.hidden = NO;
@@ -63,7 +61,7 @@
     if ([type isEqualToString:@"2"])
         {
         descLabel.hidden = YES;
-        titleLabel.text = @"您已安全运行xx天";
+        titleLabel.text = [NSString stringWithFormat:@"您已安全运行%@天",day];
     }
 }
 - (void)awakeFromNib {

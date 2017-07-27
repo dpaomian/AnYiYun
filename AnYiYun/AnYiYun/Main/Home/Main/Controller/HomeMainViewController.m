@@ -21,6 +21,7 @@
 {
     NSMutableArray  *adverArray;
     BOOL            isHaveAlertMessage;
+    long long           safeDay;
 }
 /**广告图*/
 @property (nonatomic,strong)UIView                     *adBgView;
@@ -41,7 +42,7 @@
         //广告
     [self getPictureRequestAction];
         //公告
-    [self getNotifyRequestAction];
+        //[self getNotifyRequestAction];
         //菜单
     [self getMenuRequestAction];
     
@@ -162,16 +163,6 @@
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/notice",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
-        NSInteger result = [object[@"errCode"] integerValue];
-        if (result==0)
-            {
-            NSDictionary *dataDic = object;
-            
-            }
-        else
-            {
-            DLog(@"获取公告失败：%@",object[@"msg"]);
-            }
         
     } failureBlock:^(NSError *error) {
         DLog(@"获取公告失败：%@",error);
@@ -181,39 +172,52 @@
     //是否有告警
 -  (void)getMessageRequestAction
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/soDaynum",BASE_PLAN_URL];
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/isAlarm",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object)
-     {
-     isHaveAlertMessage = (BOOL )object;
-     NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
-     [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-     
-     } failureBlock:^(NSError *error) {
-         DLog(@"获取告警信息失败：%@",error);
-     } progress:nil];
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    {
+            isHaveAlertMessage = (BOOL)responseObject;
+            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
+            [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            DLog(@"获取告警信息失败：%@",error);
+        }];
 }
 
     //安全运行多少天
 -  (void)getSafetyRequestAction
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/isAlarm",BASE_PLAN_URL];
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/soDaynum",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
-        NSInteger result = [object[@"errCode"] integerValue];
-        if (result==0)
-            {
-            NSDictionary *dataDic = object;
-            
-            }
-        else
-            {
-            DLog(@"获取安全运行失败：%@",object[@"msg"]);
-            }
-        
-    } failureBlock:^(NSError *error) {
-        DLog(@"获取安全运行失败：%@",error);
-    } progress:nil];
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+     NSInteger createLong  = [string integerValue];
+     
+     NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
+     long long date = (long long )time;
+     safeDay = (date-createLong)/(3600*24)/1000;
+     DLog(@"xxxxx %ld, %.lld, %.lld , %.lld",(long)createLong ,date ,date-createLong ,safeDay);
+     
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"获取安全运行失败：%@",error);
+         }];
 }
 
     //推广
@@ -249,16 +253,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/menuOpen",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
-        NSInteger result = [object[@"errCode"] integerValue];
-        if (result==0)
-            {
-            NSDictionary *dataDic = object;
-            
-            }
-        else
-            {
-            DLog(@"获取推广失败：%@",object[@"msg"]);
-            }
+        
         
     } failureBlock:^(NSError *error) {
         DLog(@"获取推广失败：%@",error);
@@ -293,7 +288,7 @@
             }
         else
             {
-            [cell setCellContentWithType:@"2" withDay:@"1"];
+            [cell setCellContentWithType:@"2" withDay:[NSString stringWithFormat:@"%lld",safeDay]];
             }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;

@@ -10,12 +10,19 @@
 
 @interface MessageModel : NSObject
 
-@property (nonatomic,assign) long     messageId;
-@property (nonatomic,strong) NSString *messageTitle;
-@property (nonatomic,strong) NSString *messageContent;
-@property (nonatomic,assign) long  ctime;
+@property (nonatomic,strong) NSString  *messageId;
+@property (nonatomic,strong) NSString  *messageTitle;
+@property (nonatomic,strong) NSString  *messageContent;
+@property (nonatomic,assign) NSInteger  ctime;
 @property (nonatomic,strong) NSString *time;
 @property (nonatomic,strong) NSString *result;
 @property (nonatomic,assign) NSInteger state;
+@property (nonatomic,strong) NSString *deviceId;
+@property (nonatomic,strong) NSString *pointId;
+@property (nonatomic,strong) NSString *userId;
+@property (nonatomic,strong) NSString *userName;
+
+- (id)initWithDictionary:(NSDictionary *)userDictionary;
+
 
 @end

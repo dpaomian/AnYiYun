@@ -12,13 +12,13 @@
 @protocol MessageAlarmCellDeleagte <NSObject>
 
     //待处理
--(void)dealButtonActionWithItem:(MessageModel *)contentModel;
+-(void)dealAlarmButtonActionWithItem:(MessageModel *)contentModel;
     //报修
--(void)repairButtonActionWithItem:(MessageModel *)contentModel;
+-(void)repairAlarmButtonActionWithItem:(MessageModel *)contentModel;
     //曲线
--(void)curveButtonActionWithItem:(MessageModel *)contentModel;
+-(void)curveAlarmButtonActionWithItem:(MessageModel *)contentModel;
     //定位
--(void)locationActionWithItem:(MessageModel *)contentModel;
+-(void)locationAlarmActionWithItem:(MessageModel *)contentModel;
 @end
 
 

@@ -12,7 +12,7 @@
 @protocol MessageExamCellDeleagte <NSObject>
 
     //已处理
--(void)dealButtonActionWithItem:(MessageModel *)contentModel;
+-(void)dealExamButtonActionWithItem:(MessageModel *)contentModel;
 
 @end
 

@@ -15,6 +15,7 @@
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate>
 {
+    NSInteger    selectViewTag;
     UITableView *_currentTabelView;
 }
 
@@ -39,12 +40,11 @@
     [super viewDidLoad];
     
     self.title = @"消息中心";
-    
-    
+    self.view.backgroundColor = RGB(239, 239, 244);
     [self makeupComponentUI];
+    
+    selectViewTag = 11;
     [self dataRequest];
-    
-    
 }
 #pragma mark - public methods
 - (void)updateDataSource
@@ -66,8 +66,114 @@
 #pragma mark - dataRequest
 - (void)dataRequest
 {
-    
+    if (selectViewTag==11)
+        {
+            //获取告警信息
+        [self getAlarmDataRequest];
+    }
+    else if (selectViewTag==12)
+        {
+            //获取待检修
+        [self getExamDataRequest];
+        }
+    else if (selectViewTag==13)
+        {
+            //获取待保养
+        [self getMaintainDataRequest];
+        }
 }
+
+//获取告警信息
+-(void)getAlarmDataRequest
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/alarm",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     [_alarmDataSource removeAllObjects];
+     
+     id  object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+     NSArray *listArray = (NSArray *)object;
+     for (int i=0; i<listArray.count; i++)
+         {
+         MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
+         [_alarmDataSource addObject:item];
+     }
+      [_alarmTableView reloadData];
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"获取告警信息失败：%@",error);
+         }];
+}
+
+    //获取待检修
+-(void)getExamDataRequest
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/repair",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     [_examDataSource removeAllObjects];
+     
+     id  object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+     NSArray *listArray = (NSArray *)object;
+     for (int i=0; i<listArray.count; i++)
+         {
+         MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
+         [_examDataSource addObject:item];
+         }
+     [_examTableView reloadData];
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"获取待检修信息失败：%@",error);
+         }];
+}
+
+    //获取待保养
+-(void)getMaintainDataRequest
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/change",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     [_maintainDataSource removeAllObjects];
+     
+     id  object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+     NSArray *listArray = (NSArray *)object;
+     for (int i=0; i<listArray.count; i++)
+         {
+         MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
+         [_maintainDataSource addObject:item];
+         }
+     [_maintainTableView reloadData];
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"获取待保养 失败：%@",error);
+         }];
+}
+
+
 
 #pragma mark - Private methods
 
@@ -83,12 +189,19 @@
 
 - (void)makeupComponentUI
 {
+    
+    _alarmDataSource = [[NSMutableArray alloc]init];
+    _examDataSource = [[NSMutableArray alloc]init];
+    _maintainDataSource = [[NSMutableArray alloc]init];
+    
     [self.view addSubview:self.topView];
     [self.view addSubview:self.scrolView];
     
     [self.scrolView addSubview:self.alarmTableView];
     [self.scrolView addSubview:self.examTableView];
     [self.scrolView addSubview:self.maintainTableView];
+    
+    [self updateComponentUI];
 }
 
 - (void)updateComponentUI
@@ -102,18 +215,19 @@
     self.alarmTableView.x = 0;
     self.examTableView.x = self.scrolView.width;
     self.maintainTableView.x = self.scrolView.width*2;
-    _currentTabelView = self.alarmTableView;
+   
     self.scrolView.contentSize = CGSizeMake(kScreen_Width *3, 0);
     self.scrolView.y = CGRectGetMaxY(self.topView.frame);
     self.scrolView.height = self.view.height - self.topView.height;
     
-    [_currentTabelView reloadData];
+     _currentTabelView = self.alarmTableView;
 }
 
 #pragma mark - action
 
 -(void)topViewAction:(UIButton *)sender
 {
+    selectViewTag = sender.tag;
     if (sender.tag == 11)
         {
         [self.topView.alarmButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
@@ -151,7 +265,7 @@
         } ];
         _currentTabelView = self.maintainTableView;
         }
-    [_currentTabelView reloadData];
+    [self dataRequest];
 }
 
 #pragma mark -
@@ -164,6 +278,7 @@
         NSInteger page = scrollView.contentOffset.x/SCREEN_WIDTH;
         if (page == 0)
             {
+            selectViewTag = 11;
             [self.topView.alarmButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
             [self.topView.examButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
             [self.topView.maintainButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
@@ -177,6 +292,7 @@
         }
         else if (page == 1)
             {
+            selectViewTag = 12;
             [self.topView.alarmButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
             [self.topView.examButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
             [self.topView.maintainButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
@@ -189,6 +305,7 @@
             }
         else if (page == 2)
             {
+            selectViewTag = 13;
             [self.topView.alarmButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
             [self.topView.examButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
             [self.topView.maintainButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
@@ -223,6 +340,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.000001;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -328,10 +454,10 @@
 - (UITableView *)alarmTableView
 {
     if (!_alarmTableView) {
-        _alarmTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStylePlain];
+        _alarmTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStyleGrouped];
         _alarmTableView.dataSource = self;
         _alarmTableView.delegate = self;
-        _alarmTableView.backgroundColor = kAppBackgrondColor;
+        _alarmTableView.backgroundColor = [UIColor clearColor];
         _alarmTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         __weak typeof(self) weakSelf = self;
         _alarmTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -345,10 +471,10 @@
 - (UITableView *)examTableView
 {
     if (!_examTableView) {
-        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStylePlain];
+        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStyleGrouped];
         _examTableView.dataSource = self;
         _examTableView.delegate = self;
-        _examTableView.backgroundColor = kAppBackgrondColor;
+        _examTableView.backgroundColor = [UIColor clearColor];
         _examTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         __weak typeof(self) weakSelf = self;
         _examTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -361,10 +487,10 @@
 - (UITableView *)maintainTableView
 {
     if (!_maintainTableView) {
-        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStylePlain];
+        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStyleGrouped];
         _maintainTableView.dataSource = self;
         _maintainTableView.delegate = self;
-        _maintainTableView.backgroundColor = kAppBackgrondColor;
+        _maintainTableView.backgroundColor = [UIColor clearColor];
         _maintainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         __weak typeof(self) weakSelf = self;
         _maintainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
