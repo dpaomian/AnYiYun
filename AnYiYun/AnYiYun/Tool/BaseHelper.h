@@ -47,5 +47,7 @@
 + (void)waringInfo:(NSString *)msgInfo;
     //接口请求追加固定参数
 + (NSDictionary *)dictionaryAppendDictionary:(NSDictionary *)param;
+/**获取当前手机时间 毫秒值*/
++ (long long)getSystemNowTimeLong;
 
 @end

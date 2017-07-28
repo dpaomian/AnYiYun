@@ -10,7 +10,7 @@
 
 @implementation UITabBar (badge)
 
-#define TabbarItemNums  5.0    //tabbar的数量 如果是5个设置为5
+#define TabbarItemNums  4.0    //tabbar的数量 如果是5个设置为5
 
 
 //显示小红点

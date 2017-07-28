@@ -10,7 +10,7 @@
 
 @interface MessageModel : NSObject
 
-@property (nonatomic,strong) NSString  *messageId;
+@property (nonatomic,assign) NSInteger messageId;
 @property (nonatomic,strong) NSString  *messageTitle;
 @property (nonatomic,strong) NSString  *messageContent;
 @property (nonatomic,assign) NSInteger  ctime;
@@ -28,6 +28,7 @@
     //消息是否已读 0未读 1已读
 @property (nonatomic,strong)NSString *isRead;
 @property (nonatomic,assign)long long uploadtime;
+@property (nonatomic,strong)NSString *remark;
 
 - (id)initWithDictionary:(NSDictionary *)userDictionary;
 

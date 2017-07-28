@@ -209,8 +209,7 @@
      NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
      NSInteger createLong  = [string integerValue];
      
-     NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
-     long long date = (long long )time;
+     long long date = [BaseHelper getSystemNowTimeLong];
      safeDay = (date-createLong)/(3600*24)/1000;
      DLog(@"xxxxx %ld, %.lld, %.lld , %.lld",(long)createLong ,date ,date-createLong ,safeDay);
      

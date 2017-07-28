@@ -11,10 +11,10 @@
 #import "UserInfoCell.h"
 #import "MeCell.h"
 #import "PublicWebViewController.h"
-#import "MessageViewController.h"
+#import "HistoryMessageViewController.h"
 #import "SettingViewController.h"
 #import "ShareViewController.h"
-
+#import "DBDaoDataBase.h"
 
 @interface MeMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -173,8 +173,18 @@
                         }
                     }
                 }
-        cell.imageView.image = [UIImage imageNamed:dic[@"icon"]];
-        cell.textLabel.text = dic[@"title"];
+            NSString *titleString = dic[@"title"];
+            NSString *typeString = @"";
+            NSString *imageString = dic[@"icon"];
+            if([titleString isEqualToString:@"消息"])
+            {
+                BOOL isUnRead = [[DBDaoDataBase sharedDataBase] isHaveNoReadHistoryMessageWithType:@""];
+                if(isUnRead==YES)
+                {
+                    typeString = @"1";
+                }
+            }
+            [cell setCellContentWithTitle:titleString withImageString:imageString withType:typeString];
         return cell;
         }
     return nil;
@@ -207,7 +217,7 @@
             }
     else if ([textTitle isEqualToString:@"消息"])
         {
-        MessageViewController *vc = [[MessageViewController alloc]init];
+        HistoryMessageViewController *vc = [[HistoryMessageViewController alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }

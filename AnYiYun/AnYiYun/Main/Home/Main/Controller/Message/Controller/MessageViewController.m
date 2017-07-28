@@ -13,6 +13,7 @@
 #import "MessageTopView.h"
 #import "PromptView.h"
 #import "LocationViewController.h"
+#import "DBDaoDataBase.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate,UIAlertViewDelegate>
 {
@@ -186,21 +187,21 @@
         {
         urlString = [NSString stringWithFormat:@"%@rest/process/bugP",BASE_PLAN_URL];
         param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                                @"bugId":_selectModel.messageId,
+                                @"bugId":[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId],
                                 @"type":@"1"};
     }
     if ([type intValue]==2)
         {
         urlString = [NSString stringWithFormat:@"%@rest/process/todoP",BASE_PLAN_URL];
         param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                  @"bugId":_selectModel.messageId,
+                  @"todoId":[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId],
                   @"type":@"1"};
         }
     if ([type intValue]==3)
         {
         urlString = [NSString stringWithFormat:@"%@rest/process/todoP",BASE_PLAN_URL];
         param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                  @"bugId":_selectModel.messageId,
+                  @"todoId":[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId],
                   @"type":@"2"};
         }
     
@@ -213,12 +214,13 @@
       parameters:param
         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
-     [MBProgressHUD hideHUD];
+        [MBProgressHUD hideHUD];
         BOOL dealState = (BOOL)responseObject;
      if (dealState==NO)
          {
          [BaseHelper waringInfo:@"提交失败"];
-     }
+        }
+        
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              [MBProgressHUD hideHUD];
@@ -249,6 +251,13 @@
          {
          [BaseHelper waringInfo:@"提交失败"];
          }
+     else
+     {
+         _selectModel.isRead = @"0";
+         _selectModel.uploadtime = [BaseHelper getSystemNowTimeLong];
+         _selectModel.type = @"1";//报修
+         [[DBDaoDataBase sharedDataBase] addHistoryMessageInfoTableClassify:_selectModel];
+     }
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              [MBProgressHUD hideHUD];
@@ -444,7 +453,7 @@
         {
         if (buttonIndex==1)
             {
-            [self maintainMessageRequestWithBugId:_selectModel.messageId];
+            [self maintainMessageRequestWithBugId:[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId]];
             }
         }
     if (alertView.tag==102)
@@ -603,7 +612,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110;
+    return 115;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -11,6 +11,8 @@
 #import "DailyMainViewController.h"
 #import "EquipmentMainViewController.h"
 #import "MeMainViewController.h"
+#import "UITabBar+badge.h"
+#import "DBDaoDataBase.h"
 
 @interface RootTabBarViewController ()
 
@@ -48,6 +50,31 @@
     
     BaseNavigationViewController *navigationVC = [[BaseNavigationViewController alloc] initWithRootViewController:childVC];
     [self addChildViewController:navigationVC];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    MAIN( (^{
+        //查询是否有未读消息
+        BOOL isUnRead = [[DBDaoDataBase sharedDataBase] isHaveNoReadHistoryMessageWithType:@""];
+        
+        [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIViewController *vc = obj.viewControllers.firstObject;
+            if ([vc isKindOfClass:[MeMainViewController class]])
+            {
+                if (isUnRead==NO)
+                {
+                    [self.tabBar hideBadgeOnItemIndex:idx+1];
+                }
+                else
+                {
+                    [self.tabBar showBadgeOnItemIndex:idx+1];
+                }
+            }
+        }];
+    }));
 }
 
 - (void)didReceiveMemoryWarning {
