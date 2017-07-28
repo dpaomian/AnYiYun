@@ -353,8 +353,6 @@
         myWebVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:myWebVC animated:YES];
         }
-    
-    
 }
 
 #pragma mark - SDCycleScrollViewDelegate
