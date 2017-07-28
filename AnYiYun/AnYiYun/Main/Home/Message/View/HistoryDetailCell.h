@@ -1,5 +1,5 @@
 //
-//  HistoryMessageCell.h
+//  HistoryDetailCell.h
 //  AnYiYun
 //
 //  Created by wwr on 2017/7/27.
@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "MessageModel.h"
 
-@interface HistoryMessageCell : UITableViewCell
+@interface HistoryDetailCell : UITableViewCell
 
 -(void)setCellContentWithModel:(MessageModel *)itemModel;
 

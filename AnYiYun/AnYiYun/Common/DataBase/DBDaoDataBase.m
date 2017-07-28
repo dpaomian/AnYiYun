@@ -67,7 +67,7 @@ static DBDaoDataBase *_instance;
              }];
             
                 //初始化进行数据库表的创建
-            if(![self createMessageHistoryTable])
+            if(![self createHistoryMessageTable])
                 {
                 return nil;
                 }
@@ -80,15 +80,15 @@ static DBDaoDataBase *_instance;
 
 
 
-#pragma mark - 消息历史记录表 T_MessageHistory_TABLE
+#pragma mark - 消息历史记录表 T_HistoryMessage_TABLE
 /**创建消息历史记录表*/
-- (BOOL)createMessageHistoryTable
+- (BOOL)createHistoryMessageTable
 {
     __block  BOOL success;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
      [db open];
-     NSString *sql = @"CREATE TABLE IF NOT EXISTS T_MessageHistory_TABLE(messageId    text primary key,\
+     NSString *sql = @"CREATE TABLE IF NOT EXISTS T_HistoryMessage_TABLE(messageId    integer not null primary key,\
      messageTitle   TEXT,\
      messageContent TEXT,\
      ctime  integer not null,\
@@ -98,11 +98,15 @@ static DBDaoDataBase *_instance;
      deviceId TEXT,\
      pointId TEXT,\
      userId TEXT,\
-     userName TEXT)";
+     userName TEXT,\
+     type TEXT,\
+     isRead TEXT,\
+     uploadtime integer not null,\
+     remark TEXT)";
      success = [db executeUpdate:sql];
      if(!success)
          {
-         DLog(@"create T_MessageHistory_TABLE  table failed,error:%@",[db lastErrorMessage]);
+         DLog(@"create T_HistoryMessage_TABLE  table failed,error:%@",[db lastErrorMessage]);
          }
      [db close];
      }];
@@ -110,47 +114,85 @@ static DBDaoDataBase *_instance;
 }
 
 /**添加消息历史记录*/
-- (void)addMessageHistoryInfoTableClassify:(MessageModel *)adModel
+- (void)addHistoryMessageInfoTableClassify:(MessageModel *)adModel
 {
     __block  BOOL success;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
      [db open];
-     NSString *addSqlString = [NSString stringWithFormat:@"insert or replace into T_MessageHistory_TABLE (messageId, messageTitle, messageContent, ctime, time,result,state,deviceId,pointId,userId,userName) values ('%@', '%@', '%@', '%ld', '%@','%@', '%ld', '%@', '%@', '%@', '%@')", adModel.messageId, adModel.messageTitle, adModel.messageContent, (long)adModel.ctime, adModel.time, adModel.result, (long)adModel.state, adModel.deviceId, adModel.pointId, adModel.userId,adModel.userName];
+     NSString *addSqlString = [NSString stringWithFormat:@"insert or replace into T_HistoryMessage_TABLE (messageId, messageTitle, messageContent, ctime, time,result,state,deviceId,pointId,userId,userName,type,isRead,uploadtime,remark) values ('%ld', '%@', '%@', '%ld', '%@','%@', '%ld', '%@', '%@', '%@', '%@', '%@', '%@', '%lld', '%@')", (long)adModel.messageId, adModel.messageTitle, adModel.messageContent, (long)adModel.ctime, adModel.time, adModel.result, (long)adModel.state, adModel.deviceId, adModel.pointId, adModel.userId,adModel.userName,adModel.type,adModel.isRead,adModel.uploadtime,adModel.remark];
      success = [db executeUpdate:addSqlString];
      if (success)
          {
-         DLog(@"insert into T_MessageHistory_TABLE success");
+         DLog(@"insert into T_HistoryMessage_TABLE success");
          }
      else
          {
-         DLog(@"insert into T_MessageHistory_TABLE failed, error:%@",[db lastErrorMessage]);
+         DLog(@"insert into T_HistoryMessage_TABLE failed, error:%@",[db lastErrorMessage]);
          }
      [db close];
      }];
     
 }
 
+
+/**查询是否有未读消息 传空 查询全部 1待检修 2待保养*/
+- (BOOL)isHaveNoReadHistoryMessageWithType:(NSString *)type
+{
+    __block  BOOL success;
+    
+    __block  NSInteger messagecount = 0;
+    [_dbQueue inDatabase:^(FMDatabase *db)
+     {
+         [db open];
+         NSString *sqlString;
+         if (type.length==0)
+         {
+             sqlString = @"SELECT COUNT(*) FROM T_HistoryMessage_TABLE where isRead = 0";
+         }
+         else
+         {
+             sqlString = [NSString stringWithFormat:@"SELECT COUNT(*) FROM T_HistoryMessage_TABLE where type='%@' and isRead = 0",type];
+         }
+         FMResultSet *rs = [db executeQuery:sqlString];
+         while([rs next])
+         {
+             messagecount = [rs intForColumnIndex:0];
+         }
+         [db close];
+     }];
+    
+    if (messagecount>0)
+    {
+        success=YES;
+    }
+    else
+    {
+        success=NO;
+    }
+    return success;
+}
+
 /**删除消息历史记录*/
-- (BOOL)deleteMessageHistoryInfo:(NSString *)pidString
+- (BOOL)deleteHistoryMessageInfo:(NSString *)pidString
 {
     __block  BOOL success;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
      [db open];
-     NSString *selectSql = [NSString stringWithFormat:@"select * from T_MessageHistory_TABLE where messageId = '%@'", pidString];
+     NSString *selectSql = [NSString stringWithFormat:@"select * from T_HistoryMessage_TABLE where messageId = '%ld'", (long)[pidString integerValue]];
      FMResultSet *set = [db executeQuery:selectSql];
      if ([set next])
          {
-         NSString *deleteSql = [NSString stringWithFormat:@"delete from T_MessageHistory_TABLE where messageId = '%@'", pidString];
+         NSString *deleteSql = [NSString stringWithFormat:@"delete from T_HistoryMessage_TABLE where messageId = '%ld'", (long)[pidString integerValue]];
          success = [db executeUpdate:deleteSql];
          if (success)
              {
-             DLog(@"delete T_MessageHistory_TABLE success");
+             DLog(@"delete T_HistoryMessage_TABLE success");
              }
          else
              {
-             DLog(@"delete T_MessageHistory_TABLE failed, error:%@",[db lastErrorMessage]);
+             DLog(@"delete T_HistoryMessage_TABLE failed, error:%@",[db lastErrorMessage]);
              }
          [db close];
          }
@@ -163,34 +205,88 @@ static DBDaoDataBase *_instance;
 }
 
 /**获取消息历史记录表中的所有数据*/
-- (NSMutableArray *)getAllMessageHistorysInfo
+- (NSMutableArray *)getAllHistoryMessagesInfo
 {
     __block  NSMutableArray *mutable = [[NSMutableArray alloc] init];
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
      [db open];
-     NSString *findSqlString = @"select * from T_MessageHistory_TABLE order by localId desc";
+     NSString *findSqlString = @"select * from T_HistoryMessage_TABLE order by messageId desc";
      FMResultSet *rs = [db executeQuery:findSqlString];
      while (rs && [rs next])
          {
          MessageModel *adObject = [[MessageModel alloc] init];
-         adObject.messageId = [rs stringForColumn:@"messageId"];
+         adObject.messageId = [rs longForColumn:@"messageId"];
          adObject.messageTitle = [rs stringForColumn:@"messageTitle"];
          adObject.messageContent = [rs stringForColumn:@"messageContent"];
-         adObject.ctime = [rs intForColumn:@"ctime"];
+         adObject.ctime = [rs longForColumn:@"ctime"];
          adObject.time = [rs stringForColumn:@"time"];
          adObject.result = [rs stringForColumn:@"result"];
-         adObject.state = [rs intForColumn:@"state"];
+         adObject.state = [rs longForColumn:@"state"];
          adObject.deviceId = [rs stringForColumn:@"deviceId"];
          adObject.pointId = [rs stringForColumn:@"pointId"];
          adObject.userId = [rs stringForColumn:@"userId"];
          adObject.userName = [rs stringForColumn:@"userName"];
+         adObject.type = [rs stringForColumn:@"type"];
+         adObject.isRead = [rs stringForColumn:@"isRead"];
+         adObject.uploadtime = [rs longForColumn:@"uploadtime"];
+         adObject.remark = [rs stringForColumn:@"remark"];
          [mutable addObject:adObject];
          }
      [db close];
      }];
     return mutable;
     
+}
+
+/**获取消息历史记录表中的不同类型的数据*/
+- (NSMutableArray *)getAllHistoryMessagesInfoWithType:(NSString *)type
+{
+    __block  NSMutableArray *mutable = [[NSMutableArray alloc] init];
+    [_dbQueue inDatabase:^(FMDatabase *db)
+     {
+         [db open];
+         NSString *findSqlString = [NSString stringWithFormat:@"select * from T_HistoryMessage_TABLE WHERE type='%@' order by messageId desc",type];
+         FMResultSet *rs = [db executeQuery:findSqlString];
+         while (rs && [rs next])
+         {
+             MessageModel *adObject = [[MessageModel alloc] init];
+             adObject.messageId = [rs longForColumn:@"messageId"];
+             adObject.messageTitle = [rs stringForColumn:@"messageTitle"];
+             adObject.messageContent = [rs stringForColumn:@"messageContent"];
+             adObject.ctime = [rs longForColumn:@"ctime"];
+             adObject.time = [rs stringForColumn:@"time"];
+             adObject.result = [rs stringForColumn:@"result"];
+             adObject.state = [rs longForColumn:@"state"];
+             adObject.deviceId = [rs stringForColumn:@"deviceId"];
+             adObject.pointId = [rs stringForColumn:@"pointId"];
+             adObject.userId = [rs stringForColumn:@"userId"];
+             adObject.userName = [rs stringForColumn:@"userName"];
+             adObject.type = [rs stringForColumn:@"type"];
+             adObject.isRead = [rs stringForColumn:@"isRead"];
+             adObject.uploadtime = [rs longForColumn:@"uploadtime"];
+             adObject.remark = [rs stringForColumn:@"remark"];
+             [mutable addObject:adObject];
+         }
+         [db close];
+     }];
+    return mutable;
+    
+}
+
+//删除消息不同类型的历史记录数据
+- (BOOL)deleteHistoryMessagesWithType:(NSString *)type
+{
+    __block  BOOL success;
+    [_dbQueue inDatabase:^(FMDatabase *db)
+     {
+         [db open];
+         NSString *sqlString = [NSString stringWithFormat:@"delete from T_HistoryMessage_TABLE where type='%@'",type];
+         success = [db executeUpdate:sqlString];
+         
+         [db close];
+     }];
+    return success;
 }
 
 /**获得某一消息历史记录数据*/
@@ -201,21 +297,25 @@ static DBDaoDataBase *_instance;
      {
      [db open];
      
-     NSString *findSql = [NSString stringWithFormat:@"select * from T_MessageHistory_TABLE where messageId = '%@'", pidString];
+     NSString *findSql = [NSString stringWithFormat:@"select * from T_HistoryMessage_TABLE where messageId = '%@'", pidString];
      FMResultSet *rs = [db executeQuery:findSql];
      if (rs && [rs next])
          {
-         adObject.messageId = [rs stringForColumn:@"messageId"];
-         adObject.messageTitle = [rs stringForColumn:@"messageTitle"];
-         adObject.messageContent = [rs stringForColumn:@"messageContent"];
-         adObject.ctime = [rs intForColumn:@"ctime"];
-         adObject.time = [rs stringForColumn:@"time"];
-         adObject.result = [rs stringForColumn:@"result"];
-         adObject.state = [rs intForColumn:@"state"];
-         adObject.deviceId = [rs stringForColumn:@"deviceId"];
-         adObject.pointId = [rs stringForColumn:@"pointId"];
-         adObject.userId = [rs stringForColumn:@"userId"];
-         adObject.userName = [rs stringForColumn:@"userName"];
+             adObject.messageId = [rs longForColumn:@"messageId"];
+             adObject.messageTitle = [rs stringForColumn:@"messageTitle"];
+             adObject.messageContent = [rs stringForColumn:@"messageContent"];
+             adObject.ctime = [rs longForColumn:@"ctime"];
+             adObject.time = [rs stringForColumn:@"time"];
+             adObject.result = [rs stringForColumn:@"result"];
+             adObject.state = [rs longForColumn:@"state"];
+             adObject.deviceId = [rs stringForColumn:@"deviceId"];
+             adObject.pointId = [rs stringForColumn:@"pointId"];
+             adObject.userId = [rs stringForColumn:@"userId"];
+             adObject.userName = [rs stringForColumn:@"userName"];
+             adObject.type = [rs stringForColumn:@"type"];
+             adObject.isRead = [rs stringForColumn:@"isRead"];
+             adObject.uploadtime = [rs longForColumn:@"uploadtime"];
+             adObject.remark = [rs stringForColumn:@"remark"];
          }
      [db close];
      }];
@@ -224,13 +324,13 @@ static DBDaoDataBase *_instance;
 }
 
     //删除消息历史记录数据
-- (BOOL)deleteAllMessageHistorys
+- (BOOL)deleteAllHistoryMessages
 {
     __block BOOL success = NO;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
      [db open];
-     NSString *sqlString = @"delete from T_MessageHistory_TABLE ";
+     NSString *sqlString = @"delete from T_HistoryMessage_TABLE ";
      success = [db executeUpdate:sqlString];
      [db close];
      }];

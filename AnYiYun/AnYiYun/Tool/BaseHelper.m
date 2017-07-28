@@ -264,5 +264,12 @@
     return dic;
 }
 
+/**获取当前手机时间 毫秒值*/
++ (long long)getSystemNowTimeLong
+{
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
+    long long date = (long long )time;
+    return date;
+}
 
 @end

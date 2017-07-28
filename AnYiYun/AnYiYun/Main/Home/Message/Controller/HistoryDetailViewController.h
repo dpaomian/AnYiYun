@@ -13,4 +13,6 @@
  */
 @interface HistoryDetailViewController : BaseViewController
 
+@property (nonatomic,strong)NSString *typeString;
+@property (nonatomic,strong)NSString *typeTitleString;
 @end

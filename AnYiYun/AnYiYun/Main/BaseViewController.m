@@ -27,6 +27,17 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
+-(void)setRightBarItem
+{
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"main_more" hightImageName:@"main_more" target:self action:@selector(rightBarButtonAction)];
+}
+
+//点击弹出框
+-(void)rightBarButtonAction
+{
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
