@@ -19,15 +19,17 @@
     
     self.title = @"电气火灾";
     
-    _selectedInedex = 0;
-    
-    __weak ElectricalFireRootViewController *ws = self;
+   /* __weak ElectricalFireRootViewController *ws = self;
     
     _stateView = [[YYTabBarView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT -49- NAV_HEIGHT, SCREEN_WIDTH, 49.0f)];
     _stateView.backgroundColor = UIColorFromRGB(0xFFFFFF);
     _stateView.selectedIndex = 0;
     _stateView.titlesArray = @[@"安全监控",@"设备管理"];
     _stateView.itemHandle = ^(YYTabBarView *stateView, NSInteger index) {
+        stateView.userInteractionEnabled = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.3), dispatch_get_main_queue(), ^{
+            stateView.userInteractionEnabled = YES;
+        });
         if (index == stateView.selectedIndex) {
             return ;
         }else {
@@ -48,7 +50,7 @@
     
     _currentViewController = _monitoringVC;
     [self addChildViewController:_currentViewController];
-    [self.view addSubview:_currentViewController.view];
+    [self.view addSubview:_currentViewController.view];*/
 }
 
 /*切换各个标签内容*/

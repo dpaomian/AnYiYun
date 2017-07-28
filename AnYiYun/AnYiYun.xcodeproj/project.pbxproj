@@ -109,12 +109,10 @@
 		A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B121F1F2AC446001DD06B /* AlarmInformationViewController.m */; };
 		A81B123D1F2AC446001DD06B /* AlarmInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B12201F2AC446001DD06B /* AlarmInformationViewController.xib */; };
 		A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12221F2AC446001DD06B /* BusinessItemViewController.m */; };
-		A81B123F1F2AC446001DD06B /* ElectricalFireRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12241F2AC446001DD06B /* ElectricalFireRootViewController.m */; };
 		A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */; };
 		A81B12411F2AC446001DD06B /* EnergyManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12281F2AC446001DD06B /* EnergyManagementViewController.m */; };
 		A81B12421F2AC446001DD06B /* EquipmentAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B122A1F2AC446001DD06B /* EquipmentAccountViewController.m */; };
 		A81B12431F2AC446001DD06B /* EquipmentAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B122B1F2AC446001DD06B /* EquipmentAccountViewController.xib */; };
-		A81B12441F2AC446001DD06B /* EquipmentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B122D1F2AC446001DD06B /* EquipmentManagementViewController.m */; };
 		A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B122F1F2AC446001DD06B /* HomeMainViewController.m */; };
 		A81B12461F2AC446001DD06B /* LoadDetectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12311F2AC446001DD06B /* LoadDetectionViewController.m */; };
 		A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12331F2AC446001DD06B /* MaintenanceRemindersViewController.m */; };
@@ -122,10 +120,10 @@
 		A81B12491F2AC446001DD06B /* PowerDistributionRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12361F2AC446001DD06B /* PowerDistributionRootViewController.m */; };
 		A81B124A1F2AC446001DD06B /* RealtimeMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12381F2AC446001DD06B /* RealtimeMonitoringViewController.m */; };
 		A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B12391F2AC446001DD06B /* RealtimeMonitoringViewController.xib */; };
-		A81B124C1F2AC446001DD06B /* SecurityMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B123B1F2AC446001DD06B /* SecurityMonitoringViewController.m */; };
 		A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */; };
 		A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */; };
 		A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12511F2AC48D001DD06B /* FilterCollectionView.m */; };
+		A81B12651F2AD8F8001DD06B /* ElectricalFireRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */; };
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
@@ -338,8 +336,6 @@
 		A81B12201F2AC446001DD06B /* AlarmInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmInformationViewController.xib; sourceTree = "<group>"; };
 		A81B12211F2AC446001DD06B /* BusinessItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessItemViewController.h; sourceTree = "<group>"; };
 		A81B12221F2AC446001DD06B /* BusinessItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessItemViewController.m; sourceTree = "<group>"; };
-		A81B12231F2AC446001DD06B /* ElectricalFireRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricalFireRootViewController.h; sourceTree = "<group>"; };
-		A81B12241F2AC446001DD06B /* ElectricalFireRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireRootViewController.m; sourceTree = "<group>"; };
 		A81B12251F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyConsumptionStatisticsViewController.h; sourceTree = "<group>"; };
 		A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyConsumptionStatisticsViewController.m; sourceTree = "<group>"; };
 		A81B12271F2AC446001DD06B /* EnergyManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyManagementViewController.h; sourceTree = "<group>"; };
@@ -347,8 +343,6 @@
 		A81B12291F2AC446001DD06B /* EquipmentAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountViewController.h; sourceTree = "<group>"; };
 		A81B122A1F2AC446001DD06B /* EquipmentAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentAccountViewController.m; sourceTree = "<group>"; };
 		A81B122B1F2AC446001DD06B /* EquipmentAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentAccountViewController.xib; sourceTree = "<group>"; };
-		A81B122C1F2AC446001DD06B /* EquipmentManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentManagementViewController.h; sourceTree = "<group>"; };
-		A81B122D1F2AC446001DD06B /* EquipmentManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentManagementViewController.m; sourceTree = "<group>"; };
 		A81B122E1F2AC446001DD06B /* HomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainViewController.h; sourceTree = "<group>"; };
 		A81B122F1F2AC446001DD06B /* HomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainViewController.m; sourceTree = "<group>"; };
 		A81B12301F2AC446001DD06B /* LoadDetectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadDetectionViewController.h; sourceTree = "<group>"; };
@@ -361,13 +355,13 @@
 		A81B12371F2AC446001DD06B /* RealtimeMonitoringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringViewController.h; sourceTree = "<group>"; };
 		A81B12381F2AC446001DD06B /* RealtimeMonitoringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringViewController.m; sourceTree = "<group>"; };
 		A81B12391F2AC446001DD06B /* RealtimeMonitoringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealtimeMonitoringViewController.xib; sourceTree = "<group>"; };
-		A81B123A1F2AC446001DD06B /* SecurityMonitoringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityMonitoringViewController.h; sourceTree = "<group>"; };
-		A81B123B1F2AC446001DD06B /* SecurityMonitoringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityMonitoringViewController.m; sourceTree = "<group>"; };
 		A81B124D1F2AC48D001DD06B /* FilterCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionCell.h; sourceTree = "<group>"; };
 		A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionCell.m; sourceTree = "<group>"; };
 		A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionCell.xib; sourceTree = "<group>"; };
 		A81B12501F2AC48D001DD06B /* FilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionView.h; sourceTree = "<group>"; };
 		A81B12511F2AC48D001DD06B /* FilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionView.m; sourceTree = "<group>"; };
+		A81B12631F2AD8F8001DD06B /* ElectricalFireRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricalFireRootViewController.h; sourceTree = "<group>"; };
+		A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireRootViewController.m; sourceTree = "<group>"; };
 		A821B11F1F26E661008B6678 /* FilterCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyModel.h; sourceTree = "<group>"; };
 		A821B1201F26E661008B6678 /* FilterCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyModel.m; sourceTree = "<group>"; };
 		A821B1221F26E66D008B6678 /* BuildingModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingModle.h; sourceTree = "<group>"; };
@@ -570,6 +564,7 @@
 		901A08201F20E3AA009488C1 /* Main_业务模块 */ = {
 			isa = PBXGroup;
 			children = (
+				A81B12621F2AD8DC001DD06B /* ElectricalFire */,
 				901A08241F20E3AA009488C1 /* Model */,
 				901A08251F20E3AA009488C1 /* View */,
 				901A08211F20E3AA009488C1 /* Controller */,
@@ -593,21 +588,15 @@
 				A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */,
 				A81B12351F2AC446001DD06B /* PowerDistributionRootViewController.h */,
 				A81B12361F2AC446001DD06B /* PowerDistributionRootViewController.m */,
-				A81B123A1F2AC446001DD06B /* SecurityMonitoringViewController.h */,
-				A81B123B1F2AC446001DD06B /* SecurityMonitoringViewController.m */,
 				A81B12371F2AC446001DD06B /* RealtimeMonitoringViewController.h */,
 				A81B12381F2AC446001DD06B /* RealtimeMonitoringViewController.m */,
 				A81B12391F2AC446001DD06B /* RealtimeMonitoringViewController.xib */,
 				A81B121E1F2AC446001DD06B /* AlarmInformationViewController.h */,
 				A81B121F1F2AC446001DD06B /* AlarmInformationViewController.m */,
 				A81B12201F2AC446001DD06B /* AlarmInformationViewController.xib */,
-				A81B12231F2AC446001DD06B /* ElectricalFireRootViewController.h */,
-				A81B12241F2AC446001DD06B /* ElectricalFireRootViewController.m */,
 				A81B12321F2AC446001DD06B /* MaintenanceRemindersViewController.h */,
 				A81B12331F2AC446001DD06B /* MaintenanceRemindersViewController.m */,
 				A81B12341F2AC446001DD06B /* MaintenanceRemindersViewController.xib */,
-				A81B122C1F2AC446001DD06B /* EquipmentManagementViewController.h */,
-				A81B122D1F2AC446001DD06B /* EquipmentManagementViewController.m */,
 				A81B12291F2AC446001DD06B /* EquipmentAccountViewController.h */,
 				A81B122A1F2AC446001DD06B /* EquipmentAccountViewController.m */,
 				A81B122B1F2AC446001DD06B /* EquipmentAccountViewController.xib */,
@@ -1055,6 +1044,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		A81B12621F2AD8DC001DD06B /* ElectricalFire */ = {
+			isa = PBXGroup;
+			children = (
+				A81B12631F2AD8F8001DD06B /* ElectricalFireRootViewController.h */,
+				A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */,
+			);
+			name = ElectricalFire;
+			sourceTree = "<group>";
+		};
 		C9C4A7F89C998FBBFC7EC266 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1227,7 +1225,6 @@
 				90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */,
 				9017881F1F26349000CFED87 /* SettingViewController.m in Sources */,
 				90272BE01F224382000B1DC0 /* TAAnimatedDotView.m in Sources */,
-				A81B124C1F2AC446001DD06B /* SecurityMonitoringViewController.m in Sources */,
 				90CF07A21F1F38D5008106D2 /* SJAvatarBrowser.m in Sources */,
 				A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
@@ -1241,7 +1238,6 @@
 				90CF07831F1F3464008106D2 /* NSDictionary+XHLogHelper.m in Sources */,
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
 				90CF07871F1F3464008106D2 /* UIColor+Extension.m in Sources */,
-				A81B12441F2AC446001DD06B /* EquipmentManagementViewController.m in Sources */,
 				905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */,
 				A81B121A1F2AC3EC001DD06B /* EquipmentAccountCell.m in Sources */,
 				90CF078B1F1F3464008106D2 /* UITableView+Extension.m in Sources */,
@@ -1275,7 +1271,6 @@
 				A810BF4B1F25EDB400B5F2D2 /* BaseTableViewController.m in Sources */,
 				3B02DF461F2ADE0300282116 /* MessageMaintainCell.m in Sources */,
 				3B02DF471F2ADE0300282116 /* MessageTopView.m in Sources */,
-				A81B123F1F2AC446001DD06B /* ElectricalFireRootViewController.m in Sources */,
 				A821B1271F26E676008B6678 /* SortModel.m in Sources */,
 				90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */,
 				A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */,
@@ -1295,6 +1290,8 @@
 				3B02DF441F2ADE0300282116 /* MessageAlarmCell.m in Sources */,
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
+				A81B12651F2AD8F8001DD06B /* ElectricalFireRootViewController.m in Sources */,
+				902407481F2A337B001E2F38 /* HistoryDetailCell.m in Sources */,
 				3B02DF421F2ADE0300282116 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
 				A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */,

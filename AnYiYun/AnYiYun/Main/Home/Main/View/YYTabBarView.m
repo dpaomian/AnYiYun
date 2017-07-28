@@ -48,6 +48,11 @@
     return self;
 }
 
+- (void)setTitlesArray:(NSArray *)titlesArray {
+    _titlesArray = titlesArray;
+    [_collectionView reloadData];
+}
+
 #pragma mark -
 #pragma mark UICollectionViewDataSource -
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
