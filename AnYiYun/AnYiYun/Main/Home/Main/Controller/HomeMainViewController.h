@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import "EnergyManagementViewController.h"
 #import "BusinessItemViewController.h"
-#import "PowerDistributionRootViewController.h"
+#import "PowerDistributionTabBarRootViewController.h"
 #import "ElectricalFireRootViewController.h"
 
 /**

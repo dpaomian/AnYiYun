@@ -8,6 +8,7 @@
 
 #import "MaintenanceRemindersViewController.h"
 #import "LoadDatectionHeaderView.h"
+#import "MaintenanceRemindersCell.h"
 
 @interface MaintenanceRemindersViewController ()
 
@@ -29,7 +30,7 @@
     [self getRealtimeMonitoringData];
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LoadDatectionHeaderView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:@"LoadDatectionHeaderView"];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RealtimeMonitoringChildCell class]) bundle:nil] forCellReuseIdentifier:@"RealtimeMonitoringChildCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MaintenanceRemindersCell class]) bundle:nil] forCellReuseIdentifier:@"MaintenanceRemindersCell"];
 }
 
 - (void)getRealtimeMonitoringData {
@@ -45,17 +46,20 @@
     maintenanceModel.device_name = @"待保养";
     maintenanceModel.isFold = NO;
     [self.listMutableArray addObject:maintenanceModel];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_listMutableArray count];
+//    return [_listMutableArray count];
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    RealtimeMonitoringListModel *model = _listMutableArray[section];
-    return [model.itemsMutableArray count];
+//    RealtimeMonitoringListModel *model = _listMutableArray[section];
+//    return [model.itemsMutableArray count];
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -67,7 +71,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 34.0f;
+    return 112.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -139,16 +143,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RealtimeMonitoringChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RealtimeMonitoringChildCell" forIndexPath:indexPath];
-    RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
+    MaintenanceRemindersCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MaintenanceRemindersCell" forIndexPath:indexPath];
+    /*RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
     RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
-    cell.titleLab.text = modelItem.point_name;
-    [cell.contentBtn setTitle:[NSString stringWithFormat:@"   %@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
-    if (modelItem.displayIcon) {
-        [cell.contentBtn setImage:[UIImage imageNamed:@"all_icon_2.png"] forState:UIControlStateNormal];
-    } else {
-        [cell.contentBtn setImage:nil forState:UIControlStateNormal];
-    }
+    cell.nameLab.text = modelItem.point_name;*/
     return cell;
     
 }
