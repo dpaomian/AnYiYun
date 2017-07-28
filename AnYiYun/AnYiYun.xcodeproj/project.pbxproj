@@ -49,6 +49,15 @@
 		90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BDE1F224382000B1DC0 /* UIView+SDExtension.m */; };
 		90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BE71F2246AE000B1DC0 /* PublicWebViewController.m */; };
 		90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90272BEA1F224833000B1DC0 /* HomeModel.m */; };
+		9046D5DA1F2B886A004E3DCC /* DeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5D91F2B886A004E3DCC /* DeviceInfoViewController.m */; };
+		9046D5DD1F2B88C7004E3DCC /* TechnicalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5DC1F2B88C7004E3DCC /* TechnicalInfoViewController.m */; };
+		9046D5E01F2B88F2004E3DCC /* DevicePartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5DF1F2B88F2004E3DCC /* DevicePartViewController.m */; };
+		9046D5E31F2B8928004E3DCC /* MaintenanceRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5E21F2B8928004E3DCC /* MaintenanceRecordsViewController.m */; };
+		9046D5E61F2B8951004E3DCC /* RepairRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5E51F2B8951004E3DCC /* RepairRecordsViewController.m */; };
+		9046D5E91F2B8976004E3DCC /* DetectionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5E81F2B8976004E3DCC /* DetectionRecordViewController.m */; };
+		9046D5EC1F2B898F004E3DCC /* InspectionRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5EB1F2B898F004E3DCC /* InspectionRecordsViewController.m */; };
+		9046D5EF1F2B89A7004E3DCC /* AlarmRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5EE1F2B89A7004E3DCC /* AlarmRecordViewController.m */; };
+		9046D5F21F2B89BF004E3DCC /* DeviceFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046D5F11F2B89BF004E3DCC /* DeviceFileViewController.m */; };
 		905D5C9B1F28D83100DF4DF9 /* JXLayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D5C9A1F28D83100DF4DF9 /* JXLayoutButton.m */; };
 		905D5C9D1F28DF6800DF4DF9 /* main_test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905D5C9C1F28DF6800DF4DF9 /* main_test@2x.png */; };
 		905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D5CA91F28EE3000DF4DF9 /* PromptView.m */; };
@@ -220,6 +229,24 @@
 		90272BE71F2246AE000B1DC0 /* PublicWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublicWebViewController.m; path = AnYiYun/Libs/PublicWebViewController.m; sourceTree = SOURCE_ROOT; };
 		90272BE91F224833000B1DC0 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
 		90272BEA1F224833000B1DC0 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		9046D5D81F2B886A004E3DCC /* DeviceInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoViewController.h; sourceTree = "<group>"; };
+		9046D5D91F2B886A004E3DCC /* DeviceInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoViewController.m; sourceTree = "<group>"; };
+		9046D5DB1F2B88C7004E3DCC /* TechnicalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechnicalInfoViewController.h; sourceTree = "<group>"; };
+		9046D5DC1F2B88C7004E3DCC /* TechnicalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechnicalInfoViewController.m; sourceTree = "<group>"; };
+		9046D5DE1F2B88F2004E3DCC /* DevicePartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicePartViewController.h; sourceTree = "<group>"; };
+		9046D5DF1F2B88F2004E3DCC /* DevicePartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicePartViewController.m; sourceTree = "<group>"; };
+		9046D5E11F2B8928004E3DCC /* MaintenanceRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceRecordsViewController.h; sourceTree = "<group>"; };
+		9046D5E21F2B8928004E3DCC /* MaintenanceRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRecordsViewController.m; sourceTree = "<group>"; };
+		9046D5E41F2B8951004E3DCC /* RepairRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairRecordsViewController.h; sourceTree = "<group>"; };
+		9046D5E51F2B8951004E3DCC /* RepairRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairRecordsViewController.m; sourceTree = "<group>"; };
+		9046D5E71F2B8976004E3DCC /* DetectionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectionRecordViewController.h; sourceTree = "<group>"; };
+		9046D5E81F2B8976004E3DCC /* DetectionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetectionRecordViewController.m; sourceTree = "<group>"; };
+		9046D5EA1F2B898F004E3DCC /* InspectionRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionRecordsViewController.h; sourceTree = "<group>"; };
+		9046D5EB1F2B898F004E3DCC /* InspectionRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionRecordsViewController.m; sourceTree = "<group>"; };
+		9046D5ED1F2B89A7004E3DCC /* AlarmRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmRecordViewController.h; sourceTree = "<group>"; };
+		9046D5EE1F2B89A7004E3DCC /* AlarmRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmRecordViewController.m; sourceTree = "<group>"; };
+		9046D5F01F2B89BF004E3DCC /* DeviceFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceFileViewController.h; sourceTree = "<group>"; };
+		9046D5F11F2B89BF004E3DCC /* DeviceFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceFileViewController.m; sourceTree = "<group>"; };
 		905D5C991F28D83100DF4DF9 /* JXLayoutButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXLayoutButton.h; sourceTree = "<group>"; };
 		905D5C9A1F28D83100DF4DF9 /* JXLayoutButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXLayoutButton.m; sourceTree = "<group>"; };
 		905D5C9C1F28DF6800DF4DF9 /* main_test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_test@2x.png"; sourceTree = "<group>"; };
@@ -708,6 +735,56 @@
 			path = PageControl;
 			sourceTree = "<group>";
 		};
+		9046D5D41F2B8844004E3DCC /* DeviceFile_设备档案 */ = {
+			isa = PBXGroup;
+			children = (
+				9046D5D61F2B8844004E3DCC /* Model */,
+				9046D5D71F2B8844004E3DCC /* View */,
+				9046D5D51F2B8844004E3DCC /* Controller */,
+			);
+			name = "DeviceFile_设备档案";
+			path = DeviceFile;
+			sourceTree = "<group>";
+		};
+		9046D5D51F2B8844004E3DCC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9046D5F01F2B89BF004E3DCC /* DeviceFileViewController.h */,
+				9046D5F11F2B89BF004E3DCC /* DeviceFileViewController.m */,
+				9046D5D81F2B886A004E3DCC /* DeviceInfoViewController.h */,
+				9046D5D91F2B886A004E3DCC /* DeviceInfoViewController.m */,
+				9046D5DB1F2B88C7004E3DCC /* TechnicalInfoViewController.h */,
+				9046D5DC1F2B88C7004E3DCC /* TechnicalInfoViewController.m */,
+				9046D5DE1F2B88F2004E3DCC /* DevicePartViewController.h */,
+				9046D5DF1F2B88F2004E3DCC /* DevicePartViewController.m */,
+				9046D5E41F2B8951004E3DCC /* RepairRecordsViewController.h */,
+				9046D5E51F2B8951004E3DCC /* RepairRecordsViewController.m */,
+				9046D5E11F2B8928004E3DCC /* MaintenanceRecordsViewController.h */,
+				9046D5E21F2B8928004E3DCC /* MaintenanceRecordsViewController.m */,
+				9046D5E71F2B8976004E3DCC /* DetectionRecordViewController.h */,
+				9046D5E81F2B8976004E3DCC /* DetectionRecordViewController.m */,
+				9046D5EA1F2B898F004E3DCC /* InspectionRecordsViewController.h */,
+				9046D5EB1F2B898F004E3DCC /* InspectionRecordsViewController.m */,
+				9046D5ED1F2B89A7004E3DCC /* AlarmRecordViewController.h */,
+				9046D5EE1F2B89A7004E3DCC /* AlarmRecordViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9046D5D61F2B8844004E3DCC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9046D5D71F2B8844004E3DCC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		905D5C981F28D83100DF4DF9 /* LayoutButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,6 +967,7 @@
 				901A08201F20E3AA009488C1 /* Main_业务模块 */,
 				3B02DF251F2ADE0300282116 /* Message_消息中心 */,
 				3B02DF221F2ADE0300282116 /* Location_通用定位 */,
+				9046D5D41F2B8844004E3DCC /* DeviceFile_设备档案 */,
 			);
 			name = "Home_首页";
 			path = Home;
@@ -1218,9 +1296,11 @@
 				A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */,
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
+				9046D5DA1F2B886A004E3DCC /* DeviceInfoViewController.m in Sources */,
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
 				3B02DF3F1F2ADE0300282116 /* HistoryMessageViewController.m in Sources */,
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
+				9046D5EC1F2B898F004E3DCC /* InspectionRecordsViewController.m in Sources */,
 				A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */,
 				90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */,
 				9017881F1F26349000CFED87 /* SettingViewController.m in Sources */,
@@ -1247,7 +1327,9 @@
 				A81B124A1F2AC446001DD06B /* RealtimeMonitoringViewController.m in Sources */,
 				901788091F2620D200CFED87 /* YYCalendarView.m in Sources */,
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
+				9046D5DD1F2B88C7004E3DCC /* TechnicalInfoViewController.m in Sources */,
 				90CF074E1F1F313F008106D2 /* MeMainViewController.m in Sources */,
+				9046D5E61F2B8951004E3DCC /* RepairRecordsViewController.m in Sources */,
 				901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */,
 				3B02DF411F2ADE0300282116 /* MessageModel.m in Sources */,
 				3B02DF401F2ADE0300282116 /* MessageViewController.m in Sources */,
@@ -1256,7 +1338,9 @@
 				A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */,
 				A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */,
 				90CF07591F1F3300008106D2 /* BaseReachability.m in Sources */,
+				9046D5E01F2B88F2004E3DCC /* DevicePartViewController.m in Sources */,
 				90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */,
+				9046D5E91F2B8976004E3DCC /* DetectionRecordViewController.m in Sources */,
 				90CF078A1F1F3464008106D2 /* UITabBar+badge.m in Sources */,
 				A81B12421F2AC446001DD06B /* EquipmentAccountViewController.m in Sources */,
 				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
@@ -1286,12 +1370,13 @@
 				A81B12461F2AC446001DD06B /* LoadDetectionViewController.m in Sources */,
 				9024074C1F2A39B9001E2F38 /* DBDaoDataBase.m in Sources */,
 				A81AB5981F2901260098D203 /* RealtimeMonitoringListModel.m in Sources */,
+				9046D5E31F2B8928004E3DCC /* MaintenanceRecordsViewController.m in Sources */,
+				9046D5EF1F2B89A7004E3DCC /* AlarmRecordViewController.m in Sources */,
 				90CF07861F1F3464008106D2 /* UIBarButtonItem+Extension.m in Sources */,
 				3B02DF441F2ADE0300282116 /* MessageAlarmCell.m in Sources */,
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
 				A81B12651F2AD8F8001DD06B /* ElectricalFireRootViewController.m in Sources */,
-				902407481F2A337B001E2F38 /* HistoryDetailCell.m in Sources */,
 				3B02DF421F2ADE0300282116 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
 				A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */,
@@ -1301,6 +1386,7 @@
 				901788251F2637BD00CFED87 /* ChangePwdViewController.m in Sources */,
 				3B02DF431F2ADE0300282116 /* HistoryMessageCell.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
+				9046D5F21F2B89BF004E3DCC /* DeviceFileViewController.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
 				A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */,
 				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,

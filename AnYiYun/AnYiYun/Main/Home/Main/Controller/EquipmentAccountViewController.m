@@ -9,6 +9,7 @@
 #import "EquipmentAccountViewController.h"
 #import "EquipmentAccountCell.h"
 #import "RealtimeMonitoringListModel.h"
+#import "DeviceFileViewController.h"
 
 @interface EquipmentAccountViewController ()
 
@@ -134,6 +135,13 @@
     NSArray *modelsArray = _listMutableDic[keyString];
     RealtimeMonitoringListModel *model = modelsArray[indexPath.row];
     /*model待传入下级页面*/
+    
+    DeviceFileViewController *vc = [[DeviceFileViewController alloc]init];
+    vc.deviceNameString = model.device_name;
+    vc.deviceIdString = model.idF;
+    vc.deviceLocation = model.device_location;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
