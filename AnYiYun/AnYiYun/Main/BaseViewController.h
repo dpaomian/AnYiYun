@@ -13,4 +13,6 @@
  */
 @interface BaseViewController : UIViewController
 
+-(void)setRightBarItem;
+
 @end

@@ -40,8 +40,8 @@
 
 @property (nonatomic,strong)NSString *type;
 @property (nonatomic,strong)NSString *typeTitle;
-@property (nonatomic,strong)NSString *time;
 @property (nonatomic,strong)NSString *content;
+@property (nonatomic,assign)long long  time;
 
 @end
 

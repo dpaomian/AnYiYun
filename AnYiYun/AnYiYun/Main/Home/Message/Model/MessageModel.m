@@ -34,3 +34,8 @@
 
 
 @end
+
+
+
+@implementation HistoryMessageModel
+@end
