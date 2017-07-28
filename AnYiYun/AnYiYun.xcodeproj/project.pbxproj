@@ -27,7 +27,6 @@
 		9017882F1F263B2200CFED87 /* YYQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9017882D1F263B2200CFED87 /* YYQRCode.m */; };
 		901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A081B1F20E32F009488C1 /* DailyMainViewController.m */; };
 		901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A081E1F20E366009488C1 /* EquipmentMainViewController.m */; };
-		901A08261F20E3AA009488C1 /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901A08231F20E3AA009488C1 /* HomeMainViewController.m */; };
 		902407421F2A2BD7001E2F38 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902407411F2A2BD7001E2F38 /* LocationViewController.m */; };
 		902407451F2A336A001E2F38 /* HistoryMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 902407441F2A336A001E2F38 /* HistoryMessageCell.m */; };
 		902407481F2A337B001E2F38 /* HistoryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 902407471F2A337B001E2F38 /* HistoryDetailCell.m */; };
@@ -52,7 +51,6 @@
 		905D5C9D1F28DF6800DF4DF9 /* main_test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905D5C9C1F28DF6800DF4DF9 /* main_test@2x.png */; };
 		905D5CA01F28EB7C00DF4DF9 /* MessageTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D5C9F1F28EB7C00DF4DF9 /* MessageTopView.m */; };
 		905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D5CA91F28EE3000DF4DF9 /* PromptView.m */; };
-		909E1A8F1F2782DF008EECAF /* BusinessItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */; };
 		909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 909E1A911F279086008EECAF /* HomeAdverCell.m */; };
 		909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 909E1A941F2790DC008EECAF /* HomeMessageCell.m */; };
 		90A2EC661F208F68008088C4 /* UIImageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2EC651F208F68008088C4 /* UIImageLabel.m */; };
@@ -94,10 +92,7 @@
 		90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AB1F1F3985008106D2 /* PersonInfo.m */; };
 		90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */; };
 		90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07B21F1F3BAB008106D2 /* LoginManager.m */; };
-		A810BF471F25ECEB00B5F2D2 /* EnergyManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF451F25ECEB00B5F2D2 /* EnergyManagementViewController.m */; };
 		A810BF4B1F25EDB400B5F2D2 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF4A1F25EDB400B5F2D2 /* BaseTableViewController.m */; };
-		A810BF4E1F25EDF700B5F2D2 /* LoadDetectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF4D1F25EDF700B5F2D2 /* LoadDetectionViewController.m */; };
-		A810BF511F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF501F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.m */; };
 		A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF531F25F43F00B5F2D2 /* YYSegmentedView.m */; };
 		A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF561F25F49300B5F2D2 /* YYSegmentedCollectionCell.m */; };
 		A810BF591F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF571F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib */; };
@@ -106,35 +101,44 @@
 		A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */; };
 		A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */; };
 		A81AB5981F2901260098D203 /* RealtimeMonitoringListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A81AB5971F2901260098D203 /* RealtimeMonitoringListModel.m */; };
-		A821B11D1F26CE23008B6678 /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */; };
-		A821B11E1F26CE23008B6678 /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */; };
+		A81B12161F2AC3CF001DD06B /* YYAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12151F2AC3CF001DD06B /* YYAlarmCell.m */; };
+		A81B121A1F2AC3EC001DD06B /* EquipmentAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12181F2AC3EC001DD06B /* EquipmentAccountCell.m */; };
+		A81B121B1F2AC3EC001DD06B /* EquipmentAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B12191F2AC3EC001DD06B /* EquipmentAccountCell.xib */; };
+		A81B121D1F2AC3F8001DD06B /* YYAlarmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B121C1F2AC3F8001DD06B /* YYAlarmCell.xib */; };
+		A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B121F1F2AC446001DD06B /* AlarmInformationViewController.m */; };
+		A81B123D1F2AC446001DD06B /* AlarmInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B12201F2AC446001DD06B /* AlarmInformationViewController.xib */; };
+		A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12221F2AC446001DD06B /* BusinessItemViewController.m */; };
+		A81B123F1F2AC446001DD06B /* ElectricalFireRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12241F2AC446001DD06B /* ElectricalFireRootViewController.m */; };
+		A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */; };
+		A81B12411F2AC446001DD06B /* EnergyManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12281F2AC446001DD06B /* EnergyManagementViewController.m */; };
+		A81B12421F2AC446001DD06B /* EquipmentAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B122A1F2AC446001DD06B /* EquipmentAccountViewController.m */; };
+		A81B12431F2AC446001DD06B /* EquipmentAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B122B1F2AC446001DD06B /* EquipmentAccountViewController.xib */; };
+		A81B12441F2AC446001DD06B /* EquipmentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B122D1F2AC446001DD06B /* EquipmentManagementViewController.m */; };
+		A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B122F1F2AC446001DD06B /* HomeMainViewController.m */; };
+		A81B12461F2AC446001DD06B /* LoadDetectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12311F2AC446001DD06B /* LoadDetectionViewController.m */; };
+		A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12331F2AC446001DD06B /* MaintenanceRemindersViewController.m */; };
+		A81B12481F2AC446001DD06B /* MaintenanceRemindersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B12341F2AC446001DD06B /* MaintenanceRemindersViewController.xib */; };
+		A81B12491F2AC446001DD06B /* PowerDistributionRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12361F2AC446001DD06B /* PowerDistributionRootViewController.m */; };
+		A81B124A1F2AC446001DD06B /* RealtimeMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12381F2AC446001DD06B /* RealtimeMonitoringViewController.m */; };
+		A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B12391F2AC446001DD06B /* RealtimeMonitoringViewController.xib */; };
+		A81B124C1F2AC446001DD06B /* SecurityMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B123B1F2AC446001DD06B /* SecurityMonitoringViewController.m */; };
+		A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */; };
+		A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */; };
+		A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12511F2AC48D001DD06B /* FilterCollectionView.m */; };
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
 		A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2C51F283C26006F3DB4 /* AllApplicationCollectionViewCell.m */; };
 		A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2C61F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib */; };
 		A84FA2CC1F283FB4006F3DB4 /* AllApplicationReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2CA1F283FB4006F3DB4 /* AllApplicationReusableView.m */; };
-		A84FA2D01F28774D006F3DB4 /* PowerDistributionRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2CF1F28774D006F3DB4 /* PowerDistributionRootViewController.m */; };
-		A84FA2D41F287855006F3DB4 /* SecurityMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2D21F287855006F3DB4 /* SecurityMonitoringViewController.m */; };
-		A84FA2D91F287886006F3DB4 /* EquipmentManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2D71F287886006F3DB4 /* EquipmentManagementViewController.m */; };
 		A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DC1F287D90006F3DB4 /* YYTabBarView.m */; };
 		A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */; };
 		A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */; };
-		A84FA2EB1F28859F006F3DB4 /* AlarmInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2E91F28859F006F3DB4 /* AlarmInformationViewController.m */; };
-		A84FA2EC1F28859F006F3DB4 /* AlarmInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2EA1F28859F006F3DB4 /* AlarmInformationViewController.xib */; };
-		A84FA2F01F2885DC006F3DB4 /* MaintenanceRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2EE1F2885DC006F3DB4 /* MaintenanceRemindersViewController.m */; };
-		A84FA2F11F2885DC006F3DB4 /* MaintenanceRemindersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2EF1F2885DC006F3DB4 /* MaintenanceRemindersViewController.xib */; };
-		A84FA2F51F288661006F3DB4 /* EquipmentAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2F31F288661006F3DB4 /* EquipmentAccountViewController.m */; };
-		A84FA2F61F288661006F3DB4 /* EquipmentAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2F41F288661006F3DB4 /* EquipmentAccountViewController.xib */; };
-		A84FA3041F289C6B006F3DB4 /* RealtimeMonitoringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA3011F289C6B006F3DB4 /* RealtimeMonitoringViewController.xib */; };
-		A84FA3051F289C6B006F3DB4 /* RealtimeMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA3021F289C6B006F3DB4 /* RealtimeMonitoringViewController.m */; };
-		A84FA3081F28A570006F3DB4 /* ElectricalFireRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA3071F28A570006F3DB4 /* ElectricalFireRootViewController.m */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
 		A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */; };
 		A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */; };
 		A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */; };
 		A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */; };
-		A8C4B13C1F26594C00E5F682 /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B13B1F26594C00E5F682 /* FilterCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,8 +178,6 @@
 		901A081B1F20E32F009488C1 /* DailyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyMainViewController.m; sourceTree = "<group>"; };
 		901A081D1F20E366009488C1 /* EquipmentMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentMainViewController.h; sourceTree = "<group>"; };
 		901A081E1F20E366009488C1 /* EquipmentMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentMainViewController.m; sourceTree = "<group>"; };
-		901A08221F20E3AA009488C1 /* HomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainViewController.h; sourceTree = "<group>"; };
-		901A08231F20E3AA009488C1 /* HomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainViewController.m; sourceTree = "<group>"; };
 		902407401F2A2BD7001E2F38 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		902407411F2A2BD7001E2F38 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		902407431F2A336A001E2F38 /* HistoryMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryMessageCell.h; sourceTree = "<group>"; };
@@ -223,8 +225,6 @@
 		905D5C9F1F28EB7C00DF4DF9 /* MessageTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTopView.m; sourceTree = "<group>"; };
 		905D5CA81F28EE3000DF4DF9 /* PromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromptView.h; sourceTree = "<group>"; };
 		905D5CA91F28EE3000DF4DF9 /* PromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromptView.m; sourceTree = "<group>"; };
-		909E1A8D1F2782DF008EECAF /* BusinessItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessItemViewController.h; sourceTree = "<group>"; };
-		909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessItemViewController.m; sourceTree = "<group>"; };
 		909E1A901F279086008EECAF /* HomeAdverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdverCell.h; sourceTree = "<group>"; };
 		909E1A911F279086008EECAF /* HomeAdverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdverCell.m; sourceTree = "<group>"; };
 		909E1A931F2790DC008EECAF /* HomeMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMessageCell.h; sourceTree = "<group>"; };
@@ -310,14 +310,8 @@
 		90CF07B11F1F3BAB008106D2 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		90CF07B21F1F3BAB008106D2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnYiYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A810BF441F25ECEB00B5F2D2 /* EnergyManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyManagementViewController.h; sourceTree = "<group>"; };
-		A810BF451F25ECEB00B5F2D2 /* EnergyManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyManagementViewController.m; sourceTree = "<group>"; };
 		A810BF491F25EDB400B5F2D2 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		A810BF4A1F25EDB400B5F2D2 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		A810BF4C1F25EDF700B5F2D2 /* LoadDetectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadDetectionViewController.h; sourceTree = "<group>"; };
-		A810BF4D1F25EDF700B5F2D2 /* LoadDetectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadDetectionViewController.m; sourceTree = "<group>"; };
-		A810BF4F1F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyConsumptionStatisticsViewController.h; sourceTree = "<group>"; };
-		A810BF501F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyConsumptionStatisticsViewController.m; sourceTree = "<group>"; };
 		A810BF521F25F43F00B5F2D2 /* YYSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYSegmentedView.h; path = AnYiYun/Main/Home/Main/Controller/YYSegmentedView.h; sourceTree = SOURCE_ROOT; };
 		A810BF531F25F43F00B5F2D2 /* YYSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YYSegmentedView.m; path = AnYiYun/Main/Home/Main/Controller/YYSegmentedView.m; sourceTree = SOURCE_ROOT; };
 		A810BF551F25F49300B5F2D2 /* YYSegmentedCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYSegmentedCollectionCell.h; path = AnYiYun/Main/Home/Main/Controller/YYSegmentedCollectionCell.h; sourceTree = SOURCE_ROOT; };
@@ -331,9 +325,47 @@
 		A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadDatectionCell.xib; path = AnYiYun/Main/Home/Main/Controller/LoadDatectionCell.xib; sourceTree = SOURCE_ROOT; };
 		A81AB5961F2901260098D203 /* RealtimeMonitoringListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringListModel.h; sourceTree = "<group>"; };
 		A81AB5971F2901260098D203 /* RealtimeMonitoringListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringListModel.m; sourceTree = "<group>"; };
-		A821B11A1F26CE23008B6678 /* FilterCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCollectionCell.h; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.h; sourceTree = SOURCE_ROOT; };
-		A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCollectionCell.m; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.m; sourceTree = SOURCE_ROOT; };
-		A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterCollectionCell.xib; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionCell.xib; sourceTree = SOURCE_ROOT; };
+		A81B12141F2AC3CF001DD06B /* YYAlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAlarmCell.h; sourceTree = "<group>"; };
+		A81B12151F2AC3CF001DD06B /* YYAlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAlarmCell.m; sourceTree = "<group>"; };
+		A81B12171F2AC3EC001DD06B /* EquipmentAccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountCell.h; sourceTree = "<group>"; };
+		A81B12181F2AC3EC001DD06B /* EquipmentAccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentAccountCell.m; sourceTree = "<group>"; };
+		A81B12191F2AC3EC001DD06B /* EquipmentAccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentAccountCell.xib; sourceTree = "<group>"; };
+		A81B121C1F2AC3F8001DD06B /* YYAlarmCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYAlarmCell.xib; sourceTree = "<group>"; };
+		A81B121E1F2AC446001DD06B /* AlarmInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmInformationViewController.h; sourceTree = "<group>"; };
+		A81B121F1F2AC446001DD06B /* AlarmInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmInformationViewController.m; sourceTree = "<group>"; };
+		A81B12201F2AC446001DD06B /* AlarmInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmInformationViewController.xib; sourceTree = "<group>"; };
+		A81B12211F2AC446001DD06B /* BusinessItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessItemViewController.h; sourceTree = "<group>"; };
+		A81B12221F2AC446001DD06B /* BusinessItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessItemViewController.m; sourceTree = "<group>"; };
+		A81B12231F2AC446001DD06B /* ElectricalFireRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricalFireRootViewController.h; sourceTree = "<group>"; };
+		A81B12241F2AC446001DD06B /* ElectricalFireRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireRootViewController.m; sourceTree = "<group>"; };
+		A81B12251F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyConsumptionStatisticsViewController.h; sourceTree = "<group>"; };
+		A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyConsumptionStatisticsViewController.m; sourceTree = "<group>"; };
+		A81B12271F2AC446001DD06B /* EnergyManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyManagementViewController.h; sourceTree = "<group>"; };
+		A81B12281F2AC446001DD06B /* EnergyManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyManagementViewController.m; sourceTree = "<group>"; };
+		A81B12291F2AC446001DD06B /* EquipmentAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountViewController.h; sourceTree = "<group>"; };
+		A81B122A1F2AC446001DD06B /* EquipmentAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentAccountViewController.m; sourceTree = "<group>"; };
+		A81B122B1F2AC446001DD06B /* EquipmentAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentAccountViewController.xib; sourceTree = "<group>"; };
+		A81B122C1F2AC446001DD06B /* EquipmentManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentManagementViewController.h; sourceTree = "<group>"; };
+		A81B122D1F2AC446001DD06B /* EquipmentManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentManagementViewController.m; sourceTree = "<group>"; };
+		A81B122E1F2AC446001DD06B /* HomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainViewController.h; sourceTree = "<group>"; };
+		A81B122F1F2AC446001DD06B /* HomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainViewController.m; sourceTree = "<group>"; };
+		A81B12301F2AC446001DD06B /* LoadDetectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadDetectionViewController.h; sourceTree = "<group>"; };
+		A81B12311F2AC446001DD06B /* LoadDetectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadDetectionViewController.m; sourceTree = "<group>"; };
+		A81B12321F2AC446001DD06B /* MaintenanceRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceRemindersViewController.h; sourceTree = "<group>"; };
+		A81B12331F2AC446001DD06B /* MaintenanceRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRemindersViewController.m; sourceTree = "<group>"; };
+		A81B12341F2AC446001DD06B /* MaintenanceRemindersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaintenanceRemindersViewController.xib; sourceTree = "<group>"; };
+		A81B12351F2AC446001DD06B /* PowerDistributionRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerDistributionRootViewController.h; sourceTree = "<group>"; };
+		A81B12361F2AC446001DD06B /* PowerDistributionRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerDistributionRootViewController.m; sourceTree = "<group>"; };
+		A81B12371F2AC446001DD06B /* RealtimeMonitoringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringViewController.h; sourceTree = "<group>"; };
+		A81B12381F2AC446001DD06B /* RealtimeMonitoringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringViewController.m; sourceTree = "<group>"; };
+		A81B12391F2AC446001DD06B /* RealtimeMonitoringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealtimeMonitoringViewController.xib; sourceTree = "<group>"; };
+		A81B123A1F2AC446001DD06B /* SecurityMonitoringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityMonitoringViewController.h; sourceTree = "<group>"; };
+		A81B123B1F2AC446001DD06B /* SecurityMonitoringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityMonitoringViewController.m; sourceTree = "<group>"; };
+		A81B124D1F2AC48D001DD06B /* FilterCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionCell.h; sourceTree = "<group>"; };
+		A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionCell.m; sourceTree = "<group>"; };
+		A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionCell.xib; sourceTree = "<group>"; };
+		A81B12501F2AC48D001DD06B /* FilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionView.h; sourceTree = "<group>"; };
+		A81B12511F2AC48D001DD06B /* FilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionView.m; sourceTree = "<group>"; };
 		A821B11F1F26E661008B6678 /* FilterCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyModel.h; sourceTree = "<group>"; };
 		A821B1201F26E661008B6678 /* FilterCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyModel.m; sourceTree = "<group>"; };
 		A821B1221F26E66D008B6678 /* BuildingModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingModle.h; sourceTree = "<group>"; };
@@ -345,31 +377,11 @@
 		A84FA2C61F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllApplicationCollectionViewCell.xib; sourceTree = "<group>"; };
 		A84FA2C91F283FB4006F3DB4 /* AllApplicationReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllApplicationReusableView.h; sourceTree = "<group>"; };
 		A84FA2CA1F283FB4006F3DB4 /* AllApplicationReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllApplicationReusableView.m; sourceTree = "<group>"; };
-		A84FA2CE1F28774D006F3DB4 /* PowerDistributionRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerDistributionRootViewController.h; sourceTree = "<group>"; };
-		A84FA2CF1F28774D006F3DB4 /* PowerDistributionRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerDistributionRootViewController.m; sourceTree = "<group>"; };
-		A84FA2D11F287855006F3DB4 /* SecurityMonitoringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityMonitoringViewController.h; sourceTree = "<group>"; };
-		A84FA2D21F287855006F3DB4 /* SecurityMonitoringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityMonitoringViewController.m; sourceTree = "<group>"; };
-		A84FA2D61F287886006F3DB4 /* EquipmentManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentManagementViewController.h; sourceTree = "<group>"; };
-		A84FA2D71F287886006F3DB4 /* EquipmentManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentManagementViewController.m; sourceTree = "<group>"; };
 		A84FA2DB1F287D90006F3DB4 /* YYTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTabBarView.h; sourceTree = "<group>"; };
 		A84FA2DC1F287D90006F3DB4 /* YYTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTabBarView.m; sourceTree = "<group>"; };
 		A84FA2DE1F287E06006F3DB4 /* YYTabBarCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTabBarCollectionCell.h; sourceTree = "<group>"; };
 		A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTabBarCollectionCell.m; sourceTree = "<group>"; };
 		A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYTabBarCollectionCell.xib; sourceTree = "<group>"; };
-		A84FA2E81F28859F006F3DB4 /* AlarmInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmInformationViewController.h; sourceTree = "<group>"; };
-		A84FA2E91F28859F006F3DB4 /* AlarmInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmInformationViewController.m; sourceTree = "<group>"; };
-		A84FA2EA1F28859F006F3DB4 /* AlarmInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmInformationViewController.xib; sourceTree = "<group>"; };
-		A84FA2ED1F2885DC006F3DB4 /* MaintenanceRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceRemindersViewController.h; sourceTree = "<group>"; };
-		A84FA2EE1F2885DC006F3DB4 /* MaintenanceRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceRemindersViewController.m; sourceTree = "<group>"; };
-		A84FA2EF1F2885DC006F3DB4 /* MaintenanceRemindersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaintenanceRemindersViewController.xib; sourceTree = "<group>"; };
-		A84FA2F21F288661006F3DB4 /* EquipmentAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountViewController.h; sourceTree = "<group>"; };
-		A84FA2F31F288661006F3DB4 /* EquipmentAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentAccountViewController.m; sourceTree = "<group>"; };
-		A84FA2F41F288661006F3DB4 /* EquipmentAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentAccountViewController.xib; sourceTree = "<group>"; };
-		A84FA3011F289C6B006F3DB4 /* RealtimeMonitoringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealtimeMonitoringViewController.xib; sourceTree = "<group>"; };
-		A84FA3021F289C6B006F3DB4 /* RealtimeMonitoringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringViewController.m; sourceTree = "<group>"; };
-		A84FA3031F289C6B006F3DB4 /* RealtimeMonitoringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringViewController.h; sourceTree = "<group>"; };
-		A84FA3061F28A570006F3DB4 /* ElectricalFireRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricalFireRootViewController.h; sourceTree = "<group>"; };
-		A84FA3071F28A570006F3DB4 /* ElectricalFireRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireRootViewController.m; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringChildCell.h; sourceTree = "<group>"; };
@@ -378,8 +390,6 @@
 		A8C4B12F1F26342800E5F682 /* EnergyConsumptionStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnergyConsumptionStatisticsCell.h; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.h; sourceTree = SOURCE_ROOT; };
 		A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnergyConsumptionStatisticsCell.m; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.m; sourceTree = SOURCE_ROOT; };
 		A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnergyConsumptionStatisticsCell.xib; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.xib; sourceTree = SOURCE_ROOT; };
-		A8C4B13A1F26594C00E5F682 /* FilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCollectionView.h; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionView.h; sourceTree = SOURCE_ROOT; };
-		A8C4B13B1F26594C00E5F682 /* FilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCollectionView.m; path = AnYiYun/Main/Home/Main/Controller/FilterCollectionView.m; sourceTree = SOURCE_ROOT; };
 		DDB487885D009F359893864D /* Pods-AnYiYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnYiYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun.debug.xcconfig"; sourceTree = "<group>"; };
 		E9212BA65C0C4740B26E80FD /* Pods-AnYiYun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnYiYun.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -506,38 +516,38 @@
 		901A08211F20E3AA009488C1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A81B122E1F2AC446001DD06B /* HomeMainViewController.h */,
+				A81B122F1F2AC446001DD06B /* HomeMainViewController.m */,
+				A81B12211F2AC446001DD06B /* BusinessItemViewController.h */,
+				A81B12221F2AC446001DD06B /* BusinessItemViewController.m */,
+				A81B12271F2AC446001DD06B /* EnergyManagementViewController.h */,
+				A81B12281F2AC446001DD06B /* EnergyManagementViewController.m */,
+				A81B12301F2AC446001DD06B /* LoadDetectionViewController.h */,
+				A81B12311F2AC446001DD06B /* LoadDetectionViewController.m */,
+				A81B12251F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.h */,
+				A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */,
+				A81B12351F2AC446001DD06B /* PowerDistributionRootViewController.h */,
+				A81B12361F2AC446001DD06B /* PowerDistributionRootViewController.m */,
+				A81B123A1F2AC446001DD06B /* SecurityMonitoringViewController.h */,
+				A81B123B1F2AC446001DD06B /* SecurityMonitoringViewController.m */,
+				A81B12371F2AC446001DD06B /* RealtimeMonitoringViewController.h */,
+				A81B12381F2AC446001DD06B /* RealtimeMonitoringViewController.m */,
+				A81B12391F2AC446001DD06B /* RealtimeMonitoringViewController.xib */,
+				A81B121E1F2AC446001DD06B /* AlarmInformationViewController.h */,
+				A81B121F1F2AC446001DD06B /* AlarmInformationViewController.m */,
+				A81B12201F2AC446001DD06B /* AlarmInformationViewController.xib */,
+				A81B12231F2AC446001DD06B /* ElectricalFireRootViewController.h */,
+				A81B12241F2AC446001DD06B /* ElectricalFireRootViewController.m */,
+				A81B12321F2AC446001DD06B /* MaintenanceRemindersViewController.h */,
+				A81B12331F2AC446001DD06B /* MaintenanceRemindersViewController.m */,
+				A81B12341F2AC446001DD06B /* MaintenanceRemindersViewController.xib */,
+				A81B122C1F2AC446001DD06B /* EquipmentManagementViewController.h */,
+				A81B122D1F2AC446001DD06B /* EquipmentManagementViewController.m */,
+				A81B12291F2AC446001DD06B /* EquipmentAccountViewController.h */,
+				A81B122A1F2AC446001DD06B /* EquipmentAccountViewController.m */,
+				A81B122B1F2AC446001DD06B /* EquipmentAccountViewController.xib */,
 				9024073F1F2A2BBE001E2F38 /* Location_定位 */,
 				905D5C761F28CF0000DF4DF9 /* Message_消息中心 */,
-				901A08221F20E3AA009488C1 /* HomeMainViewController.h */,
-				901A08231F20E3AA009488C1 /* HomeMainViewController.m */,
-				909E1A8D1F2782DF008EECAF /* BusinessItemViewController.h */,
-				909E1A8E1F2782DF008EECAF /* BusinessItemViewController.m */,
-				A810BF441F25ECEB00B5F2D2 /* EnergyManagementViewController.h */,
-				A810BF451F25ECEB00B5F2D2 /* EnergyManagementViewController.m */,
-				A810BF4C1F25EDF700B5F2D2 /* LoadDetectionViewController.h */,
-				A810BF4D1F25EDF700B5F2D2 /* LoadDetectionViewController.m */,
-				A810BF4F1F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.h */,
-				A810BF501F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.m */,
-				A84FA2CE1F28774D006F3DB4 /* PowerDistributionRootViewController.h */,
-				A84FA2CF1F28774D006F3DB4 /* PowerDistributionRootViewController.m */,
-				A84FA2D11F287855006F3DB4 /* SecurityMonitoringViewController.h */,
-				A84FA2D21F287855006F3DB4 /* SecurityMonitoringViewController.m */,
-				A84FA3031F289C6B006F3DB4 /* RealtimeMonitoringViewController.h */,
-				A84FA3021F289C6B006F3DB4 /* RealtimeMonitoringViewController.m */,
-				A84FA3011F289C6B006F3DB4 /* RealtimeMonitoringViewController.xib */,
-				A84FA2E81F28859F006F3DB4 /* AlarmInformationViewController.h */,
-				A84FA2E91F28859F006F3DB4 /* AlarmInformationViewController.m */,
-				A84FA2EA1F28859F006F3DB4 /* AlarmInformationViewController.xib */,
-				A84FA3061F28A570006F3DB4 /* ElectricalFireRootViewController.h */,
-				A84FA3071F28A570006F3DB4 /* ElectricalFireRootViewController.m */,
-				A84FA2D61F287886006F3DB4 /* EquipmentManagementViewController.h */,
-				A84FA2D71F287886006F3DB4 /* EquipmentManagementViewController.m */,
-				A84FA2ED1F2885DC006F3DB4 /* MaintenanceRemindersViewController.h */,
-				A84FA2EE1F2885DC006F3DB4 /* MaintenanceRemindersViewController.m */,
-				A84FA2EF1F2885DC006F3DB4 /* MaintenanceRemindersViewController.xib */,
-				A84FA2F21F288661006F3DB4 /* EquipmentAccountViewController.h */,
-				A84FA2F31F288661006F3DB4 /* EquipmentAccountViewController.m */,
-				A84FA2F41F288661006F3DB4 /* EquipmentAccountViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -576,11 +586,11 @@
 				A8C4B12F1F26342800E5F682 /* EnergyConsumptionStatisticsCell.h */,
 				A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */,
 				A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */,
-				A8C4B13A1F26594C00E5F682 /* FilterCollectionView.h */,
-				A8C4B13B1F26594C00E5F682 /* FilterCollectionView.m */,
-				A821B11A1F26CE23008B6678 /* FilterCollectionCell.h */,
-				A821B11B1F26CE23008B6678 /* FilterCollectionCell.m */,
-				A821B11C1F26CE23008B6678 /* FilterCollectionCell.xib */,
+				A81B124D1F2AC48D001DD06B /* FilterCollectionCell.h */,
+				A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */,
+				A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */,
+				A81B12501F2AC48D001DD06B /* FilterCollectionView.h */,
+				A81B12511F2AC48D001DD06B /* FilterCollectionView.m */,
 				909E1A901F279086008EECAF /* HomeAdverCell.h */,
 				909E1A911F279086008EECAF /* HomeAdverCell.m */,
 				909E1A931F2790DC008EECAF /* HomeMessageCell.h */,
@@ -598,6 +608,12 @@
 				A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */,
 				A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */,
 				A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */,
+				A81B12141F2AC3CF001DD06B /* YYAlarmCell.h */,
+				A81B12151F2AC3CF001DD06B /* YYAlarmCell.m */,
+				A81B121C1F2AC3F8001DD06B /* YYAlarmCell.xib */,
+				A81B12171F2AC3EC001DD06B /* EquipmentAccountCell.h */,
+				A81B12181F2AC3EC001DD06B /* EquipmentAccountCell.m */,
+				A81B12191F2AC3EC001DD06B /* EquipmentAccountCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1107,24 +1123,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */,
-				A84FA2EC1F28859F006F3DB4 /* AlarmInformationViewController.xib in Resources */,
-				A84FA2F61F288661006F3DB4 /* EquipmentAccountViewController.xib in Resources */,
 				905D5C9D1F28DF6800DF4DF9 /* main_test@2x.png in Resources */,
-				A84FA3041F289C6B006F3DB4 /* RealtimeMonitoringViewController.xib in Resources */,
-				A84FA2F11F2885DC006F3DB4 /* MaintenanceRemindersViewController.xib in Resources */,
+				A81B12431F2AC446001DD06B /* EquipmentAccountViewController.xib in Resources */,
 				A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */,
 				901788081F2620D200CFED87 /* YYCalendarCollectionViewCell.xib in Resources */,
 				90A2EC6E1F209E98008088C4 /* main_back_white@2x.png in Resources */,
+				A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */,
+				A81B12481F2AC446001DD06B /* MaintenanceRemindersViewController.xib in Resources */,
 				9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */,
+				A81B121D1F2AC3F8001DD06B /* YYAlarmCell.xib in Resources */,
+				A81B123D1F2AC446001DD06B /* AlarmInformationViewController.xib in Resources */,
+				A81B121B1F2AC3EC001DD06B /* EquipmentAccountCell.xib in Resources */,
 				A810BF591F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib in Resources */,
 				A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */,
 				A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */,
 				A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */,
 				90CF072B1F1F2BFC008106D2 /* LaunchScreen.storyboard in Resources */,
 				90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */,
+				A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
-				A821B11E1F26CE23008B6678 /* FilterCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1184,7 +1202,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90CF07201F1F2BFC008106D2 /* AppDelegate.m in Sources */,
-				A84FA3051F289C6B006F3DB4 /* RealtimeMonitoringViewController.m in Sources */,
 				90272BE11F224382000B1DC0 /* TADotView.m in Sources */,
 				901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */,
 				901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */,
@@ -1196,51 +1213,52 @@
 				A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */,
 				90272BE41F224382000B1DC0 /* SDCycleScrollView.m in Sources */,
 				90CF07821F1F3464008106D2 /* NSDictionary+Extension.m in Sources */,
+				A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */,
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
-				A810BF4E1F25EDF700B5F2D2 /* LoadDetectionViewController.m in Sources */,
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
-				909E1A8F1F2782DF008EECAF /* BusinessItemViewController.m in Sources */,
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
 				905D5C8A1F28D3C700DF4DF9 /* HistoryMessageViewController.m in Sources */,
+				A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */,
 				90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */,
 				9017881F1F26349000CFED87 /* SettingViewController.m in Sources */,
 				90272BE01F224382000B1DC0 /* TAAnimatedDotView.m in Sources */,
+				A81B124C1F2AC446001DD06B /* SecurityMonitoringViewController.m in Sources */,
 				90CF07A21F1F38D5008106D2 /* SJAvatarBrowser.m in Sources */,
 				A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				90CF07811F1F3464008106D2 /* NSDateFormatter+Category.m in Sources */,
 				901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */,
 				90CF07A91F1F3955008106D2 /* StatusBarOverlay.m in Sources */,
-				A84FA2F01F2885DC006F3DB4 /* MaintenanceRemindersViewController.m in Sources */,
-				A84FA2D91F287886006F3DB4 /* EquipmentManagementViewController.m in Sources */,
 				90272BE21F224382000B1DC0 /* TAPageControl.m in Sources */,
 				901788161F2624A800CFED87 /* MeCell.m in Sources */,
 				905D5C8E1F28D41500DF4DF9 /* MessageAlarmCell.m in Sources */,
 				90CF073C1F1F2FAE008106D2 /* BaseViewController.m in Sources */,
 				90CF078E1F1F3464008106D2 /* UIView+Extension.m in Sources */,
-				A84FA3081F28A570006F3DB4 /* ElectricalFireRootViewController.m in Sources */,
 				90CF07831F1F3464008106D2 /* NSDictionary+XHLogHelper.m in Sources */,
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
 				90CF07871F1F3464008106D2 /* UIColor+Extension.m in Sources */,
+				A81B12441F2AC446001DD06B /* EquipmentManagementViewController.m in Sources */,
 				905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */,
-				A810BF471F25ECEB00B5F2D2 /* EnergyManagementViewController.m in Sources */,
+				A81B121A1F2AC3EC001DD06B /* EquipmentAccountCell.m in Sources */,
 				90CF078B1F1F3464008106D2 /* UITableView+Extension.m in Sources */,
-				A84FA2D41F287855006F3DB4 /* SecurityMonitoringViewController.m in Sources */,
+				A81B12161F2AC3CF001DD06B /* YYAlarmCell.m in Sources */,
 				A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */,
 				905D5C9B1F28D83100DF4DF9 /* JXLayoutButton.m in Sources */,
-				A84FA2D01F28774D006F3DB4 /* PowerDistributionRootViewController.m in Sources */,
+				A81B124A1F2AC446001DD06B /* RealtimeMonitoringViewController.m in Sources */,
 				901788091F2620D200CFED87 /* YYCalendarView.m in Sources */,
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
 				90CF074E1F1F313F008106D2 /* MeMainViewController.m in Sources */,
 				901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */,
 				90A2EC691F209C43008088C4 /* FirstLaunchView.m in Sources */,
-				A84FA2F51F288661006F3DB4 /* EquipmentAccountViewController.m in Sources */,
+				A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */,
 				A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */,
 				A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */,
 				90CF07591F1F3300008106D2 /* BaseReachability.m in Sources */,
 				90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */,
 				90CF078A1F1F3464008106D2 /* UITabBar+badge.m in Sources */,
+				A81B12421F2AC446001DD06B /* EquipmentAccountViewController.m in Sources */,
+				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				905D5C891F28D3C700DF4DF9 /* HistoryDetailViewController.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
 				9017882E1F263B2200CFED87 /* UIImage+RoundRect.m in Sources */,
@@ -1248,40 +1266,41 @@
 				90CF07941F1F35B1008106D2 /* BaseLaunchConfig.m in Sources */,
 				90CF07851F1F3464008106D2 /* NSString+Extension.m in Sources */,
 				90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */,
-				A810BF511F25EE3900B5F2D2 /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				A810BF4B1F25EDB400B5F2D2 /* BaseTableViewController.m in Sources */,
+				A81B123F1F2AC446001DD06B /* ElectricalFireRootViewController.m in Sources */,
 				A821B1271F26E676008B6678 /* SortModel.m in Sources */,
 				905D5C971F28D55700DF4DF9 /* MessageModel.m in Sources */,
 				90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */,
 				905D5CA01F28EB7C00DF4DF9 /* MessageTopView.m in Sources */,
+				A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */,
 				90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */,
 				A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */,
 				A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */,
 				A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */,
+				A81B12491F2AC446001DD06B /* PowerDistributionRootViewController.m in Sources */,
 				905D5C941F28D4AF00DF4DF9 /* MessageMaintainCell.m in Sources */,
 				90CF071D1F1F2BFC008106D2 /* main.m in Sources */,
 				901788191F262CD400CFED87 /* CompanyModel.m in Sources */,
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
 				902407421F2A2BD7001E2F38 /* LocationViewController.m in Sources */,
 				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
+				A81B12461F2AC446001DD06B /* LoadDetectionViewController.m in Sources */,
 				9024074C1F2A39B9001E2F38 /* DBDaoDataBase.m in Sources */,
-				A84FA2EB1F28859F006F3DB4 /* AlarmInformationViewController.m in Sources */,
 				A81AB5981F2901260098D203 /* RealtimeMonitoringListModel.m in Sources */,
 				90CF07861F1F3464008106D2 /* UIBarButtonItem+Extension.m in Sources */,
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
-				A8C4B13C1F26594C00E5F682 /* FilterCollectionView.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
 				902407481F2A337B001E2F38 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
+				A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */,
 				90CF079E1F1F375B008106D2 /* BaseHelper.m in Sources */,
-				901A08261F20E3AA009488C1 /* HomeMainViewController.m in Sources */,
 				90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */,
 				90CF07881F1F3464008106D2 /* UIImage+Extension.m in Sources */,
 				902407451F2A336A001E2F38 /* HistoryMessageCell.m in Sources */,
 				901788251F2637BD00CFED87 /* ChangePwdViewController.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
-				A821B11D1F26CE23008B6678 /* FilterCollectionCell.m in Sources */,
+				A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */,
 				905D5C8B1F28D3C700DF4DF9 /* MessageViewController.m in Sources */,
 				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,
 				90CF073F1F1F304C008106D2 /* BaseNavigationViewController.m in Sources */,
@@ -1290,6 +1309,7 @@
 				9017882F1F263B2200CFED87 /* YYQRCode.m in Sources */,
 				901788221F26349E00CFED87 /* ShareViewController.m in Sources */,
 				901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */,
+				A81B12411F2AC446001DD06B /* EnergyManagementViewController.m in Sources */,
 				A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

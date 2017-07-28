@@ -30,7 +30,7 @@
                         <constraint firstItem="CW8-zZ-Ck8" firstAttribute="top" secondItem="Psj-Yu-X8h" secondAttribute="top" id="oaP-g5-12X"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq4-CG-eYy">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq4-CG-eYy">
                     <rect key="frame" x="8" y="21" width="22" height="22"/>
                     <state key="normal" image="icon_Bottom"/>
                     <state key="selected" image="icon_Top"/>
