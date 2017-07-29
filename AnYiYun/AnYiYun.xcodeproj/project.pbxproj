@@ -24,6 +24,7 @@
 		3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75F1F2C05800089C1B0 /* RecordCell.m */; };
 		3B3FD7631F2C117C0089C1B0 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */; };
 		3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */; };
+		3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */; };
 		7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */; };
 		901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FC1F26204C00CFED87 /* UserInfoCell.m */; };
 		901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FE1F2620B800CFED87 /* YYCalendarModel.m */; };
@@ -203,6 +204,7 @@
 		3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoCell.m; sourceTree = "<group>"; };
 		3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAppView.h; sourceTree = "<group>"; };
 		3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAppView.m; sourceTree = "<group>"; };
+		3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		901787FB1F26204C00CFED87 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
 		901787FC1F26204C00CFED87 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		901787FE1F2620B800CFED87 /* YYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCalendarModel.m; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */,
 				7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +552,7 @@
 		46501B5CBF3415CEAA8FB029 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */,
 				95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */,
 			);
 			name = Frameworks;
