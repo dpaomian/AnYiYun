@@ -10,10 +10,10 @@
 #import "YYQRCode.h"
 #import "HomeModel.h"
 #import "ShareAppView.h"
-
+#import <MessageUI/MFMailComposeViewController.h>
 #import <MessageUI/MessageUI.h>
 
-@interface ShareViewController ()<MFMessageComposeViewControllerDelegate>
+@interface ShareViewController ()<MFMessageComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) NSString *shareString;
 @property (nonatomic, strong) ShareAppView *shareView;
@@ -103,7 +103,7 @@
     
 }
 
-#pragma mark -分享事件
+#pragma mark -发送短信
 
 -(void)shareToMessage
 {
@@ -132,29 +132,6 @@
     }
 }
 
-
--(void)shareToEmail
-{
-    NSMutableString *mailUrl = [[NSMutableString alloc]init];
-    //添加收件人
-    NSArray *toRecipients = [NSArray arrayWithObject: @"first@example.com"];
-    [mailUrl appendFormat:@"mailto:%@", [toRecipients componentsJoinedByString:@","]];
-    //添加抄送
-    NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
-    [mailUrl appendFormat:@"?cc=%@", [ccRecipients componentsJoinedByString:@","]];
-    //添加密送
-    NSArray *bccRecipients = [NSArray arrayWithObjects:@"fourth@example.com", nil];
-    [mailUrl appendFormat:@"&bcc=%@", [bccRecipients componentsJoinedByString:@","]];
-    //添加主题
-    [mailUrl appendString:@"&subject=my email"];
-    //添加邮件内容
-    NSString *string = [NSString stringWithFormat:@"&body=<b>%@</b> body!",self.shareString];
-    [mailUrl appendString:string];
-    
-    NSString* email = [mailUrl stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:email]];
-}
-
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -175,6 +152,83 @@
             break;
     }
 }
+
+#pragma mark - 发送邮件
+
+-(void)shareToEmail
+{
+    [self sendMailInApp];
+}
+
+#pragma mark - 在应用内发送邮件
+//激活邮件功能
+- (void)sendMailInApp
+{
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (!mailClass)
+    {
+        [BaseHelper waringInfo:@"当前系统版本不支持应用内发送邮件功能，您可以使用mailto方法代替"];
+        return;
+    }
+    if (![mailClass canSendMail]) {
+        [BaseHelper waringInfo:@"用户没有设置邮件账户"];
+        return;
+    }
+    [self displayMailPicker];
+}
+
+//调出邮件发送窗口
+- (void)displayMailPicker
+{
+    MFMailComposeViewController *mailPicker = [[MFMailComposeViewController alloc] init];
+    mailPicker.mailComposeDelegate = self;
+    
+    //设置主题
+    [mailPicker setSubject: @"eMail主题"];
+    //添加收件人
+    NSArray *toRecipients = [NSArray arrayWithObject: @"first@example.com"];
+    [mailPicker setToRecipients: toRecipients];
+    //添加抄送
+    NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
+    [mailPicker setCcRecipients:ccRecipients];
+    //添加密送
+    NSArray *bccRecipients = [NSArray arrayWithObjects:@"fourth@example.com", nil];
+    [mailPicker setBccRecipients:bccRecipients];
+
+    NSString *emailBody = @"<font color='red'>安易云让设备管理变得更简单！ http://a.app.qq.com/o/simple.jsp?pkgname=com.gdlion.gdc</font>";
+    [mailPicker setMessageBody:emailBody isHTML:YES];
+    
+    [self presentModalViewController: mailPicker animated:YES];
+
+}
+
+#pragma mark - 实现 MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    //关闭邮件发送窗口
+    [self dismissModalViewControllerAnimated:YES];
+    NSString *msg;
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            msg = @"用户取消编辑邮件";
+            break;
+        case MFMailComposeResultSaved:
+            msg = @"用户成功保存邮件";
+            break;
+        case MFMailComposeResultSent:
+            msg = @"用户点击发送，将邮件放到队列中，还没发送";
+            break;
+        case MFMailComposeResultFailed:
+            msg = @"用户试图保存或者发送邮件失败";
+            break;
+        default:
+            msg = @"";
+            break;
+    }
+    [BaseHelper waringInfo:msg];
+}
+
+
 
 #pragma mark - getter
 
