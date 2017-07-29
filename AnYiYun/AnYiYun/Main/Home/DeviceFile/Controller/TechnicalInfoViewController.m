@@ -9,7 +9,6 @@
 #import "TechnicalInfoViewController.h"
 
 #import "DeviceInfoModel.h"
-#import "DevicePartCell.h"
 
 #import "PublicWebViewController.h"
 

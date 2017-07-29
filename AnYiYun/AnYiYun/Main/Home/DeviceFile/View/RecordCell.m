@@ -34,11 +34,11 @@
 
 -(void)setCellContentWithModel:(MessageModel *)itemModel
 {
-    _titleLabel.text = itemModel.messageTitle;
+    _titleLabel.text = itemModel.messageContent;
     _timeLabel.text = @"";
     NSString *time = itemModel.time;
     if (time.length>16) {
-        NSString *useTime = [itemModel.time substringToIndex:15];
+        NSString *useTime = [itemModel.time substringToIndex:16];
         _timeLabel.text = useTime;
     }
     _usernameLabel.text =itemModel.userName;
@@ -73,7 +73,7 @@
 - (UILabel *)timeLabel
 {
     if (!_timeLabel) {
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-110, 60, 100, 20)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-160, 60, 150, 20)];
         _timeLabel.textColor = kAppTitleGrayColor;
         _timeLabel.font = SYSFONT_(12);
         _timeLabel.textAlignment = NSTextAlignmentRight;

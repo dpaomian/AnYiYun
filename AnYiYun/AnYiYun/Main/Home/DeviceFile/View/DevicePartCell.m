@@ -21,7 +21,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 80, 44)];
+        leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 70, 44)];
         leftLabel.textAlignment = NSTextAlignmentLeft;
         leftLabel.textColor = kAppTitleBlackColor;
         leftLabel.lineBreakMode = NSLineBreakByCharWrapping;
@@ -30,7 +30,7 @@
         leftLabel.numberOfLines = 1;
         [self.contentView addSubview:leftLabel];
         
-        rightLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, SCREEN_WIDTH-100, 44)];
+        rightLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, SCREEN_WIDTH-80, 44)];
         rightLabel.textAlignment = NSTextAlignmentLeft;
         rightLabel.textColor = kAppTitleGrayColor;
         rightLabel.lineBreakMode = NSLineBreakByCharWrapping;
@@ -46,7 +46,7 @@
 
 - (void)setCellContentWithLeftLabelStr:(NSString *)leftStr andRightLabelStr:(NSString *)rightStr
 {
-    leftLabel.text = leftStr;
+    leftLabel.text = [NSString stringWithFormat:@"%@:",leftStr];
     rightLabel.text = rightStr;
     
 }
