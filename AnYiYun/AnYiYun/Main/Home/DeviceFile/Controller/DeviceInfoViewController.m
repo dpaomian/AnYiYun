@@ -9,7 +9,8 @@
 #import "DeviceInfoViewController.h"
 #import "DeviceInfoModel.h"
 #import "DeviceInfoCell.h"
-@interface DeviceInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "HJCActionSheet.h"
+@interface DeviceInfoViewController ()<UITableViewDelegate,UITableViewDataSource,HJCActionSheetDelegate>
 
 @property (nonatomic,strong)UITableView *bgTableView;
 @property (nonatomic,strong)NSMutableArray *datasource;
@@ -29,10 +30,75 @@
 
 #pragma mark - request
 
+-(void)getChangeDataWithType:(NSInteger)type
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/initApp/change_ds"];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"deviceId":self.deviceIdString,
+                            @"state":[NSString stringWithFormat:@"%ld",(long)type]};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     BOOL isHaveAlertMessage = (BOOL)responseObject;
+     if (isHaveAlertMessage==YES)
+         {
+         [self getUseDataRequest];
+     }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
+    
+}
+
+-(void)getDataWithModel:(DeviceInfoModel *)info
+{
+    NSString *statesString = @"";
+    if (info.device_state==0)
+        {
+        statesString = @"生产中";
+        }
+    else if (info.device_state==1)
+        {
+        statesString = @"运行中";
+        }
+    else if (info.device_state==2)
+        {
+        statesString = @"检修中";
+        }
+    NSArray *dicArray = @[@{@"设备名称":[BaseHelper isSpaceString:info.sign andReplace:@""]},
+                          @{@"设备编号":[NSString stringWithFormat:@"%ld",(long)info.assetId]},
+                          @{@"规格型号":[BaseHelper isSpaceString:info.modle andReplace:@""]},
+                          @{@"设备类别":[BaseHelper isSpaceString:info.kindValue andReplace:@""]},
+                          @{@"生产厂商":[BaseHelper isSpaceString:info.makerName andReplace:@""]},
+                          @{@"供应厂商":[BaseHelper isSpaceString:info.sellerName andReplace:@""]},
+                          @{@"购置时间":[BaseHelper isSpaceString:info.purchaseTime andReplace:@""]},
+                          @{@"购置方式":[BaseHelper isSpaceString:info.purchaseMethod andReplace:@""]},
+                          @{@"资产负责":[BaseHelper isSpaceString:info.aManagerName andReplace:@""]},
+                          @{@"所属部门":[BaseHelper isSpaceString:info.orgName andReplace:@""]},
+                          @{@"安装位置":[BaseHelper isSpaceString:info.installationSite andReplace:@""]},
+                          @{@"坐标":[BaseHelper isSpaceString:info.position andReplace:@""]},
+                          @{@"资产原值":[NSString stringWithFormat:@"%ld",(long)info.originalValue]},
+                          @{@"资产净值":[NSString stringWithFormat:@"%ld",(long)info.netValue]},
+                          @{@"报废年限":[NSString stringWithFormat:@"%ld",(long)info.discarded]},
+                          @{@"距离报废":@""},
+                          @{@"累计运行":[BaseHelper isSpaceString:info.func_day andReplace:@""]},
+                          @{@"设备状态":statesString},
+                          ];
+    _datasource = [NSMutableArray arrayWithArray:dicArray];
+    [_bgTableView reloadData];
+}
+
 //判断获取页面信息
 -(NSString *)getMiddleRequestValue
 {
-    NSString *requestString = @"rest/busiData/getDeviceInfo";
+    NSString *requestString = @"rest/initApp/basic_info";
     return requestString;
 }
 
@@ -53,40 +119,7 @@
          NSDictionary *resuleDic = (NSDictionary *)responseObject;
          DeviceInfoModel *info = [DeviceInfoModel mj_objectWithKeyValues:resuleDic];
 
-         NSString *statesString = @"";
-         if (info.device_state==0)
-         {
-             statesString = @"生产中";
-         }
-         else if (info.device_state==1)
-         {
-             statesString = @"运行中";
-         }
-         else if (info.device_state==2)
-         {
-             statesString = @"检修中";
-         }
-         NSArray *dicArray = @[@{@"设备名称":[BaseHelper isSpaceString:info.sign andReplace:@""]},
-                               @{@"设备编号":[NSString stringWithFormat:@"%ld",(long)info.assetId]},
-                               @{@"规格型号":[BaseHelper isSpaceString:info.modle andReplace:@""]},
-                               @{@"设备类别":[BaseHelper isSpaceString:info.kindValue andReplace:@""]},
-                               @{@"生产厂商":[BaseHelper isSpaceString:info.makerName andReplace:@""]},
-                               @{@"供应厂商":[BaseHelper isSpaceString:info.sellerName andReplace:@""]},
-                               @{@"购置时间":[BaseHelper isSpaceString:info.purchaseTime andReplace:@""]},
-                               @{@"购置方式":[BaseHelper isSpaceString:info.purchaseMethod andReplace:@""]},
-                               @{@"资产负责":[BaseHelper isSpaceString:info.aManagerName andReplace:@""]},
-                               @{@"所属部门":[BaseHelper isSpaceString:info.orgName andReplace:@""]},
-                               @{@"安装位置":[BaseHelper isSpaceString:info.installationSite andReplace:@""]},
-                               @{@"坐标":[BaseHelper isSpaceString:info.position andReplace:@""]},
-                               @{@"资产原值":[NSString stringWithFormat:@"%ld",(long)info.originalValue]},
-                               @{@"资产净值":[NSString stringWithFormat:@"%ld",(long)info.netValue]},
-                               @{@"报废年限":[NSString stringWithFormat:@"%ld",(long)info.discarded]},
-                               @{@"距离报废":@""},
-                               @{@"累计运行":[BaseHelper isSpaceString:info.func_day andReplace:@""]},
-                               @{@"设备状态":statesString},
-                               ];
-         _datasource = [NSMutableArray arrayWithArray:dicArray];
-         [_bgTableView reloadData];
+         [self getDataWithModel:info];
          
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -132,6 +165,14 @@
         NSString *rightString = [[dataDic allValues] objectAtIndex:0];
         
         [cell setCellContentWithLeftLabelStr:leftString andRightLabelStr:rightString];
+    if (indexPath.row==_datasource.count-1)
+        {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    else
+        {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
     return cell;
 }
@@ -144,7 +185,24 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.row==_datasource.count-1)
+        {
+         HJCActionSheet *actionSheet = [[HJCActionSheet alloc] initWithDelegate:self andMessageTitle:nil CancelTitle:@"取消" OtherTitles:@"生产中", @"运行中", @"检修中", nil];
+        [actionSheet show];
+    }
+    
 }
+
+#pragma mark - HJCActionSheetDelegate
+
+- (void)actionSheet:(HJCActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex>0)
+        {
+        [self getChangeDataWithType:buttonIndex-1];
+    }
+}
+
 #pragma mark - getter
 - (UITableView *)bgTableView
 {

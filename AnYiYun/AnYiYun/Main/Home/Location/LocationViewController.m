@@ -11,6 +11,7 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>//引入计算工具所有的头文件
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
+#import "DeviceInfoModel.h"
 
 @interface LocationViewController ()<BMKMapViewDelegate>
 
@@ -32,6 +33,7 @@
     [self makeUI];
     
     [self getUseDataRequest];
+    [self getLocationName];
 }
 
 
@@ -47,6 +49,32 @@
 }
 
 #pragma mark - request
+-(void)getLocationName
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/initApp/basic_info"];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"deviceId":self.deviceIdString};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     NSDictionary *resuleDic = (NSDictionary *)responseObject;
+     DeviceInfoModel *info = [DeviceInfoModel mj_objectWithKeyValues:resuleDic];
+     _titleLabel.text = info.installationSite;
+     _titleLabel.hidden = NO;
+
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
+    
+
+}
 
 //判断获取页面信息
 -(NSString *)getMiddleRequestValue

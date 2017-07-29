@@ -67,6 +67,18 @@
         _timeLabel.text = useTime;
     }
     _contentLabel.text =itemModel.messageContent;
+    
+    NSString *pointId = [BaseHelper isSpaceString:itemModel.pointId andReplace:@""];
+    if (pointId.length==0)
+        {
+        [_curveButton setTitleColor:kAppTitleLightGrayColor forState:UIControlStateNormal];
+        _curveButton.userInteractionEnabled = NO;
+    }
+    else
+        {
+        [_curveButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
+        _curveButton.userInteractionEnabled = YES;
+        }
 }
 
 
