@@ -36,6 +36,10 @@
 -(NSString *)getMiddleRequestValue
 {
     NSString *requestString = @"rest/initApp/device_doc";
+    if ([self.pushType isEqualToString:@"devicePatrol"])
+    {
+        requestString = @"rest/devicePatrol/device_doc";
+    }
     return requestString;
 }
 

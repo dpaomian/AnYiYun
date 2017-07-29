@@ -44,6 +44,10 @@
 -(NSString *)getMiddleRequestValue
 {
     NSString *requestString = @"rest/initApp/checkRec";
+    if ([self.pushType isEqualToString:@"devicePatrol"])
+    {
+        requestString = @"rest/devicePatrol/checkRec";
+    }
     return requestString;
 }
 
