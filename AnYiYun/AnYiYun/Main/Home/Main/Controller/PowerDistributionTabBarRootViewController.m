@@ -22,7 +22,7 @@
     self.title = @"供配电";
 
     [self addChildVC:[[SafetyMonitoringRootViewController alloc] init] title:@"实时监测" image:@"bottom_btn_1" selectedImage:@"ic_tab_home_blue"];
-    [self addChildVC:[[EquipmentManagementRootViewController alloc] init] title:@"维保提醒" image:@"bottom_btn_2" selectedImage:@"ic_tab_me_blue"];
+    [self addChildVC:[[EquipmentManagementRootViewController alloc] init] title:@"设备管理" image:@"bottom_btn_2" selectedImage:@"ic_tab_me_blue"];
 }
 
 /**
