@@ -168,6 +168,7 @@
 		A8FD78991F2C396800523E46 /* FireSafetyMonitoringRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD788E1F2C396800523E46 /* FireSafetyMonitoringRootViewController.m */; };
 		A8FD789D1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD789C1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m */; };
 		A8FD78A21F2C6C0200523E46 /* FireMaintenanceRemindersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */; };
+		A8FD78A61F2C943400523E46 /* FireAlarmInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD78A51F2C943400523E46 /* FireAlarmInformationModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -470,6 +471,8 @@
 		A8FD789C1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireTabBarRootViewController.m; sourceTree = "<group>"; };
 		A8FD78A01F2C6C0200523E46 /* FireMaintenanceRemindersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireMaintenanceRemindersModel.h; sourceTree = "<group>"; };
 		A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireMaintenanceRemindersModel.m; sourceTree = "<group>"; };
+		A8FD78A41F2C943400523E46 /* FireAlarmInformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireAlarmInformationModel.h; sourceTree = "<group>"; };
+		A8FD78A51F2C943400523E46 /* FireAlarmInformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireAlarmInformationModel.m; sourceTree = "<group>"; };
 		DDB487885D009F359893864D /* Pods-AnYiYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnYiYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun.debug.xcconfig"; sourceTree = "<group>"; };
 		E9212BA65C0C4740B26E80FD /* Pods-AnYiYun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnYiYun.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1220,6 +1223,8 @@
 			children = (
 				A8FD78A01F2C6C0200523E46 /* FireMaintenanceRemindersModel.h */,
 				A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */,
+				A8FD78A41F2C943400523E46 /* FireAlarmInformationModel.h */,
+				A8FD78A51F2C943400523E46 /* FireAlarmInformationModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1510,6 +1515,7 @@
 				9046D5E31F2B8928004E3DCC /* MaintenanceRecordsViewController.m in Sources */,
 				9046D5EF1F2B89A7004E3DCC /* AlarmRecordViewController.m in Sources */,
 				90CF07861F1F3464008106D2 /* UIBarButtonItem+Extension.m in Sources */,
+				A8FD78A61F2C943400523E46 /* FireAlarmInformationModel.m in Sources */,
 				3B02DF441F2ADE0300282116 /* MessageAlarmCell.m in Sources */,
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,

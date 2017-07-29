@@ -32,8 +32,9 @@
 
 - (void)getAlarmInformationData {
     __weak AlarmInformationViewController *ws = self;
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@rest/supplyPower/alarm",BASE_PLAN_URL];
+    /*http://101.201.108.240:18084/Android/*/
+//    NSString *urlString = [NSString stringWithFormat:@"%@rest/supplyPower/alarm",BASE_PLAN_URL];
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/supplyPower/alarm",@"http://101.201.108.240:18084/Android/"];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
