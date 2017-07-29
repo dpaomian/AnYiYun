@@ -26,6 +26,7 @@
 		3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */; };
 		3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */; };
 		7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */; };
+		900CEC0B1F2CE5300012D925 /* HJCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 900CEC0A1F2CE5300012D925 /* HJCActionSheet.m */; };
 		901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FC1F26204C00CFED87 /* UserInfoCell.m */; };
 		901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FE1F2620B800CFED87 /* YYCalendarModel.m */; };
 		901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901788021F2620D200CFED87 /* YYCalendarCollectionViewCell.m */; };
@@ -205,6 +206,8 @@
 		3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAppView.h; sourceTree = "<group>"; };
 		3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAppView.m; sourceTree = "<group>"; };
 		3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		900CEC091F2CE5300012D925 /* HJCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCActionSheet.h; sourceTree = "<group>"; };
+		900CEC0A1F2CE5300012D925 /* HJCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCActionSheet.m; sourceTree = "<group>"; };
 		901787FB1F26204C00CFED87 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
 		901787FC1F26204C00CFED87 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		901787FE1F2620B800CFED87 /* YYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCalendarModel.m; sourceTree = "<group>"; };
@@ -556,6 +559,15 @@
 				95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		900CEC081F2CE5300012D925 /* HJCActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				900CEC091F2CE5300012D925 /* HJCActionSheet.h */,
+				900CEC0A1F2CE5300012D925 /* HJCActionSheet.m */,
+			);
+			path = HJCActionSheet;
 			sourceTree = "<group>";
 		};
 		901788291F263B2200CFED87 /* QRCode */ = {
@@ -996,6 +1008,7 @@
 		90CF07341F1F2F59008106D2 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				900CEC081F2CE5300012D925 /* HJCActionSheet */,
 				905D5C981F28D83100DF4DF9 /* LayoutButton */,
 				901788291F263B2200CFED87 /* QRCode */,
 				90272BCF1F224382000B1DC0 /* SDCycleScrollView */,
@@ -1427,6 +1440,7 @@
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
 				9046D5EC1F2B898F004E3DCC /* InspectionRecordsViewController.m in Sources */,
 				A8FD78941F2C396800523E46 /* FireMaintenanceRemindersViewController.m in Sources */,
+				900CEC0B1F2CE5300012D925 /* HJCActionSheet.m in Sources */,
 				A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */,
 				90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */,
 				9017881F1F26349000CFED87 /* SettingViewController.m in Sources */,
