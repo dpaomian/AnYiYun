@@ -21,12 +21,78 @@
     [super viewDidLoad];
     
     _listMutableDic = [NSMutableDictionary dictionary];
+    _conditionDic = [NSMutableDictionary dictionary];
+    
+    __weak FireEquipmentAccountViewController *ws = self;
+    
     [self getAlarmInformationData];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.sectionIndexColor = UIColorFromRGB(0x3D3D3D);
     self.tableView.sectionIndexBackgroundColor = UIColorFromRGBA(0x666666,0.4f);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountCell class]) bundle:nil] forCellReuseIdentifier:@"EquipmentAccountCell"];
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    _collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f) collectionViewLayout:flowLayout];
+    _collectionView.selectedIndex = 0;
+    [_collectionView iteminitialization];
+    _collectionView.isFold = YES;
+    _collectionView.foldHandle = ^(FilterCollectionView *mycollectionView, BOOL isFold){
+        if (isFold) {
+            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f);
+        } else {
+            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT);
+        }
+    };
+    _collectionView.choiceHandle = ^(FilterCollectionView *myCollectionView, id modelObject, NSInteger idx) {
+        switch (idx) {
+            case 1:
+            {
+                FilterCompanyModel * model = modelObject;
+                if ([model.idF isEqualToString:@"all"]) {
+                    [ws.conditionDic removeObjectForKey:@"firstCondition"];
+                } else {
+                    [ws.conditionDic setObject:model.companyName forKey:@"firstCondition"];
+                }
+                [ws getAlarmInformationData];
+            }
+                break;
+            case 2:
+            {
+                BuildingModle * model = modelObject;
+                if ([model.idF isEqualToString:@"all"]) {
+                    [ws.conditionDic removeObjectForKey:@"secondCondition"];
+                } else {
+                    [ws.conditionDic setObject:model.name forKey:@"secondCondition"];
+                }
+                [ws getAlarmInformationData];
+            }
+                break;
+            case 3:
+            {
+                SortModel * model = modelObject;
+                if ([model.idF isEqualToString:@"500"]) {
+                    [ws.conditionDic removeObjectForKey:@"thirdCondition"];
+                } else{
+                    [ws.conditionDic setObject:model.idF forKey:@"thirdCondition"];
+                }
+                [ws getAlarmInformationData];
+            }
+                break;
+            case 4:
+            {
+                FilterCompanyModel * model = modelObject;
+                [ws.conditionDic setObject:model.companyName forKey:@"fifthCondition"];
+                [ws getAlarmInformationData];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    };
+    [self.view addSubview:_collectionView];
 }
 
 - (NSArray *)sortKeysWithDic:(NSDictionary *)dic {
@@ -37,8 +103,17 @@
 - (void)getAlarmInformationData {
     __weak FireEquipmentAccountViewController *ws = self;
     
+    NSString *jsonString = nil;
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_conditionDic options:NSJSONWritingPrettyPrinted error:&error];
+    if (! jsonData) {
+        DLog(@"Got an error: %@", error);
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    
     NSString *urlString = [NSString stringWithFormat:@"%@rest/electricalFire/deviceLedger",BASE_PLAN_URL];
-    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"conditions":jsonString};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         /*使用字典取sortKey，起到自动去重的效果*/

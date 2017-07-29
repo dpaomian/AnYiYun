@@ -166,6 +166,7 @@
 		A8FD78981F2C396800523E46 /* FireRealtimeMonitoringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8FD788C1F2C396800523E46 /* FireRealtimeMonitoringViewController.xib */; };
 		A8FD78991F2C396800523E46 /* FireSafetyMonitoringRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD788E1F2C396800523E46 /* FireSafetyMonitoringRootViewController.m */; };
 		A8FD789D1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD789C1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m */; };
+		A8FD78A21F2C6C0200523E46 /* FireMaintenanceRemindersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -465,6 +466,8 @@
 		A8FD788E1F2C396800523E46 /* FireSafetyMonitoringRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireSafetyMonitoringRootViewController.m; sourceTree = "<group>"; };
 		A8FD789B1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricalFireTabBarRootViewController.h; sourceTree = "<group>"; };
 		A8FD789C1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireTabBarRootViewController.m; sourceTree = "<group>"; };
+		A8FD78A01F2C6C0200523E46 /* FireMaintenanceRemindersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireMaintenanceRemindersModel.h; sourceTree = "<group>"; };
+		A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireMaintenanceRemindersModel.m; sourceTree = "<group>"; };
 		DDB487885D009F359893864D /* Pods-AnYiYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnYiYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun.debug.xcconfig"; sourceTree = "<group>"; };
 		E9212BA65C0C4740B26E80FD /* Pods-AnYiYun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnYiYun.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1192,6 +1195,8 @@
 		A81B12621F2AD8DC001DD06B /* ElectricalFire */ = {
 			isa = PBXGroup;
 			children = (
+				A8FD789F1F2C6BE500523E46 /* Models */,
+				A8FD789E1F2C6BDD00523E46 /* Views */,
 				A81B12631F2AD8F8001DD06B /* ElectricalFireRootViewController.h */,
 				A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */,
 				A8FD789B1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.h */,
@@ -1214,6 +1219,22 @@
 				A8FD788E1F2C396800523E46 /* FireSafetyMonitoringRootViewController.m */,
 			);
 			name = ElectricalFire;
+			sourceTree = "<group>";
+		};
+		A8FD789E1F2C6BDD00523E46 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A8FD789F1F2C6BE500523E46 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8FD78A01F2C6C0200523E46 /* FireMaintenanceRemindersModel.h */,
+				A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		C9C4A7F89C998FBBFC7EC266 /* Pods */ = {
@@ -1501,6 +1522,7 @@
 				901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */,
 				A81B12411F2AC446001DD06B /* EnergyManagementViewController.m in Sources */,
 				A8FD78911F2C396800523E46 /* FireEquipmentAccountViewController.m in Sources */,
+				A8FD78A21F2C6C0200523E46 /* FireMaintenanceRemindersModel.m in Sources */,
 				A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */,
 				3B02DF3E1F2ADE0300282116 /* HistoryDetailViewController.m in Sources */,
 			);

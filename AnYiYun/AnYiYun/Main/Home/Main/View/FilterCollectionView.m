@@ -209,6 +209,9 @@
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         
+        self.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
+        self.layer.borderWidth = 0.5f;
+        
         self.scrollEnabled = NO;
         _isFoldItem = NO;
         

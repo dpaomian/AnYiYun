@@ -38,6 +38,7 @@
     fixmodel.idF = @"rest/supplyPower/repair";
     fixmodel.device_name = @"待检修";
     fixmodel.isFold = YES;
+    [self loadItemWithModel:fixmodel andSection:0];
     [self.listMutableArray addObject:fixmodel];
     
     RealtimeMonitoringListModel *maintenanceModel = [[RealtimeMonitoringListModel alloc] init];
@@ -52,14 +53,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return [_listMutableArray count];
-    return 2;
+    return [_listMutableArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    RealtimeMonitoringListModel *model = _listMutableArray[section];
+    RealtimeMonitoringListModel *model = _listMutableArray[section];
 //    return [model.itemsMutableArray count];
-    return 10;
+    return model.isFold?[model.itemsMutableArray count]:0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -85,12 +85,13 @@
     headerView.titleLab.text = model.device_name;
     headerView.contentLab.text = model.device_location;
     headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
+    headerView.contentLab.textColor = UIColorFromRGB(0x666666);
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
         if (isSelected) {
             /*首先关闭原来的选项*/
             RealtimeMonitoringListModel *currentModel = _listMutableArray[ws.foldSection];
             currentModel.isFold = NO;
-            currentModel.itemsMutableArray = [@[] mutableCopy];
+//            currentModel.itemsMutableArray = [@[] mutableCopy];
             [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:ws.foldSection] withRowAnimation:UITableViewRowAnimationNone];
             
             ws.foldSection = section;
@@ -98,7 +99,7 @@
             [ws loadItemWithModel:model andSection:section];
         } else {
             model.isFold = NO;
-            model.itemsMutableArray = [@[] mutableCopy];
+//            model.itemsMutableArray = [@[] mutableCopy];
             [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
             /*折叠状态*/
         }
@@ -116,20 +117,12 @@
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *childItemsMutablearray = [NSMutableArray array];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            RealtimeMonitoringListModelList *itemModel = [[RealtimeMonitoringListModelList alloc] init];
-            itemModel.device_id = obj[@"device_id"];
-            itemModel.device_name = obj[@"device_name"];
-            itemModel.displayIcon = [obj[@"displayIcon"] boolValue];
+            FireMaintenanceRemindersModel *itemModel = [[FireMaintenanceRemindersModel alloc] init];
             itemModel.idF = obj[@"id"];
-            itemModel.point_name = obj[@"point_name"];
-            itemModel.point_state = obj[@"point_state"];
-            itemModel.point_type = obj[@"point_type"];
-            itemModel.point_unit = obj[@"point_unit"];
-            itemModel.point_value = obj[@"point_value"];
-            itemModel.sid = obj[@"sid"];
-            itemModel.sortDevice = obj[@"sortDevice"];
-            itemModel.terminal_id = obj[@"terminal_id"];
-            itemModel.terminal_type = obj[@"terminal_type"];
+            itemModel.content = obj[@"content"];
+            itemModel.ctime = obj[@"ctime"];
+            itemModel.time = obj[@"time"];
+            itemModel.title = obj[@"title"];
             [childItemsMutablearray addObject:itemModel];
         }];
         itemModel.itemsMutableArray =childItemsMutablearray;
@@ -144,9 +137,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MaintenanceRemindersCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MaintenanceRemindersCell" forIndexPath:indexPath];
-    /*RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
-    RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
-    cell.nameLab.text = modelItem.point_name;*/
+    RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
+    FireMaintenanceRemindersModel *modelItem = model.itemsMutableArray[indexPath.row];
+    cell.nameLab.text = modelItem.title;
+    cell.contentLab.text = modelItem.content;
+    cell.timeLab.text = modelItem.time;
     return cell;
     
 }

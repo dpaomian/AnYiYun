@@ -99,8 +99,6 @@
 }
 
 - (void)getRealtimeMonitoringData {
-    
-    
     __weak RealtimeMonitoringViewController *ws = self;
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/supplyPower/realTimeMonFirst",BASE_PLAN_URL];
