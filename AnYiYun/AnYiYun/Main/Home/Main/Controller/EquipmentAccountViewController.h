@@ -7,10 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "FilterCollectionView.h"
 
 /*!设备台账*/
 @interface EquipmentAccountViewController : BaseViewController
 
+@property (strong, nonatomic) FilterCollectionView *collectionView;
+@property (nonatomic, strong) NSMutableDictionary   *conditionDic;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableDictionary   *listMutableDic;
 

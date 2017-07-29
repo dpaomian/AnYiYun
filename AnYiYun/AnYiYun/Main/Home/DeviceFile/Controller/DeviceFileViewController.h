@@ -14,9 +14,13 @@
  */
 @interface DeviceFileViewController : BaseViewController
 
+/** 默认进入告警设备档案页，请求中间默认initApp 巡检模块进入传值等于devicePatrol*/
+@property (nonatomic,strong)NSString  *pushType;//区分哪个模块进入的
+
 @property (nonatomic,strong)RealtimeMonitoringListModel *itemModel;
+
 @property (nonatomic,strong)NSString *deviceIdString;//设备id
 @property (nonatomic,strong)NSString *deviceNameString;//设备标题
-@property (nonatomic,strong)NSString *deviceLocation;//设备id
+@property (nonatomic,strong)NSString *deviceLocation;//设备位置
 
 @end

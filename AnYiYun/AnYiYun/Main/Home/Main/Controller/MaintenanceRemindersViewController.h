@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "RealtimeMonitoringListModel.h"
-#import "RealtimeMonitoringChildCell.h"
+#import "FireMaintenanceRemindersModel.h"
 
 /*!维保提醒*/
 @interface MaintenanceRemindersViewController : BaseViewController

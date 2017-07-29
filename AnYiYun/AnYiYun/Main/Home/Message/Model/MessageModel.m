@@ -10,6 +10,18 @@
 
 @implementation MessageModel
 
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{
+             @"id": @"messageId",
+             @"title":@"messageTitle",
+             @"content":@"messageContent"
+             };
+}
+
+
+
 - (id)initWithDictionary:(NSDictionary *)userDictionary
 {
     if (self = [super init])
@@ -38,4 +50,13 @@
 
 
 @implementation HistoryMessageModel
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{
+             @"id": @"historyMessageId"
+             };
+}
+
+
 @end

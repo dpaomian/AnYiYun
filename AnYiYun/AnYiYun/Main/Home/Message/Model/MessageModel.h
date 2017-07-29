@@ -38,10 +38,14 @@
 
 @interface HistoryMessageModel : NSObject
 
-@property (nonatomic,strong)NSString *type;
-@property (nonatomic,strong)NSString *typeTitle;
-@property (nonatomic,strong)NSString *content;
-@property (nonatomic,assign)long long  time;
+@property (nonatomic,assign)NSInteger historyMessageId;
+//（消息类型（101报警，102报警，103待检修，104待保养，105系统公告））
+@property (nonatomic,assign)NSInteger type;
+@property (nonatomic,strong)NSString *typeName;
+@property (nonatomic,strong)NSString *iconUrl;
+@property (nonatomic,strong)NSString *recentMes;
+@property (nonatomic,assign)NSInteger rtime;
+@property (nonatomic,assign)NSInteger num;
 
 @end
 

@@ -44,7 +44,7 @@
     button.backgroundColor = [UIColor clearColor];
     button.frame = CGRectMake(0, 0, size.width, 44);
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.font = font;
     
     //监听按钮事件

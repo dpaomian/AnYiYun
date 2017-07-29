@@ -63,11 +63,11 @@
         energyVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:energyVC animated:YES];
     } else if (sender.tag == 101){
-        PowerDistributionRootViewController *powerRootVC = [[PowerDistributionRootViewController alloc]init];
+        PowerDistributionTabBarRootViewController *powerRootVC = [[PowerDistributionTabBarRootViewController alloc]init];
         powerRootVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:powerRootVC animated:YES];
     }  else if (sender.tag == 102){
-        ElectricalFireRootViewController *fireVC = [[ElectricalFireRootViewController alloc]init];
+        ElectricalFireTabBarRootViewController *fireVC = [[ElectricalFireTabBarRootViewController alloc]init];
         fireVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:fireVC animated:YES];
     } else {

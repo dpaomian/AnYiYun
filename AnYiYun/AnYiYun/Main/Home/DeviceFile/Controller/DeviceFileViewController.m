@@ -115,6 +115,10 @@
         case 0:
         {
         DeviceInfoViewController *vc = [[DeviceInfoViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -122,6 +126,10 @@
         case 1:
         {
         TechnicalInfoViewController *vc = [[TechnicalInfoViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -129,6 +137,10 @@
         case 2:
         {
         DevicePartViewController *vc = [[DevicePartViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -136,6 +148,10 @@
         case 3:
         {
         RepairRecordsViewController *vc = [[RepairRecordsViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -143,6 +159,10 @@
         case 4:
         {
         MaintenanceRecordsViewController *vc = [[MaintenanceRecordsViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -150,6 +170,10 @@
         case 5:
         {
         DetectionRecordViewController *vc = [[DetectionRecordViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -157,6 +181,10 @@
         case 6:
         {
         InspectionRecordsViewController *vc = [[InspectionRecordsViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -164,6 +192,10 @@
         case 7:
         {
         AlarmRecordViewController *vc = [[AlarmRecordViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -171,6 +203,10 @@
         case 8:
         {
         LocationViewController *vc = [[LocationViewController alloc]init];
+            vc.deviceIdString = self.deviceIdString;
+            vc.deviceNameString = self.deviceNameString;
+            vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }

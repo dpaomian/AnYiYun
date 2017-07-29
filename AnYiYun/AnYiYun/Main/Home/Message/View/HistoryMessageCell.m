@@ -7,10 +7,12 @@
 //
 
 #import "HistoryMessageCell.h"
+#import "DBDaoDataBase.h"
 
 @interface HistoryMessageCell ()
 
 @property (nonatomic, strong) UIImageView *leftImgView;
+@property (nonatomic, strong) UILabel *numLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
@@ -27,6 +29,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.contentView addSubview:self.leftImgView];
+        [self.contentView addSubview:self.numLabel];
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.contentLabel];
@@ -38,10 +41,60 @@
 
 -(void)setCellContentWithModel:(HistoryMessageModel *)itemModel
 {
-    _titleLabel.text = itemModel.typeTitle;
+    if ([BaseHelper isSpaceString:itemModel.iconUrl andReplace:@""].length>0)
+    {
+        
+        [self.leftImgView sd_setImageWithURL:[NSURL URLWithString:itemModel.iconUrl] placeholderImage:nil];
+    }
+         else
+         {
+             self.leftImgView.image = [UIImage imageNamed:@"all_icon_14.png"];
+         }
+    
+    
+    _titleLabel.text = itemModel.typeName;
+    
+    _numLabel.hidden = YES;
+    if (itemModel.num>0)
+    {
+        _numLabel.hidden = NO;
+        _numLabel.text = [NSString stringWithFormat:@"%ld",itemModel.num];
+        if (itemModel.num>99)
+        {
+            _numLabel.text = @"99+";
+        }
+    }
+    _contentLabel.text =itemModel.recentMes;
+    
     _timeLabel.text = @"";
-
-    _contentLabel.text =itemModel.content;
+    if (itemModel.rtime>0)
+    {
+        long long yu = itemModel.rtime - [BaseHelper getSystemNowTimeLong];
+        NSString *timeString;
+        if (yu>3600*24)
+        {
+            timeString = [NSString stringWithFormat:@"%lld天前",yu/(3600*24)];
+        }
+        else
+        {
+            if (yu>3600&&yu<3600*24)
+            {
+                timeString = [NSString stringWithFormat:@"%lld小时前",yu/3600];
+            }
+            else
+            {
+                if (yu>60&&yu<3600)
+                {
+                    timeString = [NSString stringWithFormat:@"%lld分钟前",yu/60];
+                }
+                else
+                {
+                    timeString = [NSString stringWithFormat:@"%lld秒前",yu/60];
+                }
+            }
+        }
+        _timeLabel.text = timeString;
+    }
 }
 
 #pragma mark - getter
@@ -51,9 +104,29 @@
     if (!_leftImgView) {
         _leftImgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
         _leftImgView.image = [UIImage imageNamed:@"all_icon_14.png"];
+        _leftImgView.layer.masksToBounds = YES;
+        //_leftImgView.layer.cornerRadius = 30;
+        _leftImgView.contentMode = UIViewContentModeScaleAspectFill;
+        _leftImgView.clipsToBounds = YES;
     }
     return _leftImgView;
 }
+
+
+- (UILabel *)numLabel
+{
+    if (!_numLabel) {
+        _numLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 20, 20)];
+        _numLabel.textColor = [UIColor whiteColor];
+        _numLabel.font = SYSFONT_(12);
+        _numLabel.backgroundColor = [UIColor redColor];
+        _numLabel.layer.masksToBounds = YES;
+        _numLabel.layer.cornerRadius = 10;
+        _numLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _numLabel;
+}
+
 
 - (UILabel *)titleLabel
 {
@@ -77,6 +150,7 @@
     }
     return _timeLabel;
 }
+
 
 - (UILabel *)contentLabel
 {

@@ -14,7 +14,7 @@
 @interface HistoryMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *bgTableView;
-@property (nonatomic, strong) NSMutableArray *bgDataSource;
+@property (nonatomic, strong) NSMutableArray *datasource;
 
 @end
 
@@ -33,56 +33,59 @@
 
 - (void)makeupComponentUI
 {
-    _bgDataSource = [[NSMutableArray alloc]init];
+    _datasource = [[NSMutableArray alloc]init];
     [self.view addSubview:self.bgTableView];
     
-    NSMutableArray *examArray = [[NSMutableArray alloc]init];
-    examArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:@"1"];
-    if (examArray.count>0)
-    {
-        MessageModel *messageModel = [examArray objectAtIndex:0];
-        
-        HistoryMessageModel *itemModel = [[HistoryMessageModel alloc]init];
-        itemModel.type = @"1";//待报修
-        itemModel.typeTitle = @"待报修";
-        itemModel.content = messageModel.messageContent;
-        itemModel.time = messageModel.uploadtime;
-        [_bgDataSource addObject:itemModel];
-    }
+    [self getUseDataRequest];
+}
+
+
+#pragma mark - request
+-(void)getUseDataRequest
+{
+    [_datasource removeAllObjects];
     
-    NSMutableArray *maintainArray = [[NSMutableArray alloc]init];
-    maintainArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:@"2"];
-    if (maintainArray.count>0)
-    {
-        MessageModel *messageModel = [maintainArray objectAtIndex:0];
-        
-        HistoryMessageModel *itemModel = [[HistoryMessageModel alloc]init];
-        itemModel.type = @"2";//待报修
-        itemModel.typeTitle = @"待保养";
-        itemModel.content = messageModel.messageContent;
-        itemModel.time = messageModel.uploadtime;
-        [_bgDataSource addObject:itemModel];
-    }
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
+
+    long long useTime = [BaseHelper getSystemNowTimeLong];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"version":[NSString stringWithFormat:@"%lld", useTime]};
     
-    /** 
-     //测试数据 需删除
-    HistoryMessageModel *itemModel = [[HistoryMessageModel alloc]init];
-    itemModel.type = @"1";//待报修
-    itemModel.typeTitle = @"待报修";
-    itemModel.content = @"测试标题";
-    itemModel.time =12345695;
-    [_bgDataSource addObject:itemModel];
-    [_bgDataSource addObject:itemModel];
-     */
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
     
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         if ([responseObject isKindOfClass:[NSData class]])
+         {
+             id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+             
+             if ([jsonObject isKindOfClass:[NSArray class]])
+             {
+                 NSArray *useArray = (NSArray *)jsonObject;
+                 for (int i=0; i<useArray.count; i++)
+                 {
+                     NSDictionary *useDic = [useArray objectAtIndex:i];
+                     HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
+                     [_datasource addObject:itemModel];
+                 }
+                 [_bgTableView reloadData];
+             }
+         }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
     
-    [_bgTableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.bgDataSource.count;
+    return self.datasource.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -97,9 +100,9 @@
         cell = [[HistoryMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    if (_bgDataSource.count>0)
+    if (_datasource.count>0)
     {
-        HistoryMessageModel *item = [_bgDataSource objectAtIndex:indexPath.section];
+        HistoryMessageModel *item = [_datasource objectAtIndex:indexPath.section];
         [cell setCellContentWithModel:item];
     }
     return cell;
@@ -113,10 +116,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    HistoryMessageModel *item = [_bgDataSource objectAtIndex:indexPath.section];
+    HistoryMessageModel *item = [_datasource objectAtIndex:indexPath.section];
     HistoryDetailViewController *vc = [[HistoryDetailViewController alloc]init];
-    vc.typeString = item.type;
-    vc.typeTitleString = item.typeTitle;
+    vc.typeString = [NSString stringWithFormat:@"%ld",(long)item.type];
+    vc.typeTitleString = item.typeName;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

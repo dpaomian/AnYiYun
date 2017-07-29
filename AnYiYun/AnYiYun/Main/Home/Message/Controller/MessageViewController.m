@@ -426,6 +426,7 @@
     _selectModel = contentModel;
 
     LocationViewController *vc = [[LocationViewController alloc]init];
+    vc.deviceIdString = contentModel.deviceId;
     vc.hidesBottomBarWhenPushed = YES;
     vc.itemModel = contentModel;
     [self.navigationController pushViewController:vc animated:YES];

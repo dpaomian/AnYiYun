@@ -56,25 +56,47 @@
 {
     [super viewWillAppear:animated];
     
-    MAIN( (^{
-        //查询是否有未读消息
-        BOOL isUnRead = [[DBDaoDataBase sharedDataBase] isHaveNoReadHistoryMessageWithType:@""];
-        
-        [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIViewController *vc = obj.viewControllers.firstObject;
-            if ([vc isKindOfClass:[MeMainViewController class]])
-            {
-                if (isUnRead==NO)
-                {
-                    [self.tabBar hideBadgeOnItemIndex:idx+1];
-                }
-                else
-                {
-                    [self.tabBar showBadgeOnItemIndex:idx+1];
-                }
-            }
-        }];
-    }));
+    [self getMessageIsUnRead];
+}
+
+-(void)getMessageIsUnRead
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageDisplay",BASE_PLAN_URL];
+    
+    long long useTime = [BaseHelper getSystemNowTimeLong];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"version":[NSString stringWithFormat:@"%lld", useTime]};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         BOOL isUnRead = (BOOL)responseObject;
+         MAIN(^{
+         [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+             UIViewController *vc = obj.viewControllers.firstObject;
+             if ([vc isKindOfClass:[MeMainViewController class]])
+             {
+                 if (isUnRead==NO)
+                 {
+                     [self.tabBar hideBadgeOnItemIndex:idx+1];
+                 }
+                 else
+                 {
+                     [self.tabBar showBadgeOnItemIndex:idx+1];
+                 }
+             }
+         }];
+         });
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
+
 }
 
 - (void)didReceiveMemoryWarning {
