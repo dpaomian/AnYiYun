@@ -41,9 +41,9 @@
     _calendarTitleView.dateChangeHandle = ^(NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay){
         NSString *dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
         if (ws.datemodel.isDay) {
-            dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
+            dateString = [NSString stringWithFormat:@"%.2d/%.2ld",yyMonth,(long)yyDay];
         } else {
-            dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyYear,yyMonth];
+            dateString = [NSString stringWithFormat:@"%.2d/%.2ld",yyYear,(long)yyMonth];
         }
         [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
         [ws dailyRequestAction];
@@ -55,18 +55,18 @@
         calenderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         calenderVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         calenderVC.choiceDateHandle = ^(NSDate *currentDate, NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay){
-            NSLog(@"点击的 %d年%d月%d日",yyYear,yyMonth,yyDay);
+            NSLog(@"点击的 %ld年%ld月%ld日",(long)yyYear,(long)yyMonth,(long)yyDay);
             ws.datemodel.navigationYear = yyYear;
             ws.datemodel.navigationMonth = yyMonth;
             ws.datemodel.navigationDay= yyDay;
             ws.calendarTitleView.dailyDate = currentDate;
             NSDateComponents *components = [ws.calendarTitleView.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:ws.calendarTitleView.dailyDate];
             [ws.calendarTitleView updateDate:[ws.calendarTitleView.calendar dateFromComponents:components]];
-            NSString *dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
+            NSString *dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyMonth,(long)yyDay];
             if (ws.datemodel.isDay) {
-                dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyMonth,yyDay];
+                dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyMonth,(long)yyDay];
             } else {
-                dateString = [NSString stringWithFormat:@"%.2d/%.2d",yyYear,yyMonth];
+                dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyYear,(long)yyMonth];
             }
             [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
             [ws dailyRequestAction];

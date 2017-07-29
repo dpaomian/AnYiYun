@@ -28,6 +28,9 @@
 /**删除单条消息历史记录*/
 - (BOOL)deleteHistoryMessageInfo:(NSString *)pidString;
 
+/**根据消息id获取消息*/
+- (MessageModel *)getHistoryMessagesInfoWithMessageId:(NSString *)messageId;
+
 /**获取消息历史记录表中的所有数据*/
 - (NSMutableArray *)getAllHistoryMessagesInfo;
 

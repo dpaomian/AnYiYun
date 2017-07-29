@@ -274,6 +274,42 @@ static DBDaoDataBase *_instance;
     
 }
 
+
+/**根据消息id获取消息*/
+- (MessageModel *)getHistoryMessagesInfoWithMessageId:(NSString *)messageId
+{
+    __block  MessageModel *useObject = [[MessageModel alloc] init];
+    [_dbQueue inDatabase:^(FMDatabase *db)
+     {
+         [db open];
+         NSString *findSqlString = [NSString stringWithFormat:@"select * from T_HistoryMessage_TABLE WHERE messageId='%@'",messageId];
+         FMResultSet *rs = [db executeQuery:findSqlString];
+         while (rs && [rs next])
+         {
+             MessageModel *adObject = [[MessageModel alloc] init];
+             adObject.messageId = [rs longForColumn:@"messageId"];
+             adObject.messageTitle = [rs stringForColumn:@"messageTitle"];
+             adObject.messageContent = [rs stringForColumn:@"messageContent"];
+             adObject.ctime = [rs longForColumn:@"ctime"];
+             adObject.time = [rs stringForColumn:@"time"];
+             adObject.result = [rs stringForColumn:@"result"];
+             adObject.state = [rs longForColumn:@"state"];
+             adObject.deviceId = [rs stringForColumn:@"deviceId"];
+             adObject.pointId = [rs stringForColumn:@"pointId"];
+             adObject.userId = [rs stringForColumn:@"userId"];
+             adObject.userName = [rs stringForColumn:@"userName"];
+             adObject.type = [rs stringForColumn:@"type"];
+             adObject.isRead = [rs stringForColumn:@"isRead"];
+             adObject.uploadtime = [rs longForColumn:@"uploadtime"];
+             adObject.remark = [rs stringForColumn:@"remark"];
+             useObject = adObject;
+         }
+         [db close];
+     }];
+    return useObject;
+    
+}
+
 //删除消息不同类型的历史记录数据
 - (BOOL)deleteHistoryMessagesWithType:(NSString *)type
 {

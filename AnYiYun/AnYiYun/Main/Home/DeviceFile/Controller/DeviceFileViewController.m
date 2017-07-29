@@ -118,6 +118,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -128,6 +129,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -138,6 +140,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -148,6 +151,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -158,6 +162,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -168,6 +173,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -178,6 +184,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -188,6 +195,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
@@ -198,6 +206,7 @@
             vc.deviceIdString = self.deviceIdString;
             vc.deviceNameString = self.deviceNameString;
             vc.deviceLocation = self.deviceLocation;
+            vc.pushType = self.pushType;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         }
