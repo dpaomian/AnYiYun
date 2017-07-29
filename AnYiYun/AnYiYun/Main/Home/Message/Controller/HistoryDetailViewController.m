@@ -25,8 +25,10 @@
     [super viewDidLoad];
     
     self.title = self.typeTitleString;
-    
     self.view.backgroundColor = RGB(239, 239, 244);
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"清空" target:self action:@selector(rightBarButtonClick)];
+    
     [self makeupComponentUI];
     
 }
@@ -37,6 +39,13 @@
     [self.view addSubview:self.bgTableView];
     
     [self getUseDataRequest];
+}
+
+-(void)rightBarButtonClick
+{
+    [[DBDaoDataBase sharedDataBase] deleteHistoryMessagesWithType:self.typeString];
+    [_datasource removeAllObjects];
+    [_bgTableView reloadData];
 }
 
 #pragma mark - request

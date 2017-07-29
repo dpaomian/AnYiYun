@@ -8,8 +8,15 @@
 
 #import "ShareViewController.h"
 #import "YYQRCode.h"
+#import "HomeModel.h"
+#import "ShareAppView.h"
 
-@interface ShareViewController ()
+#import <MessageUI/MessageUI.h>
+
+@interface ShareViewController ()<MFMessageComposeViewControllerDelegate>
+
+@property (nonatomic, strong) NSString *shareString;
+@property (nonatomic, strong) ShareAppView *shareView;
 
 @end
 
@@ -21,13 +28,45 @@
     
     self.title = @"分享";
     
-    [self setShareView];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"分享" target:self action:@selector(rightBarButtonClick)];
+    
+    [self getPictureRequestAction];
+    
 }
 
-    //设置logo界面
-- (void)setShareView
+-(void)rightBarButtonClick
 {
-    NSString *useImageStr = BASE_PLAN_URL;
+    self.shareString = @"安易云让设备管理变得更简单！ http://a.app.qq.com/o/simple.jsp?pkgname=com.gdlion.gdc";
+    
+    [self.shareView showInView];
+}
+
+#pragma mark - 请求相关
+//请求二维码
+-  (void)getPictureRequestAction
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/er",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object)
+     {
+        NSDictionary *picDic = object;
+        NSArray  *valueArray = [picDic allValues];
+        
+        if (valueArray.count>0)
+        {
+            NSString *imageUrl = [valueArray objectAtIndex:0];
+            [self setShareViewWithUrl:imageUrl];
+        }
+         
+    } failureBlock:^(NSError *error) {
+        DLog(@"请求失败：%@",error);
+    } progress:nil];
+}
+#pragma mark - UI相关
+    //设置logo界面
+- (void)setShareViewWithUrl:(NSString *)string
+{
+    NSString *useImageStr = [BaseHelper isSpaceString:string andReplace:BASE_PLAN_URL];
     DLog(@"自动生成二维码地址:  %@",useImageStr);
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2, 40, 150, 150)];
     if (!iOS7Later)
@@ -62,9 +101,102 @@
     [versionLable setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:versionLable];
     
+}
+
+#pragma mark -分享事件
+
+-(void)shareToMessage
+{
+    [self showMessageView:nil title:nil body:self.shareString];
+}
+-(void)showMessageView:(NSArray *)phones title:(NSString *)title body:(NSString *)body
+{
+    if( [MFMessageComposeViewController canSendText] )
+    {
+        MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc] init];
+        controller.recipients = phones;
+        controller.navigationBar.tintColor = [UIColor redColor];
+        controller.body = body;
+        controller.messageComposeDelegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+        [[[[controller viewControllers] lastObject] navigationItem] setTitle:title];//修改短信界面标题
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示信息"
+                                                        message:@"该设备不支持短信功能"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+
+-(void)shareToEmail
+{
+    NSMutableString *mailUrl = [[NSMutableString alloc]init];
+    //添加收件人
+    NSArray *toRecipients = [NSArray arrayWithObject: @"first@example.com"];
+    [mailUrl appendFormat:@"mailto:%@", [toRecipients componentsJoinedByString:@","]];
+    //添加抄送
+    NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
+    [mailUrl appendFormat:@"?cc=%@", [ccRecipients componentsJoinedByString:@","]];
+    //添加密送
+    NSArray *bccRecipients = [NSArray arrayWithObjects:@"fourth@example.com", nil];
+    [mailUrl appendFormat:@"&bcc=%@", [bccRecipients componentsJoinedByString:@","]];
+    //添加主题
+    [mailUrl appendString:@"&subject=my email"];
+    //添加邮件内容
+    NSString *string = [NSString stringWithFormat:@"&body=<b>%@</b> body!",self.shareString];
+    [mailUrl appendString:string];
     
-    
-    
+    NSString* email = [mailUrl stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:email]];
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    switch (result) {
+        case MessageComposeResultSent:
+            //信息传送成功
+            
+            break;
+        case MessageComposeResultFailed:
+            //信息传送失败
+            
+            break;
+        case MessageComposeResultCancelled:
+            //信息被用户取消传送
+            
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - getter
+
+- (ShareAppView *)shareView
+{
+    __weak typeof(self) weakSelf = self;
+    if (!_shareView) {
+        _shareView = [[ShareAppView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 100, SCREEN_WIDTH, 100) WithItems:nil];
+        self.shareView.shareBlock = ^(NSString *nameString)
+        {
+            if ([nameString isEqualToString:@"短信"])
+            {
+               [weakSelf shareToMessage];
+            }
+            if ([nameString isEqualToString:@"邮件"])
+            {
+                [weakSelf shareToEmail];
+            }
+        };
+        [self.shareView showInView];
+    }
+    return _shareView;
 }
 
 - (void)didReceiveMemoryWarning {

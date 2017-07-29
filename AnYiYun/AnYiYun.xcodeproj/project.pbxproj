@@ -23,6 +23,7 @@
 		3B3FD75D1F2C055B0089C1B0 /* DevicePartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75C1F2C055B0089C1B0 /* DevicePartCell.m */; };
 		3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75F1F2C05800089C1B0 /* RecordCell.m */; };
 		3B3FD7631F2C117C0089C1B0 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */; };
+		3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */; };
 		7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */; };
 		901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FC1F26204C00CFED87 /* UserInfoCell.m */; };
 		901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FE1F2620B800CFED87 /* YYCalendarModel.m */; };
@@ -200,6 +201,8 @@
 		3B3FD75F1F2C05800089C1B0 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		3B3FD7611F2C117C0089C1B0 /* DeviceInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoCell.h; sourceTree = "<group>"; };
 		3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoCell.m; sourceTree = "<group>"; };
+		3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAppView.h; sourceTree = "<group>"; };
+		3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAppView.m; sourceTree = "<group>"; };
 		901787FB1F26204C00CFED87 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
 		901787FC1F26204C00CFED87 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		901787FE1F2620B800CFED87 /* YYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCalendarModel.m; sourceTree = "<group>"; };
@@ -1092,6 +1095,8 @@
 				901788151F2624A800CFED87 /* MeCell.m */,
 				901788261F26386E00CFED87 /* ModifyPasswordCell.h */,
 				901788271F26386E00CFED87 /* ModifyPasswordCell.m */,
+				3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */,
+				3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1388,6 +1393,7 @@
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
 				9046D5DA1F2B886A004E3DCC /* DeviceInfoViewController.m in Sources */,
+				3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */,
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
 				3B02DF3F1F2ADE0300282116 /* HistoryMessageViewController.m in Sources */,
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
