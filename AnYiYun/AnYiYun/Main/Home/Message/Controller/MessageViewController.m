@@ -108,11 +108,44 @@
          MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
          [_alarmDataSource addObject:item];
      }
-      [_alarmTableView reloadData];
+     [self getWarnDataRequest];
      [self endRefreshing];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"获取告警信息失败：%@",error);
+         }];
+}
+
+    //获取预警信息
+-(void)getWarnDataRequest
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/warning",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+
+     id  object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+     NSArray *listArray = (NSArray *)object;
+     for (int i=0; i<listArray.count; i++)
+         {
+         MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
+         [_alarmDataSource addObject:item];
+         }
+     [_alarmTableView reloadData];
+     [self endRefreshing];
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"获取预警信息失败：%@",error);
+             
+             [_alarmTableView reloadData];
+             [self endRefreshing];
          }];
 }
 
