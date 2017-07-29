@@ -19,6 +19,10 @@
 		3B02DF461F2ADE0300282116 /* MessageMaintainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B02DF3A1F2ADE0300282116 /* MessageMaintainCell.m */; };
 		3B02DF471F2ADE0300282116 /* MessageTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B02DF3C1F2ADE0300282116 /* MessageTopView.m */; };
 		3B02DF491F2AE82400282116 /* main_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B02DF481F2AE82400282116 /* main_more@2x.png */; };
+		3B3FD7571F2C04F50089C1B0 /* DeviceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD7561F2C04F50089C1B0 /* DeviceInfoModel.m */; };
+		3B3FD75D1F2C055B0089C1B0 /* DevicePartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75C1F2C055B0089C1B0 /* DevicePartCell.m */; };
+		3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75F1F2C05800089C1B0 /* RecordCell.m */; };
+		3B3FD7631F2C117C0089C1B0 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */; };
 		7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */; };
 		901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FC1F26204C00CFED87 /* UserInfoCell.m */; };
 		901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FE1F2620B800CFED87 /* YYCalendarModel.m */; };
@@ -177,6 +181,14 @@
 		3B02DF3B1F2ADE0300282116 /* MessageTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTopView.h; sourceTree = "<group>"; };
 		3B02DF3C1F2ADE0300282116 /* MessageTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTopView.m; sourceTree = "<group>"; };
 		3B02DF481F2AE82400282116 /* main_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_more@2x.png"; sourceTree = "<group>"; };
+		3B3FD7551F2C04F50089C1B0 /* DeviceInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoModel.h; sourceTree = "<group>"; };
+		3B3FD7561F2C04F50089C1B0 /* DeviceInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoModel.m; sourceTree = "<group>"; };
+		3B3FD75B1F2C055B0089C1B0 /* DevicePartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicePartCell.h; sourceTree = "<group>"; };
+		3B3FD75C1F2C055B0089C1B0 /* DevicePartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicePartCell.m; sourceTree = "<group>"; };
+		3B3FD75E1F2C05800089C1B0 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		3B3FD75F1F2C05800089C1B0 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		3B3FD7611F2C117C0089C1B0 /* DeviceInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoCell.h; sourceTree = "<group>"; };
+		3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoCell.m; sourceTree = "<group>"; };
 		901787FB1F26204C00CFED87 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
 		901787FC1F26204C00CFED87 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		901787FE1F2620B800CFED87 /* YYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCalendarModel.m; sourceTree = "<group>"; };
@@ -792,6 +804,8 @@
 		9046D5D61F2B8844004E3DCC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3B3FD7551F2C04F50089C1B0 /* DeviceInfoModel.h */,
+				3B3FD7561F2C04F50089C1B0 /* DeviceInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -799,6 +813,12 @@
 		9046D5D71F2B8844004E3DCC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3B3FD7611F2C117C0089C1B0 /* DeviceInfoCell.h */,
+				3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */,
+				3B3FD75B1F2C055B0089C1B0 /* DevicePartCell.h */,
+				3B3FD75C1F2C055B0089C1B0 /* DevicePartCell.m */,
+				3B3FD75E1F2C05800089C1B0 /* RecordCell.h */,
+				3B3FD75F1F2C05800089C1B0 /* RecordCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1312,6 +1332,7 @@
 				A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */,
 				90272BE41F224382000B1DC0 /* SDCycleScrollView.m in Sources */,
 				90CF07821F1F3464008106D2 /* NSDictionary+Extension.m in Sources */,
+				3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */,
 				A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */,
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
@@ -1349,10 +1370,12 @@
 				901788091F2620D200CFED87 /* YYCalendarView.m in Sources */,
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
 				9046D5DD1F2B88C7004E3DCC /* TechnicalInfoViewController.m in Sources */,
+				3B3FD75D1F2C055B0089C1B0 /* DevicePartCell.m in Sources */,
 				90CF074E1F1F313F008106D2 /* MeMainViewController.m in Sources */,
 				9046D5E61F2B8951004E3DCC /* RepairRecordsViewController.m in Sources */,
 				901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */,
 				3B02DF411F2ADE0300282116 /* MessageModel.m in Sources */,
+				3B3FD7571F2C04F50089C1B0 /* DeviceInfoModel.m in Sources */,
 				3B02DF401F2ADE0300282116 /* MessageViewController.m in Sources */,
 				90A2EC691F209C43008088C4 /* FirstLaunchView.m in Sources */,
 				A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */,
@@ -1385,6 +1408,7 @@
 				A8DA96701F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m in Sources */,
 				A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */,
 				A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */,
+				3B3FD7631F2C117C0089C1B0 /* DeviceInfoCell.m in Sources */,
 				90CF071D1F1F2BFC008106D2 /* main.m in Sources */,
 				901788191F262CD400CFED87 /* CompanyModel.m in Sources */,
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,

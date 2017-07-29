@@ -9,7 +9,9 @@
 #import "MaintenanceRecordsViewController.h"
 
 @interface MaintenanceRecordsViewController ()
-
+{
+    BOOL isGetMore;
+}
 @end
 
 @implementation MaintenanceRecordsViewController
@@ -19,7 +21,46 @@
     [super viewDidLoad];
     
     self.title = @"保养记录";
+    isGetMore = NO;
+    [self getUseDataRequest];
 }
+
+#pragma mark - request
+
+//判断获取页面信息
+-(NSString *)getMiddleRequestValue
+{
+    NSString *requestString = @"rest/initApp/upkeepRec";
+    return requestString;
+}
+
+-(void)getUseDataRequest
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,[self getMiddleRequestValue]];
+    if (isGetMore==YES)
+    {
+        urlString = [NSString stringWithFormat:@"%@%@More",BASE_PLAN_URL,[self getMiddleRequestValue]];
+    }
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"deviceId":self.deviceIdString};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         
+         
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

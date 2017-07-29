@@ -14,7 +14,7 @@
 @interface HistoryMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *bgTableView;
-@property (nonatomic, strong) NSMutableArray *bgDataSource;
+@property (nonatomic, strong) NSMutableArray *datasource;
 
 @end
 
@@ -33,7 +33,7 @@
 
 - (void)makeupComponentUI
 {
-    _bgDataSource = [[NSMutableArray alloc]init];
+    _datasource = [[NSMutableArray alloc]init];
     [self.view addSubview:self.bgTableView];
     
     NSMutableArray *examArray = [[NSMutableArray alloc]init];
@@ -47,7 +47,7 @@
         itemModel.typeTitle = @"待报修";
         itemModel.content = messageModel.messageContent;
         itemModel.time = messageModel.uploadtime;
-        [_bgDataSource addObject:itemModel];
+        [_datasource addObject:itemModel];
     }
     
     NSMutableArray *maintainArray = [[NSMutableArray alloc]init];
@@ -61,7 +61,7 @@
         itemModel.typeTitle = @"待保养";
         itemModel.content = messageModel.messageContent;
         itemModel.time = messageModel.uploadtime;
-        [_bgDataSource addObject:itemModel];
+        [_datasource addObject:itemModel];
     }
     
     /** 
@@ -71,8 +71,8 @@
     itemModel.typeTitle = @"待报修";
     itemModel.content = @"测试标题";
     itemModel.time =12345695;
-    [_bgDataSource addObject:itemModel];
-    [_bgDataSource addObject:itemModel];
+    [_datasource addObject:itemModel];
+    [_datasource addObject:itemModel];
      */
     
     
@@ -82,7 +82,7 @@
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.bgDataSource.count;
+    return self.datasource.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -97,9 +97,9 @@
         cell = [[HistoryMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    if (_bgDataSource.count>0)
+    if (_datasource.count>0)
     {
-        HistoryMessageModel *item = [_bgDataSource objectAtIndex:indexPath.section];
+        HistoryMessageModel *item = [_datasource objectAtIndex:indexPath.section];
         [cell setCellContentWithModel:item];
     }
     return cell;
@@ -113,7 +113,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    HistoryMessageModel *item = [_bgDataSource objectAtIndex:indexPath.section];
+    HistoryMessageModel *item = [_datasource objectAtIndex:indexPath.section];
     HistoryDetailViewController *vc = [[HistoryDetailViewController alloc]init];
     vc.typeString = item.type;
     vc.typeTitleString = item.typeTitle;
