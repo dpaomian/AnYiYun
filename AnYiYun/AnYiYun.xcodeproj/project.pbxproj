@@ -1204,8 +1204,32 @@
 		A81B12621F2AD8DC001DD06B /* ElectricalFire */ = {
 			isa = PBXGroup;
 			children = (
+				A8FD78A31F2C8BC300523E46 /* Controllers */,
 				A8FD789F1F2C6BE500523E46 /* Models */,
 				A8FD789E1F2C6BDD00523E46 /* Views */,
+			);
+			name = ElectricalFire;
+			sourceTree = "<group>";
+		};
+		A8FD789E1F2C6BDD00523E46 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A8FD789F1F2C6BE500523E46 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8FD78A01F2C6C0200523E46 /* FireMaintenanceRemindersModel.h */,
+				A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A8FD78A31F2C8BC300523E46 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				A81B12631F2AD8F8001DD06B /* ElectricalFireRootViewController.h */,
 				A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */,
 				A8FD789B1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.h */,
@@ -1227,23 +1251,7 @@
 				A8FD788D1F2C396800523E46 /* FireSafetyMonitoringRootViewController.h */,
 				A8FD788E1F2C396800523E46 /* FireSafetyMonitoringRootViewController.m */,
 			);
-			name = ElectricalFire;
-			sourceTree = "<group>";
-		};
-		A8FD789E1F2C6BDD00523E46 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		A8FD789F1F2C6BE500523E46 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A8FD78A01F2C6C0200523E46 /* FireMaintenanceRemindersModel.h */,
-				A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */,
-			);
-			name = Models;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		C9C4A7F89C998FBBFC7EC266 /* Pods */ = {
