@@ -12,4 +12,8 @@
  */
 @interface DetectionRecordViewController : BaseViewController
 
+@property (nonatomic,strong)NSString *deviceIdString;//设备id
+@property (nonatomic,strong)NSString *deviceNameString;//设备标题
+@property (nonatomic,strong)NSString *deviceLocation;//设备位置
+
 @end
