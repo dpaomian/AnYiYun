@@ -137,7 +137,6 @@
 		A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */; };
 		A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */; };
 		A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12511F2AC48D001DD06B /* FilterCollectionView.m */; };
-		A81B12651F2AD8F8001DD06B /* ElectricalFireRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */; };
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
@@ -418,8 +417,6 @@
 		A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionCell.xib; sourceTree = "<group>"; };
 		A81B12501F2AC48D001DD06B /* FilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionView.h; sourceTree = "<group>"; };
 		A81B12511F2AC48D001DD06B /* FilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionView.m; sourceTree = "<group>"; };
-		A81B12631F2AD8F8001DD06B /* ElectricalFireRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricalFireRootViewController.h; sourceTree = "<group>"; };
-		A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricalFireRootViewController.m; sourceTree = "<group>"; };
 		A821B11F1F26E661008B6678 /* FilterCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyModel.h; sourceTree = "<group>"; };
 		A821B1201F26E661008B6678 /* FilterCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyModel.m; sourceTree = "<group>"; };
 		A821B1221F26E66D008B6678 /* BuildingModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingModle.h; sourceTree = "<group>"; };
@@ -1230,8 +1227,6 @@
 		A8FD78A31F2C8BC300523E46 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A81B12631F2AD8F8001DD06B /* ElectricalFireRootViewController.h */,
-				A81B12641F2AD8F8001DD06B /* ElectricalFireRootViewController.m */,
 				A8FD789B1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.h */,
 				A8FD789C1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m */,
 				A8FD787D1F2C396800523E46 /* FireAlarmInformationViewController.h */,
@@ -1518,7 +1513,6 @@
 				3B02DF441F2ADE0300282116 /* MessageAlarmCell.m in Sources */,
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
-				A81B12651F2AD8F8001DD06B /* ElectricalFireRootViewController.m in Sources */,
 				3B02DF421F2ADE0300282116 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
 				A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */,
