@@ -32,7 +32,7 @@
     self.rightLabel.frame = CGRectMake(self.leftLabel.x, CGRectGetMaxY(self.leftLabel.frame)+2, self.width - 100, 20);
     self.leftLabel.text = [PersonInfo shareInstance].comName;
     self.rightLabel.text = [NSString stringWithFormat:@"帐号：%@",[PersonInfo shareInstance].loginTextAccount];
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[PersonInfo shareInstance].comLogoUrl] placeholderImage:nil];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[PersonInfo shareInstance].comLogoUrl] placeholderImage:nil];
     _bottomLineView.hidden = YES;
 }
 

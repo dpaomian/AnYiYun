@@ -12,7 +12,7 @@
 @interface HistoryDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *bgTableView;
-@property (nonatomic, strong) NSMutableArray *bgDataSource;
+@property (nonatomic, strong) NSMutableArray *datasource;
 
 
 
@@ -33,29 +33,73 @@
 
 - (void)makeupComponentUI
 {
-    _bgDataSource = [[NSMutableArray alloc]init];
+    _datasource = [[NSMutableArray alloc]init];
     [self.view addSubview:self.bgTableView];
     
-    _bgDataSource = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:self.typeString];
+    [self getUseDataRequest];
+}
+
+#pragma mark - request
+-(void)getUseDataRequest
+{
+    [_datasource removeAllObjects];
     
-    /**
-     //测试数据 需删除
-    MessageModel *itemModel = [[MessageModel alloc]init];
-    itemModel.type = @"1";//待报修
-    itemModel.messageTitle = @"待报修标题标题标题标题标题标题标题标题标题标题";
-    itemModel.messageContent = @"测试标题标题标题标题标题标题标题标题标题标题标题标题";
-    itemModel.time =@"123456";
-    [_bgDataSource addObject:itemModel];
-    [_bgDataSource addObject:itemModel];
-    */
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/showMessage",BASE_PLAN_URL];
     
-    [_bgTableView reloadData];
+    long long useTime = [BaseHelper getSystemNowTimeLong];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"version":[NSString stringWithFormat:@"%lld", useTime],
+                            @"type":self.typeString
+                            };
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         if ([responseObject isKindOfClass:[NSData class]])
+         {
+             id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+             
+             if ([jsonObject isKindOfClass:[NSArray class]])
+             {
+                 NSArray *useArray = (NSArray *)jsonObject;
+                 for (int i=0; i<useArray.count; i++)
+                 {
+                     NSDictionary *useDic = [useArray objectAtIndex:i];
+                     MessageModel *itemModel = [MessageModel mj_objectWithKeyValues:useDic];
+                     itemModel.uploadtime = [BaseHelper getSystemNowTimeLong];
+                     itemModel.type = self.typeString;
+                     itemModel.isRead = @"0";
+                     [[DBDaoDataBase sharedDataBase] addHistoryMessageInfoTableClassify:itemModel];
+                     
+                     [_datasource addObject:itemModel];
+                 }
+                 
+                 if (_datasource.count==0)
+                 {
+                     NSMutableArray *useArray = [[NSMutableArray alloc] init];
+                     useArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
+                     _datasource = [NSMutableArray arrayWithArray:useArray];
+                 }
+                 
+                 [_bgTableView reloadData];
+             }
+         }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
+    
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.bgDataSource.count;
+    return self.datasource.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -70,9 +114,9 @@
         cell = [[HistoryDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    if (_bgDataSource.count>0)
+    if (_datasource.count>0)
     {
-        MessageModel *item = [_bgDataSource objectAtIndex:indexPath.section];
+        MessageModel *item = [_datasource objectAtIndex:indexPath.section];
         [cell setCellContentWithModel:item];
     }
     return cell;

@@ -50,4 +50,13 @@
 
 
 @implementation HistoryMessageModel
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{
+             @"id": @"historyMessageId"
+             };
+}
+
+
 @end
