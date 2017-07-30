@@ -142,7 +142,7 @@
 - (UITableView *)bgTableView
 {
     if (!_bgTableView) {
-        _bgTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, kScreen_Width, kScreen_Height - 64) style:UITableViewStylePlain];
+        _bgTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64) style:UITableViewStylePlain];
         _bgTableView.dataSource = self;
         _bgTableView.delegate = self;
         _bgTableView.backgroundColor = [UIColor clearColor];
