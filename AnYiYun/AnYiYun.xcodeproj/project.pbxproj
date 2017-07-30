@@ -109,6 +109,7 @@
 		90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AB1F1F3985008106D2 /* PersonInfo.m */; };
 		90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */; };
 		90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07B21F1F3BAB008106D2 /* LoginManager.m */; };
+		90EA5EA51F2DBDAE009DE784 /* DefultLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */; };
 		A810BF4B1F25EDB400B5F2D2 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF4A1F25EDB400B5F2D2 /* BaseTableViewController.m */; };
 		A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF531F25F43F00B5F2D2 /* YYSegmentedView.m */; };
 		A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF561F25F49300B5F2D2 /* YYSegmentedCollectionCell.m */; };
@@ -378,6 +379,8 @@
 		90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		90CF07B11F1F3BAB008106D2 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		90CF07B21F1F3BAB008106D2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		90EA5EA31F2DBDAE009DE784 /* DefultLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefultLaunchView.h; path = AnYiYun/Libs/DefultLaunchView.h; sourceTree = SOURCE_ROOT; };
+		90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefultLaunchView.m; path = AnYiYun/Libs/DefultLaunchView.m; sourceTree = SOURCE_ROOT; };
 		95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnYiYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A810BF491F25EDB400B5F2D2 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		A810BF4A1F25EDB400B5F2D2 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
@@ -1209,6 +1212,8 @@
 			children = (
 				90A2EC671F209C43008088C4 /* FirstLaunchView.h */,
 				90A2EC681F209C43008088C4 /* FirstLaunchView.m */,
+				90EA5EA31F2DBDAE009DE784 /* DefultLaunchView.h */,
+				90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1591,6 +1596,7 @@
 				A8FD78A21F2C6C0200523E46 /* FireMaintenanceRemindersModel.m in Sources */,
 				A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */,
 				3B02DF3E1F2ADE0300282116 /* HistoryDetailViewController.m in Sources */,
+				90EA5EA51F2DBDAE009DE784 /* DefultLaunchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
