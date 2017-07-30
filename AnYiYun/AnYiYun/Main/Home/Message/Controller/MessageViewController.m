@@ -113,6 +113,8 @@
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"获取告警信息失败：%@",error);
+             [self getWarnDataRequest];
+             [self endRefreshing];
          }];
 }
 
@@ -138,15 +140,26 @@
          MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
          [_alarmDataSource addObject:item];
          }
-     [_alarmTableView reloadData];
-     [self endRefreshing];
+     [self getAlarmDataByTime];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"获取预警信息失败：%@",error);
-             
-             [_alarmTableView reloadData];
-             [self endRefreshing];
+             [self getAlarmDataByTime];
          }];
+}
+
+    //根据时间排序
+-(void)getAlarmDataByTime
+{
+    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_alarmDataSource];
+    
+    NSArray *sortedArray = [tempArray sortedArrayUsingComparator:^NSComparisonResult(MessageModel *p1, MessageModel *p2){
+        return [p1.time compare:p2.time];
+    }];
+    _alarmDataSource = [NSMutableArray arrayWithArray:sortedArray];
+    
+    [_alarmTableView reloadData];
+    [self endRefreshing];
 }
 
     //获取待检修
