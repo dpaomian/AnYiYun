@@ -8,10 +8,15 @@
 
 #import "BaseTableViewController.h"
 #import "EnergyConsumptionStatisticsCell.h"
+#import "EnergyConsumptionStatisticsModel.h"
 
 /*!能耗统计*/
 @interface EnergyConsumptionStatisticsViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+/*!*/
+@property (nonatomic, strong) NSMutableArray   *listMutableArray;
+/*!*/
+@property (nonatomic, strong) NSMutableDictionary   *conditionDic;
 
 @end

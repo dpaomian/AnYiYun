@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "YYCalendarView.h"
 #import "CalendarViewController.h"
+#import "MonthCalendarViewController.h"
 #import "MBProgressHUD+YY.h"
 
 /**
@@ -20,5 +21,6 @@
 @property (strong, nonatomic) UIWebView *webView;
 /*!webview需要加载的地址*/
 @property (strong, nonatomic) UILabel   *placeHoldLable;
+@property (strong, nonatomic) MonthCalendarViewController *monthCalenderVC;
 
 @end

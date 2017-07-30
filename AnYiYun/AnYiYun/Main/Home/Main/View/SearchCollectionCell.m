@@ -13,23 +13,31 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.searchBar.delegate = self;
+    
+    __weak SearchCollectionCell *ws = self;
+    
+    [self.okBtn buttonClickedHandle:^(UIButton *sender) {
+        if (ws.searchBarSearchButtonClicked) {
+            ws.searchBarSearchButtonClicked(ws,ws.searchBar);
+        }
+    }];
 }
 
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar
-    textDidChange:(NSString *)searchText
-{
-    NSLog(@"----textDidChange------");
-    // 调用filterBySubstring:方法执行搜索
+    textDidChange:(NSString *)searchText {
+    NSLog(@"%@",searchBar.text);
+    if (_searchBarTextDidChange) {
+        _searchBarTextDidChange(self,searchBar);
+    }
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    NSLog(@"----searchBarSearchButtonClicked------");
-    // 调用filterBySubstring:方法执行搜索
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"%@",searchBar.text);
-    // 放弃作为第一个响应者，关闭键盘
+    if (_searchBarSearchButtonClicked) {
+        _searchBarSearchButtonClicked(self,searchBar);
+    }
     [searchBar resignFirstResponder];
 }
 

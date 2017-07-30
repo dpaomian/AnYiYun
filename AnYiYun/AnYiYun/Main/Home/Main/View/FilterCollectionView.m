@@ -294,6 +294,8 @@
     NSInteger buildingItemCount = [_buildingMutableArray count];
     NSInteger sortItemCount = [_sortMutableArray count];
     
+    __weak FilterCollectionView *ws = self;
+    
     FilterCollectionCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterCollectionCell" forIndexPath:indexPath];
     cell.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
     cell.layer.borderWidth = 0.5f;
@@ -429,9 +431,47 @@
             cell.cornerImageView.hidden = YES;
             cell.contentView.backgroundColor = UIColorFromRGBA(0x000000, 0.4f);
         } else {
-            cell.cornerImageView.hidden = NO;
-            cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
             SearchCollectionCell *searchCell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"SearchCollectionCell" forIndexPath:indexPath];
+            
+            searchCell.searchBarTextDidChange = ^(SearchCollectionCell *barCell, UISearchBar *bar) {
+                
+            };
+            searchCell.searchBarSearchButtonClicked = ^(SearchCollectionCell *barCell, UISearchBar *bar) {
+                ws.isFoldItem = YES;
+                if ([searchCell.searchBar.text length] >0) {
+                    NSMutableDictionary *titleItemDictionary = [NSMutableDictionary dictionaryWithDictionary:ws.screenMutableArray[3]];
+                    [titleItemDictionary setObject:@YES forKey:@"isSelected"];
+                    [ws.screenMutableArray replaceObjectAtIndex:3 withObject:titleItemDictionary];
+                } else {
+                    NSMutableDictionary *titleItemDictionary = [NSMutableDictionary dictionaryWithDictionary:ws.screenMutableArray[3]];
+                    [titleItemDictionary setObject:@NO forKey:@"isSelected"];
+                    [ws.screenMutableArray replaceObjectAtIndex:3 withObject:titleItemDictionary];
+                }
+                if (ws.foldHandle) {
+                    ws.foldHandle(ws,ws.isFoldItem);
+                }
+                if (ws.choiceHandle) {
+                    ws.choiceHandle(ws, bar, 4);
+                }
+                [collectionView reloadData];
+            };
+            [searchCell.cancleBtn buttonClickedHandle:^(UIButton *sender) {
+                if ([searchCell.searchBar.text length] >0) {
+                    NSMutableDictionary *titleItemDictionary = [NSMutableDictionary dictionaryWithDictionary:ws.screenMutableArray[3]];
+                    [titleItemDictionary setObject:searchCell.searchBar.text forKey:@"name"];
+                    [titleItemDictionary setObject:@YES forKey:@"isSelected"];
+                    [ws.screenMutableArray replaceObjectAtIndex:3 withObject:titleItemDictionary];
+                } else {
+                    NSMutableDictionary *titleItemDictionary = [NSMutableDictionary dictionaryWithDictionary:ws.screenMutableArray[3]];
+                    [titleItemDictionary setObject:@"" forKey:@"name"];
+                    [titleItemDictionary setObject:@NO forKey:@"isSelected"];
+                    [ws.screenMutableArray replaceObjectAtIndex:3 withObject:titleItemDictionary];
+                }
+                ws.isFoldItem = YES;
+                if (ws.foldHandle) {
+                    ws.foldHandle(ws,ws.isFoldItem);
+                }
+            }];
             searchCell.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
             searchCell.layer.borderWidth = 0.5f;
             return searchCell;

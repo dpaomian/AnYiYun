@@ -19,6 +19,8 @@
     
     self.title = @"能源管理";
     
+    self.view.backgroundColor = [UIColor redColor];
+    
     /*UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
     view.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:view];*/
@@ -43,77 +45,13 @@
     [self.view addSubview:_stateView];
     
     _loadDetectionVC = [[LoadDetectionViewController alloc] init];
-    [_loadDetectionVC.view setFrame:CGRectMake(0, 0.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-NAV_HEIGHT)];
+    [_loadDetectionVC.view setFrame:CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f)];
     
     _energyConsumptionStatisticsVC = [[EnergyConsumptionStatisticsViewController alloc] init];
     
     _currentViewController = _loadDetectionVC;
     [self addChildViewController:_currentViewController];
     [self.view addSubview:_currentViewController.view];
-
-    /*UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    FilterCollectionView *collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f) collectionViewLayout:flowLayout];
-    collectionView.selectedIndex = 0;
-    [collectionView iteminitialization];
-    collectionView.isFold = YES;
-    collectionView.selectedIndex = 1;
-    [collectionView iteminitialization];
-    collectionView.foldHandle = ^(FilterCollectionView *mycollectionView, BOOL isFold){
-        if (isFold) {
-            mycollectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f);
-        } else {
-            mycollectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT);
-        }
-    };
-    collectionView.choiceHandle = ^(FilterCollectionView *myCollectionView, id modelObject, NSInteger idx) {
-        switch (idx) {
-            case 1:
-            {
-                FilterCompanyModel * model = modelObject;
-                if ([model.idF isEqualToString:@"all"]) {
-                    [ws.conditionDic removeObjectForKey:@"firstCondition"];
-                } else {
-                    [ws.conditionDic setObject:model.companyName forKey:@"firstCondition"];
-                }
-                [ws getEnergyManagementData];
-            }
-                break;
-            case 2:
-            {
-                BuildingModle * model = modelObject;
-                if ([model.idF isEqualToString:@"all"]) {
-                    [ws.conditionDic removeObjectForKey:@"secondCondition"];
-                } else {
-                    [ws.conditionDic setObject:model.name forKey:@"secondCondition"];
-                }
-                [ws getEnergyManagementData];
-            }
-                break;
-            case 3:
-            {
-                SortModel * model = modelObject;
-                if ([model.idF isEqualToString:@"500"]) {
-                    [ws.conditionDic removeObjectForKey:@"thirdCondition"];
-                } else{
-                    [ws.conditionDic setObject:model.idF forKey:@"thirdCondition"];
-                }
-                [ws getEnergyManagementData];
-            }
-                break;
-            case 4:
-            {
-                FilterCompanyModel * model = modelObject;
-                [ws.conditionDic setObject:model.companyName forKey:@"fifthCondition"];
-                [ws getEnergyManagementData];
-            }
-                break;
-                
-            default:
-                break;
-        }
-    };
-    [self.view addSubview:collectionView];*/
 }
 
 /*切换各个标签内容*/

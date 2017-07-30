@@ -48,38 +48,38 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sp4-Oc-jao">
-                        <rect key="frame" x="8" y="77" width="75" height="36"/>
+                        <rect key="frame" x="8" y="77" width="75.5" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="mQL-Xw-qf4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title=" 已处理" image="icon_Round">
+                        <state key="normal" title="未处理" image="icon_Round">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uv4-XY-fX1">
-                        <rect key="frame" x="84" y="77" width="75.5" height="36"/>
+                        <rect key="frame" x="84.5" y="77" width="75" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title=" 报修" image="add">
+                        <state key="normal" title=" 报修" image="Repair">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHn-cF-PaL">
-                        <rect key="frame" x="160.5" y="77" width="75" height="36"/>
+                        <rect key="frame" x="160.5" y="77" width="75.5" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title=" 曲线" image="add">
+                        <state key="normal" title=" 曲线" image="Polyline">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AS5-7q-UOV">
-                        <rect key="frame" x="236.5" y="77" width="75.5" height="36"/>
+                        <rect key="frame" x="237" y="77" width="75" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title=" 定位" image="add">
+                        <state key="normal" title=" 定位" image="Location">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QvZ-0c-Ttk">
-                        <rect key="frame" x="83" y="83" width="1" height="24"/>
+                        <rect key="frame" x="83.5" y="83" width="1" height="24"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="l60-8X-09R"/>
@@ -93,7 +93,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0aw-nd-Ho3">
-                        <rect key="frame" x="235.5" y="83" width="1" height="24"/>
+                        <rect key="frame" x="236" y="83" width="1" height="24"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="4NV-yb-vtW"/>
@@ -151,7 +151,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="add" width="15" height="15"/>
+        <image name="Location" width="22" height="22"/>
+        <image name="Polyline" width="22" height="22"/>
+        <image name="Repair" width="22" height="22"/>
         <image name="all_icon_14" width="30" height="30"/>
         <image name="icon_Round" width="24" height="24"/>
     </resources>

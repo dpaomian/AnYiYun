@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
@@ -28,8 +27,8 @@
 - (void)getAlarmInformationData {
     __weak FireAlarmInformationViewController *ws = self;
     /*http://101.201.108.240:18084/Android/*/
-//    NSString *urlString = [NSString stringWithFormat:@"%@rest/electricalFire/alarm",BASE_PLAN_URL];
-    NSString *urlString = [NSString stringWithFormat:@"%@rest/electricalFire/alarm",@"http://101.201.108.240:18084/Android/"];
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/electricalFire/alarm",BASE_PLAN_URL];
+//    NSString *urlString = [NSString stringWithFormat:@"%@rest/electricalFire/alarm",@"http:101.201.108.240:18084/Android/"];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
@@ -62,6 +61,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    __weak FireAlarmInformationViewController *ws = self;
+    
     YYAlarmCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYAlarmCell" forIndexPath:indexPath];
     FireAlarmInformationModel *modelItem = _listMutableArray[indexPath.row];
     cell.titleLab.text = modelItem.title;
@@ -78,12 +80,76 @@
         switch (clickedType) {
             case YYAlarmCellButtonTypeDeal:
             {
-                [MBProgressHUD showSuccess:@"已处理"];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您确认要选择\"已处理\"么？" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugS",BASE_PLAN_URL];
+                    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                                            @"bugId":modelItem.idF,
+                                            @"type":@"1"};
+                    
+                    [MBProgressHUD showMessage:@"提交中..."];
+                    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+                    [manager GET:urlString
+                      parameters:param
+                        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+                     {
+                         [MBProgressHUD hideHUD];
+                         BOOL dealState = (BOOL)responseObject;
+                         if (dealState==NO)
+                         {
+                             [BaseHelper waringInfo:@"提交失败"];
+                         } else {
+                             [MBProgressHUD showSuccess:@"报修成功"];
+                         }
+                     }
+                         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                             [MBProgressHUD hideHUD];
+                         }];
+                }];
+                [alertController addAction:cancelAction];
+                [alertController addAction:okAction];
+                [ws presentViewController:alertController animated:YES completion:nil];
             }
                 break;
             case YYAlarmCellButtonTypeRepair:
             {
-                [MBProgressHUD showSuccess:@"报修"];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您确认要选择\"提交检修\"么？" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugS",BASE_PLAN_URL];
+                    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                                            @"bugId":modelItem.idF,
+                                            @"type":@"1"};
+                    
+                    [MBProgressHUD showMessage:@"提交中..."];
+                    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+                    [manager GET:urlString
+                      parameters:param
+                        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+                     {
+                         [MBProgressHUD hideHUD];
+                         BOOL dealState = (BOOL)responseObject;
+                         if (dealState==NO)
+                         {
+                             [BaseHelper waringInfo:@"提交失败"];
+                         } else {
+                             [MBProgressHUD showSuccess:@"报修成功"];
+                         }
+                     }
+                         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                             [MBProgressHUD hideHUD];
+                         }];
+                }];
+                [alertController addAction:cancelAction];
+                [alertController addAction:okAction];
+                [ws presentViewController:alertController animated:YES completion:nil];
             }
                 break;
             case YYAlarmCellButtonTypeCurve:
@@ -93,7 +159,10 @@
                 break;
             case YYAlarmCellButtonTypeLocation:
             {
-                [MBProgressHUD showSuccess:@"定位"];
+                LocationViewController *locationVC = [[LocationViewController alloc]init];
+                locationVC.deviceIdString = modelItem.deviceId;
+                locationVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:locationVC animated:YES];
             }
                 break;
                 

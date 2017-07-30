@@ -51,29 +51,35 @@
     
     /*点击弹出日历*/
     [_calendarTitleView.dateButton buttonClickedHandle:^(UIButton *sender) {
-        CalendarViewController *calenderVC = [[CalendarViewController alloc] init];
-        calenderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        calenderVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        calenderVC.choiceDateHandle = ^(NSDate *currentDate, NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay){
-            NSLog(@"点击的 %ld年%ld月%ld日",(long)yyYear,(long)yyMonth,(long)yyDay);
-            ws.datemodel.navigationYear = yyYear;
-            ws.datemodel.navigationMonth = yyMonth;
-            ws.datemodel.navigationDay= yyDay;
-            ws.calendarTitleView.dailyDate = currentDate;
-            NSDateComponents *components = [ws.calendarTitleView.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:ws.calendarTitleView.dailyDate];
-            [ws.calendarTitleView updateDate:[ws.calendarTitleView.calendar dateFromComponents:components]];
-            NSString *dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyMonth,(long)yyDay];
-            if (ws.datemodel.isDay) {
-                dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyMonth,(long)yyDay];
-            } else {
-                dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyYear,(long)yyMonth];
-            }
-            [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
-            [ws dailyRequestAction];
-        };
-        [ws.tabBarController presentViewController:calenderVC animated:NO completion:^{
-            
-        }];
+        if (ws.datemodel.isDay) {
+            CalendarViewController *calenderVC = [[CalendarViewController alloc] init];
+            calenderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            calenderVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            calenderVC.choiceDateHandle = ^(NSDate *currentDate, NSInteger yyYear, NSInteger yyMonth, NSInteger yyDay){
+                NSLog(@"点击的 %ld年%ld月%ld日",(long)yyYear,(long)yyMonth,(long)yyDay);
+                ws.datemodel.navigationYear = yyYear;
+                ws.datemodel.navigationMonth = yyMonth;
+                ws.datemodel.navigationDay= yyDay;
+                ws.calendarTitleView.dailyDate = currentDate;
+                NSDateComponents *components = [ws.calendarTitleView.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:ws.calendarTitleView.dailyDate];
+                [ws.calendarTitleView updateDate:[ws.calendarTitleView.calendar dateFromComponents:components]];
+                NSString *dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyMonth,(long)yyDay];
+                if (ws.datemodel.isDay) {
+                    dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyMonth,(long)yyDay];
+                } else {
+                    dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyYear,(long)yyMonth];
+                }
+                [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
+                [ws dailyRequestAction];
+            };
+            [ws.tabBarController presentViewController:calenderVC animated:NO completion:^{
+                
+            }];
+        }else {
+            [ws.tabBarController presentViewController:ws.monthCalenderVC animated:NO completion:^{
+                
+            }];
+        }
     }];
     
     /*导航右侧的日/月切换按钮*/
@@ -145,10 +151,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    __weak DailyMainViewController *ws = self;
+    
     /*初始化model对象，方便取当前年月日*/
     [self datemodelInit];
     /*默认加载当日日报*/
     [self dailyRequestAction];
+    
+    _monthCalenderVC = [[MonthCalendarViewController alloc] init];
+    _monthCalenderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    _monthCalenderVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    _monthCalenderVC.choiceMonthHandle = ^(NSInteger yyYear, NSInteger yyMonth){
+        ws.datemodel.navigationYear = yyYear;
+        ws.datemodel.navigationMonth = yyMonth;
+        NSString *dateString = [NSString stringWithFormat:@"%.2ld/%.2ld",(long)yyYear,(long)yyMonth];
+        [ws.calendarTitleView.dateButton setTitle:dateString forState:UIControlStateNormal];
+        [ws dailyRequestAction];
+    };
+    
     /*配置导航*/
     [self configurationNavigationController];
     

@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "YYAlarmCell.h"
 #import "FireAlarmInformationModel.h"
+#import "LocationViewController.h"
 
 /*!告警信息*/
 @interface FireAlarmInformationViewController : BaseViewController

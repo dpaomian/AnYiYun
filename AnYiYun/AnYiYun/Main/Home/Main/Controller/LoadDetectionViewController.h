@@ -10,6 +10,8 @@
 #import "LoadDatectionHeaderView.h"
 #import "LoadDatectionCell.h"
 #import "FilterCollectionView.h"
+#import "LoadDetectionModel.h"
+#import "RealtimeMonitoringListModel.h"
 
 /*!负荷监测*/
 @interface LoadDetectionViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>

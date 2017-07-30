@@ -27,7 +27,6 @@
     
     [self getAlarmInformationData];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.sectionIndexColor = UIColorFromRGB(0x3D3D3D);
     self.tableView.sectionIndexBackgroundColor = UIColorFromRGBA(0x666666,0.4f);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountCell class]) bundle:nil] forCellReuseIdentifier:@"EquipmentAccountCell"];
@@ -82,8 +81,8 @@
                 break;
             case 4:
             {
-                FilterCompanyModel * model = modelObject;
-                [ws.conditionDic setObject:model.companyName forKey:@"fifthCondition"];
+                UISearchBar * bar = modelObject;
+                [ws.conditionDic setObject:bar.text forKey:@"fifthCondition"];
                 [ws getAlarmInformationData];
             }
                 break;

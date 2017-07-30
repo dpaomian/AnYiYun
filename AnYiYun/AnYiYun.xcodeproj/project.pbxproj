@@ -143,6 +143,8 @@
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
 		A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */; };
 		A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */; };
+		A8451F921F2DBC9F00A2CF5A /* LoadDetectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */; };
+		A8451F951F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F941F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m */; };
 		A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2C51F283C26006F3DB4 /* AllApplicationCollectionViewCell.m */; };
 		A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2C61F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib */; };
 		A84FA2CC1F283FB4006F3DB4 /* AllApplicationReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2CA1F283FB4006F3DB4 /* AllApplicationReusableView.m */; };
@@ -150,6 +152,8 @@
 		A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */; };
 		A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
+		A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */; };
+		A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */; };
 		A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */; };
 		A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */; };
 		A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */; };
@@ -432,6 +436,10 @@
 		A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionCell.h; sourceTree = "<group>"; };
 		A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionCell.m; sourceTree = "<group>"; };
 		A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
+		A8451F901F2DBC9F00A2CF5A /* LoadDetectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadDetectionModel.h; sourceTree = "<group>"; };
+		A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadDetectionModel.m; sourceTree = "<group>"; };
+		A8451F931F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyConsumptionStatisticsModel.h; sourceTree = "<group>"; };
+		A8451F941F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyConsumptionStatisticsModel.m; sourceTree = "<group>"; };
 		A84FA2C41F283C26006F3DB4 /* AllApplicationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllApplicationCollectionViewCell.h; sourceTree = "<group>"; };
 		A84FA2C51F283C26006F3DB4 /* AllApplicationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllApplicationCollectionViewCell.m; sourceTree = "<group>"; };
 		A84FA2C61F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllApplicationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -444,6 +452,10 @@
 		A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYTabBarCollectionCell.xib; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		A8A14BBE1F2DE0C9008745F1 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
+		A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCalendarViewController.m; sourceTree = "<group>"; };
+		A8A14BC11F2DE91A008745F1 /* YYDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDatePicker.h; sourceTree = "<group>"; };
+		A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDatePicker.m; sourceTree = "<group>"; };
 		A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringChildCell.h; sourceTree = "<group>"; };
 		A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringChildCell.m; sourceTree = "<group>"; };
 		A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealtimeMonitoringChildCell.xib; sourceTree = "<group>"; };
@@ -607,6 +619,8 @@
 				901A081B1F20E32F009488C1 /* DailyMainViewController.m */,
 				A89FBFCE1F23175A001405E8 /* CalendarViewController.h */,
 				A89FBFCF1F23175A001405E8 /* CalendarViewController.m */,
+				A8A14BBE1F2DE0C9008745F1 /* MonthCalendarViewController.h */,
+				A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -629,6 +643,8 @@
 				901788041F2620D200CFED87 /* YYCalendarView.h */,
 				901788051F2620D200CFED87 /* YYCalendarView.m */,
 				901788061F2620D200CFED87 /* YYCalendarView.xib */,
+				A8A14BC11F2DE91A008745F1 /* YYDatePicker.h */,
+				A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -727,6 +743,10 @@
 				A821B1261F26E676008B6678 /* SortModel.m */,
 				A81AB5961F2901260098D203 /* RealtimeMonitoringListModel.h */,
 				A81AB5971F2901260098D203 /* RealtimeMonitoringListModel.m */,
+				A8451F901F2DBC9F00A2CF5A /* LoadDetectionModel.h */,
+				A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */,
+				A8451F931F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.h */,
+				A8451F941F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1462,6 +1482,7 @@
 				90CF07A21F1F38D5008106D2 /* SJAvatarBrowser.m in Sources */,
 				A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */,
 				A8FD78971F2C396800523E46 /* FireRealtimeMonitoringViewController.m in Sources */,
+				A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				A8DA96761F2BB22C00F3032D /* EquipmentManagementRootViewController.m in Sources */,
 				90CF07811F1F3464008106D2 /* NSDateFormatter+Category.m in Sources */,
@@ -1487,6 +1508,7 @@
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
 				9046D5DD1F2B88C7004E3DCC /* TechnicalInfoViewController.m in Sources */,
 				3B3FD75D1F2C055B0089C1B0 /* DevicePartCell.m in Sources */,
+				A8451F921F2DBC9F00A2CF5A /* LoadDetectionModel.m in Sources */,
 				90CF074E1F1F313F008106D2 /* MeMainViewController.m in Sources */,
 				9046D5E61F2B8951004E3DCC /* RepairRecordsViewController.m in Sources */,
 				901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */,
@@ -1494,6 +1516,7 @@
 				3B3FD7571F2C04F50089C1B0 /* DeviceInfoModel.m in Sources */,
 				3B02DF401F2ADE0300282116 /* MessageViewController.m in Sources */,
 				90A2EC691F209C43008088C4 /* FirstLaunchView.m in Sources */,
+				A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */,
 				A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */,
 				A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */,
 				A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */,
@@ -1534,6 +1557,7 @@
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
 				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
 				A81B12461F2AC446001DD06B /* LoadDetectionViewController.m in Sources */,
+				A8451F951F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m in Sources */,
 				9024074C1F2A39B9001E2F38 /* DBDaoDataBase.m in Sources */,
 				A81AB5981F2901260098D203 /* RealtimeMonitoringListModel.m in Sources */,
 				9046D5E31F2B8928004E3DCC /* MaintenanceRecordsViewController.m in Sources */,
