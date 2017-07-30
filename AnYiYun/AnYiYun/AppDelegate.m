@@ -13,10 +13,19 @@
 #import "FilterCollectionView.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
+
+#import "DefultLaunchView.h"//启动页
+
 @interface AppDelegate ()
 {
     BMKMapManager * _mapManager;
+    
+    NSInteger   showTimeLong;
+    NSTimer     *myTimer;
 }
+
+@property (nonatomic,strong)DefultLaunchView *defultView;
+
 @end
 
 @implementation AppDelegate
@@ -36,12 +45,39 @@
     
     [BaseLaunchConfig launchingFlowConfig];
     
+    /**
+    [self.window addSubview:self.defultView];
+    myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showLaunchViewTimer) userInfo:nil repeats:YES];
+    [myTimer fire];
+     */
+    
     /*初始化筛选框*/
 //    [FilterCollectionView shareFilter];
     
     return YES;
 }
 
+-(void)showLaunchViewTimer
+{
+    showTimeLong++;
+    
+    if (showTimeLong==5)
+        {
+        [_defultView removeFromSuperview];
+        _defultView = nil;
+        [myTimer invalidate];
+        myTimer = nil;
+    }
+}
+
+-(DefultLaunchView *)defultView
+{
+    if (!_defultView) {
+        _defultView = [[DefultLaunchView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _defultView.backgroundColor = kAPPBlueColor;
+    }
+    return _defultView;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

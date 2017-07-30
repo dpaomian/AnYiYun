@@ -36,7 +36,7 @@
 {
     if (!imageArrays)
     {
-        imageArrays = [NSArray arrayWithObjects:@"splash0_1136",@"splash1_1136",@"splash2_1136",@"splash3_1136", nil];
+        imageArrays = @[@"LaunchImage"];
     }
     _imageArray = imageArrays;
     self.contentSize = CGSizeMake((_imageArray.count + 1)*kScreen_Width, kScreen_Height);
