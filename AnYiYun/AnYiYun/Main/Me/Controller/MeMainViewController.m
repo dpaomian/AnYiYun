@@ -211,7 +211,7 @@
             {
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
             vc.titleStr = @"咨询";
-            vc.myUrl = @"https://www.baidu.com";
+            vc.myUrl = @"http://101.201.108.246/index.html";
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             }
@@ -240,7 +240,7 @@
 - (UITableView *)meTableView
 {
     if (!_meTableView) {
-        _meTableView = [[UITableView alloc] initWithFrame:kScreen_Frame style:UITableViewStyleGrouped];
+        _meTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-TAB_HEIGHT) style:UITableViewStyleGrouped];
         _meTableView.delegate = self;
         _meTableView.dataSource = self;
         _meTableView.backgroundView = nil;

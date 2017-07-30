@@ -29,7 +29,6 @@
 #define kScreen_Height   ([UIScreen mainScreen].bounds.size.height)
 #define SCREEN_HEIGHT    ([UIScreen mainScreen].bounds.size.height)//暂时使用
 #define SCREEN_WIDTH     ([UIScreen mainScreen].bounds.size.width)
-#define kScreen_Frame    (CGRectMake(0, 0, kScreen_Width, kScreen_Height))
 #define kScreenAllFrame  ([UIScreen mainScreen].bounds)
 #define kScreen_CenterX  kScreen_Width/2
 #define kScreen_CenterY  kScreen_Height/2

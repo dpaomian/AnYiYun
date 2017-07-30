@@ -178,7 +178,7 @@
 - (UITableView *)passwordTableView
 {
     if (!_passwordTableView) {
-        _passwordTableView = [[UITableView alloc] initWithFrame:kScreen_Frame style:UITableViewStyleGrouped];
+        _passwordTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT) style:UITableViewStyleGrouped];
         _passwordTableView.delegate = self;
         _passwordTableView.dataSource = self;
         _passwordTableView.tableFooterView = self.footerView;
@@ -195,7 +195,7 @@
         UIButton *modifyButton = [[UIButton alloc] init];
         modifyButton.frame = CGRectMake(10, 20, kScreen_Width - 20,TableFooterHelght);
         [modifyButton setTitle:@"提交修改" forState:UIControlStateNormal];
-        [modifyButton setBackgroundColor:[UIColor blueColor]];
+        [modifyButton setBackgroundColor:kAPPBlueColor];
         modifyButton.layer.masksToBounds = YES;
         modifyButton.layer.cornerRadius = 5;
         modifyButton.userInteractionEnabled = YES;
