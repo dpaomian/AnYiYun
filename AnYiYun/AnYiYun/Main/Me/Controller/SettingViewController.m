@@ -188,6 +188,7 @@
         if (buttonIndex == 1)
             {
             DLog(@"确定");
+            [MBProgressHUD showSuccess:@"清理完成"];
             }
         else
             {
@@ -214,7 +215,7 @@
 - (UITableView *)settingTableView
 {
     if (!_settingTableView) {
-        _settingTableView = [[UITableView alloc] initWithFrame:kScreen_Frame style:UITableViewStyleGrouped];
+        _settingTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT) style:UITableViewStyleGrouped];
         _settingTableView.delegate = self;
         _settingTableView.dataSource = self;
         _settingTableView.backgroundView = nil;

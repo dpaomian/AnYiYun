@@ -83,24 +83,24 @@
 {
     [self.view addSubview:self.bpTableView];
     
-    NSArray *imageArray = @[@"home_icon_n.png",@"home_icon_g.png",@"home_icon_d.png",@"home_icon_q.png"];
-    NSArray *titleArray = @[@"能源管理",@"供配电",@"电气火灾",@"全部"];
+    NSArray *imageArray = @[@"home_icon_n.png",@"home_icon_g.png",@"home_icon_d.png"];
+    NSArray *titleArray = @[@"能源管理",@"供配电",@"电气火灾"];
     
     CGFloat btnWidth = (kScreen_Width-3*1)/titleArray.count;
-    
-    for (int i=0; i<4; i++)
+    CGFloat btnHeight = (kScreen_Width-3*1)/4;
+    for (int i=0; i<titleArray.count; i++)
         {
-        CGFloat xx = i%4*(btnWidth+1);
-        CGFloat yy = i/4*btnWidth+AD_Height;
+        CGFloat xx = i%titleArray.count*(btnWidth+1);
+        CGFloat yy = i/4*btnHeight+AD_Height;
         
-        UIButton *useBtn = [[UIButton alloc]initWithFrame: CGRectMake(xx, yy, btnWidth, btnWidth)];
+        UIButton *useBtn = [[UIButton alloc]initWithFrame: CGRectMake(xx, yy, btnWidth, btnHeight)];
         useBtn.backgroundColor = [UIColor whiteColor];
         
-        UIImageView  *itemImgView = [[UIImageView alloc]initWithFrame:CGRectMake((btnWidth-40)/2, (btnWidth-60)/3, 40, 40)];
+        UIImageView  *itemImgView = [[UIImageView alloc]initWithFrame:CGRectMake((btnWidth-40)/2, (btnHeight-60)/3, 40, 40)];
         itemImgView.image = [UIImage imageNamed:imageArray[i]];
         [useBtn addSubview:itemImgView];
         
-        UILabel  *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (btnWidth-60)/3*2+40, btnWidth, 20)];
+        UILabel  *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (btnHeight-60)/3*2+40, btnWidth, 20)];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.numberOfLines = 2;
         titleLabel.font = [UIFont systemFontOfSize:16];
@@ -113,13 +113,13 @@
         [useBtn addTarget:self action:@selector(moduleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_tableHeadView addSubview:useBtn];
         
-        UILabel *lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(xx+btnWidth, yy, 1, btnWidth)];
+        UILabel *lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(xx+btnWidth, yy, 1, btnHeight)];
         lineLabel.backgroundColor = kAPPTableViewLineColor;
         [_tableHeadView addSubview:lineLabel];
         
         }
     
-    UILabel *bottomLineLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, btnWidth+AD_Height, kScreen_Width, 1)];
+    UILabel *bottomLineLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, btnHeight+AD_Height, kScreen_Width, 1)];
     bottomLineLabel.backgroundColor = kAPPTableViewLineColor;
     [_tableHeadView addSubview:bottomLineLabel];
 }
@@ -430,7 +430,7 @@
 - (UITableView *)bpTableView
 {
     if (!_bpTableView) {
-        _bpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT) style:UITableViewStyleGrouped];
+        _bpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-TAB_HEIGHT) style:UITableViewStyleGrouped];
         _bpTableView.delegate = self;
         _bpTableView.dataSource = self;
         _bpTableView.backgroundColor = kAppBackgrondColor;
