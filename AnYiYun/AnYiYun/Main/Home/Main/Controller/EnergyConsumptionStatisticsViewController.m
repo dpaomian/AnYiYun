@@ -32,7 +32,11 @@
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
-    FilterCollectionView *collectionView = [FilterCollectionView shareFilter];
+    
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    FilterCollectionView *collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f) collectionViewLayout:flowLayout];
     collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT);
     collectionView.selectedIndex = 0;
     [collectionView iteminitialization];

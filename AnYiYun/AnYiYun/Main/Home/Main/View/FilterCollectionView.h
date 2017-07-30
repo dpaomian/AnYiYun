@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FilterCollectionCell.h"
+#import "SearchCollectionCell.h"
 #import "FilterCompanyModel.h"
 #import "BuildingModle.h"
 #import "SortModel.h"

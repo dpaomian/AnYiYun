@@ -19,10 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    
-    _foldSection = 0;
-    
+
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
     [self getAlarmInformationData];
@@ -51,8 +48,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return [_listMutableArray count];
-    return 10;
+    return [_listMutableArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -61,6 +57,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YYAlarmCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYAlarmCell" forIndexPath:indexPath];
+    FireAlarmInformationModel *modelItem = _listMutableArray[indexPath.row];
+    cell.titleLab.text = modelItem.title;
+    cell.contentLab.text = modelItem.content;
+    cell.timeLab.text = modelItem.time;
+    if ([modelItem.state boolValue]) {
+        [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal] ;
+        [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
+    } else {
+        [cell.dealBtn setTitle:@" 未处理" forState:UIControlStateNormal];
+        [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
+    }
     cell.btnClickedHandle = ^(YYAlarmCell *yyCell, YYAlarmCellButtonType clickedType){
         switch (clickedType) {
             case YYAlarmCellButtonTypeDeal:

@@ -10,8 +10,6 @@
 
 @interface FireAlarmInformationViewController ()
 
-@property (nonatomic, assign) NSInteger   foldSection;
-
 @end
 
 @implementation FireAlarmInformationViewController
@@ -19,9 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    
-    _foldSection = 0;
     
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
@@ -73,7 +68,7 @@
     cell.contentLab.text = modelItem.content;
     cell.timeLab.text = modelItem.time;
     if ([modelItem.state boolValue]) {
-        [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal];
+        [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal] ;
         [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
     } else {
         [cell.dealBtn setTitle:@" 未处理" forState:UIControlStateNormal];

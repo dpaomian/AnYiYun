@@ -230,6 +230,7 @@
         self.dataSource = self;
         self.delegate = self;
         [self registerNib:[UINib nibWithNibName:NSStringFromClass([FilterCollectionCell class]) bundle:nil]  forCellWithReuseIdentifier:@"FilterCollectionCell"];
+        [self registerNib:[UINib nibWithNibName:NSStringFromClass([SearchCollectionCell class]) bundle:nil]  forCellWithReuseIdentifier:@"SearchCollectionCell"];
     }
     return self;
     
@@ -392,7 +393,7 @@
             cell.cornerImageView.hidden = NO;
             BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
-        } else  if (indexPath.row >= screenItemCount && indexPath.row < screenItemCount+sortItemCount) {
+        } else if (indexPath.row >= screenItemCount && indexPath.row < screenItemCount+sortItemCount) {
             cell.cornerImageView.hidden = YES;
             SortModel *sortModel = _sortMutableArray[indexPath.row-screenItemCount];
             cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
@@ -415,12 +416,25 @@
         }
     } else if (_selectedIndex == 4) {
         /*搜索*/
-        if (indexPath.row == 5) {
+        if (indexPath.row < 4) {
+            cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
+            NSDictionary *titleItemDictionary = [NSDictionary dictionaryWithDictionary:_screenMutableArray[indexPath.row]];
+            cell.titleLable.text = titleItemDictionary[@"name"];
+            cell.titleLable.textAlignment = NSTextAlignmentCenter;
+            cell.leadingConstraints.constant = 0;
+            cell.cornerImageView.hidden = NO;
+            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+            cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
+        } else if (indexPath.row == 5) {
             cell.cornerImageView.hidden = YES;
             cell.contentView.backgroundColor = UIColorFromRGBA(0x000000, 0.4f);
         } else {
             cell.cornerImageView.hidden = NO;
             cell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
+            SearchCollectionCell *searchCell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"SearchCollectionCell" forIndexPath:indexPath];
+            searchCell.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
+            searchCell.layer.borderWidth = 0.5f;
+            return searchCell;
         }
     }
     return cell;
@@ -476,9 +490,9 @@
         if (indexPath.row <4) {
             return CGSizeMake(SCREEN_WIDTH/4, 36.0f);
         } else if (indexPath.row == 5)  {
-            return CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT -NAV_HEIGHT - 44.0f  - 88.0f);
+            return CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT -NAV_HEIGHT - 44.0f  - 130.0f);
         } else {
-            return CGSizeMake(SCREEN_WIDTH, 36.0f);
+            return CGSizeMake(SCREEN_WIDTH, 130.0f);
         }
     }else {
         return CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT -NAV_HEIGHT - 44.0f);

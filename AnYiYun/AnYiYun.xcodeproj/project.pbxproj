@@ -141,6 +141,8 @@
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
+		A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */; };
+		A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */; };
 		A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2C51F283C26006F3DB4 /* AllApplicationCollectionViewCell.m */; };
 		A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2C61F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib */; };
 		A84FA2CC1F283FB4006F3DB4 /* AllApplicationReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2CA1F283FB4006F3DB4 /* AllApplicationReusableView.m */; };
@@ -427,6 +429,9 @@
 		A821B1231F26E66D008B6678 /* BuildingModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingModle.m; sourceTree = "<group>"; };
 		A821B1251F26E676008B6678 /* SortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortModel.h; sourceTree = "<group>"; };
 		A821B1261F26E676008B6678 /* SortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortModel.m; sourceTree = "<group>"; };
+		A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionCell.h; sourceTree = "<group>"; };
+		A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionCell.m; sourceTree = "<group>"; };
+		A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
 		A84FA2C41F283C26006F3DB4 /* AllApplicationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllApplicationCollectionViewCell.h; sourceTree = "<group>"; };
 		A84FA2C51F283C26006F3DB4 /* AllApplicationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllApplicationCollectionViewCell.m; sourceTree = "<group>"; };
 		A84FA2C61F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllApplicationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -746,6 +751,9 @@
 				A81B124D1F2AC48D001DD06B /* FilterCollectionCell.h */,
 				A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */,
 				A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */,
+				A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */,
+				A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */,
+				A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */,
 				A81B12501F2AC48D001DD06B /* FilterCollectionView.h */,
 				A81B12511F2AC48D001DD06B /* FilterCollectionView.m */,
 				909E1A901F279086008EECAF /* HomeAdverCell.h */,
@@ -1247,22 +1255,22 @@
 			children = (
 				A8FD789B1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.h */,
 				A8FD789C1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m */,
-				A8FD787D1F2C396800523E46 /* FireAlarmInformationViewController.h */,
-				A8FD787E1F2C396800523E46 /* FireAlarmInformationViewController.m */,
-				A8FD787F1F2C396800523E46 /* FireAlarmInformationViewController.xib */,
-				A8FD78801F2C396800523E46 /* FireEquipmentAccountViewController.h */,
-				A8FD78811F2C396800523E46 /* FireEquipmentAccountViewController.m */,
-				A8FD78821F2C396800523E46 /* FireEquipmentAccountViewController.xib */,
+				A8FD788D1F2C396800523E46 /* FireSafetyMonitoringRootViewController.h */,
+				A8FD788E1F2C396800523E46 /* FireSafetyMonitoringRootViewController.m */,
 				A8FD78831F2C396800523E46 /* FireEquipmentManagementRootViewController.h */,
 				A8FD78841F2C396800523E46 /* FireEquipmentManagementRootViewController.m */,
-				A8FD78851F2C396800523E46 /* FireMaintenanceRemindersViewController.h */,
-				A8FD78861F2C396800523E46 /* FireMaintenanceRemindersViewController.m */,
-				A8FD78871F2C396800523E46 /* FireMaintenanceRemindersViewController.xib */,
 				A8FD788A1F2C396800523E46 /* FireRealtimeMonitoringViewController.h */,
 				A8FD788B1F2C396800523E46 /* FireRealtimeMonitoringViewController.m */,
 				A8FD788C1F2C396800523E46 /* FireRealtimeMonitoringViewController.xib */,
-				A8FD788D1F2C396800523E46 /* FireSafetyMonitoringRootViewController.h */,
-				A8FD788E1F2C396800523E46 /* FireSafetyMonitoringRootViewController.m */,
+				A8FD787D1F2C396800523E46 /* FireAlarmInformationViewController.h */,
+				A8FD787E1F2C396800523E46 /* FireAlarmInformationViewController.m */,
+				A8FD787F1F2C396800523E46 /* FireAlarmInformationViewController.xib */,
+				A8FD78851F2C396800523E46 /* FireMaintenanceRemindersViewController.h */,
+				A8FD78861F2C396800523E46 /* FireMaintenanceRemindersViewController.m */,
+				A8FD78871F2C396800523E46 /* FireMaintenanceRemindersViewController.xib */,
+				A8FD78801F2C396800523E46 /* FireEquipmentAccountViewController.h */,
+				A8FD78811F2C396800523E46 /* FireEquipmentAccountViewController.m */,
+				A8FD78821F2C396800523E46 /* FireEquipmentAccountViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1343,6 +1351,7 @@
 				3B02DF491F2AE82400282116 /* main_more@2x.png in Resources */,
 				A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */,
 				905D5C9D1F28DF6800DF4DF9 /* main_test@2x.png in Resources */,
+				A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */,
 				A81B12431F2AC446001DD06B /* EquipmentAccountViewController.xib in Resources */,
 				A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */,
 				901788081F2620D200CFED87 /* YYCalendarCollectionViewCell.xib in Resources */,
@@ -1513,6 +1522,7 @@
 				A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */,
 				90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */,
 				A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */,
+				A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */,
 				A8DA96701F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m in Sources */,
 				A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */,
 				A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */,

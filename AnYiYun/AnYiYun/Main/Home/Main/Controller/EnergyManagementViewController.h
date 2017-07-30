@@ -25,7 +25,6 @@
 @property (nonatomic, strong) LoadDetectionViewController *loadDetectionVC;
 /*!能耗统计*/
 @property (nonatomic, strong) EnergyConsumptionStatisticsViewController *energyConsumptionStatisticsVC;
-/*!被选中的选项*/
-@property (nonatomic, assign) NSInteger   selectedInedex;
+
 
 @end
