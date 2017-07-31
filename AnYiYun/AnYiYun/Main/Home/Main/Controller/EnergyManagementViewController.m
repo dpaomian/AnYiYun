@@ -19,7 +19,7 @@
     
     self.title = @"能源管理";
     
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     /*UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
     view.backgroundColor = [UIColor yellowColor];
@@ -57,17 +57,20 @@
     UISwipeGestureRecognizer *recognizer;
     recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    [[self view] addGestureRecognizer:recognizer];
+    [self.view addGestureRecognizer:recognizer];
     
     recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-    [[self view] addGestureRecognizer:recognizer];
+    [self.view addGestureRecognizer:recognizer];
 }
 
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
     if(recognizer.direction==UISwipeGestureRecognizerDirectionLeft) {
-        _stateView.selectedIndex = 0;
-//        [self replaceController:self.currentViewController newController:self.loadDetectionVC];
+        if (_stateView.selectedIndex == 1) {
+            return;
+        }
+        _stateView.selectedIndex = 1;
+        [self replaceController:self.currentViewController newController:self.energyConsumptionStatisticsVC];
         /*_loadDetectionVC.view.frame = CGRectMake(320, 0, 320, 480);
         [UIView beginAnimations:@"animationID"context:nil];
         [UIView setAnimationDuration:0.3f];
@@ -76,7 +79,10 @@
         self.view.frame = CGRectMake(0, 0, 320, 480);
         [UIView commitAnimations];*/
     } else {
-        _stateView.selectedIndex = 1;
+        if (_stateView.selectedIndex == 0) {
+            return;
+        }
+        _stateView.selectedIndex = 0;
         /*self.view.frame = CGRectMake(-320, 0, 320, 480);
         [UIView beginAnimations:@"animationID"context:nil];
         [UIView setAnimationDuration:0.3f];
@@ -84,7 +90,7 @@
         [UIView setAnimationRepeatAutoreverses:NO];
         self.view.frame = CGRectMake(0, 0, 320, 480);
         [UIView commitAnimations];*/
-//        [self replaceController:self.currentViewController newController:self.energyConsumptionStatisticsVC];
+        [self replaceController:self.currentViewController newController:self.loadDetectionVC];
     }
 }
 

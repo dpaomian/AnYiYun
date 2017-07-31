@@ -45,6 +45,30 @@
     [self addChildViewController:_currentViewController];
     [self.view addSubview:_currentViewController.view];
     
+    UISwipeGestureRecognizer *recognizer;
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:recognizer];
+    
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [self.view addGestureRecognizer:recognizer];
+}
+
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+    if(recognizer.direction==UISwipeGestureRecognizerDirectionLeft) {
+        if (_topStateView.selectedIndex == 1) {
+            return;
+        }
+        _topStateView.selectedIndex = 1;
+        [self replaceController:self.currentViewController newController:self.accountVC];
+    } else {
+        if (_topStateView.selectedIndex == 0) {
+            return;
+        }
+        _topStateView.selectedIndex = 0;
+        [self replaceController:self.currentViewController newController:self.reminderVC];
+    }
 }
 
 /*切换各个标签内容*/

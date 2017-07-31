@@ -49,6 +49,11 @@
     [_collectionView reloadData];
 }
 
+- (void)setSelectedIndex:(NSInteger)selectedIndex {
+    _selectedIndex = selectedIndex;
+    [_collectionView reloadData];
+}
+
 #pragma mark -
 #pragma mark UICollectionViewDataSource -
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
