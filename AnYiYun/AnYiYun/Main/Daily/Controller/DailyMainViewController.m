@@ -92,6 +92,8 @@
     NSArray *segmentedArray = [NSArray arrayWithObjects:@"日",@"月",nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
     segmentedControl.layer.cornerRadius = 4.0f;
+    segmentedControl.layer.borderColor = UIColorFromRGB(0xFFFFFF).CGColor;
+    segmentedControl.layer.borderWidth = 1.22f;
     segmentedControl.clipsToBounds = YES;
     segmentedControl.backgroundColor = [UIColor blackColor];
     segmentedControl.frame = CGRectMake(0, 0, 60, 30);

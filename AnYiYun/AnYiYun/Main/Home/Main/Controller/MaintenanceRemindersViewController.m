@@ -135,12 +135,50 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    __weak MaintenanceRemindersViewController *ws =self;
     MaintenanceRemindersCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MaintenanceRemindersCell" forIndexPath:indexPath];
     RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
     FireMaintenanceRemindersModel *modelItem = model.itemsMutableArray[indexPath.row];
     cell.nameLab.text = modelItem.title;
     cell.contentLab.text = modelItem.content;
     cell.timeLab.text = modelItem.time;
+    [cell.stateButton buttonClickedHandle:^(UIButton *sender) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您确认要选择\"已处理\"么？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugP",BASE_PLAN_URL];
+            NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                                    @"bugId":modelItem.idF,
+                                    @"type":@"1"};
+            
+            [MBProgressHUD showMessage:@"提交中..."];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            [manager GET:urlString
+              parameters:param
+                progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    [MBProgressHUD hideHUD];
+                    BOOL dealState = (BOOL)responseObject;
+                    if (dealState==NO){
+                        [BaseHelper waringInfo:@"提交失败"];
+                    } else {
+                        [MBProgressHUD showSuccess:@"报修成功"];
+                    }
+                    [ws getRealtimeMonitoringData];
+                }
+                 failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                     NSLog(@"%@",error.localizedDescription);
+                     [MBProgressHUD hideHUD];
+                     [MBProgressHUD showError:@"报修失败"];
+                 }];
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        [ws presentViewController:alertController animated:YES completion:nil];
+    }];
     return cell;
     
 }
