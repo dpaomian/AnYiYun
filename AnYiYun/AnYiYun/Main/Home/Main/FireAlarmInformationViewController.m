@@ -85,7 +85,7 @@
                     
                 }];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugS",BASE_PLAN_URL];
+                    NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugP",BASE_PLAN_URL];
                     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                                             @"bugId":modelItem.idF,
                                             @"type":@"1"};
