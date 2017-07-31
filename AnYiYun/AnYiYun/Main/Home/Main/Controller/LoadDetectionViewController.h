@@ -12,6 +12,7 @@
 #import "FilterCollectionView.h"
 #import "LoadDetectionModel.h"
 #import "RealtimeMonitoringListModel.h"
+#import "DoubleGraphModel.h"
 
 /*!负荷监测*/
 @interface LoadDetectionViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
@@ -20,6 +21,10 @@
 @property (nonatomic, strong) UITableView *tableView;
 /*!*/
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
+/*!*/
+@property (nonatomic, strong) NSMutableArray   *curveMutableArray1;
+/*!*/
+@property (nonatomic, strong) NSMutableArray   *curveMutableArray2;
 /*!*/
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
 

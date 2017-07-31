@@ -22,6 +22,6 @@
 @property (nonatomic, copy) NSString *pointState;
 @property (nonatomic, copy) NSString *sort;
 @property (nonatomic, copy) NSString *state;
-@property (nonatomic, copy) NSString *unit ;
+@property (nonatomic, copy) NSString *unit;
 
 @end

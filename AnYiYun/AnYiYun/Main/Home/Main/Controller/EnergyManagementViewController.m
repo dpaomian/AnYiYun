@@ -52,6 +52,40 @@
     _currentViewController = _loadDetectionVC;
     [self addChildViewController:_currentViewController];
     [self.view addSubview:_currentViewController.view];
+    
+    
+    UISwipeGestureRecognizer *recognizer;
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [[self view] addGestureRecognizer:recognizer];
+    
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [[self view] addGestureRecognizer:recognizer];
+}
+
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+    if(recognizer.direction==UISwipeGestureRecognizerDirectionLeft) {
+        _stateView.selectedIndex = 0;
+//        [self replaceController:self.currentViewController newController:self.loadDetectionVC];
+        /*_loadDetectionVC.view.frame = CGRectMake(320, 0, 320, 480);
+        [UIView beginAnimations:@"animationID"context:nil];
+        [UIView setAnimationDuration:0.3f];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationRepeatAutoreverses:NO];
+        self.view.frame = CGRectMake(0, 0, 320, 480);
+        [UIView commitAnimations];*/
+    } else {
+        _stateView.selectedIndex = 1;
+        /*self.view.frame = CGRectMake(-320, 0, 320, 480);
+        [UIView beginAnimations:@"animationID"context:nil];
+        [UIView setAnimationDuration:0.3f];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationRepeatAutoreverses:NO];
+        self.view.frame = CGRectMake(0, 0, 320, 480);
+        [UIView commitAnimations];*/
+//        [self replaceController:self.currentViewController newController:self.energyConsumptionStatisticsVC];
+    }
 }
 
 /*切换各个标签内容*/

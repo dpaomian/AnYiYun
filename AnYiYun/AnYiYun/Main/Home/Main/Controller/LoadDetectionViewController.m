@@ -29,6 +29,8 @@
     _conditionDic = [NSMutableDictionary dictionary];
     _listMutableArray = [NSMutableArray array];
     _constraintsMutableArray = [NSMutableArray array];
+    _curveMutableArray1 = [NSMutableArray array];
+    _curveMutableArray2 = [NSMutableArray array];
     
     [self getLoadDetectionData];
     
@@ -187,6 +189,7 @@
             itemModel.terminal_type = obj[@"terminal_type"];
             [childItemsMutablearray addObject:itemModel];
         }];
+        [ws loadCurveWithModel:itemModel andSection:section];
         itemModel.itemsMutableArray =childItemsMutablearray;
         [ws.listMutableArray replaceObjectAtIndex:section withObject:itemModel];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
@@ -194,6 +197,38 @@
         itemModel.itemsMutableArray = [@[] mutableCopy];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
         [MBProgressHUD showError:@"请求失败"];
+    } progress:nil];
+}
+
+- (void)loadCurveWithModel:(LoadDetectionModel *)itemModel andSection:(NSInteger)section {
+    __weak LoadDetectionViewController *ws = self;
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":itemModel.idF,@"type":@"103"};
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+        [ws.curveMutableArray1 removeAllObjects];
+        [ws.curveMutableArray2 removeAllObjects];
+        NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
+        [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSArray * value1Array = [NSArray arrayWithArray:obj];
+            NSInteger myIdex = idx;
+            [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                DoubleGraphModel *itemModel = [[DoubleGraphModel alloc] init];
+                itemModel.idf = obj[@"id"];
+                itemModel.name = obj[@"name"];
+                itemModel.sid = obj[@"sid"];
+                itemModel.time = obj[@"time"];
+                itemModel.timeLong = obj[@"timeLong"];
+                itemModel.value = obj[@"value"];
+                if (myIdex==0) {
+                    [ws.curveMutableArray1 addObject:itemModel];
+                } else {
+                    [ws.curveMutableArray2 addObject:itemModel];
+                }
+            }];
+        }];
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD showError:@"获取曲线失败"];
     } progress:nil];
 }
 
@@ -241,6 +276,7 @@
             ws.foldSection = section;
             model.isFold = YES;
             [ws loadItemWithModel:model andSection:section];
+//            [ws loadCurveWithModel:model andSection:section];
         } else {
             model.isFold = NO;
             model.itemsMutableArray = [@[] mutableCopy];
