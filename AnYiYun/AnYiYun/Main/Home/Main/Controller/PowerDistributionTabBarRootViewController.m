@@ -9,8 +9,11 @@
 #import "PowerDistributionTabBarRootViewController.h"
 #import "SafetyMonitoringRootViewController.h"
 #import "EquipmentManagementRootViewController.h"
+#import "PopViewController.h"
 
 @interface PowerDistributionTabBarRootViewController ()
+
+@property (nonatomic, strong) BaseNavigationViewController *popNavVC;
 
 @end
 
@@ -20,9 +23,29 @@
     [super viewDidLoad];
     
     self.title = @"供配电";
+    
+    self.tabBar.backgroundColor = UIColorFromRGB(0xFFFFFF);
+    
+    [self setRightBarItem];
+    
+    PopViewController *popVC = [[PopViewController alloc] initWithNibName:NSStringFromClass([PopViewController class]) bundle:nil];
+    _popNavVC = [[BaseNavigationViewController alloc] initWithRootViewController:popVC];
+    _popNavVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    _popNavVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
     [self addChildVC:[[SafetyMonitoringRootViewController alloc] init] title:@"实时监测" image:@"bottom_btn_1" selectedImage:@"ic_tab_home_blue"];
     [self addChildVC:[[EquipmentManagementRootViewController alloc] init] title:@"设备管理" image:@"bottom_btn_2" selectedImage:@"ic_tab_me_blue"];
+}
+
+-(void)setRightBarItem
+{
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"right_more.png" hightImageName:@"right_more.png" target:self action:@selector(rightBarButtonAction)];
+}
+
+//点击弹出框
+-(void)rightBarButtonAction
+{
+    [self.tabBarController presentViewController:_popNavVC animated:NO completion:nil];
 }
 
 /**

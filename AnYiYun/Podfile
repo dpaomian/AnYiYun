@@ -11,7 +11,7 @@ def pods
     pod 'TMCache'
     pod 'FMDB'
     pod 'BaiduMapKit'
-    
+    pod 'IQKeyboardManager'
 end
 
 target 'AnYiYun' do

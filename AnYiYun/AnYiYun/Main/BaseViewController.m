@@ -7,8 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "PopViewController.h"
 
 @interface BaseViewController ()
+
+@property (nonatomic, strong) BaseNavigationViewController *popNavVC;
 
 @end
 
@@ -18,24 +21,30 @@
 {
     [super viewDidLoad];
     
+    [self setRightBarItem];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    PopViewController *popVC = [[PopViewController alloc] initWithNibName:NSStringFromClass([PopViewController class]) bundle:nil];
+    _popNavVC = [[BaseNavigationViewController alloc] initWithRootViewController:popVC];
+    _popNavVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    _popNavVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 -(void)setRightBarItem
 {
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"main_more" hightImageName:@"main_more" target:self action:@selector(rightBarButtonAction)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"right_more.png" hightImageName:@"right_more.png" target:self action:@selector(rightBarButtonAction)];
 }
 
 //点击弹出框
 -(void)rightBarButtonAction
 {
-    
+    [self.tabBarController presentViewController:_popNavVC animated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

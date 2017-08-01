@@ -9,8 +9,11 @@
 #import "ElectricalFireTabBarRootViewController.h"
 #import "FireSafetyMonitoringRootViewController.h"
 #import "FireEquipmentManagementRootViewController.h"
+#import "PopViewController.h"
 
 @interface ElectricalFireTabBarRootViewController ()
+
+@property (nonatomic, strong) BaseNavigationViewController *popNavVC;
 
 @end
 
@@ -21,8 +24,28 @@
     
     self.title = @"电气火灾";
     
+    self.tabBar.backgroundColor = UIColorFromRGB(0xFFFFFF);
+    
+    [self setRightBarItem];
+    
+    PopViewController *popVC = [[PopViewController alloc] initWithNibName:NSStringFromClass([PopViewController class]) bundle:nil];
+    _popNavVC = [[BaseNavigationViewController alloc] initWithRootViewController:popVC];
+    _popNavVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    _popNavVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
     [self addChildVC:[[FireSafetyMonitoringRootViewController alloc] init] title:@"实时监测" image:@"bottom_btn_1" selectedImage:@"ic_tab_home_blue"];
     [self addChildVC:[[FireEquipmentManagementRootViewController alloc] init] title:@"设备管理" image:@"bottom_btn_2" selectedImage:@"ic_tab_me_blue"];
+}
+
+-(void)setRightBarItem
+{
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"right_more.png" hightImageName:@"right_more.png" target:self action:@selector(rightBarButtonAction)];
+}
+
+//点击弹出框
+-(void)rightBarButtonAction
+{
+    [self.tabBarController presentViewController:_popNavVC animated:NO completion:nil];
 }
 
 /**

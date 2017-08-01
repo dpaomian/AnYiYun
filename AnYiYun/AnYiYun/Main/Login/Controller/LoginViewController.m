@@ -23,6 +23,8 @@
 {
     [super viewDidLoad];
  
+    self.view.backgroundColor = UIColorFromRGB(0xFFFFFF);
+    
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.frame = CGRectMake((SCREEN_WIDTH-150)/2, 50, 50, 50);
     imageView.image = [UIImage imageNamed:@""];
