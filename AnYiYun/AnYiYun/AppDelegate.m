@@ -45,11 +45,18 @@
     
     [BaseLaunchConfig launchingFlowConfig];
     
-    /**
-    [self.window addSubview:self.defultView];
+    
+        //非首次启动APP（加载启动页面）
+    BOOL isFirstApp = [BaseCacheHelper getBOOLValueForKey:kFirstApp];
+    if (isFirstApp)
+        {
+        
+    [kWindow.rootViewController.view addSubview:self.defultView];
+    [kWindow.rootViewController.view bringSubviewToFront:self.defultView];
+        
     myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showLaunchViewTimer) userInfo:nil repeats:YES];
     [myTimer fire];
-     */
+    }
     
     /*初始化筛选框*/
 //    [FilterCollectionView shareFilter];
@@ -61,7 +68,7 @@
 {
     showTimeLong++;
     
-    if (showTimeLong==5)
+    if (showTimeLong==6)
         {
         [_defultView removeFromSuperview];
         _defultView = nil;
