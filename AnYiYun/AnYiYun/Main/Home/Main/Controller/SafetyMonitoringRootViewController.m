@@ -62,12 +62,30 @@
         }
         _topStateView.selectedIndex = 1;
         [self replaceController:self.currentViewController newController:self.informationVC];
+        _realtimeVC.view.frame = CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _informationVC.view.frame = CGRectMake(SCREEN_WIDTH,44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        [UIView beginAnimations:@"animationID"context:nil];
+        [UIView setAnimationDuration:0.3f];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationRepeatAutoreverses:NO];
+        _realtimeVC.view.frame = CGRectMake(-SCREEN_WIDTH, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _informationVC.view.frame = CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        [UIView commitAnimations];
     } else {
         if (_topStateView.selectedIndex == 0) {
             return;
         }
         _topStateView.selectedIndex = 0;
         [self replaceController:self.currentViewController newController:self.realtimeVC];
+        _realtimeVC.view.frame = CGRectMake(-SCREEN_WIDTH, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _informationVC.view.frame = CGRectMake(0,44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        [UIView beginAnimations:@"animationID"context:nil];
+        [UIView setAnimationDuration:0.3f];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationRepeatAutoreverses:NO];
+        _realtimeVC.view.frame = CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _informationVC.view.frame = CGRectMake(SCREEN_WIDTH, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        [UIView commitAnimations];
     }
 }
 

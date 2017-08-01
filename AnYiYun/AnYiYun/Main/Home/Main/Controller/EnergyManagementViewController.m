@@ -71,26 +71,30 @@
         }
         _stateView.selectedIndex = 1;
         [self replaceController:self.currentViewController newController:self.energyConsumptionStatisticsVC];
-        /*_loadDetectionVC.view.frame = CGRectMake(320, 0, 320, 480);
+        _loadDetectionVC.view.frame = CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _energyConsumptionStatisticsVC.view.frame = CGRectMake(SCREEN_WIDTH,44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
         [UIView beginAnimations:@"animationID"context:nil];
         [UIView setAnimationDuration:0.3f];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationRepeatAutoreverses:NO];
-        self.view.frame = CGRectMake(0, 0, 320, 480);
-        [UIView commitAnimations];*/
+        _loadDetectionVC.view.frame = CGRectMake(-SCREEN_WIDTH, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _energyConsumptionStatisticsVC.view.frame = CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        [UIView commitAnimations];
     } else {
         if (_stateView.selectedIndex == 0) {
             return;
         }
         _stateView.selectedIndex = 0;
-        /*self.view.frame = CGRectMake(-320, 0, 320, 480);
+        [self replaceController:self.currentViewController newController:self.loadDetectionVC];
+        _loadDetectionVC.view.frame = CGRectMake(-SCREEN_WIDTH, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _energyConsumptionStatisticsVC.view.frame = CGRectMake(0,44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
         [UIView beginAnimations:@"animationID"context:nil];
         [UIView setAnimationDuration:0.3f];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationRepeatAutoreverses:NO];
-        self.view.frame = CGRectMake(0, 0, 320, 480);
-        [UIView commitAnimations];*/
-        [self replaceController:self.currentViewController newController:self.loadDetectionVC];
+        _loadDetectionVC.view.frame = CGRectMake(0, 44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        _energyConsumptionStatisticsVC.view.frame = CGRectMake(SCREEN_WIDTH,44.0f, SCREEN_WIDTH, CGRectGetHeight(self.view.frame)-44.0f);
+        [UIView commitAnimations];
     }
 }
 

@@ -36,7 +36,15 @@
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         [ws.listMutableArray removeAllObjects];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
+            FireAlarmInformationModel *itemModel = [[FireAlarmInformationModel alloc] init];
+            itemModel.idF = obj[@"id"];
+            itemModel.content = obj[@"content"];
+            itemModel.ctime = obj[@"ctime"];
+            itemModel.deviceId = obj[@"deviceId"];
+            itemModel.state = obj[@"state"];
+            itemModel.time = obj[@"time"];
+            itemModel.title = obj[@"title"];
+            [ws.listMutableArray addObject:itemModel];
         }];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
