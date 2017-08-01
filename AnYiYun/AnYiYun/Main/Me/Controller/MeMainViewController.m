@@ -78,9 +78,9 @@
 #pragma mark - 切换账号后刷新视图
 - (void)getDataSource
 {
-        //咨询 & 消息
+        //咨讯 & 消息
     _sectionOneArray = @[@{@"icon":@"bottom_btn_2.png",
-                           @"title":@"咨询"},
+                           @"title":@"咨讯"},
                          @{@"icon":@"bottom_btn_2.png",
                            @"title":@"消息"}];
         //设置 & 分享
@@ -207,10 +207,10 @@
     
     if (textTitle.length>0)
     {
-        if ([textTitle isEqualToString:@"咨询"])
+        if ([textTitle isEqualToString:@"咨讯"])
             {
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-            vc.titleStr = @"咨询";
+            vc.titleStr = @"咨讯";
             vc.myUrl = @"http://101.201.108.246/index.html";
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];

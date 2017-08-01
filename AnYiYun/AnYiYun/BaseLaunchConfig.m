@@ -16,7 +16,7 @@
 + (void)launchingFlowConfig
 {
         //临时测试 需删除
-    [BaseCacheHelper setBOOLValue:YES forKey:kFirstApp];
+        //[BaseCacheHelper setBOOLValue:YES forKey:kFirstApp];
     
     
         //实时网络检测
@@ -69,7 +69,7 @@
         BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
         kWindow.rootViewController = navigation;
         
-            //首次登录,首次启动APP（启动页面）
+            //首次登录,首次启动APP（欢迎页面）
         BOOL isFirstApp = [BaseCacheHelper getBOOLValueForKey:kFirstApp];
         if (!isFirstApp) {
             FirstLaunchView *launchV = [[FirstLaunchView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height) delegate:self];

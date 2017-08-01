@@ -10,6 +10,7 @@
 
 @interface HomeMessageCell ()
 {
+    UILabel         *tapLabel;
     UILabel         *titleLabel;
     UILabel         *descLabel;
 }
@@ -22,7 +23,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
         {
-        UILabel *tapLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 10, 60, 20)];
+        tapLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 10, 60, 20)];
         tapLabel.backgroundColor = kAppTitleRedColor;
         tapLabel.layer.masksToBounds=YES;
         tapLabel.layer.cornerRadius = 4;
@@ -47,7 +48,7 @@
         descLabel.textColor = kAPPBlueColor;
         descLabel.backgroundColor = [UIColor clearColor];
         descLabel.font = [UIFont systemFontOfSize:10];
-        descLabel.text = @"立即查看";
+        
         [self.contentView addSubview:descLabel];
         
         }
@@ -56,13 +57,18 @@
 
 -(void)setCellContentWithType:(NSString *)type withDay:(NSString *)day
 {
-    descLabel.hidden = NO;
-    titleLabel.text = @"您有新消息了";
     if ([type isEqualToString:@"2"])
         {
-        descLabel.hidden = YES;
-        titleLabel.text = [NSString stringWithFormat:@"您已安全运行%@天",day];
+        titleLabel.text = @"安易云已为您服务";
+        tapLabel.backgroundColor = [UIColor greenColor];
+        descLabel.text = day;
     }
+    else
+        {
+        titleLabel.text = @"您有新消息了";
+        tapLabel.backgroundColor = kAppTitleRedColor;
+        descLabel.text = @"立即查看";
+        }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

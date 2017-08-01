@@ -27,7 +27,7 @@
     
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.frame = CGRectMake((SCREEN_WIDTH-150)/2, 50, 50, 50);
-    imageView.image = [UIImage imageNamed:@""];
+    imageView.image = [UIImage imageNamed:@"icon_logo_blue.png"];
     [self.view addSubview:imageView];
     
     UILabel *titleLabel = [[UILabel alloc]init];
