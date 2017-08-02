@@ -49,8 +49,7 @@
         //非首次启动APP（加载启动页面）
     BOOL isFirstApp = [BaseCacheHelper getBOOLValueForKey:kFirstApp];
     if (isFirstApp)
-        {
-        
+    {
     [kWindow.rootViewController.view addSubview:self.defultView];
     [kWindow.rootViewController.view bringSubviewToFront:self.defultView];
         

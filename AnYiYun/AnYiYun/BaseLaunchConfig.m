@@ -16,7 +16,7 @@
 + (void)launchingFlowConfig
 {
         //临时测试 需删除
-        //[BaseCacheHelper setBOOLValue:YES forKey:kFirstApp];
+    [BaseCacheHelper setBOOLValue:YES forKey:kFirstApp];
     
     
         //实时网络检测

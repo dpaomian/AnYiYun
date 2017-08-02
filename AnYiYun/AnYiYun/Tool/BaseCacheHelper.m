@@ -12,6 +12,7 @@
 
 + (void)releaseAllCache
 {
+    [PersonInfo shareInstance].loginSuccess = NO;
     [PersonInfo shareInstance].password = @"";
     
     [BaseCacheHelper setPersonInfo];
