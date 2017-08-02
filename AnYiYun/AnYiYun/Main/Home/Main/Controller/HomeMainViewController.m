@@ -71,7 +71,7 @@
         fireVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:fireVC animated:YES];
     } else {
-        BusinessItemViewController *allApplicationVC = [[BusinessItemViewController alloc]init];
+        FirePowerSupplyTabBarRootViewController *allApplicationVC = [[FirePowerSupplyTabBarRootViewController alloc]init];
         allApplicationVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:allApplicationVC animated:YES];
     }
@@ -83,8 +83,8 @@
 {
     [self.view addSubview:self.bpTableView];
     
-    NSArray *imageArray = @[@"home_icon_n.png",@"home_icon_g.png",@"home_icon_d.png"];
-    NSArray *titleArray = @[@"能源管理",@"供配电",@"电气火灾"];
+    NSArray *imageArray = @[@"home_icon_n.png",@"home_icon_g.png",@"home_icon_d.png",@"all_icon_5.png"];
+    NSArray *titleArray = @[@"能源管理",@"供配电",@"电气火灾",@"消防电源"];
     
     CGFloat btnWidth = (kScreen_Width-3*1)/titleArray.count;
     CGFloat btnHeight = (kScreen_Width-3*1)/4;

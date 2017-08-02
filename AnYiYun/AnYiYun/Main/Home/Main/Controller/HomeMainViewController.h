@@ -11,6 +11,7 @@
 #import "BusinessItemViewController.h"
 #import "PowerDistributionTabBarRootViewController.h"
 #import "ElectricalFireTabBarRootViewController.h"
+#import "FirePowerSupplyTabBarRootViewController.h"/*消防电源*/
 
 /**
  首页

@@ -153,6 +153,17 @@
 		A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */; };
 		A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */; };
 		A86E1DBC1F2F31E8000CC2D0 /* DoubleGraphModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */; };
+		A87C534C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C533B1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m */; };
+		A87C534D1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87C533C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib */; };
+		A87C534E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C533E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m */; };
+		A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87C533F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib */; };
+		A87C53511F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53431F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.m */; };
+		A87C53521F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87C53441F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.xib */; };
+		A87C53531F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53461F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m */; };
+		A87C53541F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87C53471F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.xib */; };
+		A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53491F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m */; };
+		A87C53561F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C534B1F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m */; };
+		A87C535B1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C535A1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
 		A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */; };
 		A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */; };
@@ -459,6 +470,24 @@
 		A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYTabBarCollectionCell.xib; sourceTree = "<group>"; };
 		A86E1DBA1F2F31E8000CC2D0 /* DoubleGraphModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleGraphModel.h; sourceTree = "<group>"; };
 		A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleGraphModel.m; sourceTree = "<group>"; };
+		A87C533A1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyAlarmInformationViewController.h; sourceTree = "<group>"; };
+		A87C533B1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyAlarmInformationViewController.m; sourceTree = "<group>"; };
+		A87C533C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirePowerSupplyAlarmInformationViewController.xib; sourceTree = "<group>"; };
+		A87C533D1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyEquipmentAccountViewController.h; sourceTree = "<group>"; };
+		A87C533E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyEquipmentAccountViewController.m; sourceTree = "<group>"; };
+		A87C533F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirePowerSupplyEquipmentAccountViewController.xib; sourceTree = "<group>"; };
+		A87C53421F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyMaintenanceRemindersViewController.h; sourceTree = "<group>"; };
+		A87C53431F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyMaintenanceRemindersViewController.m; sourceTree = "<group>"; };
+		A87C53441F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirePowerSupplyMaintenanceRemindersViewController.xib; sourceTree = "<group>"; };
+		A87C53451F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyRealtimeMonitoringViewController.h; sourceTree = "<group>"; };
+		A87C53461F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyRealtimeMonitoringViewController.m; sourceTree = "<group>"; };
+		A87C53471F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirePowerSupplyRealtimeMonitoringViewController.xib; sourceTree = "<group>"; };
+		A87C53481F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplySafetyMonitoringRootViewController.h; sourceTree = "<group>"; };
+		A87C53491F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplySafetyMonitoringRootViewController.m; sourceTree = "<group>"; };
+		A87C534A1F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyTabBarRootViewController.h; sourceTree = "<group>"; };
+		A87C534B1F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyTabBarRootViewController.m; sourceTree = "<group>"; };
+		A87C535A1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyEquipmentManagementRootViewController.m; sourceTree = "<group>"; };
+		A87C535C1F317345008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyEquipmentManagementRootViewController.h; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		A8A14BBE1F2DE0C9008745F1 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
@@ -700,6 +729,7 @@
 		901A08201F20E3AA009488C1 /* Main_业务模块 */ = {
 			isa = PBXGroup;
 			children = (
+				A87C53361F316CC5008DE42B /* FirePowerSupply */,
 				A81B12621F2AD8DC001DD06B /* ElectricalFire */,
 				901A08241F20E3AA009488C1 /* Model */,
 				901A08251F20E3AA009488C1 /* View */,
@@ -1275,6 +1305,55 @@
 			name = ElectricalFire;
 			sourceTree = "<group>";
 		};
+		A87C53361F316CC5008DE42B /* FirePowerSupply */ = {
+			isa = PBXGroup;
+			children = (
+				A87C53391F316CDA008DE42B /* Views */,
+				A87C53381F316CD2008DE42B /* Models */,
+				A87C53371F316CCA008DE42B /* Controllers */,
+			);
+			name = FirePowerSupply;
+			sourceTree = "<group>";
+		};
+		A87C53371F316CCA008DE42B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A87C534A1F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.h */,
+				A87C534B1F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m */,
+				A87C53481F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.h */,
+				A87C53491F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m */,
+				A87C535C1F317345008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.h */,
+				A87C535A1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m */,
+				A87C53451F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.h */,
+				A87C53461F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m */,
+				A87C53471F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.xib */,
+				A87C533A1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.h */,
+				A87C533B1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m */,
+				A87C533C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib */,
+				A87C53421F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.h */,
+				A87C53431F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.m */,
+				A87C53441F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.xib */,
+				A87C533D1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.h */,
+				A87C533E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m */,
+				A87C533F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A87C53381F316CD2008DE42B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A87C53391F316CDA008DE42B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		A8FD789E1F2C6BDD00523E46 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1406,7 +1485,10 @@
 				A81B123D1F2AC446001DD06B /* AlarmInformationViewController.xib in Resources */,
 				A81B121B1F2AC3EC001DD06B /* EquipmentAccountCell.xib in Resources */,
 				A810BF591F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib in Resources */,
+				A87C53521F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.xib in Resources */,
+				A87C53541F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.xib in Resources */,
 				A8E2A53A1F30DB4C000F5408 /* PopViewController.xib in Resources */,
+				A87C534D1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib in Resources */,
 				A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */,
 				A8DA967B1F2BBB3800F3032D /* MaintenanceRemindersCell.xib in Resources */,
 				A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */,
@@ -1415,6 +1497,7 @@
 				90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */,
 				A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
+				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
 				A8FD78921F2C396800523E46 /* FireEquipmentAccountViewController.xib in Resources */,
 				A8FD78901F2C396800523E46 /* FireAlarmInformationViewController.xib in Resources */,
@@ -1491,6 +1574,7 @@
 				A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */,
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
+				A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */,
 				9046D5DA1F2B886A004E3DCC /* DeviceInfoViewController.m in Sources */,
 				3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */,
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
@@ -1522,6 +1606,7 @@
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
 				90CF07871F1F3464008106D2 /* UIColor+Extension.m in Sources */,
 				905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */,
+				A87C535B1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m in Sources */,
 				A81B121A1F2AC3EC001DD06B /* EquipmentAccountCell.m in Sources */,
 				90CF078B1F1F3464008106D2 /* UITableView+Extension.m in Sources */,
 				A8DA96731F2BB1FD00F3032D /* SafetyMonitoringRootViewController.m in Sources */,
@@ -1537,6 +1622,7 @@
 				90CF074E1F1F313F008106D2 /* MeMainViewController.m in Sources */,
 				9046D5E61F2B8951004E3DCC /* RepairRecordsViewController.m in Sources */,
 				901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */,
+				A87C53561F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m in Sources */,
 				3B02DF411F2ADE0300282116 /* MessageModel.m in Sources */,
 				3B3FD7571F2C04F50089C1B0 /* DeviceInfoModel.m in Sources */,
 				3B02DF401F2ADE0300282116 /* MessageViewController.m in Sources */,
@@ -1551,6 +1637,7 @@
 				9046D5E91F2B8976004E3DCC /* DetectionRecordViewController.m in Sources */,
 				90CF078A1F1F3464008106D2 /* UITabBar+badge.m in Sources */,
 				A81B12421F2AC446001DD06B /* EquipmentAccountViewController.m in Sources */,
+				A87C53531F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m in Sources */,
 				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
 				A8DA967A1F2BBB3800F3032D /* MaintenanceRemindersCell.m in Sources */,
@@ -1576,6 +1663,7 @@
 				A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */,
 				A8FD789D1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m in Sources */,
 				3B3FD7631F2C117C0089C1B0 /* DeviceInfoCell.m in Sources */,
+				A87C53511F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.m in Sources */,
 				A8E2A53E1F30F139000F5408 /* HelpViewController.m in Sources */,
 				A8FD78931F2C396800523E46 /* FireEquipmentManagementRootViewController.m in Sources */,
 				90CF071D1F1F2BFC008106D2 /* main.m in Sources */,
@@ -1602,6 +1690,7 @@
 				90CF07881F1F3464008106D2 /* UIImage+Extension.m in Sources */,
 				901788251F2637BD00CFED87 /* ChangePwdViewController.m in Sources */,
 				3B02DF431F2ADE0300282116 /* HistoryMessageCell.m in Sources */,
+				A87C534E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
 				9046D5F21F2B89BF004E3DCC /* DeviceFileViewController.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
@@ -1616,6 +1705,7 @@
 				A81B12411F2AC446001DD06B /* EnergyManagementViewController.m in Sources */,
 				A8FD78911F2C396800523E46 /* FireEquipmentAccountViewController.m in Sources */,
 				A8FD78A21F2C6C0200523E46 /* FireMaintenanceRemindersModel.m in Sources */,
+				A87C534C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m in Sources */,
 				A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */,
 				3B02DF3E1F2ADE0300282116 /* HistoryDetailViewController.m in Sources */,
 				90EA5EA51F2DBDAE009DE784 /* DefultLaunchView.m in Sources */,
