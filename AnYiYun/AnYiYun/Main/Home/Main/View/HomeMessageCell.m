@@ -60,14 +60,16 @@
     if ([type isEqualToString:@"2"])
         {
         titleLabel.text = @"安易云已为您服务";
-        tapLabel.backgroundColor = [UIColor greenColor];
+        tapLabel.backgroundColor = RGB(74, 191, 131);
         descLabel.text = day;
+        descLabel.textColor = RGB(74, 191, 131);
     }
     else
         {
         titleLabel.text = @"您有新消息了";
         tapLabel.backgroundColor = kAppTitleRedColor;
         descLabel.text = @"立即查看";
+        descLabel.textColor = kAPPBlueColor;
         }
 }
 - (void)awakeFromNib {
