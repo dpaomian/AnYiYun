@@ -34,7 +34,7 @@
         [self.contentView addSubview:tapLabel];
 
         
-        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 45, SCREEN_WIDTH-60, 30)];
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 40, SCREEN_WIDTH-60, 30)];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.textColor = [UIColor blackColor];
         titleLabel.backgroundColor = [UIColor clearColor];
@@ -43,7 +43,7 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:titleLabel];
         
-        descLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 85, SCREEN_WIDTH-60, 20)];
+        descLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 75, SCREEN_WIDTH-60, 20)];
         descLabel.textAlignment = NSTextAlignmentCenter;
         descLabel.textColor = kAPPBlueColor;
         descLabel.backgroundColor = [UIColor clearColor];
@@ -61,6 +61,7 @@
         {
         titleLabel.text = @"安易云已为您服务";
         tapLabel.backgroundColor = RGB(74, 191, 131);
+        descLabel.font = [UIFont systemFontOfSize:14];
         descLabel.text = day;
         descLabel.textColor = RGB(74, 191, 131);
     }
@@ -68,6 +69,7 @@
         {
         titleLabel.text = @"您有新消息了";
         tapLabel.backgroundColor = kAppTitleRedColor;
+        descLabel.font = [UIFont systemFontOfSize:10];
         descLabel.text = @"立即查看";
         descLabel.textColor = kAPPBlueColor;
         }
