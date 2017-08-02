@@ -27,7 +27,7 @@
     __weak EnergyManagementViewController *ws = self;
     
     _stateView = [[YYSegmentedView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
-    _stateView.backgroundColor = [UIColor yellowColor];
+    _stateView.backgroundColor = [UIColor whiteColor];
     _stateView.selectedIndex = 0;
     _stateView.titlesArray = @[@"负荷监测",@"能耗统计"];
     _stateView.itemHandle = ^(YYSegmentedView *stateView, NSInteger index) {

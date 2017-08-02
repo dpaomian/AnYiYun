@@ -30,6 +30,10 @@
     }
 }
 
+-(void)setRightBarItem {
+    
+}
+
 - (void)setTheWebView
 {
     if (myWebView)

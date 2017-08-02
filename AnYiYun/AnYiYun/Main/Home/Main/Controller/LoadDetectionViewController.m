@@ -127,8 +127,8 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*SCREEN_WIDTH/SCREEN_HEIGHT)];
     [view addSubview:_sVC.view];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(20, 10, 40, 33);
-    button.backgroundColor = [UIColor yellowColor];
+    button.frame = CGRectMake(8, 4, 40, 33);
+    [button setImage:[UIImage imageNamed:@"all_icon_5.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     view.clipsToBounds = YES;
@@ -177,6 +177,7 @@
             if (idx== 0) {
                 ws.foldSection = idx;
                 [ws loadItemWithModel:model andSection:idx];
+                [ws loadCurveWithModel:model andSection:idx];
                 ws.sVC.tTitle = model.device_name;
                 [ws.sVC reloadDataUI];
                 model.isFold = YES;
@@ -217,7 +218,7 @@
             itemModel.terminal_type = obj[@"terminal_type"];
             [childItemsMutablearray addObject:itemModel];
         }];
-        [ws loadCurveWithModel:itemModel andSection:section];
+//        [ws loadCurveWithModel:itemModel andSection:section];
         itemModel.itemsMutableArray =childItemsMutablearray;
         [ws.listMutableArray replaceObjectAtIndex:section withObject:itemModel];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
@@ -311,6 +312,7 @@
     NSArray * array = [model.extend componentsSeparatedByString:@":"];
     headerView.contentLab.text =  ([array count]== 3)?[NSString stringWithFormat:@"%@ %@",array[1],array[2]]:@"0.0 kW";
     headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
+    headerView.tailImage.image = [UIImage imageNamed:([model.state integerValue] == 1) ? @"onLine.png":@"outLine.png"];
     __block LoadDatectionHeaderView *hView = headerView;
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
         if (isSelected) {
@@ -324,7 +326,7 @@
             ws.foldSection = section;
             model.isFold = YES;
             [ws loadItemWithModel:model andSection:section];
-//            [ws loadCurveWithModel:model andSection:section];
+            [ws loadCurveWithModel:model andSection:section];
         } else {
             
             model.isFold = NO;
@@ -342,6 +344,7 @@
     RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
     cell.titleLab.text = modelItem.point_name;
     cell.contentLab.text = [NSString stringWithFormat:@"%@ %@",modelItem.point_value,modelItem.point_unit];
+    cell.tailImageView.image = [UIImage imageNamed:([model.state integerValue]==1)?@"onLine.png":@"outLine.png"];
     return cell;
  
 }

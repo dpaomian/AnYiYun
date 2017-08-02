@@ -238,9 +238,9 @@
     cell.titleLab.text = modelItem.point_name;
     [cell.contentBtn setTitle:[NSString stringWithFormat:@"   %@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
     if (modelItem.displayIcon) {
-        [cell.contentBtn setImage:nil forState:UIControlStateNormal];
-    } else {
         [cell.contentBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
+    } else {
+        [cell.contentBtn setImage:nil forState:UIControlStateNormal];
     }
     return cell;
     

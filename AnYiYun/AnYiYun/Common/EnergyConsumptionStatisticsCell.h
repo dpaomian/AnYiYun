@@ -23,5 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastmonthLab;
 /*!当月电量*/
 @property (weak, nonatomic) IBOutlet UILabel *monthLab;
+/*!标题尾部图标*/
+@property (weak, nonatomic) IBOutlet UIImageView *tailImageView;
 
 @end

@@ -73,7 +73,7 @@
         statesString = @"检修中";
         }
     NSArray *dicArray = @[@{@"设备名称":[BaseHelper isSpaceString:info.sign andReplace:@""]},
-                          @{@"设备编号":[NSString stringWithFormat:@"%ld",(long)info.assetId]},
+                          @{@"设备编号":[NSString stringWithFormat:@"%@",info.assetId]},
                           @{@"规格型号":[BaseHelper isSpaceString:info.modle andReplace:@""]},
                           @{@"设备类别":[BaseHelper isSpaceString:info.kindValue andReplace:@""]},
                           @{@"生产厂商":[BaseHelper isSpaceString:info.makerName andReplace:@""]},

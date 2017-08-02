@@ -349,7 +349,7 @@
         HomeAdverModel *item = [adverArray objectAtIndex:indexPath.row];
         PublicWebViewController *myWebVC = [[PublicWebViewController alloc]init];
         myWebVC.myUrl = [BaseHelper isSpaceString:item.url andReplace:@""];
-        myWebVC.titleStr = @"详情";
+        myWebVC.titleStr = @"";
         myWebVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:myWebVC animated:YES];
         }
@@ -364,7 +364,7 @@
         {
         PublicWebViewController *myWebVC = [[PublicWebViewController alloc]init];
         myWebVC.myUrl = [BaseHelper isSpaceString:imageContent andReplace:@""];
-        myWebVC.titleStr = @"详情";
+        myWebVC.titleStr = @"";
         myWebVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:myWebVC animated:YES];
         }

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-6层电源总进线:电度示数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28x-Gw-lOF">
@@ -25,7 +25,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="all_icon_16" translatesAutoresizingMaskIntoConstraints="NO" id="EzG-Ba-ua7">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onLine" translatesAutoresizingMaskIntoConstraints="NO" id="EzG-Ba-ua7">
                         <rect key="frame" x="155" y="10" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="HT7-X7-ByO"/>
@@ -86,12 +86,13 @@
                 <outlet property="allValueLab" destination="pNI-ti-snt" id="ogi-36-COQ"/>
                 <outlet property="lastmonthLab" destination="AK7-kE-wdK" id="ZVk-dH-gbb"/>
                 <outlet property="monthLab" destination="Hjk-Xe-6Xq" id="Fry-sV-dQx"/>
+                <outlet property="tailImageView" destination="EzG-Ba-ua7" id="2oH-dx-Zrw"/>
                 <outlet property="yesteDayLab" destination="7Lx-2K-wjC" id="D6T-U4-xby"/>
             </connections>
             <point key="canvasLocation" x="-72" y="-163"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="all_icon_16" width="30" height="30"/>
+        <image name="onLine" width="22" height="22"/>
     </resources>
 </document>

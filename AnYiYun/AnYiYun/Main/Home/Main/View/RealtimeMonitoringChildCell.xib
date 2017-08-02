@@ -31,7 +31,7 @@
                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="all_icon_16" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-g4-dre">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onLine" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-g4-dre">
                         <rect key="frame" x="300" y="11.5" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="SSX-uV-1Tp"/>
@@ -58,6 +58,6 @@
     </objects>
     <resources>
         <image name="Polyline" width="22" height="22"/>
-        <image name="all_icon_16" width="30" height="30"/>
+        <image name="onLine" width="22" height="22"/>
     </resources>
 </document>

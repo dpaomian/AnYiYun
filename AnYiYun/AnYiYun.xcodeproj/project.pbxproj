@@ -202,6 +202,7 @@
 		A87C53F21F31DB3B008DE42B /* AAXAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CB1F31DB3B008DE42B /* AAXAxis.m */; };
 		A87C53F31F31DB3B008DE42B /* AAYAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CE1F31DB3B008DE42B /* AAYAxis.m */; };
 		A87C53F61F31DB90008DE42B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53F51F31DB90008DE42B /* SecondViewController.m */; };
+		A89511791F32426B00093DE9 /* UITextView+DisableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
 		A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */; };
 		A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */; };
@@ -599,6 +600,8 @@
 		A87C53CE1F31DB3B008DE42B /* AAYAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAYAxis.m; sourceTree = "<group>"; };
 		A87C53F41F31DB90008DE42B /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		A87C53F51F31DB90008DE42B /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		A89511771F32426B00093DE9 /* UITextView+DisableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+DisableCopy.h"; sourceTree = "<group>"; };
+		A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+DisableCopy.m"; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		A8A14BBE1F2DE0C9008745F1 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
@@ -1180,6 +1183,8 @@
 				90CF077B1F1F3464008106D2 /* UIView+Extension.m */,
 				90CF077C1F1F3464008106D2 /* UIViewController+Swizzling.h */,
 				90CF077D1F1F3464008106D2 /* UIViewController+Swizzling.m */,
+				A89511771F32426B00093DE9 /* UITextView+DisableCopy.h */,
+				A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1869,6 +1874,7 @@
 				90A2EC691F209C43008088C4 /* FirstLaunchView.m in Sources */,
 				A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */,
 				A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */,
+				A89511791F32426B00093DE9 /* UITextView+DisableCopy.m in Sources */,
 				A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */,
 				A87C53EC1F31DB3B008DE42B /* AASeriesElement.m in Sources */,
 				A87C53E31F31DB3B008DE42B /* AALegend.m in Sources */,

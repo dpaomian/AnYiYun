@@ -33,7 +33,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="all_icon_16" translatesAutoresizingMaskIntoConstraints="NO" id="nyL-HL-ZPP">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onLine" translatesAutoresizingMaskIntoConstraints="NO" id="nyL-HL-ZPP">
                     <rect key="frame" x="363" y="25" width="14" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="14" id="J3z-a0-PAd"/>
@@ -78,8 +78,8 @@
         </view>
     </objects>
     <resources>
-        <image name="all_icon_16" width="30" height="30"/>
         <image name="icon_Bottom" width="22" height="22"/>
         <image name="icon_Top" width="22" height="22"/>
+        <image name="onLine" width="22" height="22"/>
     </resources>
 </document>
