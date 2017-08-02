@@ -11,6 +11,21 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+
+#define AAObject(objectName) [[objectName alloc]init]
+
+#define AAPropStatementAndFuncStatement(propertyModifyWord,className, propertyPointerType, propertyName)                \
+@property(nonatomic,propertyModifyWord)propertyPointerType  propertyName;                                               \
+- (className * (^) (propertyPointerType propertyName)) propertyName##Set;
+
+#define AAPropSetFuncImplementation(className, propertyPointerType, propertyName)                                       \
+- (className * (^) (propertyPointerType propertyName))propertyName##Set{                                                \
+return ^(propertyPointerType propertyName) {                                                                            \
+self.propertyName = propertyName;                                                                                       \
+return self;                                                                                                            \
+};                                                                                                                      \
+}
+
     //基本配置
 #import "BaseNavigationViewController.h"
 #import "BaseViewController.h"

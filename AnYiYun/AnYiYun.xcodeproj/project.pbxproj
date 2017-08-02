@@ -164,6 +164,44 @@
 		A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53491F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m */; };
 		A87C53561F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C534B1F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m */; };
 		A87C535B1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C535A1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m */; };
+		A87C53CF1F31DB3B008DE42B /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53881F31DB3B008DE42B /* AAChartModel.m */; };
+		A87C53D01F31DB3B008DE42B /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C538A1F31DB3B008DE42B /* AAChartView.m */; };
+		A87C53D11F31DB3B008DE42B /* AAJsonConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C538D1F31DB3B008DE42B /* AAJsonConverter.m */; };
+		A87C53D21F31DB3B008DE42B /* AAOptionsConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C538F1F31DB3B008DE42B /* AAOptionsConstructor.m */; };
+		A87C53D31F31DB3B008DE42B /* AAChartKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A87C53901F31DB3B008DE42B /* AAChartKit.podspec */; };
+		A87C53D41F31DB3B008DE42B /* AAChartView.html in Resources */ = {isa = PBXBuildFile; fileRef = A87C53921F31DB3B008DE42B /* AAChartView.html */; };
+		A87C53D51F31DB3B008DE42B /* AAFunnel.js in Resources */ = {isa = PBXBuildFile; fileRef = A87C53931F31DB3B008DE42B /* AAFunnel.js */; };
+		A87C53D61F31DB3B008DE42B /* AAHighcharts-3d.js in Resources */ = {isa = PBXBuildFile; fileRef = A87C53941F31DB3B008DE42B /* AAHighcharts-3d.js */; };
+		A87C53D71F31DB3B008DE42B /* AAHighchartsLibrary.js in Resources */ = {isa = PBXBuildFile; fileRef = A87C53951F31DB3B008DE42B /* AAHighchartsLibrary.js */; };
+		A87C53D81F31DB3B008DE42B /* AAHighchartsMore.js in Resources */ = {isa = PBXBuildFile; fileRef = A87C53961F31DB3B008DE42B /* AAHighchartsMore.js */; };
+		A87C53D91F31DB3B008DE42B /* AAJQueryLibrary.js in Resources */ = {isa = PBXBuildFile; fileRef = A87C53971F31DB3B008DE42B /* AAJQueryLibrary.js */; };
+		A87C53DA1F31DB3B008DE42B /* AAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C539A1F31DB3B008DE42B /* AAAnimation.m */; };
+		A87C53DB1F31DB3B008DE42B /* AAArea.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C539C1F31DB3B008DE42B /* AAArea.m */; };
+		A87C53DC1F31DB3B008DE42B /* AAAreaspline.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C539E1F31DB3B008DE42B /* AAAreaspline.m */; };
+		A87C53DD1F31DB3B008DE42B /* AABar.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53A01F31DB3B008DE42B /* AABar.m */; };
+		A87C53DE1F31DB3B008DE42B /* AAChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53A21F31DB3B008DE42B /* AAChart.m */; };
+		A87C53DF1F31DB3B008DE42B /* AAColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53A41F31DB3B008DE42B /* AAColumn.m */; };
+		A87C53E01F31DB3B008DE42B /* AADataLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53A61F31DB3B008DE42B /* AADataLabels.m */; };
+		A87C53E11F31DB3B008DE42B /* AAItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53A81F31DB3B008DE42B /* AAItemStyle.m */; };
+		A87C53E21F31DB3B008DE42B /* AALabels.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53AA1F31DB3B008DE42B /* AALabels.m */; };
+		A87C53E31F31DB3B008DE42B /* AALegend.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53AC1F31DB3B008DE42B /* AALegend.m */; };
+		A87C53E41F31DB3B008DE42B /* AALine.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53AE1F31DB3B008DE42B /* AALine.m */; };
+		A87C53E51F31DB3B008DE42B /* AAMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53B01F31DB3B008DE42B /* AAMarker.m */; };
+		A87C53E61F31DB3B008DE42B /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53B21F31DB3B008DE42B /* AAOptions.m */; };
+		A87C53E71F31DB3B008DE42B /* AAOptions3d.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53B41F31DB3B008DE42B /* AAOptions3d.m */; };
+		A87C53E81F31DB3B008DE42B /* AAPie.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53B61F31DB3B008DE42B /* AAPie.m */; };
+		A87C53E91F31DB3B008DE42B /* AAPlotLinesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53B81F31DB3B008DE42B /* AAPlotLinesElement.m */; };
+		A87C53EA1F31DB3B008DE42B /* AAPlotOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53BA1F31DB3B008DE42B /* AAPlotOptions.m */; };
+		A87C53EB1F31DB3B008DE42B /* AASeries.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53BC1F31DB3B008DE42B /* AASeries.m */; };
+		A87C53EC1F31DB3B008DE42B /* AASeriesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53BF1F31DB3B008DE42B /* AASeriesElement.m */; };
+		A87C53ED1F31DB3B008DE42B /* AASpline.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53C11F31DB3B008DE42B /* AASpline.m */; };
+		A87C53EE1F31DB3B008DE42B /* AAStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53C31F31DB3B008DE42B /* AAStyle.m */; };
+		A87C53EF1F31DB3B008DE42B /* AASubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53C51F31DB3B008DE42B /* AASubtitle.m */; };
+		A87C53F01F31DB3B008DE42B /* AATitle.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53C71F31DB3B008DE42B /* AATitle.m */; };
+		A87C53F11F31DB3B008DE42B /* AATooltip.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53C91F31DB3B008DE42B /* AATooltip.m */; };
+		A87C53F21F31DB3B008DE42B /* AAXAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CB1F31DB3B008DE42B /* AAXAxis.m */; };
+		A87C53F31F31DB3B008DE42B /* AAYAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CE1F31DB3B008DE42B /* AAYAxis.m */; };
+		A87C53F61F31DB90008DE42B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53F51F31DB90008DE42B /* SecondViewController.m */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
 		A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */; };
 		A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */; };
@@ -488,6 +526,79 @@
 		A87C534B1F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyTabBarRootViewController.m; sourceTree = "<group>"; };
 		A87C535A1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirePowerSupplyEquipmentManagementRootViewController.m; sourceTree = "<group>"; };
 		A87C535C1F317345008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyEquipmentManagementRootViewController.h; sourceTree = "<group>"; };
+		A87C53861F31DB3A008DE42B /* AAChartKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartKit.h; sourceTree = "<group>"; };
+		A87C53871F31DB3A008DE42B /* AAChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartModel.h; sourceTree = "<group>"; };
+		A87C53881F31DB3B008DE42B /* AAChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartModel.m; sourceTree = "<group>"; };
+		A87C53891F31DB3B008DE42B /* AAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartView.h; sourceTree = "<group>"; };
+		A87C538A1F31DB3B008DE42B /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
+		A87C538B1F31DB3B008DE42B /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
+		A87C538C1F31DB3B008DE42B /* AAJsonConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAJsonConverter.h; sourceTree = "<group>"; };
+		A87C538D1F31DB3B008DE42B /* AAJsonConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAJsonConverter.m; sourceTree = "<group>"; };
+		A87C538E1F31DB3B008DE42B /* AAOptionsConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOptionsConstructor.h; sourceTree = "<group>"; };
+		A87C538F1F31DB3B008DE42B /* AAOptionsConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptionsConstructor.m; sourceTree = "<group>"; };
+		A87C53901F31DB3B008DE42B /* AAChartKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AAChartKit.podspec; sourceTree = "<group>"; };
+		A87C53921F31DB3B008DE42B /* AAChartView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AAChartView.html; sourceTree = "<group>"; };
+		A87C53931F31DB3B008DE42B /* AAFunnel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAFunnel.js; sourceTree = "<group>"; };
+		A87C53941F31DB3B008DE42B /* AAHighcharts-3d.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "AAHighcharts-3d.js"; sourceTree = "<group>"; };
+		A87C53951F31DB3B008DE42B /* AAHighchartsLibrary.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAHighchartsLibrary.js; sourceTree = "<group>"; };
+		A87C53961F31DB3B008DE42B /* AAHighchartsMore.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAHighchartsMore.js; sourceTree = "<group>"; };
+		A87C53971F31DB3B008DE42B /* AAJQueryLibrary.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AAJQueryLibrary.js; sourceTree = "<group>"; };
+		A87C53991F31DB3B008DE42B /* AAAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAnimation.h; sourceTree = "<group>"; };
+		A87C539A1F31DB3B008DE42B /* AAAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnimation.m; sourceTree = "<group>"; };
+		A87C539B1F31DB3B008DE42B /* AAArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAArea.h; sourceTree = "<group>"; };
+		A87C539C1F31DB3B008DE42B /* AAArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAArea.m; sourceTree = "<group>"; };
+		A87C539D1F31DB3B008DE42B /* AAAreaspline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAreaspline.h; sourceTree = "<group>"; };
+		A87C539E1F31DB3B008DE42B /* AAAreaspline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAreaspline.m; sourceTree = "<group>"; };
+		A87C539F1F31DB3B008DE42B /* AABar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABar.h; sourceTree = "<group>"; };
+		A87C53A01F31DB3B008DE42B /* AABar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABar.m; sourceTree = "<group>"; };
+		A87C53A11F31DB3B008DE42B /* AAChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChart.h; sourceTree = "<group>"; };
+		A87C53A21F31DB3B008DE42B /* AAChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChart.m; sourceTree = "<group>"; };
+		A87C53A31F31DB3B008DE42B /* AAColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAColumn.h; sourceTree = "<group>"; };
+		A87C53A41F31DB3B008DE42B /* AAColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAColumn.m; sourceTree = "<group>"; };
+		A87C53A51F31DB3B008DE42B /* AADataLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataLabels.h; sourceTree = "<group>"; };
+		A87C53A61F31DB3B008DE42B /* AADataLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AADataLabels.m; sourceTree = "<group>"; };
+		A87C53A71F31DB3B008DE42B /* AAItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAItemStyle.h; sourceTree = "<group>"; };
+		A87C53A81F31DB3B008DE42B /* AAItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAItemStyle.m; sourceTree = "<group>"; };
+		A87C53A91F31DB3B008DE42B /* AALabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALabels.h; sourceTree = "<group>"; };
+		A87C53AA1F31DB3B008DE42B /* AALabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALabels.m; sourceTree = "<group>"; };
+		A87C53AB1F31DB3B008DE42B /* AALegend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALegend.h; sourceTree = "<group>"; };
+		A87C53AC1F31DB3B008DE42B /* AALegend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALegend.m; sourceTree = "<group>"; };
+		A87C53AD1F31DB3B008DE42B /* AALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALine.h; sourceTree = "<group>"; };
+		A87C53AE1F31DB3B008DE42B /* AALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALine.m; sourceTree = "<group>"; };
+		A87C53AF1F31DB3B008DE42B /* AAMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAMarker.h; sourceTree = "<group>"; };
+		A87C53B01F31DB3B008DE42B /* AAMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAMarker.m; sourceTree = "<group>"; };
+		A87C53B11F31DB3B008DE42B /* AAOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOptions.h; sourceTree = "<group>"; };
+		A87C53B21F31DB3B008DE42B /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
+		A87C53B31F31DB3B008DE42B /* AAOptions3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOptions3d.h; sourceTree = "<group>"; };
+		A87C53B41F31DB3B008DE42B /* AAOptions3d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions3d.m; sourceTree = "<group>"; };
+		A87C53B51F31DB3B008DE42B /* AAPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPie.h; sourceTree = "<group>"; };
+		A87C53B61F31DB3B008DE42B /* AAPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPie.m; sourceTree = "<group>"; };
+		A87C53B71F31DB3B008DE42B /* AAPlotLinesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPlotLinesElement.h; sourceTree = "<group>"; };
+		A87C53B81F31DB3B008DE42B /* AAPlotLinesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPlotLinesElement.m; sourceTree = "<group>"; };
+		A87C53B91F31DB3B008DE42B /* AAPlotOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPlotOptions.h; sourceTree = "<group>"; };
+		A87C53BA1F31DB3B008DE42B /* AAPlotOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPlotOptions.m; sourceTree = "<group>"; };
+		A87C53BB1F31DB3B008DE42B /* AASeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASeries.h; sourceTree = "<group>"; };
+		A87C53BC1F31DB3B008DE42B /* AASeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeries.m; sourceTree = "<group>"; };
+		A87C53BD1F31DB3B008DE42B /* AASeriesElement 2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AASeriesElement 2.h"; sourceTree = "<group>"; };
+		A87C53BE1F31DB3B008DE42B /* AASeriesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASeriesElement.h; sourceTree = "<group>"; };
+		A87C53BF1F31DB3B008DE42B /* AASeriesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeriesElement.m; sourceTree = "<group>"; };
+		A87C53C01F31DB3B008DE42B /* AASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASpline.h; sourceTree = "<group>"; };
+		A87C53C11F31DB3B008DE42B /* AASpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASpline.m; sourceTree = "<group>"; };
+		A87C53C21F31DB3B008DE42B /* AAStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAStyle.h; sourceTree = "<group>"; };
+		A87C53C31F31DB3B008DE42B /* AAStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAStyle.m; sourceTree = "<group>"; };
+		A87C53C41F31DB3B008DE42B /* AASubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASubtitle.h; sourceTree = "<group>"; };
+		A87C53C51F31DB3B008DE42B /* AASubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASubtitle.m; sourceTree = "<group>"; };
+		A87C53C61F31DB3B008DE42B /* AATitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AATitle.h; sourceTree = "<group>"; };
+		A87C53C71F31DB3B008DE42B /* AATitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AATitle.m; sourceTree = "<group>"; };
+		A87C53C81F31DB3B008DE42B /* AATooltip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AATooltip.h; sourceTree = "<group>"; };
+		A87C53C91F31DB3B008DE42B /* AATooltip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AATooltip.m; sourceTree = "<group>"; };
+		A87C53CA1F31DB3B008DE42B /* AAXAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAXAxis.h; sourceTree = "<group>"; };
+		A87C53CB1F31DB3B008DE42B /* AAXAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAXAxis.m; sourceTree = "<group>"; };
+		A87C53CC1F31DB3B008DE42B /* AAYAxis 2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AAYAxis 2.h"; sourceTree = "<group>"; };
+		A87C53CD1F31DB3B008DE42B /* AAYAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAYAxis.h; sourceTree = "<group>"; };
+		A87C53CE1F31DB3B008DE42B /* AAYAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAYAxis.m; sourceTree = "<group>"; };
+		A87C53F41F31DB90008DE42B /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		A87C53F51F31DB90008DE42B /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		A8A14BBE1F2DE0C9008745F1 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
@@ -750,6 +861,8 @@
 				A81B12281F2AC446001DD06B /* EnergyManagementViewController.m */,
 				A81B12301F2AC446001DD06B /* LoadDetectionViewController.h */,
 				A81B12311F2AC446001DD06B /* LoadDetectionViewController.m */,
+				A87C53F41F31DB90008DE42B /* SecondViewController.h */,
+				A87C53F51F31DB90008DE42B /* SecondViewController.m */,
 				A81B12251F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.h */,
 				A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */,
 				A8DA96711F2BB1FD00F3032D /* SafetyMonitoringRootViewController.h */,
@@ -1085,6 +1198,7 @@
 		90CF07341F1F2F59008106D2 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				A87C53841F31DB3A008DE42B /* AAChartKitLib */,
 				900CEC081F2CE5300012D925 /* HJCActionSheet */,
 				905D5C981F28D83100DF4DF9 /* LayoutButton */,
 				901788291F263B2200CFED87 /* QRCode */,
@@ -1354,6 +1468,108 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		A87C53841F31DB3A008DE42B /* AAChartKitLib */ = {
+			isa = PBXGroup;
+			children = (
+				A87C53851F31DB3A008DE42B /* AAChartConfiger */,
+				A87C53901F31DB3B008DE42B /* AAChartKit.podspec */,
+				A87C53911F31DB3B008DE42B /* AAJSFiles */,
+				A87C53981F31DB3B008DE42B /* AAOptionsModel */,
+			);
+			path = AAChartKitLib;
+			sourceTree = "<group>";
+		};
+		A87C53851F31DB3A008DE42B /* AAChartConfiger */ = {
+			isa = PBXGroup;
+			children = (
+				A87C53861F31DB3A008DE42B /* AAChartKit.h */,
+				A87C53871F31DB3A008DE42B /* AAChartModel.h */,
+				A87C53881F31DB3B008DE42B /* AAChartModel.m */,
+				A87C53891F31DB3B008DE42B /* AAChartView.h */,
+				A87C538A1F31DB3B008DE42B /* AAChartView.m */,
+				A87C538B1F31DB3B008DE42B /* AAGlobalMacro.h */,
+				A87C538C1F31DB3B008DE42B /* AAJsonConverter.h */,
+				A87C538D1F31DB3B008DE42B /* AAJsonConverter.m */,
+				A87C538E1F31DB3B008DE42B /* AAOptionsConstructor.h */,
+				A87C538F1F31DB3B008DE42B /* AAOptionsConstructor.m */,
+			);
+			path = AAChartConfiger;
+			sourceTree = "<group>";
+		};
+		A87C53911F31DB3B008DE42B /* AAJSFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A87C53921F31DB3B008DE42B /* AAChartView.html */,
+				A87C53931F31DB3B008DE42B /* AAFunnel.js */,
+				A87C53941F31DB3B008DE42B /* AAHighcharts-3d.js */,
+				A87C53951F31DB3B008DE42B /* AAHighchartsLibrary.js */,
+				A87C53961F31DB3B008DE42B /* AAHighchartsMore.js */,
+				A87C53971F31DB3B008DE42B /* AAJQueryLibrary.js */,
+			);
+			path = AAJSFiles;
+			sourceTree = "<group>";
+		};
+		A87C53981F31DB3B008DE42B /* AAOptionsModel */ = {
+			isa = PBXGroup;
+			children = (
+				A87C53991F31DB3B008DE42B /* AAAnimation.h */,
+				A87C539A1F31DB3B008DE42B /* AAAnimation.m */,
+				A87C539B1F31DB3B008DE42B /* AAArea.h */,
+				A87C539C1F31DB3B008DE42B /* AAArea.m */,
+				A87C539D1F31DB3B008DE42B /* AAAreaspline.h */,
+				A87C539E1F31DB3B008DE42B /* AAAreaspline.m */,
+				A87C539F1F31DB3B008DE42B /* AABar.h */,
+				A87C53A01F31DB3B008DE42B /* AABar.m */,
+				A87C53A11F31DB3B008DE42B /* AAChart.h */,
+				A87C53A21F31DB3B008DE42B /* AAChart.m */,
+				A87C53A31F31DB3B008DE42B /* AAColumn.h */,
+				A87C53A41F31DB3B008DE42B /* AAColumn.m */,
+				A87C53A51F31DB3B008DE42B /* AADataLabels.h */,
+				A87C53A61F31DB3B008DE42B /* AADataLabels.m */,
+				A87C53A71F31DB3B008DE42B /* AAItemStyle.h */,
+				A87C53A81F31DB3B008DE42B /* AAItemStyle.m */,
+				A87C53A91F31DB3B008DE42B /* AALabels.h */,
+				A87C53AA1F31DB3B008DE42B /* AALabels.m */,
+				A87C53AB1F31DB3B008DE42B /* AALegend.h */,
+				A87C53AC1F31DB3B008DE42B /* AALegend.m */,
+				A87C53AD1F31DB3B008DE42B /* AALine.h */,
+				A87C53AE1F31DB3B008DE42B /* AALine.m */,
+				A87C53AF1F31DB3B008DE42B /* AAMarker.h */,
+				A87C53B01F31DB3B008DE42B /* AAMarker.m */,
+				A87C53B11F31DB3B008DE42B /* AAOptions.h */,
+				A87C53B21F31DB3B008DE42B /* AAOptions.m */,
+				A87C53B31F31DB3B008DE42B /* AAOptions3d.h */,
+				A87C53B41F31DB3B008DE42B /* AAOptions3d.m */,
+				A87C53B51F31DB3B008DE42B /* AAPie.h */,
+				A87C53B61F31DB3B008DE42B /* AAPie.m */,
+				A87C53B71F31DB3B008DE42B /* AAPlotLinesElement.h */,
+				A87C53B81F31DB3B008DE42B /* AAPlotLinesElement.m */,
+				A87C53B91F31DB3B008DE42B /* AAPlotOptions.h */,
+				A87C53BA1F31DB3B008DE42B /* AAPlotOptions.m */,
+				A87C53BB1F31DB3B008DE42B /* AASeries.h */,
+				A87C53BC1F31DB3B008DE42B /* AASeries.m */,
+				A87C53BD1F31DB3B008DE42B /* AASeriesElement 2.h */,
+				A87C53BE1F31DB3B008DE42B /* AASeriesElement.h */,
+				A87C53BF1F31DB3B008DE42B /* AASeriesElement.m */,
+				A87C53C01F31DB3B008DE42B /* AASpline.h */,
+				A87C53C11F31DB3B008DE42B /* AASpline.m */,
+				A87C53C21F31DB3B008DE42B /* AAStyle.h */,
+				A87C53C31F31DB3B008DE42B /* AAStyle.m */,
+				A87C53C41F31DB3B008DE42B /* AASubtitle.h */,
+				A87C53C51F31DB3B008DE42B /* AASubtitle.m */,
+				A87C53C61F31DB3B008DE42B /* AATitle.h */,
+				A87C53C71F31DB3B008DE42B /* AATitle.m */,
+				A87C53C81F31DB3B008DE42B /* AATooltip.h */,
+				A87C53C91F31DB3B008DE42B /* AATooltip.m */,
+				A87C53CA1F31DB3B008DE42B /* AAXAxis.h */,
+				A87C53CB1F31DB3B008DE42B /* AAXAxis.m */,
+				A87C53CC1F31DB3B008DE42B /* AAYAxis 2.h */,
+				A87C53CD1F31DB3B008DE42B /* AAYAxis.h */,
+				A87C53CE1F31DB3B008DE42B /* AAYAxis.m */,
+			);
+			path = AAOptionsModel;
+			sourceTree = "<group>";
+		};
 		A8FD789E1F2C6BDD00523E46 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1471,6 +1687,8 @@
 				A8FD78951F2C396800523E46 /* FireMaintenanceRemindersViewController.xib in Resources */,
 				A8FD78981F2C396800523E46 /* FireRealtimeMonitoringViewController.xib in Resources */,
 				3B02DF491F2AE82400282116 /* main_more@2x.png in Resources */,
+				A87C53D71F31DB3B008DE42B /* AAHighchartsLibrary.js in Resources */,
+				A87C53D91F31DB3B008DE42B /* AAJQueryLibrary.js in Resources */,
 				A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */,
 				905D5C9D1F28DF6800DF4DF9 /* main_test@2x.png in Resources */,
 				A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */,
@@ -1482,8 +1700,10 @@
 				A81B12481F2AC446001DD06B /* MaintenanceRemindersViewController.xib in Resources */,
 				9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */,
 				A81B121D1F2AC3F8001DD06B /* YYAlarmCell.xib in Resources */,
+				A87C53D81F31DB3B008DE42B /* AAHighchartsMore.js in Resources */,
 				A81B123D1F2AC446001DD06B /* AlarmInformationViewController.xib in Resources */,
 				A81B121B1F2AC3EC001DD06B /* EquipmentAccountCell.xib in Resources */,
+				A87C53D31F31DB3B008DE42B /* AAChartKit.podspec in Resources */,
 				A810BF591F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib in Resources */,
 				A87C53521F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.xib in Resources */,
 				A87C53541F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.xib in Resources */,
@@ -1495,11 +1715,14 @@
 				A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */,
 				90CF072B1F1F2BFC008106D2 /* LaunchScreen.storyboard in Resources */,
 				90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */,
+				A87C53D51F31DB3B008DE42B /* AAFunnel.js in Resources */,
+				A87C53D61F31DB3B008DE42B /* AAHighcharts-3d.js in Resources */,
 				A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
 				A8FD78921F2C396800523E46 /* FireEquipmentAccountViewController.xib in Resources */,
+				A87C53D41F31DB3B008DE42B /* AAChartView.html in Resources */,
 				A8FD78901F2C396800523E46 /* FireAlarmInformationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1562,18 +1785,25 @@
 				90CF07201F1F2BFC008106D2 /* AppDelegate.m in Sources */,
 				90272BE11F224382000B1DC0 /* TADotView.m in Sources */,
 				901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */,
+				A87C53F11F31DB3B008DE42B /* AATooltip.m in Sources */,
 				901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */,
 				A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */,
+				A87C53E21F31DB3B008DE42B /* AALabels.m in Sources */,
 				90272BDF1F224382000B1DC0 /* TAAbstractDotView.m in Sources */,
 				A84FA2CC1F283FB4006F3DB4 /* AllApplicationReusableView.m in Sources */,
 				90CF07421F1F3078008106D2 /* RootTabBarViewController.m in Sources */,
 				A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */,
+				A87C53DA1F31DB3B008DE42B /* AAAnimation.m in Sources */,
 				90272BE41F224382000B1DC0 /* SDCycleScrollView.m in Sources */,
 				90CF07821F1F3464008106D2 /* NSDictionary+Extension.m in Sources */,
+				A87C53F21F31DB3B008DE42B /* AAXAxis.m in Sources */,
 				3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */,
+				A87C53F31F31DB3B008DE42B /* AAYAxis.m in Sources */,
 				A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */,
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
+				A87C53E01F31DB3B008DE42B /* AADataLabels.m in Sources */,
+				A87C53D01F31DB3B008DE42B /* AAChartView.m in Sources */,
 				A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */,
 				9046D5DA1F2B886A004E3DCC /* DeviceInfoViewController.m in Sources */,
 				3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */,
@@ -1593,26 +1823,34 @@
 				A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				A8DA96761F2BB22C00F3032D /* EquipmentManagementRootViewController.m in Sources */,
+				A87C53EE1F31DB3B008DE42B /* AAStyle.m in Sources */,
 				90CF07811F1F3464008106D2 /* NSDateFormatter+Category.m in Sources */,
 				A8FD78991F2C396800523E46 /* FireSafetyMonitoringRootViewController.m in Sources */,
 				901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */,
 				90CF07A91F1F3955008106D2 /* StatusBarOverlay.m in Sources */,
 				90272BE21F224382000B1DC0 /* TAPageControl.m in Sources */,
 				901788161F2624A800CFED87 /* MeCell.m in Sources */,
+				A87C53E41F31DB3B008DE42B /* AALine.m in Sources */,
+				A87C53E51F31DB3B008DE42B /* AAMarker.m in Sources */,
 				90CF073C1F1F2FAE008106D2 /* BaseViewController.m in Sources */,
 				A8E2A5391F30DB4C000F5408 /* PopViewController.m in Sources */,
 				90CF078E1F1F3464008106D2 /* UIView+Extension.m in Sources */,
+				A87C53E11F31DB3B008DE42B /* AAItemStyle.m in Sources */,
+				A87C53F61F31DB90008DE42B /* SecondViewController.m in Sources */,
 				90CF07831F1F3464008106D2 /* NSDictionary+XHLogHelper.m in Sources */,
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
 				90CF07871F1F3464008106D2 /* UIColor+Extension.m in Sources */,
+				A87C53E71F31DB3B008DE42B /* AAOptions3d.m in Sources */,
 				905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */,
 				A87C535B1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m in Sources */,
 				A81B121A1F2AC3EC001DD06B /* EquipmentAccountCell.m in Sources */,
+				A87C53DD1F31DB3B008DE42B /* AABar.m in Sources */,
 				90CF078B1F1F3464008106D2 /* UITableView+Extension.m in Sources */,
 				A8DA96731F2BB1FD00F3032D /* SafetyMonitoringRootViewController.m in Sources */,
 				A81B12161F2AC3CF001DD06B /* YYAlarmCell.m in Sources */,
 				A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */,
 				905D5C9B1F28D83100DF4DF9 /* JXLayoutButton.m in Sources */,
+				A87C53F01F31DB3B008DE42B /* AATitle.m in Sources */,
 				A81B124A1F2AC446001DD06B /* RealtimeMonitoringViewController.m in Sources */,
 				901788091F2620D200CFED87 /* YYCalendarView.m in Sources */,
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
@@ -1623,6 +1861,8 @@
 				9046D5E61F2B8951004E3DCC /* RepairRecordsViewController.m in Sources */,
 				901A081F1F20E366009488C1 /* EquipmentMainViewController.m in Sources */,
 				A87C53561F31720F008DE42B /* FirePowerSupplyTabBarRootViewController.m in Sources */,
+				A87C53D21F31DB3B008DE42B /* AAOptionsConstructor.m in Sources */,
+				A87C53E81F31DB3B008DE42B /* AAPie.m in Sources */,
 				3B02DF411F2ADE0300282116 /* MessageModel.m in Sources */,
 				3B3FD7571F2C04F50089C1B0 /* DeviceInfoModel.m in Sources */,
 				3B02DF401F2ADE0300282116 /* MessageViewController.m in Sources */,
@@ -1630,13 +1870,17 @@
 				A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */,
 				A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */,
 				A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */,
+				A87C53EC1F31DB3B008DE42B /* AASeriesElement.m in Sources */,
+				A87C53E31F31DB3B008DE42B /* AALegend.m in Sources */,
 				A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */,
 				90CF07591F1F3300008106D2 /* BaseReachability.m in Sources */,
 				9046D5E01F2B88F2004E3DCC /* DevicePartViewController.m in Sources */,
 				90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */,
 				9046D5E91F2B8976004E3DCC /* DetectionRecordViewController.m in Sources */,
 				90CF078A1F1F3464008106D2 /* UITabBar+badge.m in Sources */,
+				A87C53ED1F31DB3B008DE42B /* AASpline.m in Sources */,
 				A81B12421F2AC446001DD06B /* EquipmentAccountViewController.m in Sources */,
+				A87C53EB1F31DB3B008DE42B /* AASeries.m in Sources */,
 				A87C53531F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m in Sources */,
 				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
@@ -1644,11 +1888,13 @@
 				A8FD788F1F2C396800523E46 /* FireAlarmInformationViewController.m in Sources */,
 				9017882E1F263B2200CFED87 /* UIImage+RoundRect.m in Sources */,
 				3B02DF451F2ADE0300282116 /* MessageExamCell.m in Sources */,
+				A87C53CF1F31DB3B008DE42B /* AAChartModel.m in Sources */,
 				901788131F26213700CFED87 /* UIButton+Category.m in Sources */,
 				90CF07941F1F35B1008106D2 /* BaseLaunchConfig.m in Sources */,
 				3B02DF3D1F2ADE0300282116 /* LocationViewController.m in Sources */,
 				90CF07851F1F3464008106D2 /* NSString+Extension.m in Sources */,
 				90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */,
+				A87C53E91F31DB3B008DE42B /* AAPlotLinesElement.m in Sources */,
 				A810BF4B1F25EDB400B5F2D2 /* BaseTableViewController.m in Sources */,
 				3B02DF461F2ADE0300282116 /* MessageMaintainCell.m in Sources */,
 				3B02DF471F2ADE0300282116 /* MessageTopView.m in Sources */,
@@ -1659,6 +1905,7 @@
 				A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */,
 				A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */,
 				A8DA96701F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m in Sources */,
+				A87C53EA1F31DB3B008DE42B /* AAPlotOptions.m in Sources */,
 				A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */,
 				A810BF621F260A1400B5F2D2 /* LoadDatectionCell.m in Sources */,
 				A8FD789D1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m in Sources */,
@@ -1681,6 +1928,8 @@
 				A8FD78A61F2C943400523E46 /* FireAlarmInformationModel.m in Sources */,
 				3B02DF441F2ADE0300282116 /* MessageAlarmCell.m in Sources */,
 				909E1A951F2790DC008EECAF /* HomeMessageCell.m in Sources */,
+				A87C53DE1F31DB3B008DE42B /* AAChart.m in Sources */,
+				A87C53DB1F31DB3B008DE42B /* AAArea.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
 				3B02DF421F2ADE0300282116 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
@@ -1692,6 +1941,7 @@
 				3B02DF431F2ADE0300282116 /* HistoryMessageCell.m in Sources */,
 				A87C534E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
+				A87C53E61F31DB3B008DE42B /* AAOptions.m in Sources */,
 				9046D5F21F2B89BF004E3DCC /* DeviceFileViewController.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
 				A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */,
@@ -1701,13 +1951,17 @@
 				90CF07841F1F3464008106D2 /* NSString+Date.m in Sources */,
 				9017882F1F263B2200CFED87 /* YYQRCode.m in Sources */,
 				901788221F26349E00CFED87 /* ShareViewController.m in Sources */,
+				A87C53DF1F31DB3B008DE42B /* AAColumn.m in Sources */,
+				A87C53EF1F31DB3B008DE42B /* AASubtitle.m in Sources */,
 				901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */,
+				A87C53D11F31DB3B008DE42B /* AAJsonConverter.m in Sources */,
 				A81B12411F2AC446001DD06B /* EnergyManagementViewController.m in Sources */,
 				A8FD78911F2C396800523E46 /* FireEquipmentAccountViewController.m in Sources */,
 				A8FD78A21F2C6C0200523E46 /* FireMaintenanceRemindersModel.m in Sources */,
 				A87C534C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m in Sources */,
 				A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */,
 				3B02DF3E1F2ADE0300282116 /* HistoryDetailViewController.m in Sources */,
+				A87C53DC1F31DB3B008DE42B /* AAAreaspline.m in Sources */,
 				90EA5EA51F2DBDAE009DE784 /* DefultLaunchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

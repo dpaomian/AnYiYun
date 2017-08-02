@@ -7,17 +7,30 @@
 //
 
 #import "LoadDetectionViewController.h"
+#import "SecondViewController.h"
 
 @interface LoadDetectionViewController ()
 
 @property (nonatomic, strong) NSMutableArray *constraintsMutableArray;
 /*!记录被展开的区*/
 @property (nonatomic, assign) NSInteger   foldSection;
+@property (nonatomic, strong) SecondViewController *sVC;
 
 @end
 
 @implementation LoadDetectionViewController
 
+- (void)buttonClick:(UIButton *)sender {
+    SecondViewController *vc = [[SecondViewController alloc] init];
+    vc.tTitle = _sVC.tTitle;
+    vc.oneArray = _sVC.oneArray;
+    vc.twoArray = _sVC.twoArray;
+    vc.timeArray = _sVC.timeArray;
+    vc.view.transform=CGAffineTransformMakeRotation(M_PI/2);
+    vc.chartView.frame = CGRectMake(0, 0, SCREEN_HEIGHT, SCREEN_WIDTH);
+    vc.chartView.contentHeight = SCREEN_WIDTH;
+    [self.navigationController presentViewController:vc animated:NO completion:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -108,12 +121,25 @@
         }
     };
     [self.view addSubview:collectionView];
+    //曲线图
+    _sVC = [[SecondViewController alloc]init];
+    _sVC.SecondeViewControllerChartType = 5;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*SCREEN_WIDTH/SCREEN_HEIGHT)];
+    [view addSubview:_sVC.view];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(20, 10, 40, 33);
+    button.backgroundColor = [UIColor yellowColor];
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
+    view.clipsToBounds = YES;
+    [self.view addSubview:view];
     
+    float tableViewTop = SCREEN_WIDTH*SCREEN_WIDTH/SCREEN_HEIGHT;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    [_constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView(==34)]" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
+    [_constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|[collectionView(==%d)]",34] options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
     [self.view addConstraints:_constraintsMutableArray];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-34-[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-%f-[_tableView]|",tableViewTop] options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
     
 }
 
@@ -151,6 +177,8 @@
             if (idx== 0) {
                 ws.foldSection = idx;
                 [ws loadItemWithModel:model andSection:idx];
+                ws.sVC.tTitle = model.device_name;
+                [ws.sVC reloadDataUI];
                 model.isFold = YES;
             } else {
                 model.isFold = NO;
@@ -212,6 +240,9 @@
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray * value1Array = [NSArray arrayWithArray:obj];
             NSInteger myIdex = idx;
+            NSMutableArray *arrayOne = [NSMutableArray array];
+            NSMutableArray *arrayTwo = [NSMutableArray array];
+            NSMutableArray *timeArray = [NSMutableArray array];
             [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 DoubleGraphModel *itemModel = [[DoubleGraphModel alloc] init];
                 itemModel.idf = obj[@"id"];
@@ -220,13 +251,28 @@
                 itemModel.time = obj[@"time"];
                 itemModel.timeLong = obj[@"timeLong"];
                 itemModel.value = obj[@"value"];
+                float numberToRound;
+                int result;
+                numberToRound = [itemModel.value floatValue]/100.0;
+                
+                result = (int)roundf(numberToRound);
                 if (myIdex==0) {
                     [ws.curveMutableArray1 addObject:itemModel];
+                    [arrayOne addObject:@(result/10.0)];
                 } else {
                     [ws.curveMutableArray2 addObject:itemModel];
+//                     NSLog(@"roundf(%.2f) = %d", numberToRound, result);
+                    [arrayTwo addObject:@(result/10.0)];
+                    [timeArray addObject:itemModel.time];
                 }
             }];
+            _sVC.oneArray = [NSArray arrayWithArray:arrayOne];
+            _sVC.twoArray = [NSArray arrayWithArray:arrayTwo];
+            _sVC.timeArray = [NSArray arrayWithArray:timeArray];
+            [_sVC reloadDataUI];
         }];
+
+//        [self.stockDatadict setObject:array forKey:@"1"];
     } failureBlock:^(NSError *error) {
         [MBProgressHUD showError:@"获取曲线失败"];
     } progress:nil];
@@ -265,6 +311,7 @@
     NSArray * array = [model.extend componentsSeparatedByString:@":"];
     headerView.contentLab.text =  ([array count]== 3)?[NSString stringWithFormat:@"%@ %@",array[1],array[2]]:@"0.0 kW";
     headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
+    __block LoadDatectionHeaderView *hView = headerView;
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
         if (isSelected) {
             /*首先关闭原来的选项*/
@@ -272,12 +319,14 @@
             currentModel.isFold = NO;
             currentModel.itemsMutableArray = [@[] mutableCopy];
             [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:ws.foldSection] withRowAnimation:UITableViewRowAnimationNone];
-            
+            ws.sVC.tTitle = hView.titleLab.text;
+            [ws.sVC reloadDataUI];
             ws.foldSection = section;
             model.isFold = YES;
             [ws loadItemWithModel:model andSection:section];
 //            [ws loadCurveWithModel:model andSection:section];
         } else {
+            
             model.isFold = NO;
             model.itemsMutableArray = [@[] mutableCopy];
             [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
@@ -300,5 +349,4 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 @end

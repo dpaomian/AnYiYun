@@ -13,6 +13,8 @@
 #import "LoadDetectionModel.h"
 #import "RealtimeMonitoringListModel.h"
 #import "DoubleGraphModel.h"
+#import <Masonry/Masonry.h>
+
 
 /*!负荷监测*/
 @interface LoadDetectionViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
