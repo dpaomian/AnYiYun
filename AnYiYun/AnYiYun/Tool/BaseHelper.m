@@ -272,4 +272,21 @@
     return date;
 }
 
+/*!计算当前用户使用时间，传进来创建时的时间戳*/
++ (NSString *)getUserTimeStringWith:(NSString *)timeStamp {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[timeStamp doubleValue]/1000];
+    NSDate *today = [NSDate date];//当前时间
+    unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    NSDateComponents *d = [calendar components:unitFlags fromDate:createDate toDate:today options:0];
+    if ([d day] <= 0 &&
+        [d hour] <= 0 &&
+        [d minute] <= 0 &&
+        [d second] <= 0) {
+            return  @"00天00小时00分00秒";
+    }else{
+        return [NSString stringWithFormat:@"%.2li天%.2li小时%.2li分%.2li秒", [d day], [d hour], [d minute], [d second]];
+    }
+}
+
 @end

@@ -49,5 +49,7 @@
 + (NSDictionary *)dictionaryAppendDictionary:(NSDictionary *)param;
 /**获取当前手机时间 毫秒值*/
 + (long long)getSystemNowTimeLong;
+/*!计算当前用户使用时间，传进来创建时的时间戳*/
++ (NSString *)getUserTimeStringWith:(NSString *)timeStamp;
 
 @end
