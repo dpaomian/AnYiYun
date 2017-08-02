@@ -21,7 +21,7 @@
 {
     NSMutableArray  *adverArray;
     BOOL            isHaveAlertMessage;
-    long long           safeDay;
+    NSString        *safeTimeString;//安全运行时间
 }
 /**广告图*/
 @property (nonatomic,strong)UIView                     *adBgView;
@@ -208,7 +208,11 @@
      {
      NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
      NSString *timeString = [BaseHelper getUserTimeStringWith:string];
-     DLog(@"%@",timeString);
+     safeTimeString = timeString;
+     DLog(@"安全运行时间 %@ %@",string,timeString);
+         
+         NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
+         [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"获取安全运行失败：%@",error);
@@ -283,7 +287,7 @@
             }
         else
             {
-            [cell setCellContentWithType:@"2" withDay:[NSString stringWithFormat:@"%lld",safeDay]];
+            [cell setCellContentWithType:@"2" withDay:safeTimeString];
             }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
