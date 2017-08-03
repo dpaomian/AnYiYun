@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:report>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="alternate stylesheet" type="text/css"
+	href="#">
+<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>日报</title>
+<style>
+
+body {
+	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+	;
+	font-size: 14px;
+	line-height: 180%;
+}
+a:link {
+	color: #FF0000;
+	text-decoration: underline;
+}
+a:visited {
+	color: #00FF00;
+	text-decoration: none;
+}
+a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+a:active {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+h3 {
+	padding-top: 15px;
+}
+/*table tr:first-child {
+	font-weight: bold;
+}*/
+table {
+	margin: 0 auto;
+	border: 1;
+	cellspacing: 0;
+	cellpadding: 0;
+	text-align: center;
+	width: 100%;
+}
+td, th {
+	padding: 5px 10px;
+	text-align: center;
+	font-size: 11px;
+}
+ul li {
+	line-height: 18px;
+	height: 18px;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+.ul02 {
+	list-style-type: circle;
+	margin-left: 10%;
+}
+.ul03 {
+	list-style-type: num;
+	text-align: left;
+	margin-left: 5%;
+}
+.td-color {
+	color: red;
+	text-align: left;
+}
+.td-color2 {
+	color: green;
+	text-align: left;
+}
+.td-color3 {
+	/*background: #28b9ff;*/
+	text-align: right;
+	font-weight: bold;
+}
+.td-color4 {
+	/*background: #28b9ff;*/
+	text-align: left;
+}
+.num {
+	color: #4a4a4a;
+}
+#mytable {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	border: 1px solid #C1DAD7;
+	border-collapse: collapse;
+	background: #fff;
+	font-size: 11px;
+}
+#mytable td {
+	border: 1px solid #C1DAD7;
+}
+</style>
+</head>
+<body scroll="no">
+<div class="div_01">
+<p>
+<h3 align="center">设备能源管理日报</h3>
+<p align="center"> 
+  <!--<span>00:00~23:59</span>&nbsp;&nbsp;--> 
+</p>
+<hr	style="margin:0 auto; width: 100%; height: 1px;	border: none;border-top: 1px solid #4a4a4a;" />
+</p>
+<div>
+  <div>
+    <ul>
+      <li style=" height: 18px;text-indent: 18px;background-position: left ;background-repeat: no-repeat;background-image:url(img/nenghaojiance.png);list-style: none;"><b>&nbsp;&nbsp;&nbsp;&nbsp;能耗监测</b><span style=" text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="display:inline-block; float:right;padding-right:10%;text-align:right;white-space: nowrap;font-size: 11px;">单位:kWh</span></li>
+    </ul>
+    <table>
+      <!--<caption>
+      <strong>总能耗(kWh)</strong>
+      </caption>-->
+      <tr>
+      <td class="td-color3" width="37%">昨日电量:</td>
+        <td class="td-color4 num" width="32%"><report:ZNH_ldData>&nbsp;&nbsp;1000.20万</report:ZNH_ldData></td>
+        <td width="31%"></td>
+      </tr>
+      <tr>
+        <td class="td-color3" width="37%">当月总电量:</td>
+        <td class="td-color4 num" width="32%"><report:ZNH_ldData>&nbsp;&nbsp;1000.20万</report:ZNH_ldData></td>
+        <td></td>
+        
+      </tr>
+      <tr>
+      <td class="td-color3" width="37%">上月同期电量:</td>
+        <td class="td-color4 num" width="32%"><report:ZNH_mData>&nbsp;&nbsp;9000.20</report:ZNH_mData></td>
+        <td></td>
+      </tr>
+    </table>
+    
+  </div>
+  <!--<hr	style="margin:0 auto; width: 90%; height: 1px;	border: none;border-top: 1px solid #7c7c7c;" /> -->
+ <!-- <div>
+    <table>
+      <tr>
+        <td width="28%" class="td-color3">负荷峰值:</td>
+        <td width="22%" class="td-color4 num"><report:ZNH_lldData>60</report:ZNH_lldData></td>
+        <td width="28%" class="td-color3">峰值时间:</td>
+        <td width="22%" class="td-color"><report:ZNH_rh>45</report:ZNH_rh></td>
+      </tr>
+      <tr>
+        <td width="28%" class="td-color3">当月总电量:</td>
+        <td width="22%" class="td-color4 num"><report:ZNH_lmData>2545.12万</report:ZNH_lmData></td>
+        <td width="28%" class="td-color3">上月同期电量:</td>
+        <td width="22%" class="td-color2"><report:ZNH_rt>5834.23万</report:ZNH_rt></td>
+      </tr>
+    </table>
+  </div>-->
+  <hr	style="margin:0 auto; width: 100%; height: 1px;	border: none;border-top: 1px solid #4a4a4a;" />
+  <p></p>
+  <div>
+    <ul style="float:">
+      <li style="height: 18px;text-indent: 18px;background-position: left ;background-repeat: no-repeat;background-image:url(img/fuhejiance.png);list-style: none;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;负荷监测</b><span style=" text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="display:inline-block; float:right;padding-right:10%;text-align:right;font-size: 11px;">单位:kW</span></li>
+    </ul>
+    <table class="table01">
+    <tr>
+    <td class="td-color3" width="37%">负荷均值:</td>
+        <td class="td-color4 num" width="32%"><report:ZNH_mData>&nbsp;&nbsp;900</report:ZNH_mData></td>
+        <td></td>
+    </tr>
+      <tr>
+        
+        <!--<td class="td-color3" width="25%">负荷均值:</td>
+        <td class="td-color4 num" width="20%"><report:ZNH_ldData>1000</report:ZNH_ldData>KV.A</td>-->
+        <td class="td-color3" width="37%">负荷峰值:</td>
+        <td class="td-color4 num" width="32%"><report:ZNH_mData>&nbsp;&nbsp;900</report:ZNH_mData></td>
+        <td class="td-color4 num" width="31%"><report:ZNH_mData>08:25</report:ZNH_mData></td>
+      
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <hr	style="margin:0 auto; width: 100%; height: 1px;	border: none;border-top: 1px solid #4a4a4a;" />
+  <p></p>
+  <div>
+    <p  align="left" style=" text-align:left;"><b>当月累计电量前五:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 11px;">单位:kWh</span></p>
+    <table id="mytable" cellspacing="0" cellpadding="0">
+      <!--<tr>
+        <td  align="left" style=" text-align:left;">当月电量前五:</td>
+      </tr>-->
+      <tr >
+        <td width="8%" >1
+          <report:NH1_name></report:NH1_name></td>
+        <td width="61%"><report:NH1>空调</report:NH1></td>
+        <td width="31%"><report:NH1>54</report:NH1></td>
+        <!--<td width="6%"><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >2
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>格力空调</report:NH1></td>
+        <td>54</td>
+        <!--<td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >3
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>十五楼格力空调</report:NH1></td>
+        <td>5432.12万</td>
+        <!--<td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >4
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>空调</report:NH1></td>
+        <td>54</td>
+        <!--<td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >5
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>空调</report:NH1></td>
+        <td>54</td>
+        <!--<td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+    </table>
+  </div>
+  <div>
+    <p  align="left" style=" text-align:left;"><b>昨日电量前五:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 11px;">单位:kWh</span></p>
+    <table id="mytable" cellspacing="0" cellpadding="0">
+      <!--<tr>
+        <td  align="left" style=" text-align:left;">昨日电量前五:</td>
+      </tr>-->
+      <tr >
+        <td width="8%" >1
+          <report:NH1_name></report:NH1_name></td>
+        <td width="61%"><report:NH1>空调</report:NH1></td>
+        <td width="31%">60</td>
+        <!--<td width="6%"><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >2
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>空调</report:NH1></td>
+        <td>60</td>
+        <!--<td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >3
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>空调</report:NH1></td>
+        <td>60</td>
+        <!--<td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >4
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>空调</report:NH1></td>
+        <td>60</td>
+        <!--<td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+      <tr >
+        <td >5
+          <report:NH1_name></report:NH1_name></td>
+        <td><report:NH1>空调</report:NH1></td>
+        <td>60</td>
+       <!-- <td><report:NH1_rh>kWh</report:NH1_rh></td>-->
+      </tr>
+    </table>
+  </div>
+  <br />
+  <hr	style="margin:0 auto; width: 100%; height: 1px;	border: none;border-top: 1px solid #4a4a4a;" />
+  <p></p>
+  <div>
+    <ul style="float:">
+      <li style="height: 18px;text-indent: 18px;background-position: left ;background-repeat: no-repeat;background-image:url(img/anquanjiankong.png);list-style: none;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;安全监控</b> </li>
+    </ul>
+    <table class="table01">
+      <tr>
+        
+        <td class="td-color3" width="28%">报警数量:</td>
+        <td class="td-color4 num" width="22%"><report:ZNH_ldData>1000</report:ZNH_ldData></td>
+        <td class="td-color3" width="28%">预警数量:</td>
+        <td class="td-color4 num" width="22%"><report:ZNH_mData>9000</report:ZNH_mData></td>
+      
+      </tr>
+      
+      
+    </table>
+  </div>
+  <hr style="margin:0 auto; width: 100%; height: 1px;	border: none;border-top: 1px solid #4a4a4a;" />
+  <p></p>
+  <div>
+    <ul>
+      <li style=" height: 18px;text-indent: 18px;background-position: left ;background-repeat: no-repeat;background-image:url(img/shebeiguanli.png);list-style: none;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;设备管理</b> </li>
+    </ul>
+    <table class="table02">
+      <tr>
+        <td class="td-color3" width="28%">待检修数量</td>
+        <td class="num" width="22%"><a href="#">
+          <report:repair>108</report:repair>
+          </a></td>
+        <td class="td-color3" width="28%">待保养数量</td>
+   <td class="num" width="22%"><a href="#">
+          <report:change>365</report:change>
+          </a></td>
+        
+        
+      </tr>
+    </table>
+    <table class="table02">
+      <tr>
+       <td class="td-color3" width="28%">已检修数量</td>
+        <td class="num" width="22%"><a href="#">
+          <report:repair>108</report:repair>
+          </a></td>
+        <td class="td-color3" width="28%">已保养数量</td>
+   <td class="num" width="22%"><a href="#">
+          <report:change>365</report:change>
+          </a></td>
+      </tr>
+    </table>
+    <hr	style="margin:0 auto; width: 100%; height: 1px;border: none;border-top: 1px solid #4a4a4a;" />
+    <p></p>
+  </div>
+</div>
+</body>
+</html>
