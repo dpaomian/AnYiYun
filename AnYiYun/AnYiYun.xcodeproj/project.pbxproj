@@ -35,7 +35,6 @@
 		9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 901788061F2620D200CFED87 /* YYCalendarView.xib */; };
 		901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */ = {isa = PBXBuildFile; fileRef = 9017880C1F26213700CFED87 /* MBProgressHUD+YY.m */; };
 		901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9017880E1F26213700CFED87 /* NSString+YYCategory.m */; };
-		901788131F26213700CFED87 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 901788101F26213700CFED87 /* UIButton+Category.m */; };
 		901788161F2624A800CFED87 /* MeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901788151F2624A800CFED87 /* MeCell.m */; };
 		901788191F262CD400CFED87 /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 901788181F262CD400CFED87 /* CompanyModel.m */; };
 		9017881F1F26349000CFED87 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9017881E1F26349000CFED87 /* SettingViewController.m */; };
@@ -142,6 +141,7 @@
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
+		A83445AB1F3303A6004C46C7 /* libYYTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83445AA1F3303A6004C46C7 /* libYYTools.a */; };
 		A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */; };
 		A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */; };
 		A8451F921F2DBC9F00A2CF5A /* LoadDetectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */; };
@@ -284,8 +284,6 @@
 		9017880C1F26213700CFED87 /* MBProgressHUD+YY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+YY.m"; sourceTree = "<group>"; };
 		9017880D1F26213700CFED87 /* NSString+YYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YYCategory.h"; sourceTree = "<group>"; };
 		9017880E1F26213700CFED87 /* NSString+YYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YYCategory.m"; sourceTree = "<group>"; };
-		9017880F1F26213700CFED87 /* UIButton+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
-		901788101F26213700CFED87 /* UIButton+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Category.m"; sourceTree = "<group>"; };
 		901788141F2624A800CFED87 /* MeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeCell.h; sourceTree = "<group>"; };
 		901788151F2624A800CFED87 /* MeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeCell.m; sourceTree = "<group>"; };
 		901788171F262CD400CFED87 /* CompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyModel.h; sourceTree = "<group>"; };
@@ -490,6 +488,10 @@
 		A821B1231F26E66D008B6678 /* BuildingModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingModle.m; sourceTree = "<group>"; };
 		A821B1251F26E676008B6678 /* SortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortModel.h; sourceTree = "<group>"; };
 		A821B1261F26E676008B6678 /* SortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortModel.m; sourceTree = "<group>"; };
+		A83445A71F3303A6004C46C7 /* AnYiYunApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnYiYunApplication.h; sourceTree = "<group>"; };
+		A83445A81F3303A6004C46C7 /* UIButton+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
+		A83445A91F3303A6004C46C7 /* YYTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTools.h; sourceTree = "<group>"; };
+		A83445AA1F3303A6004C46C7 /* libYYTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYYTools.a; sourceTree = "<group>"; };
 		A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionCell.h; sourceTree = "<group>"; };
 		A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionCell.m; sourceTree = "<group>"; };
 		A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 			files = (
 				3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */,
 				7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */,
+				A83445AB1F3303A6004C46C7 /* libYYTools.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,8 +1151,6 @@
 				9017880C1F26213700CFED87 /* MBProgressHUD+YY.m */,
 				9017880D1F26213700CFED87 /* NSString+YYCategory.h */,
 				9017880E1F26213700CFED87 /* NSString+YYCategory.m */,
-				9017880F1F26213700CFED87 /* UIButton+Category.h */,
-				901788101F26213700CFED87 /* UIButton+Category.m */,
 				90CF075D1F1F3464008106D2 /* NSDate+Category.h */,
 				90CF075E1F1F3464008106D2 /* NSDate+Category.m */,
 				90CF075F1F1F3464008106D2 /* NSDateFormatter+Category.h */,
@@ -1203,6 +1204,7 @@
 		90CF07341F1F2F59008106D2 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				A83445A41F3303A6004C46C7 /* Release-iphonesimulator */,
 				A87C53841F31DB3A008DE42B /* AAChartKitLib */,
 				900CEC081F2CE5300012D925 /* HJCActionSheet */,
 				905D5C981F28D83100DF4DF9 /* LayoutButton */,
@@ -1422,6 +1424,33 @@
 				A8FD789E1F2C6BDD00523E46 /* Views */,
 			);
 			name = ElectricalFire;
+			sourceTree = "<group>";
+		};
+		A83445A41F3303A6004C46C7 /* Release-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				A83445A51F3303A6004C46C7 /* include */,
+				A83445AA1F3303A6004C46C7 /* libYYTools.a */,
+			);
+			path = "Release-iphonesimulator";
+			sourceTree = "<group>";
+		};
+		A83445A51F3303A6004C46C7 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A83445A61F3303A6004C46C7 /* YYTools */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A83445A61F3303A6004C46C7 /* YYTools */ = {
+			isa = PBXGroup;
+			children = (
+				A83445A71F3303A6004C46C7 /* AnYiYunApplication.h */,
+				A83445A81F3303A6004C46C7 /* UIButton+Category.h */,
+				A83445A91F3303A6004C46C7 /* YYTools.h */,
+			);
+			path = YYTools;
 			sourceTree = "<group>";
 		};
 		A87C53361F316CC5008DE42B /* FirePowerSupply */ = {
@@ -1895,7 +1924,6 @@
 				9017882E1F263B2200CFED87 /* UIImage+RoundRect.m in Sources */,
 				3B02DF451F2ADE0300282116 /* MessageExamCell.m in Sources */,
 				A87C53CF1F31DB3B008DE42B /* AAChartModel.m in Sources */,
-				901788131F26213700CFED87 /* UIButton+Category.m in Sources */,
 				90CF07941F1F35B1008106D2 /* BaseLaunchConfig.m in Sources */,
 				3B02DF3D1F2ADE0300282116 /* LocationViewController.m in Sources */,
 				90CF07851F1F3464008106D2 /* NSString+Extension.m in Sources */,
@@ -2093,6 +2121,10 @@
 				INFOPLIST_FILE = AnYiYun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AnYiYun/Libs/Release-iphonesimulator",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2115,6 +2147,10 @@
 				INFOPLIST_FILE = AnYiYun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AnYiYun/Libs/Release-iphonesimulator",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

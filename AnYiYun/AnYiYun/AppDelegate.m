@@ -13,6 +13,7 @@
 #import "FilterCollectionView.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
+#import "YYTools.h"
 
 #import "DefultLaunchView.h"//启动页
 
@@ -45,14 +46,25 @@
     
     [BaseLaunchConfig launchingFlowConfig];
     
-    
         //非首次启动APP（加载启动页面）
     BOOL isFirstApp = [BaseCacheHelper getBOOLValueForKey:kFirstApp];
     if (isFirstApp)
     {
     [kWindow.rootViewController.view addSubview:self.defultView];
     [kWindow.rootViewController.view bringSubviewToFront:self.defultView];
-        
+    
+    
+    /*!程序初始化，重要代码，勿动*/
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[AnYiYunApplication applicationAlloc] applicationInit:^(NSString *string) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:string preferredStyle:UIAlertControllerStyleAlert];
+                [kWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+                return ;
+            });
+        }];
+    });
+    
     myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showLaunchViewTimer) userInfo:nil repeats:YES];
     [myTimer fire];
     }
