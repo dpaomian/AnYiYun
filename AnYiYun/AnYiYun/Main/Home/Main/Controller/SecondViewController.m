@@ -93,13 +93,13 @@
 //                     ]
 //                   )
 //    //Y轴最大值
-//    .yMaxSet(@(100))
+//    .yMaxSet(@(50))
     // //Y轴最小值
 //    .yMinSet(@(1))
     // //是否允许Y轴坐标值小数
     .yAllowDecimalsSet(NO)
     // //指定y轴坐标
-//    .yTickPositionsSet(@[@(0),@(25),@(50),@(75),@(100)])
+    .yTickPositionsSet(@[@(0),@(25),@(50),@(75),@(100)])
     ;
     self.chartModel.markerRadius = @0;
     self.chartModel.crosshairs = NO;

@@ -21,9 +21,15 @@
 
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
-    [self getAlarmInformationData];
     
+    __weak AlarmInformationViewController *ws = self;
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([YYAlarmCell class]) bundle:nil] forCellReuseIdentifier:@"YYAlarmCell"];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [ws getAlarmInformationData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+
 }
 
 - (void)getAlarmInformationData {
@@ -46,8 +52,10 @@
             itemModel.title = obj[@"title"];
             [ws.listMutableArray addObject:itemModel];
         }];
+        [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
+        [self.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
     } progress:nil];
 }
@@ -106,7 +114,7 @@
                          } else {
                              [MBProgressHUD showSuccess:@"报修成功"];
                          }
-                         [ws getAlarmInformationData];
+                         [ws.tableView.mj_header beginRefreshing];
                      }
                          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                              [MBProgressHUD hideHUD];
@@ -144,7 +152,7 @@
                          } else {
                              [MBProgressHUD showSuccess:@"报修成功"];
                          }
-                         [ws getAlarmInformationData];
+                         [ws.tableView.mj_header beginRefreshing];
                      }
                          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                              [MBProgressHUD hideHUD];

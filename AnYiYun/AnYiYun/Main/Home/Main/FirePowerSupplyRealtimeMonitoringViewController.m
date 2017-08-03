@@ -26,7 +26,6 @@
     
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
-    [self getRealtimeMonitoringData];
     
     __weak FirePowerSupplyRealtimeMonitoringViewController *ws = self;
     
@@ -57,7 +56,7 @@
             } else {
                 [ws.conditionDic setObject:model.companyName forKey:@"firstCondition"];
             }
-            [ws getRealtimeMonitoringData];
+            [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 2:
@@ -68,7 +67,7 @@
             } else {
                 [ws.conditionDic setObject:model.name forKey:@"secondCondition"];
             }
-            [ws getRealtimeMonitoringData];
+            [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 3:
@@ -79,14 +78,14 @@
             } else{
                 [ws.conditionDic setObject:model.idF forKey:@"thirdCondition"];
             }
-            [ws getRealtimeMonitoringData];
+            [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 4:
             {
             UISearchBar * bar = modelObject;
             [ws.conditionDic setObject:bar.text forKey:@"fifthCondition"];
-            [ws getRealtimeMonitoringData];
+            [ws.tableView.mj_header beginRefreshing];
             }
                 break;
                 
@@ -94,7 +93,11 @@
                 break;
         }
     };
-    [self.view addSubview:_collectionView];    
+    [self.view addSubview:_collectionView];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [ws getRealtimeMonitoringData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getRealtimeMonitoringData {
@@ -137,8 +140,10 @@
             }
             [ws.listMutableArray addObject:model];
         }];
+        [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
+        [self.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
     } progress:nil];
 }

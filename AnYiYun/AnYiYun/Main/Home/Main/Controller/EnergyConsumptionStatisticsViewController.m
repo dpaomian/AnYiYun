@@ -26,8 +26,6 @@
     
     __weak EnergyConsumptionStatisticsViewController *ws = self;
     
-    [self getEnergyConsumptionStatisticsData];
-    
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([EnergyConsumptionStatisticsCell class]) bundle:nil] forCellReuseIdentifier:@"EnergyConsumptionStatisticsCell"];
@@ -63,7 +61,7 @@
                 } else {
                     [ws.conditionDic setObject:model.companyName forKey:@"firstCondition"];
                 }
-                [ws getEnergyConsumptionStatisticsData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 2:
@@ -74,7 +72,7 @@
                 } else {
                     [ws.conditionDic setObject:model.name forKey:@"secondCondition"];
                 }
-                [ws getEnergyConsumptionStatisticsData];
+                [self.tableView.mj_header beginRefreshing];
             }
                 break;
             case 3:
@@ -85,14 +83,14 @@
                 } else{
                     [ws.conditionDic setObject:model.idF forKey:@"thirdCondition"];
                 }
-                [ws getEnergyConsumptionStatisticsData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 4:
             {
                 UISearchBar * bar = modelObject;
                 [ws.conditionDic setObject:bar.text forKey:@"fifthCondition"];
-                [ws getEnergyConsumptionStatisticsData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
                 
@@ -107,7 +105,13 @@
     [_constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView(==34)]" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
     [self.view addConstraints:_constraintsMutableArray];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-34-[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [ws getEnergyConsumptionStatisticsData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
+
 - (void)getEnergyConsumptionStatisticsData {
     __weak EnergyConsumptionStatisticsViewController *ws = self;
     
@@ -142,8 +146,10 @@
             model.unit = obj[@"unit"];
             [ws.listMutableArray addObject:model];
         }];
+        [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
+        [self.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
     } progress:nil];
 }

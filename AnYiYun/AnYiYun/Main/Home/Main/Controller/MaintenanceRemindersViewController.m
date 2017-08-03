@@ -24,15 +24,23 @@
     
     _foldSection = 0;
     
+    __weak MaintenanceRemindersViewController *ws = self;
+    
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
-    [self getRealtimeMonitoringData];
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LoadDatectionHeaderView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:@"LoadDatectionHeaderView"];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MaintenanceRemindersCell class]) bundle:nil] forCellReuseIdentifier:@"MaintenanceRemindersCell"];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [ws getRealtimeMonitoringData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+
 }
 
 - (void)getRealtimeMonitoringData {
+    [self.listMutableArray removeAllObjects];
     RealtimeMonitoringListModel *fixmodel = [[RealtimeMonitoringListModel alloc] init];
     fixmodel.idF = @"rest/supplyPower/repair";
     fixmodel.device_name = @"待检修";
@@ -126,8 +134,10 @@
         }];
         itemModel.itemsMutableArray =childItemsMutablearray;
         [ws.listMutableArray replaceObjectAtIndex:section withObject:itemModel];
+        [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
     } failureBlock:^(NSError *error) {
+        [self.tableView.mj_header endRefreshing];
         itemModel.itemsMutableArray = [@[] mutableCopy];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
         [MBProgressHUD showError:@"请求失败"];
@@ -167,7 +177,7 @@
                     } else {
                         [MBProgressHUD showSuccess:@"报修成功"];
                     }
-                    [ws getRealtimeMonitoringData];
+                    [ws.tableView.mj_header beginRefreshing];
                 }
                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                      NSLog(@"%@",error.localizedDescription);

@@ -25,8 +25,6 @@
     
     __weak EquipmentAccountViewController *ws = self;
     
-    [self getAlarmInformationData];
-    
     self.tableView.sectionIndexColor = UIColorFromRGB(0x3D3D3D);
     self.tableView.sectionIndexBackgroundColor = UIColorFromRGBA(0x666666,0.4f);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountCell class]) bundle:nil] forCellReuseIdentifier:@"EquipmentAccountCell"];
@@ -54,7 +52,7 @@
                 } else {
                     [ws.conditionDic setObject:model.companyName forKey:@"firstCondition"];
                 }
-                [ws getAlarmInformationData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 2:
@@ -65,7 +63,7 @@
                 } else {
                     [ws.conditionDic setObject:model.name forKey:@"secondCondition"];
                 }
-                [ws getAlarmInformationData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 3:
@@ -76,14 +74,14 @@
                 } else{
                     [ws.conditionDic setObject:model.idF forKey:@"thirdCondition"];
                 }
-                [ws getAlarmInformationData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 4:
             {
                 UISearchBar * bar = modelObject;
                 [ws.conditionDic setObject:bar.text forKey:@"fifthCondition"];
-                [ws getAlarmInformationData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
                 
@@ -92,6 +90,11 @@
         }
     };
     [self.view addSubview:_collectionView];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [ws getAlarmInformationData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (NSArray *)sortKeysWithDic:(NSDictionary *)dic {
@@ -140,8 +143,10 @@
                 }
             }];
         }];
+        [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
+        [self.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
     } progress:nil];
 }

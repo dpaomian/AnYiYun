@@ -45,8 +45,6 @@
     _curveMutableArray1 = [NSMutableArray array];
     _curveMutableArray2 = [NSMutableArray array];
     
-    [self getLoadDetectionData];
-    
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -83,7 +81,7 @@
                 } else {
                     [ws.conditionDic setObject:model.companyName forKey:@"firstCondition"];
                 }
-                [ws getLoadDetectionData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 2:
@@ -94,7 +92,7 @@
                 } else {
                     [ws.conditionDic setObject:model.name forKey:@"secondCondition"];
                 }
-                [ws getLoadDetectionData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 3:
@@ -105,14 +103,14 @@
                 } else{
                     [ws.conditionDic setObject:model.idF forKey:@"thirdCondition"];
                 }
-                [ws getLoadDetectionData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 4:
             {
                 UISearchBar * bar = modelObject;
                 [ws.conditionDic setObject:bar.text forKey:@"fifthCondition"];
-                [ws getLoadDetectionData];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
                 
@@ -141,6 +139,10 @@
     [self.view addConstraints:_constraintsMutableArray];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-%f-[_tableView]|",tableViewTop] options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
     
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [ws getLoadDetectionData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getLoadDetectionData {
@@ -186,8 +188,10 @@
             }
             [ws.listMutableArray addObject:model];
         }];
+        [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
+        [self.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
     } progress:nil];
 }
@@ -202,23 +206,22 @@
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *childItemsMutablearray = [NSMutableArray array];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            RealtimeMonitoringListModelList *itemModel = [[RealtimeMonitoringListModelList alloc] init];
-            itemModel.device_id = obj[@"device_id"];
-            itemModel.device_name = obj[@"device_name"];
-            itemModel.displayIcon = [obj[@"displayIcon"] boolValue];
-            itemModel.idF = obj[@"id"];
-            itemModel.point_name = obj[@"point_name"];
-            itemModel.point_state = obj[@"point_state"];
-            itemModel.point_type = obj[@"point_type"];
-            itemModel.point_unit = obj[@"point_unit"];
-            itemModel.point_value = obj[@"point_value"];
-            itemModel.sid = obj[@"sid"];
-            itemModel.sortDevice = obj[@"sortDevice"];
-            itemModel.terminal_id = obj[@"terminal_id"];
-            itemModel.terminal_type = obj[@"terminal_type"];
-            [childItemsMutablearray addObject:itemModel];
+            RealtimeMonitoringListModelList *model = [[RealtimeMonitoringListModelList alloc] init];
+            model.device_id = obj[@"device_id"];
+            model.device_name = obj[@"device_name"];
+            model.displayIcon = [obj[@"displayIcon"] boolValue];
+            model.idF = obj[@"id"];
+            model.point_name = obj[@"point_name"];
+            model.point_state = obj[@"point_state"];
+            model.point_type = obj[@"point_type"];
+            model.point_unit = obj[@"point_unit"];
+            model.point_value = obj[@"point_value"];
+            model.sid = obj[@"sid"];
+            model.sortDevice = obj[@"sortDevice"];
+            model.terminal_id = obj[@"terminal_id"];
+            model.terminal_type = obj[@"terminal_type"];
+            [childItemsMutablearray addObject:model];
         }];
-//        [ws loadCurveWithModel:itemModel andSection:section];
         itemModel.itemsMutableArray =childItemsMutablearray;
         [ws.listMutableArray replaceObjectAtIndex:section withObject:itemModel];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
@@ -233,7 +236,9 @@
     __weak LoadDetectionViewController *ws = self;
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
-    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":itemModel.idF,@"type":@"103"};
+    NSArray * array = [NSArray arrayWithArray:[[itemModel extend] componentsSeparatedByString:@":"]];
+    NSString * idString = [array count]>0?array[0]:@"";
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":idString,@"type":@"103"};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         [ws.curveMutableArray1 removeAllObjects];
         [ws.curveMutableArray2 removeAllObjects];
@@ -245,34 +250,37 @@
             NSMutableArray *arrayTwo = [NSMutableArray array];
             NSMutableArray *timeArray = [NSMutableArray array];
             [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                DoubleGraphModel *itemModel = [[DoubleGraphModel alloc] init];
-                itemModel.idf = obj[@"id"];
-                itemModel.name = obj[@"name"];
-                itemModel.sid = obj[@"sid"];
-                itemModel.time = obj[@"time"];
-                itemModel.timeLong = obj[@"timeLong"];
-                itemModel.value = obj[@"value"];
+                DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
+                model.idf = obj[@"id"];
+                model.name = obj[@"name"];
+                model.sid = obj[@"sid"];
+                model.time = obj[@"time"];
+                model.timeLong = obj[@"timeLong"];
+                model.value = obj[@"value"];
                 float numberToRound;
                 int result;
-                numberToRound = [itemModel.value floatValue]/100.0;
+                numberToRound = [model.value floatValue];
                 
                 result = (int)roundf(numberToRound);
                 if (myIdex==0) {
-                    [ws.curveMutableArray1 addObject:itemModel];
-                    [arrayOne addObject:@(result/10.0)];
+                    [ws.curveMutableArray1 addObject:model];
+                    [arrayOne addObject:@(result)];
                 } else {
-                    [ws.curveMutableArray2 addObject:itemModel];
+                    [ws.curveMutableArray2 addObject:model];
 //                     NSLog(@"roundf(%.2f) = %d", numberToRound, result);
-                    [arrayTwo addObject:@(result/10.0)];
-                    [timeArray addObject:itemModel.time];
+                    [arrayTwo addObject:@(result)];
+                    [timeArray addObject:model.time];
                 }
             }];
-            _sVC.oneArray = [NSArray arrayWithArray:arrayOne];
-            _sVC.twoArray = [NSArray arrayWithArray:arrayTwo];
-            _sVC.timeArray = [NSArray arrayWithArray:timeArray];
-            [_sVC reloadDataUI];
+            if (myIdex==0) {
+                _sVC.oneArray = [NSArray arrayWithArray:arrayOne];
+            } else {
+                _sVC.twoArray = [NSArray arrayWithArray:arrayTwo];
+                _sVC.timeArray = [NSArray arrayWithArray:timeArray];
+            }
         }];
 
+        [_sVC reloadDataUI];
 //        [self.stockDatadict setObject:array forKey:@"1"];
     } failureBlock:^(NSError *error) {
         [MBProgressHUD showError:@"获取曲线失败"];
