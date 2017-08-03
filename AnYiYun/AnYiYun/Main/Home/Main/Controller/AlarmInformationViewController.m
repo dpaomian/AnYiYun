@@ -29,6 +29,7 @@
         [ws getAlarmInformationData];
     }];
     [self.tableView.mj_header beginRefreshing];
+    self.tableView.separatorColor = UIColorFromRGB(0xF0F0F0);
 
 }
 
@@ -52,7 +53,9 @@
             itemModel.title = obj[@"title"];
             [ws.listMutableArray addObject:itemModel];
         }];
-        [self.tableView.mj_header endRefreshing];
+        ws.noDataView.hidden = ws.listMutableArray.count>0;
+        ws.tableView.separatorStyle = (!(ws.listMutableArray.count>0))?UITableViewCellSeparatorStyleNone:UITableViewCellSeparatorStyleSingleLine;
+        [ws.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];

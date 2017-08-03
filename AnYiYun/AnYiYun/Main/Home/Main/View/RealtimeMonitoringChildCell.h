@@ -12,6 +12,7 @@
 
 /*!标题*/
 @property (strong, nonatomic) IBOutlet UILabel *titleLab;
+@property (weak, nonatomic) IBOutlet UIButton *lineIconBtn;
 /*!后边的内容*/
 @property (strong, nonatomic) IBOutlet UIButton *contentBtn;
 /*!尾部的小图片*/

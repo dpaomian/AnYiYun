@@ -85,7 +85,7 @@
 {
     if (!_leftImageView) {
         _leftImageView = [[UIImageView alloc] init];
-        _leftImageView.frame = CGRectMake(10, 10, 24, 24);
+        _leftImageView.frame = CGRectMake(10, 10, 18, 18);
     }
     return _leftImageView;
 }

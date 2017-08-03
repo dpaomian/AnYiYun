@@ -6,11 +6,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlarmInformationViewController">
             <connections>
+                <outlet property="noDataView" destination="DUv-xK-fcf" id="YR4-HC-TPk"/>
                 <outlet property="tableView" destination="B7P-QX-3Po" id="Nr1-iM-hHF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,14 +30,43 @@
                         <outlet property="delegate" destination="-1" id="CcX-Pa-GT1"/>
                     </connections>
                 </tableView>
+                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUv-xK-fcf">
+                    <rect key="frame" x="0.0" y="66.5" width="375" height="360.5"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_nfc" translatesAutoresizingMaskIntoConstraints="NO" id="f11-KR-gaf">
+                            <rect key="frame" x="94" y="65" width="186" height="158"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前全部设备运转正常" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7U-ww-nNd">
+                            <rect key="frame" x="111" y="245" width="153" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="f11-KR-gaf" firstAttribute="centerX" secondItem="F7U-ww-nNd" secondAttribute="centerX" id="9Xc-oa-VI4"/>
+                        <constraint firstItem="f11-KR-gaf" firstAttribute="centerX" secondItem="DUv-xK-fcf" secondAttribute="centerX" id="GpO-nH-Wvd"/>
+                        <constraint firstItem="f11-KR-gaf" firstAttribute="centerY" secondItem="DUv-xK-fcf" secondAttribute="centerY" multiplier="0.8" id="LrK-iF-LVu"/>
+                        <constraint firstItem="F7U-ww-nNd" firstAttribute="top" secondItem="f11-KR-gaf" secondAttribute="bottom" constant="22" id="u9t-5d-Fme"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="B7P-QX-3Po" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2ar-dq-4e3"/>
+                <constraint firstItem="DUv-xK-fcf" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.54" id="CRC-TJ-u9g"/>
+                <constraint firstAttribute="trailing" secondItem="DUv-xK-fcf" secondAttribute="trailing" id="FkE-mf-q3a"/>
+                <constraint firstItem="DUv-xK-fcf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Hs7-ZT-I2T"/>
                 <constraint firstAttribute="trailing" secondItem="B7P-QX-3Po" secondAttribute="trailing" id="JP6-Ne-eYz"/>
+                <constraint firstItem="DUv-xK-fcf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.74" id="RsJ-1c-Pio"/>
+                <constraint firstItem="DUv-xK-fcf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XJL-bB-Ffe"/>
                 <constraint firstItem="B7P-QX-3Po" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hgE-Nx-08I"/>
                 <constraint firstAttribute="bottom" secondItem="B7P-QX-3Po" secondAttribute="bottom" id="rpQ-6p-5f3"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="image_nfc" width="186" height="158"/>
+    </resources>
 </document>

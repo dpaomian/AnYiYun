@@ -20,6 +20,9 @@
 -(void) viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES animated:NO]; //设置隐藏
     [super viewWillAppear:animated];
+    if (_inputTextView) {
+        _inputTextView.text = @"";
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -138,6 +141,13 @@
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] >200) {
+        textView.text = [textView.text substringToIndex:200];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            textView.contentOffset = CGPointMake(0, 0);
+        });
+        [MBProgressHUD showError:@"超出最大输入长度"];
+    }
     self.textCountLab.text = [NSString stringWithFormat:@"%d/200",[textView.text length]];
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

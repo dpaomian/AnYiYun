@@ -16,7 +16,7 @@
     if (self) {
         self.chartType = AAChartTypeColumn;
         self.animationType = AAChartAnimationTypeSwing;//默认使用jQuery easing的'swing'效果
-        self.animationDuration = @0;//默认动画时长为500毫秒
+        self.animationDuration = @500;//默认动画时长为500毫秒
         self.subtitleAlign = AAChartSubtitleAlignTypeLeft;
         self.pointHollow =NO;
         self.inverted = NO;
