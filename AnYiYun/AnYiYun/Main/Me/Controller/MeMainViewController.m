@@ -78,9 +78,9 @@
 #pragma mark - 切换账号后刷新视图
 - (void)getDataSource
 {
-        //咨讯 & 消息
+        //资讯 & 消息
     _sectionOneArray = @[@{@"icon":@"bottom_btn_2.png",
-                           @"title":@"咨讯"},
+                           @"title":@"资讯"},
                          @{@"icon":@"bottom_btn_2.png",
                            @"title":@"消息"}];
         //设置 & 分享
