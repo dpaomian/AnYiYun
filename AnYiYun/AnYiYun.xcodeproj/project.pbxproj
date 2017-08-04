@@ -142,8 +142,6 @@
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
 		A83445B51F3339CC004C46C7 /* libYYTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83445B41F3339CC004C46C7 /* libYYTools.a */; };
-		A8393B151F338B97000946E0 /* YYMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8393B131F338B97000946E0 /* YYMeCell.m */; };
-		A8393B161F338B97000946E0 /* YYMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8393B141F338B97000946E0 /* YYMeCell.xib */; };
 		A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */; };
 		A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */; };
 		A8451F921F2DBC9F00A2CF5A /* LoadDetectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */; };
@@ -494,9 +492,6 @@
 		A83445B21F3339CC004C46C7 /* UIButton+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
 		A83445B31F3339CC004C46C7 /* YYTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTools.h; sourceTree = "<group>"; };
 		A83445B41F3339CC004C46C7 /* libYYTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYYTools.a; sourceTree = "<group>"; };
-		A8393B121F338B97000946E0 /* YYMeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMeCell.h; sourceTree = "<group>"; };
-		A8393B131F338B97000946E0 /* YYMeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMeCell.m; sourceTree = "<group>"; };
-		A8393B141F338B97000946E0 /* YYMeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYMeCell.xib; sourceTree = "<group>"; };
 		A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionCell.h; sourceTree = "<group>"; };
 		A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionCell.m; sourceTree = "<group>"; };
 		A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
@@ -1318,9 +1313,6 @@
 				901787FC1F26204C00CFED87 /* UserInfoCell.m */,
 				901788141F2624A800CFED87 /* MeCell.h */,
 				901788151F2624A800CFED87 /* MeCell.m */,
-				A8393B121F338B97000946E0 /* YYMeCell.h */,
-				A8393B131F338B97000946E0 /* YYMeCell.m */,
-				A8393B141F338B97000946E0 /* YYMeCell.xib */,
 				901788261F26386E00CFED87 /* ModifyPasswordCell.h */,
 				901788271F26386E00CFED87 /* ModifyPasswordCell.m */,
 				3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */,
@@ -1763,7 +1755,6 @@
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
-				A8393B161F338B97000946E0 /* YYMeCell.xib in Resources */,
 				A8FD78921F2C396800523E46 /* FireEquipmentAccountViewController.xib in Resources */,
 				A87C53D41F31DB3B008DE42B /* AAChartView.html in Resources */,
 				A8FD78901F2C396800523E46 /* FireAlarmInformationViewController.xib in Resources */,
@@ -1846,7 +1837,6 @@
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
 				A87C53E01F31DB3B008DE42B /* AADataLabels.m in Sources */,
-				A8393B151F338B97000946E0 /* YYMeCell.m in Sources */,
 				A87C53D01F31DB3B008DE42B /* AAChartView.m in Sources */,
 				A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */,
 				9046D5DA1F2B886A004E3DCC /* DeviceInfoViewController.m in Sources */,
