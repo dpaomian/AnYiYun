@@ -21,6 +21,9 @@
     NSArray *_sectionOneArray,*_sectionTwoArray;
 }
 
+@property (nonatomic, strong) NSMutableArray *historyArray;
+@property (nonatomic, assign) BOOL isUnread;
+
 @property (nonatomic, strong) UITableView *meTableView;
 
 @end
@@ -33,6 +36,7 @@
     
     self.title = @"我的";
     self.view = self.meTableView;
+    _historyArray = [[NSMutableArray alloc]init];
 
     [self getDataSource];
     
@@ -40,10 +44,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self getHistoryMessageDataRequest];
     [self updatePersonInfo];
 }
 
-#pragma mark -
+#pragma mark - 请求消息
 
 - (void)updatePersonInfo
 {
@@ -72,10 +77,55 @@
     } failureBlock:^(NSError *error) {
         DLog(@"获取获取公司信息失败：%@",error);
     } progress:nil];
+}
+
+-(void)getHistoryMessageDataRequest
+{
     
+    _isUnread = NO;
+    [_historyArray removeAllObjects];
     
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
+    
+    long long useTime = [BaseHelper getSystemNowTimeLong];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"version":[NSString stringWithFormat:@"%lld", useTime]};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     if ([responseObject isKindOfClass:[NSData class]])
+         {
+         id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+         
+         if ([jsonObject isKindOfClass:[NSArray class]])
+             {
+             NSArray *useArray = (NSArray *)jsonObject;
+             for (int i=0; i<useArray.count; i++)
+                 {
+                 NSDictionary *useDic = [useArray objectAtIndex:i];
+                 HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
+                 if (itemModel.num>0)
+                     {
+                     _isUnread = YES;
+                 }
+                 [_historyArray addObject:itemModel];
+                 }
+             [_meTableView reloadData];
+             }
+         }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
     
 }
+
 #pragma mark - 切换账号后刷新视图
 - (void)getDataSource
 {
@@ -179,11 +229,10 @@
             NSString *imageString = dic[@"icon"];
             if([titleString isEqualToString:@"消息"])
             {
-                BOOL isUnRead = [[DBDaoDataBase sharedDataBase] isHaveNoReadHistoryMessageWithType:@""];
-                if(isUnRead==YES)
+            if (_isUnread==YES)
                 {
-                    typeString = @"1";
-                }
+                typeString = @"1";
+            }
             }
             [cell setCellContentWithTitle:titleString withImageString:imageString withType:typeString];
         return cell;

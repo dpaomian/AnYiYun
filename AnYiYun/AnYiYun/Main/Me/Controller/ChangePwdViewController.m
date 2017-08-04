@@ -167,7 +167,7 @@
         cell.leftTextLabel.text = @"新密码：";
         cell.pwdTextField.placeholder = @"请输入新密码";
     }else if(indexPath.row == 2){
-        cell.leftTextLabel.text = @"请确认：";
+        cell.leftTextLabel.text = @"确认密码：";
         cell.pwdTextField.placeholder = @"请再次输入新密码";
     }
     return cell;

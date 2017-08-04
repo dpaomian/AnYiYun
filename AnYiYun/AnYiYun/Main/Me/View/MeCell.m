@@ -50,7 +50,7 @@
             //有未读消息
         _rightLabel.hidden = NO;
         _rightLabel.backgroundColor = [UIColor redColor];
-        _rightLabel.frame = CGRectMake(_leftLabel.frame.size.width+_leftLabel.frame.origin.y+5, 17, 10, 10);
+        _rightLabel.frame = CGRectMake(CGRectGetMaxX(_leftLabel.frame)+5, 17, 10, 10);
         _rightLabel.layer.masksToBounds = YES;
         _rightLabel.layer.cornerRadius = 5;
     }
@@ -58,7 +58,6 @@
         {
             //清除缓存
         float sizeCache = [self getCacheSize];
-        
         if (sizeCache>0)
             {
             NSString *cacheSizeString = [BaseHelper filterNullObj:[NSString stringWithFormat:@"%.2fM",sizeCache]];
@@ -66,7 +65,7 @@
             [_rightLabel sizeToFit];
             _rightLabel.hidden = NO;
             _rightLabel.backgroundColor = [UIColor redColor];
-            _rightLabel.frame = CGRectMake(_leftLabel.frame.size.width+_leftLabel.frame.origin.y+5, 14.5, _rightLabel.frame.size.width+20, 15);
+            _rightLabel.frame = CGRectMake(CGRectGetMaxX(_leftLabel.frame)+5, 14.5, _rightLabel.frame.size.width+10, 15);
             _rightLabel.layer.masksToBounds = YES;
             _rightLabel.layer.cornerRadius = 7.5;
         }
@@ -85,7 +84,7 @@
 {
     if (!_leftImageView) {
         _leftImageView = [[UIImageView alloc] init];
-        _leftImageView.frame = CGRectMake(10, 10, 18, 18);
+        _leftImageView.frame = CGRectMake(10, 13, 18, 18);
     }
     return _leftImageView;
 }
@@ -104,6 +103,8 @@
     if (!_rightLabel) {
         _rightLabel = [[UILabel alloc] init];
         _rightLabel.font = SYSFONT_(12);
+        _rightLabel.textColor = [UIColor whiteColor];
+        _rightLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _rightLabel;
 }
