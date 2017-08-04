@@ -9,8 +9,7 @@
 #import "MeMainViewController.h"
 #import "CompanyModel.h"
 #import "UserInfoCell.h"
-//#import "MeCell.h"
-#import "YYMeCell.h"
+#import "MeCell.h"
 #import "PublicWebViewController.h"
 #import "HistoryMessageViewController.h"
 #import "SettingViewController.h"
@@ -34,7 +33,7 @@
     
     self.title = @"我的";
     self.view = self.meTableView;
-    [self.meTableView registerNib:[UINib nibWithNibName:NSStringFromClass([YYMeCell class]) bundle:nil] forCellReuseIdentifier:@"YYMeCell"];
+
     [self getDataSource];
     
 }
@@ -45,6 +44,7 @@
 }
 
 #pragma mark -
+
 - (void)updatePersonInfo
 {
     NSString *urlString = [NSString stringWithFormat:@"%@rest/baseData/company",BASE_PLAN_URL];
@@ -147,15 +147,9 @@
         }
     else
         {
-            YYMeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYMeCell" forIndexPath:indexPath];
-            NSLog(@"%@",_sectionOneArray[indexPath.row]);
-            NSDictionary * currentDic = ((indexPath.section ==1)?_sectionOneArray:_sectionTwoArray)[indexPath.row];
-            cell.leftLabel.text = currentDic[@"title"];
-            cell.leftImageView.image = [UIImage imageNamed:currentDic[@"icon"]];
-            return cell;
-        /*YYMeCell *cell = (YYMeCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        MeCell *cell = (MeCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (!cell) {
-            cell = [[YYMeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+            cell = [[MeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
@@ -192,31 +186,9 @@
                 }
             }
             [cell setCellContentWithTitle:titleString withImageString:imageString withType:typeString];
-        return cell;*/
+        return cell;
         }
     return nil;
-}
-
--(void)viewDidLayoutSubviews
-{
-    if ([self.meTableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.meTableView setSeparatorInset:UIEdgeInsetsMake(0,40,0,0)];
-    }
-    
-    if ([self.meTableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.meTableView setLayoutMargins:UIEdgeInsetsMake(0,40,0,0)];
-    }
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsMake(0,40,0,0)];
-    }
-    
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsMake(0,40,0,0)];
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -274,8 +246,7 @@
         _meTableView.dataSource = self;
         _meTableView.backgroundView = nil;
         _meTableView.backgroundColor = kAppBackgrondColor;
-        _meTableView.separatorColor = UIColorFromRGB(0xf0f0f0);
-//        _meTableView.separatorColor = [UIColor clearColor];
+        _meTableView.separatorColor = [UIColor clearColor];
     }
     return _meTableView;
 }

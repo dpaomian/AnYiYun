@@ -301,7 +301,7 @@
      {
          _selectModel.isRead = @"0";
          _selectModel.uploadtime = [BaseHelper getSystemNowTimeLong];
-         _selectModel.type = @"1";//报修
+         _selectModel.type = @"103";//报修
          [[DBDaoDataBase sharedDataBase] addHistoryMessageInfoTableClassify:_selectModel];
      }
      }

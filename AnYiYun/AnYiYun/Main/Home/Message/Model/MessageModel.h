@@ -23,7 +23,7 @@
 @property (nonatomic,strong) NSString *userName;
 
     //数据库补充字段
-    //1告警报修 2待保养
+    //103待检修 104待保养
 @property (nonatomic,strong)NSString *type;
     //消息是否已读 0未读 1已读
 @property (nonatomic,strong)NSString *isRead;
