@@ -135,13 +135,29 @@
             model.sort = obj[@"sort"];
             model.sortKey = obj[@"sortKey"];
             model.state = obj[@"state"];
-            [[ws sortKeysWithDic:sortKeyDic] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([model.sortKey isEqualToString:obj]) {
-                    NSMutableArray *currentModes = [NSMutableArray arrayWithArray:ws.listMutableDic[obj]];
-                    [currentModes addObject:model];
-                    [ws.listMutableDic setObject:currentModes forKey:obj];
+            if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
+                NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
+                if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
+                    !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
+                    [[ws sortKeysWithDic:sortKeyDic] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([model.sortKey isEqualToString:obj]) {
+                            NSMutableArray *currentModes = [NSMutableArray arrayWithArray:ws.listMutableDic[obj]];
+                            [currentModes addObject:model];
+                            [ws.listMutableDic setObject:currentModes forKey:obj];
+                        }
+                    }];
+                } else {
+                    NSLog(@"没有");
                 }
-            }];
+            } else {
+                [[ws sortKeysWithDic:sortKeyDic] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([model.sortKey isEqualToString:obj]) {
+                        NSMutableArray *currentModes = [NSMutableArray arrayWithArray:ws.listMutableDic[obj]];
+                        [currentModes addObject:model];
+                        [ws.listMutableDic setObject:currentModes forKey:obj];
+                    }
+                }];
+            }
         }];
         [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];

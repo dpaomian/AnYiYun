@@ -131,14 +131,31 @@
             model.sort = obj[@"sort"];
             model.sortKey = obj[@"sortKey"];
             model.state = obj[@"state"];
-            if (idx== 0) {
-                ws.foldSection = idx;
-                [ws loadItemWithModel:model andSection:idx];
-                model.isFold = YES;
+            if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
+                NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
+                if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
+                    !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
+                    [ws.listMutableArray addObject:model];
+                    if (idx== 0) {
+                        ws.foldSection = idx;
+                        [ws loadItemWithModel:model andSection:idx];
+                        model.isFold = YES;
+                    } else {
+                        model.isFold = NO;
+                    }
+                } else {
+                    NSLog(@"没有");
+                }
             } else {
-                model.isFold = NO;
+                [ws.listMutableArray addObject:model];
+                if (idx== 0) {
+                    ws.foldSection = idx;
+                    [ws loadItemWithModel:model andSection:idx];
+                    model.isFold = YES;
+                } else {
+                    model.isFold = NO;
+                }
             }
-            [ws.listMutableArray addObject:model];
         }];
         [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
