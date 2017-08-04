@@ -208,10 +208,10 @@
     
     if (textTitle.length>0)
     {
-        if ([textTitle isEqualToString:@"咨讯"])
+        if ([textTitle isEqualToString:@"资讯"])
             {
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
-            vc.titleStr = @"咨讯";
+            vc.titleStr = @"资讯";
             vc.myUrl = @"http://101.201.108.246/index.html";
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];

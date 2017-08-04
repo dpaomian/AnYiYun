@@ -26,8 +26,36 @@
         imageView.image = [UIImage imageNamed:@"start_page"];
         [self addSubview:imageView];
         
-        [self addSubview:self.titleLabel];
+        
+        UIImageView *logoImageView = [[UIImageView alloc]init];
+        logoImageView.frame = CGRectMake((SCREEN_WIDTH-150)/2, 80, 50, 50);
+        logoImageView.image = [UIImage imageNamed:@"logo_white.png"];
+        [self addSubview:logoImageView];
+        
+        UILabel *titleLabel = [[UILabel alloc]init];
+        titleLabel.frame = CGRectMake(logoImageView.frame.size.width+logoImageView.frame.origin.x, logoImageView.frame.origin.y, 100, 50);
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.font = [UIFont boldSystemFontOfSize:28];
+        titleLabel.text = @"安易云";
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self  addSubview:titleLabel];
+        
+        
+        //读取gif图片数据
+        NSData *gifData = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"launch_defult" ofType:@"gif"]];
+        //UIWebView生成
+        UIWebView *imageWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 180, kScreen_Width, 70)];
+        //用户不可交互
+        imageWebView.userInteractionEnabled = NO;
+        //加载gif数据
+        [imageWebView loadData:gifData MIMEType:@"image/gif" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
+        //视图添加此gif控件
+        [self addSubview:imageWebView];
+        
+        //[self addSubview:self.titleLabel];
     }
+    
     return self;
 }
 

@@ -23,6 +23,7 @@
 		3B3FD75D1F2C055B0089C1B0 /* DevicePartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75C1F2C055B0089C1B0 /* DevicePartCell.m */; };
 		3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75F1F2C05800089C1B0 /* RecordCell.m */; };
 		3B3FD7631F2C117C0089C1B0 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */; };
+		3B404BBA1F341E290045DA2C /* launch_defult.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3B404BB91F341E290045DA2C /* launch_defult.gif */; };
 		3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */; };
 		3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */; };
 		7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */; };
@@ -265,6 +266,7 @@
 		3B3FD75F1F2C05800089C1B0 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		3B3FD7611F2C117C0089C1B0 /* DeviceInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoCell.h; sourceTree = "<group>"; };
 		3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoCell.m; sourceTree = "<group>"; };
+		3B404BB91F341E290045DA2C /* launch_defult.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = launch_defult.gif; sourceTree = "<group>"; };
 		3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAppView.h; sourceTree = "<group>"; };
 		3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAppView.m; sourceTree = "<group>"; };
 		3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -1088,6 +1090,7 @@
 		90A2EC6A1F209E98008088C4 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				3B404BB91F341E290045DA2C /* launch_defult.gif */,
 				3B02DF481F2AE82400282116 /* main_more@2x.png */,
 				905D5C9C1F28DF6800DF4DF9 /* main_test@2x.png */,
 				90A2EC6B1F209E98008088C4 /* main_back@2x.png */,
@@ -1755,6 +1758,7 @@
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
+				3B404BBA1F341E290045DA2C /* launch_defult.gif in Resources */,
 				A8FD78921F2C396800523E46 /* FireEquipmentAccountViewController.xib in Resources */,
 				A87C53D41F31DB3B008DE42B /* AAChartView.html in Resources */,
 				A8FD78901F2C396800523E46 /* FireAlarmInformationViewController.xib in Resources */,

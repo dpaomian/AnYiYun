@@ -15,18 +15,10 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 #import "YYTools.h"
 
-#import "DefultLaunchView.h"//启动页
-
 @interface AppDelegate ()
 {
     BMKMapManager * _mapManager;
-    
-    NSInteger   showTimeLong;
-    NSTimer     *myTimer;
 }
-
-@property (nonatomic,strong)DefultLaunchView *defultView;
-
 @end
 
 @implementation AppDelegate
@@ -46,14 +38,7 @@
     
     [BaseLaunchConfig launchingFlowConfig];
     
-        //非首次启动APP（加载启动页面）
-    BOOL isFirstApp = [BaseCacheHelper getBOOLValueForKey:kFirstApp];
-    if (isFirstApp)
-    {
-    [kWindow.rootViewController.view addSubview:self.defultView];
-    [kWindow.rootViewController.view bringSubviewToFront:self.defultView];
-    
-    
+
     /*!程序初始化，重要代码，勿动*/
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [[AnYiYunApplication applicationAlloc] applicationInit:^(NSString *string) {
@@ -65,36 +50,10 @@
         }];
     });
     
-    myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showLaunchViewTimer) userInfo:nil repeats:YES];
-    [myTimer fire];
-    }
-    
     /*初始化筛选框*/
 //    [FilterCollectionView shareFilter];
     
     return YES;
-}
-
--(void)showLaunchViewTimer
-{
-    showTimeLong++;
-    
-    if (showTimeLong==6)
-        {
-        [_defultView removeFromSuperview];
-        _defultView = nil;
-        [myTimer invalidate];
-        myTimer = nil;
-    }
-}
-
--(DefultLaunchView *)defultView
-{
-    if (!_defultView) {
-        _defultView = [[DefultLaunchView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _defultView.backgroundColor = kAPPBlueColor;
-    }
-    return _defultView;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
