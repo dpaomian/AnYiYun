@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlarmInformationViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FirePowerSupplyAlarmInformationViewController">
             <connections>
+                <outlet property="noDataView" destination="K3l-8d-lz9" id="ITH-tt-S0V"/>
                 <outlet property="tableView" destination="B7P-QX-3Po" id="Nr1-iM-hHF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,14 +30,42 @@
                         <outlet property="delegate" destination="-1" id="CcX-Pa-GT1"/>
                     </connections>
                 </tableView>
+                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3l-8d-lz9">
+                    <rect key="frame" x="0.0" y="67" width="375" height="360"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_nfc" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-fo-PbA">
+                            <rect key="frame" x="94.5" y="65" width="186" height="158"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前全部设备运转正常" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsF-FT-mMI">
+                            <rect key="frame" x="101" y="245" width="173.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ciJ-fo-PbA" firstAttribute="centerX" secondItem="K3l-8d-lz9" secondAttribute="centerX" id="Wdx-TS-Cva"/>
+                        <constraint firstItem="ciJ-fo-PbA" firstAttribute="centerY" secondItem="K3l-8d-lz9" secondAttribute="centerY" multiplier="0.8" id="pi9-x8-u8B"/>
+                        <constraint firstItem="ciJ-fo-PbA" firstAttribute="centerX" secondItem="rsF-FT-mMI" secondAttribute="centerX" id="uao-gA-YmX"/>
+                        <constraint firstItem="rsF-FT-mMI" firstAttribute="top" secondItem="ciJ-fo-PbA" secondAttribute="bottom" constant="22" id="wBZ-r0-Tei"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="B7P-QX-3Po" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2ar-dq-4e3"/>
+                <constraint firstItem="K3l-8d-lz9" firstAttribute="centerX" secondItem="B7P-QX-3Po" secondAttribute="centerX" id="7vH-pE-DlH"/>
+                <constraint firstItem="K3l-8d-lz9" firstAttribute="height" secondItem="B7P-QX-3Po" secondAttribute="height" multiplier="0.54" id="HKh-qa-IFz"/>
+                <constraint firstItem="K3l-8d-lz9" firstAttribute="width" secondItem="B7P-QX-3Po" secondAttribute="width" id="IvP-b4-Rvk"/>
                 <constraint firstAttribute="trailing" secondItem="B7P-QX-3Po" secondAttribute="trailing" id="JP6-Ne-eYz"/>
                 <constraint firstItem="B7P-QX-3Po" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hgE-Nx-08I"/>
                 <constraint firstAttribute="bottom" secondItem="B7P-QX-3Po" secondAttribute="bottom" id="rpQ-6p-5f3"/>
+                <constraint firstItem="K3l-8d-lz9" firstAttribute="centerY" secondItem="B7P-QX-3Po" secondAttribute="centerY" multiplier="0.74" id="zaM-of-0L1"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="image_nfc" width="186" height="158"/>
+    </resources>
 </document>

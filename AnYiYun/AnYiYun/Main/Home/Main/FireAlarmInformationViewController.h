@@ -14,6 +14,7 @@
 /*!告警信息*/
 @interface FireAlarmInformationViewController : BaseViewController
 
+@property (weak, nonatomic) IBOutlet UIView *noDataView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
