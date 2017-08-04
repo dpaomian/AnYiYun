@@ -50,6 +50,8 @@
             itemModel.title = obj[@"title"];
             [ws.listMutableArray addObject:itemModel];
         }];
+        ws.noDataView.hidden = ws.listMutableArray.count>0;
+        ws.tableView.separatorStyle = (!(ws.listMutableArray.count>0))?UITableViewCellSeparatorStyleNone:UITableViewCellSeparatorStyleSingleLine;
         [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
@@ -149,6 +151,7 @@
                          {
                              [BaseHelper waringInfo:@"提交失败"];
                          } else {
+                             [modelItem conversionToMessModelWith:modelItem];
                              [MBProgressHUD showSuccess:@"报修成功"];
                          }
                          [ws.tableView.mj_header beginRefreshing];

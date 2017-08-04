@@ -12,6 +12,7 @@ def pods
     pod 'FMDB'
     pod 'BaiduMapKit'
     pod 'IQKeyboardManager'
+    pod 'FLAnimatedImage', '~> 1.0'
 end
 
 target 'AnYiYun' do

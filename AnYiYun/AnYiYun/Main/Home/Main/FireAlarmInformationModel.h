@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MessageModel.h"
 
 /*!告警信息*/
 @interface FireAlarmInformationModel : NSObject
@@ -22,5 +23,7 @@
  */
 @property (nonatomic, copy) NSString *state;
 @property (nonatomic, copy) NSString *title;
+
+- (MessageModel *)conversionToMessModelWith:(FireAlarmInformationModel *)model;
 
 @end
