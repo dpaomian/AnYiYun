@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="418" height="251"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="418" height="251"/>
+                <rect key="frame" x="0.0" y="0.0" width="418" height="250"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8u-21-3Le">
@@ -50,6 +50,7 @@
                         <state key="normal" image="Polyline"/>
                     </button>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="Q8u-21-3Le" firstAttribute="centerY" secondItem="qYh-vw-viM" secondAttribute="centerY" id="1AG-en-nNd"/>
                     <constraint firstItem="Q8u-21-3Le" firstAttribute="centerY" secondItem="Ls7-RA-9Dc" secondAttribute="centerY" id="1tz-fm-4es"/>

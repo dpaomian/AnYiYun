@@ -144,7 +144,17 @@
             model.sort = obj[@"sort"];
             model.state = obj[@"state"];
             model.unit = obj[@"unit"];
-            [ws.listMutableArray addObject:model];
+            if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
+                NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
+                if (!([model.name rangeOfString:keyString].location == NSNotFound) ||
+                    !([model.name rangeOfString:keyString].location == NSNotFound)) {
+                    [ws.listMutableArray addObject:model];
+                } else {
+                    DLog(@"没有");
+                }
+            } else {
+                [ws.listMutableArray addObject:model];
+            }
         }];
         [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];

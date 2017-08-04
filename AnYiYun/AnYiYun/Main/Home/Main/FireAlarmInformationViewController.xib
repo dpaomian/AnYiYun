@@ -31,13 +31,13 @@
                     </connections>
                 </tableView>
                 <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqs-Gv-8OO">
-                    <rect key="frame" x="0.0" y="66.5" width="375" height="360.5"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="360.5"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_device_nothing" translatesAutoresizingMaskIntoConstraints="NO" id="HMG-S8-4mZ">
-                            <rect key="frame" x="157.5" y="114" width="60" height="60"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="All_OK" translatesAutoresizingMaskIntoConstraints="NO" id="HMG-S8-4mZ">
+                            <rect key="frame" x="147.5" y="104" width="80" height="80"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前全部设备运转正常" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUJ-Qz-eau">
-                            <rect key="frame" x="111" y="196" width="153" height="18"/>
+                            <rect key="frame" x="111" y="206" width="153" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -61,11 +61,11 @@
                 <constraint firstItem="lqs-Gv-8OO" firstAttribute="centerX" secondItem="B7P-QX-3Po" secondAttribute="centerX" id="mig-ui-PFM"/>
                 <constraint firstItem="lqs-Gv-8OO" firstAttribute="width" secondItem="B7P-QX-3Po" secondAttribute="width" id="qGM-w9-aj5"/>
                 <constraint firstAttribute="bottom" secondItem="B7P-QX-3Po" secondAttribute="bottom" id="rpQ-6p-5f3"/>
-                <constraint firstItem="lqs-Gv-8OO" firstAttribute="centerY" secondItem="B7P-QX-3Po" secondAttribute="centerY" multiplier="0.74" id="s3j-li-hYU"/>
+                <constraint firstItem="lqs-Gv-8OO" firstAttribute="centerY" secondItem="B7P-QX-3Po" secondAttribute="centerY" multiplier="0.6" id="s3j-li-hYU"/>
             </constraints>
         </view>
     </objects>
     <resources>
-        <image name="ic_device_nothing" width="60" height="60"/>
+        <image name="All_OK" width="80" height="80"/>
     </resources>
 </document>

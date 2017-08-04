@@ -162,7 +162,7 @@
                          {
                              [BaseHelper waringInfo:@"提交失败"];
                          } else {
-                             [modelItem conversionToMessModelWith:modelItem];
+                              
                              [MBProgressHUD showSuccess:@"报修成功"];
                          }
                          [ws.tableView.mj_header beginRefreshing];

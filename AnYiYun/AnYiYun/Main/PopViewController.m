@@ -125,7 +125,6 @@
             __weak PopViewController *ws = self;
             HelpViewController *helpVC = [[HelpViewController alloc] init];
             helpVC.navigationController.navigationBar.hidden = NO;
-            helpVC.navigationItem.backBarButtonItem.title = @"使用帮助";
             helpVC.backHandle = ^(){
                 [ws dismissViewControllerAnimated:NO completion:^{
                     ws.tableView.hidden = NO;
