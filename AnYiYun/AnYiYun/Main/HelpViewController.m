@@ -32,7 +32,7 @@
     
     [MBProgressHUD showMessage:@"加载中..."];
     _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    NSString * urlStr = @"http://101.201.108.246/index.html";
+    NSString * urlStr = @"http://101.201.108.246/help";
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [_webView loadRequest:request];
     _webView.delegate = self;

@@ -122,11 +122,12 @@
     //曲线图
     _sVC = [[SecondViewController alloc]init];
     _sVC.SecondeViewControllerChartType = 5;
+    _sVC.view.userInteractionEnabled = NO;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*SCREEN_WIDTH/SCREEN_HEIGHT)];
     [view addSubview:_sVC.view];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(8, 4, 40, 33);
-    [button setImage:[UIImage imageNamed:@"all_icon_5.png"] forState:UIControlStateNormal];
+    button.frame = CGRectMake(8, 0, 32, 32);
+    [button setImage:[UIImage imageNamed:@"Pull_icon.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     view.clipsToBounds = YES;

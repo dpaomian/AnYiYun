@@ -49,7 +49,7 @@
     [self.view addSubview:self.chartView];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(20, 10, 40, 33);
-    [button setImage:[UIImage imageNamed:@"all_icon_5.png"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"Pull_icon.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     self.chartModel = AAObject(AAChartModel)

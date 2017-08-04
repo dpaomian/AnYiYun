@@ -142,7 +142,6 @@
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
-		A83445B51F3339CC004C46C7 /* libYYTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83445B41F3339CC004C46C7 /* libYYTools.a */; };
 		A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */; };
 		A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */; };
 		A8451F921F2DBC9F00A2CF5A /* LoadDetectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */; };
@@ -204,6 +203,7 @@
 		A87C53F31F31DB3B008DE42B /* AAYAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CE1F31DB3B008DE42B /* AAYAxis.m */; };
 		A87C53F61F31DB90008DE42B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53F51F31DB90008DE42B /* SecondViewController.m */; };
 		A89511791F32426B00093DE9 /* UITextView+DisableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */; };
+		A8992F811F34C5F00074DE59 /* libSupperYYTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8992F801F34C5F00074DE59 /* libSupperYYTools.a */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
 		A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */; };
 		A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */; };
@@ -493,7 +493,6 @@
 		A83445B11F3339CC004C46C7 /* AnYiYunApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnYiYunApplication.h; sourceTree = "<group>"; };
 		A83445B21F3339CC004C46C7 /* UIButton+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
 		A83445B31F3339CC004C46C7 /* YYTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTools.h; sourceTree = "<group>"; };
-		A83445B41F3339CC004C46C7 /* libYYTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYYTools.a; sourceTree = "<group>"; };
 		A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionCell.h; sourceTree = "<group>"; };
 		A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionCell.m; sourceTree = "<group>"; };
 		A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
@@ -606,6 +605,7 @@
 		A87C53F51F31DB90008DE42B /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		A89511771F32426B00093DE9 /* UITextView+DisableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+DisableCopy.h"; sourceTree = "<group>"; };
 		A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+DisableCopy.m"; sourceTree = "<group>"; };
+		A8992F801F34C5F00074DE59 /* libSupperYYTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSupperYYTools.a; sourceTree = "<group>"; };
 		A89FBFCE1F23175A001405E8 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		A89FBFCF1F23175A001405E8 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		A8A14BBE1F2DE0C9008745F1 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
@@ -665,7 +665,7 @@
 			files = (
 				3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */,
 				7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */,
-				A83445B51F3339CC004C46C7 /* libYYTools.a in Frameworks */,
+				A8992F811F34C5F00074DE59 /* libSupperYYTools.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1432,8 +1432,8 @@
 		A83445A41F3303A6004C46C7 /* Release-iphonesimulator */ = {
 			isa = PBXGroup;
 			children = (
+				A8992F801F34C5F00074DE59 /* libSupperYYTools.a */,
 				A83445AF1F3339CC004C46C7 /* include */,
-				A83445B41F3339CC004C46C7 /* libYYTools.a */,
 			);
 			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
