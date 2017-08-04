@@ -10,7 +10,6 @@
 
 @interface DefultLaunchView()
 
-@property (nonatomic,strong)UILabel *titleLabel;
 
 @end
 
@@ -43,15 +42,7 @@
         
         
         //读取gif图片数据
-        NSData *gifData = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"launch_defult" ofType:@"gif"]];
-        //UIWebView生成
-        UIWebView *imageWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 180, kScreen_Width, 70)];
-        //用户不可交互
-        imageWebView.userInteractionEnabled = NO;
-        //加载gif数据
-        [imageWebView loadData:gifData MIMEType:@"image/gif" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
-        //视图添加此gif控件
-        [self addSubview:imageWebView];
+        [self addSubview:self.aniamtionImageView];
         
         //[self addSubview:self.titleLabel];
     }
@@ -61,17 +52,16 @@
 
 #pragma mark - getter
 
-- (UILabel *)titleLabel
+- (FLAnimatedImageView *)aniamtionImageView
 {
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, SCREEN_WIDTH-40, 40)];
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:24];
-        _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.text = @"让设备管理变的更简单!";
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+    if (!_aniamtionImageView) {
+        _aniamtionImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(-50, 180, kScreen_Width+100, 90)];
+        NSURL *gifUrl = [[NSBundle mainBundle] URLForResource:@"launch_defult" withExtension:@"gif"];
+        NSData *gifData = [NSData dataWithContentsOfURL:gifUrl];
+        FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:gifData];
+        _aniamtionImageView.animatedImage = image;
     }
-    return _titleLabel;
+    return _aniamtionImageView;
 }
 
 /*

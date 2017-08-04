@@ -13,9 +13,6 @@
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
-    NSInteger   showTimeLong;
-    NSTimer     *myTimer;
-    
     UITextField          *_userNameField;
     UITextField          *_userPswField;
 }
@@ -112,12 +109,15 @@
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(loginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
-    
-    
-    [self.view addSubview:self.defultView];
-    myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showLaunchViewTimer) userInfo:nil repeats:YES];
-    [myTimer fire];
 
+    [self.view addSubview:self.defultView];
+
+}
+
+-(void)defultRemoveLaunchView
+{
+    [_defultView removeFromSuperview];
+    _defultView = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -196,24 +196,16 @@
 
 #pragma mark -定时器
 
--(void)showLaunchViewTimer
-{
-    showTimeLong++;
-    
-    if (showTimeLong==6)
-    {
-        [_defultView removeFromSuperview];
-        _defultView = nil;
-        [myTimer invalidate];
-        myTimer = nil;
-    }
-}
-
 -(DefultLaunchView *)defultView
 {
+    __weak typeof (self) weakSelf = self;
+    
     if (!_defultView) {
         _defultView = [[DefultLaunchView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         _defultView.backgroundColor = kAPPBlueColor;
+        _defultView.aniamtionImageView.loopCompletionBlock = ^(NSUInteger loopCountRemaining){
+            [weakSelf defultRemoveLaunchView];
+        };
     }
     return _defultView;
 }
