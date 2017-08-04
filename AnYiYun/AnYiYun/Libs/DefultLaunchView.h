@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FLAnimatedImage.h"
 
 /**
  每次加载启动页
  */
 @interface DefultLaunchView : UIView
+
+@property (nonatomic,strong)FLAnimatedImageView *aniamtionImageView;
 
 @end
