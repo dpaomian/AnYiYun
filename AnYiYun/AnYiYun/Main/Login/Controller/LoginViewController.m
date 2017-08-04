@@ -9,12 +9,19 @@
 #import "LoginViewController.h"
 #import "LoginManager.h"
 #import "RootTabBarViewController.h"
+#import "DefultLaunchView.h"//启动页
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
+    NSInteger   showTimeLong;
+    NSTimer     *myTimer;
+    
     UITextField          *_userNameField;
     UITextField          *_userPswField;
 }
+
+@property (nonatomic,strong)DefultLaunchView *defultView;
+
 @end
 
 @implementation LoginViewController
@@ -106,6 +113,10 @@
     [loginButton addTarget:self action:@selector(loginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
+    
+    [self.view addSubview:self.defultView];
+    myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showLaunchViewTimer) userInfo:nil repeats:YES];
+    [myTimer fire];
 
 }
 
@@ -180,6 +191,31 @@
 {
     textField.text = @"";
     return YES;
+}
+
+
+#pragma mark -定时器
+
+-(void)showLaunchViewTimer
+{
+    showTimeLong++;
+    
+    if (showTimeLong==6)
+    {
+        [_defultView removeFromSuperview];
+        _defultView = nil;
+        [myTimer invalidate];
+        myTimer = nil;
+    }
+}
+
+-(DefultLaunchView *)defultView
+{
+    if (!_defultView) {
+        _defultView = [[DefultLaunchView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _defultView.backgroundColor = kAPPBlueColor;
+    }
+    return _defultView;
 }
 
 
