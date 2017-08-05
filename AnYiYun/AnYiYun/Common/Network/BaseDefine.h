@@ -9,7 +9,7 @@
 #pragma mark - 服务器地址
 
     //外网发布
-#define BASE_PLAN_URL                @"http://app.ayy123.com/Android/"
+#define BASE_PLAN_URL                @"http://appz.ayy123.com/Android/"
 
 
 
