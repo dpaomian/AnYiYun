@@ -47,10 +47,10 @@
 - (void)getDataSource
 {
         //修改密码
-    _sectionOneArray = @[@{@"icon":@"bottom_btn_2.png",
+    _sectionOneArray = @[@{@"icon":@"changepassword.png",
                            @"title":@"修改密码"}];
         //清除缓存
-    _sectionTwoArray = @[@{@"icon":@"bottom_btn_2.png",
+    _sectionTwoArray = @[@{@"icon":@"cleancache.png",
                            @"title":@"清除缓存"}];
     
     [_settingTableView reloadData];

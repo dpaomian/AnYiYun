@@ -293,10 +293,34 @@
     if ([d day] <= 0 &&
         [d hour] <= 0 &&
         [d minute] <= 0 &&
-        [d second] <= 0) {
+        [d second] <= 0)
+    {
         return  @"00天00小时00分";
-    }else{
-        return [NSString stringWithFormat:@"%.2li天%.2li小时%.2li分", [d day], [d hour], [d minute]];
+    }
+    else
+    {
+        if ([d day]>0)
+        {
+            return [NSString stringWithFormat:@"%.2li天%.2li小时%.2li分钟", [d day], [d hour], [d minute]];
+        }
+        else
+        {
+            if ([d hour]>0)
+            {
+                return [NSString stringWithFormat:@"%.2li小时%.2li分钟", [d hour], [d minute]];
+            }
+            else
+            {
+                if ([d minute]>0)
+                {
+                    return [NSString stringWithFormat:@"%.2li分钟", [d minute]];
+                }
+                else
+                {
+                    return @"刚刚";
+                }
+            }
+        }
     }
 }
 

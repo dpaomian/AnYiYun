@@ -118,7 +118,8 @@
                         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
                      {
                          [MBProgressHUD hideHUD];
-                         BOOL dealState = (BOOL)responseObject;
+                         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                         BOOL dealState  = [string boolValue];
                          if (dealState==NO)
                          {
                              [BaseHelper waringInfo:@"提交失败"];
@@ -156,7 +157,8 @@
                         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
                      {
                          [MBProgressHUD hideHUD];
-                         BOOL dealState = (BOOL)responseObject;
+                         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                         BOOL dealState  = [string boolValue];
                          if (dealState==NO)
                          {
                              [BaseHelper waringInfo:@"提交失败"];

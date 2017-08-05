@@ -39,3 +39,13 @@
 - (id)initWithDictionary:(NSDictionary *)userDictionary;
 
 @end
+
+@interface HomeModuleModel : NSObject
+
+@property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *imageStr;
+@property (nonatomic, assign) BOOL isShow;
+
+@end
+

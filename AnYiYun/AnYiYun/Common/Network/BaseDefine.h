@@ -11,6 +11,9 @@
     //外网发布
 #define BASE_PLAN_URL                @"http://appz.ayy123.com/Android/"
 
+//#define BASE_PLAN_URL                @"http://app.ayy123.com/Android/"
+/* 极光推送设置值 0（默认值）表示采用的是开发证书，1表示采用生产证书发布应用。*/
+#define pushProduction               @"0"
 
 
 #pragma mark - 工程相关
