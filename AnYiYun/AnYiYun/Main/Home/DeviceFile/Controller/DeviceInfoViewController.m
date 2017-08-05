@@ -45,7 +45,9 @@
       parameters:param
         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
-     BOOL isHaveAlertMessage = (BOOL)responseObject;
+         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         BOOL isHaveAlertMessage  = [string boolValue];
+
      if (isHaveAlertMessage==YES)
          {
          [self getUseDataRequest];

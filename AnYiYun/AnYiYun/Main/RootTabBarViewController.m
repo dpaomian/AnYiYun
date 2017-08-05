@@ -60,7 +60,7 @@
     [super viewWillAppear:animated];
     
     DLog(@"请求消息---------");
-    [self getMessageIsUnRead];
+    //[self getMessageIsUnRead];
 }
 
 -(void)getMessageIsUnRead
@@ -79,7 +79,8 @@
       parameters:param
         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
-         BOOL isRead = (BOOL)responseObject;
+         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         BOOL isRead = [string boolValue];
          DLog(@"是否有新消息  %@  %d",responseObject,isRead);
          MAIN(^{
          [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

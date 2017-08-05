@@ -258,6 +258,7 @@
 		3B02DF3B1F2ADE0300282116 /* MessageTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTopView.h; sourceTree = "<group>"; };
 		3B02DF3C1F2ADE0300282116 /* MessageTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTopView.m; sourceTree = "<group>"; };
 		3B02DF481F2AE82400282116 /* main_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_more@2x.png"; sourceTree = "<group>"; };
+		3B0A91CD1F35A2EC00B9B935 /* AnYiYun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnYiYun.entitlements; sourceTree = "<group>"; };
 		3B3FD7551F2C04F50089C1B0 /* DeviceInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoModel.h; sourceTree = "<group>"; };
 		3B3FD7561F2C04F50089C1B0 /* DeviceInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoModel.m; sourceTree = "<group>"; };
 		3B3FD75B1F2C055B0089C1B0 /* DevicePartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicePartCell.h; sourceTree = "<group>"; };
@@ -1120,6 +1121,7 @@
 		90CF071A1F1F2BFC008106D2 /* AnYiYun */ = {
 			isa = PBXGroup;
 			children = (
+				3B0A91CD1F35A2EC00B9B935 /* AnYiYun.entitlements */,
 				90CF071E1F1F2BFC008106D2 /* AppDelegate.h */,
 				90CF071F1F1F2BFC008106D2 /* AppDelegate.m */,
 				90CF07921F1F35B1008106D2 /* BaseLaunchConfig.h */,
@@ -1694,7 +1696,12 @@
 					90CF07171F1F2BFC008106D2 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = VDPTSZGHY4;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2116,6 +2123,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = AnYiYun/AnYiYun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HENAN LION M&C TECHNOLOGY CO.,LTD (VDPTSZGHY4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VDPTSZGHY4;
@@ -2131,8 +2139,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "43ff0f6a-3e86-4572-b83e-fb7e83380fa8";
+				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosDeveloperPush;
 			};
 			name = Debug;
 		};
@@ -2142,6 +2150,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = AnYiYun/AnYiYun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HENAN LION M&C TECHNOLOGY CO.,LTD (VDPTSZGHY4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VDPTSZGHY4;
@@ -2157,8 +2166,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "43ff0f6a-3e86-4572-b83e-fb7e83380fa8";
+				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosDeveloperPush;
 			};
 			name = Release;
 		};

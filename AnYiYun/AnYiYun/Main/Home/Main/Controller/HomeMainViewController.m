@@ -55,6 +55,15 @@
     [self makeView];
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //刷新是否有未读消息
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
+}
+
 -(void)setLeftBarItem {
     UIButton *anYiYunBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [anYiYunBtn setImage:[UIImage imageNamed:@"logo_white.png"] forState:UIControlStateNormal];
@@ -192,7 +201,8 @@
       parameters:param
         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
-            isHaveAlertMessage = (BOOL)responseObject;
+        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        isHaveAlertMessage  = [string boolValue];
             NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
             [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
         }
