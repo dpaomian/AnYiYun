@@ -1,37 +1,24 @@
 //
-//  FilterCollectionView.m
+//  LoadDetectionFilterCollectionView.m
 //  AnYiYun
 //
-//  Created by 韩亚周 on 2017/7/25.
+//  Created by 韩亚周 on 2017/8/6.
 //  Copyright © 2017年 wwr. All rights reserved.
 //
 
-#import "FilterCollectionView.h"
+#import "LoadDetectionFilterCollectionView.h"
 
-@interface FilterCollectionView ()
+@interface LoadDetectionFilterCollectionView ()
 
-/*!备选项是否为折叠状态。 YES为折叠*/
-@property (nonatomic, assign) BOOL      isFoldItem;
 /*!筛选项*/
 @property (nonatomic, strong) NSMutableArray *screenMutableArray;
 
 @end
 
-@implementation FilterCollectionView
-
-+ (FilterCollectionView *)shareFilter {
-    static FilterCollectionView *filter = nil;
-    static dispatch_once_t oncetoken;
-    dispatch_once(&oncetoken, ^{
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        filter = [[self alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    });
-    return filter;
-}
+@implementation LoadDetectionFilterCollectionView
 
 - (void)loadCommpanyItemsWithManager:(AFHTTPSessionManager *)manager {
-    __weak FilterCollectionView *ws = self;
+    __weak LoadDetectionFilterCollectionView *ws = self;
     NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/allOrg"];
     NSDictionary *parameters = @{@"userSign":[PersonInfo shareInstance].accountID};
     [manager GET:urlString
@@ -72,7 +59,7 @@
 }
 
 - (void)loadBuildingItemsWithManager:(AFHTTPSessionManager *)manager {
-    __weak FilterCollectionView *ws = self;
+    __weak LoadDetectionFilterCollectionView *ws = self;
     NSString *urlString1 = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/deviceLocation"];
     NSDictionary *parameters1 = @{@"userSign":[PersonInfo shareInstance].accountID};
     [manager GET:urlString1
@@ -108,7 +95,7 @@
 }
 
 - (void)loadSortItemsWithManager:(AFHTTPSessionManager *)manager {
-    __weak FilterCollectionView *ws = self;
+    __weak LoadDetectionFilterCollectionView *ws = self;
     NSString *urlString2 = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/deviceOrder"];
     NSDictionary *parameters2 = @{@"userSign":[PersonInfo shareInstance].accountID};
     [manager GET:urlString2
@@ -117,7 +104,7 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             DLog(@"responseObject :%@",responseObject);
-
+            
             [_sortMutableArray removeAllObjects];
             NSMutableDictionary *sortDic = [NSMutableDictionary dictionary];
             [sortDic setObject:@"智能排序" forKey:@"500"];
@@ -148,9 +135,9 @@
     self.hidden = NO;
     [_screenMutableArray removeAllObjects];
     [_screenMutableArray addObjectsFromArray:@[@{@"name":@"供电室",@"isSelected":@NO,@"searchValue":@""},
-                                                @{@"name":@"楼",@"isSelected":@NO,@"searchValue":@""},
-                                                @{@"name":@"排序",@"isSelected":@NO,@"searchValue":@""},
-                                                @{@"name":@"搜索",@"isSelected":@NO,@"searchValue":@""}]];
+                                               @{@"name":@"楼",@"isSelected":@NO,@"searchValue":@""},
+                                               @{@"name":@"排序",@"isSelected":@NO,@"searchValue":@""},
+                                               @{@"name":@"搜索",@"isSelected":@NO,@"searchValue":@""}]];
     
     [_roomMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterCompanyModel * model = obj;
@@ -214,7 +201,6 @@
         self.layer.borderWidth = 0.5f;
         
         self.scrollEnabled = NO;
-        _isFoldItem = NO;
         
         _selectedIndex = 0;
         _roomMutableArray = [NSMutableArray array];
@@ -250,39 +236,19 @@
     
     if (_selectedIndex == 0) {
         /*全未选中*/
-        if (self.isFoldItem) {
-            return  screenItemCount;
-        } else {
-            return [_screenMutableArray count] +touchCount;
-        }
+        return [_screenMutableArray count] +touchCount;
     } else if (_selectedIndex == 1) {
         /*供电室*/
-        if (self.isFoldItem) {
-            return  screenItemCount;
-        } else {
-            return screenItemCount +touchCount + [_roomMutableArray count];
-        }
+        return screenItemCount +touchCount + [_roomMutableArray count];
     } else if (_selectedIndex == 2) {
         /*楼*/
-        if (self.isFoldItem) {
-            return  screenItemCount;
-        } else {
-            return screenItemCount +touchCount + [_buildingMutableArray count];
-        }
+        return screenItemCount +touchCount + [_buildingMutableArray count];
     } else if (_selectedIndex == 3) {
         /*排序*/
-        if (self.isFoldItem) {
-            return  screenItemCount;
-        } else {
-            return screenItemCount + touchCount + [_sortMutableArray count];
-        }
+        return screenItemCount + touchCount + [_sortMutableArray count];
     } else if (_selectedIndex == [_screenMutableArray count]) {
         /*搜索*/
-        if (self.isFoldItem) {
-            return  screenItemCount;
-        } else {
-            return screenItemCount + touchCount + 1;
-        }
+        return screenItemCount + touchCount + 1;
     } else {
         return  screenItemCount;
     }
@@ -295,7 +261,7 @@
     NSInteger buildingItemCount = [_buildingMutableArray count];
     NSInteger sortItemCount = [_sortMutableArray count];
     
-    __weak FilterCollectionView *ws = self;
+    __weak LoadDetectionFilterCollectionView *ws = self;
     
     FilterCollectionCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterCollectionCell" forIndexPath:indexPath];
     cell.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
@@ -429,6 +395,8 @@
             BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
         } else if (indexPath.row == 5) {
+            cell.titleLable.text = @"";
+            cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.cornerImageView.hidden = YES;
             cell.contentView.backgroundColor = UIColorFromRGBA(0x000000, 0.4f);
         } else {
@@ -438,7 +406,6 @@
                 
             };
             searchCell.searchBarSearchButtonClicked = ^(SearchCollectionCell *barCell, UISearchBar *bar) {
-                ws.isFoldItem = YES;
                 if ([searchCell.searchBar.text length] >0) {
                     NSMutableDictionary *titleItemDictionary = [NSMutableDictionary dictionaryWithDictionary:ws.screenMutableArray[3]];
                     [titleItemDictionary setObject:@YES forKey:@"isSelected"];
@@ -449,7 +416,7 @@
                     [ws.screenMutableArray replaceObjectAtIndex:3 withObject:titleItemDictionary];
                 }
                 if (ws.foldHandle) {
-                    ws.foldHandle(ws,ws.isFoldItem);
+                    ws.foldHandle(ws,YES);
                 }
                 if (ws.choiceHandle) {
                     ws.choiceHandle(ws, bar, 4);
@@ -468,9 +435,8 @@
                     [titleItemDictionary setObject:@NO forKey:@"isSelected"];
                     [ws.screenMutableArray replaceObjectAtIndex:3 withObject:titleItemDictionary];
                 }
-                ws.isFoldItem = YES;
                 if (ws.foldHandle) {
-                    ws.foldHandle(ws,ws.isFoldItem);
+                    ws.foldHandle(ws,YES);
                 }
             }];
             searchCell.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
@@ -548,22 +514,20 @@
 //点击每个item实现的方法：
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    __weak FilterCollectionView *ws = self;
+    __weak LoadDetectionFilterCollectionView *ws = self;
     NSInteger screenItemCount = [_screenMutableArray count];
     NSInteger roomItemCount = [_roomMutableArray count];
     NSInteger buildingItemCount = [_buildingMutableArray count];
     NSInteger sortItemCount = [_sortMutableArray count];
     if (indexPath.row < 4) {
         _selectedIndex = indexPath.row +1;
-        _isFoldItem = NO;
         if (_foldHandle) {
-            _foldHandle(self,_isFoldItem);
+            _foldHandle(self,NO);
         }
     } else {
         self.hidden = self.isFold?NO:YES;
-        _isFoldItem = YES;
         if (_foldHandle) {
-            _foldHandle(self,_isFoldItem);
+            _foldHandle(self,YES);
         }
     }
     if (_selectedIndex == 0) {
@@ -571,9 +535,8 @@
         if (indexPath.row <4) {
             _selectedIndex = indexPath.row +1;
         } else {
-            _isFoldItem = YES;
             if (_foldHandle) {
-                _foldHandle(self,_isFoldItem);
+                _foldHandle(self,YES);
             }
         }
     } else if (_selectedIndex == 1) {
@@ -600,10 +563,9 @@
             }
             [_roomMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:commanyModel];
         } else {
-            _isFoldItem = YES;
             if (_foldHandle) {
-            _foldHandle(self,_isFoldItem);
-        }
+                _foldHandle(self,YES);
+            }
         }
     } else if (_selectedIndex == 2) {
         /*楼*/
@@ -629,9 +591,8 @@
             }
             [_buildingMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:buildingModel];
         } else {
-            _isFoldItem = YES;
             if (_foldHandle) {
-                _foldHandle(self,_isFoldItem);
+                _foldHandle(self,YES);
             }
         }
     } else if (_selectedIndex == 3) {
@@ -658,9 +619,8 @@
             }
             [_sortMutableArray replaceObjectAtIndex:indexPath.row-screenItemCount withObject:sortModel];
         } else {
-            _isFoldItem = YES;
             if (_foldHandle) {
-                _foldHandle(self,_isFoldItem);
+                _foldHandle(self,YES);
             }
         }
     } else {
@@ -668,9 +628,8 @@
         if (indexPath.row <4) {
             _selectedIndex = indexPath.row +1;
         } else if (indexPath.row == 5)  {
-            _isFoldItem = YES;
             if (_foldHandle) {
-                _foldHandle(self,_isFoldItem);
+                _foldHandle(self,YES);
             }
         } else {
             

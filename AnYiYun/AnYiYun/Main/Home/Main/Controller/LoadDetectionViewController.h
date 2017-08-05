@@ -9,7 +9,7 @@
 #import "BaseTableViewController.h"
 #import "LoadDatectionHeaderView.h"
 #import "LoadDatectionCell.h"
-#import "FilterCollectionView.h"
+#import "LoadDetectionFilterCollectionView.h"
 #import "LoadDetectionModel.h"
 #import "RealtimeMonitoringListModel.h"
 #import "DoubleGraphModel.h"
@@ -32,6 +32,6 @@
 
 @property (nonatomic, strong) YYCurveView *curveView;
 @property (nonatomic, strong) YYCurveViewController *fullScreenCurveVC;
-@property (nonatomic, strong) FilterCollectionView *collectionView;
+@property (nonatomic, strong) LoadDetectionFilterCollectionView *collectionView;
 
 @end

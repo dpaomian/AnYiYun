@@ -147,6 +147,7 @@
 		A84079C91F3640950029F7FA /* YYCurveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84079C81F3640950029F7FA /* YYCurveView.xib */; };
 		A84079CD1F364FC70029F7FA /* YYCurveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84079CB1F364FC70029F7FA /* YYCurveViewController.m */; };
 		A84079CE1F364FC70029F7FA /* YYCurveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84079CC1F364FC70029F7FA /* YYCurveViewController.xib */; };
+		A84079D11F3676980029F7FA /* LoadDetectionFilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84079D01F3676980029F7FA /* LoadDetectionFilterCollectionView.m */; };
 		A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */; };
 		A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */; };
 		A8451F921F2DBC9F00A2CF5A /* LoadDetectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */; };
@@ -509,6 +510,8 @@
 		A84079CA1F364FC70029F7FA /* YYCurveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCurveViewController.h; sourceTree = "<group>"; };
 		A84079CB1F364FC70029F7FA /* YYCurveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCurveViewController.m; sourceTree = "<group>"; };
 		A84079CC1F364FC70029F7FA /* YYCurveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYCurveViewController.xib; sourceTree = "<group>"; };
+		A84079CF1F3676980029F7FA /* LoadDetectionFilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadDetectionFilterCollectionView.h; sourceTree = "<group>"; };
+		A84079D01F3676980029F7FA /* LoadDetectionFilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadDetectionFilterCollectionView.m; sourceTree = "<group>"; };
 		A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionCell.h; sourceTree = "<group>"; };
 		A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionCell.m; sourceTree = "<group>"; };
 		A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
@@ -958,6 +961,8 @@
 				A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */,
 				A81B12501F2AC48D001DD06B /* FilterCollectionView.h */,
 				A81B12511F2AC48D001DD06B /* FilterCollectionView.m */,
+				A84079CF1F3676980029F7FA /* LoadDetectionFilterCollectionView.h */,
+				A84079D01F3676980029F7FA /* LoadDetectionFilterCollectionView.m */,
 				909E1A901F279086008EECAF /* HomeAdverCell.h */,
 				909E1A911F279086008EECAF /* HomeAdverCell.m */,
 				909E1A931F2790DC008EECAF /* HomeMessageCell.h */,
@@ -2017,6 +2022,7 @@
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
 				A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */,
 				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,
+				A84079D11F3676980029F7FA /* LoadDetectionFilterCollectionView.m in Sources */,
 				90CF073F1F1F304C008106D2 /* BaseNavigationViewController.m in Sources */,
 				90A2EC661F208F68008088C4 /* UIImageLabel.m in Sources */,
 				90CF07841F1F3464008106D2 /* NSString+Date.m in Sources */,

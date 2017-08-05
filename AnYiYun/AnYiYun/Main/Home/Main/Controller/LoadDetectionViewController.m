@@ -40,7 +40,7 @@
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    _collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT) collectionViewLayout:flowLayout];
+    _collectionView = [[LoadDetectionFilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT) collectionViewLayout:flowLayout];
     
     _curveView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYCurveView class]) owner:nil options:nil][0];
     _curveView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -74,7 +74,7 @@
     [_collectionView iteminitialization];
     _collectionView.isFold = YES;
     _collectionView.hidden = YES;
-    _collectionView.foldHandle = ^(FilterCollectionView *myCollectionView, BOOL isFold){
+    _collectionView.foldHandle = ^(LoadDetectionFilterCollectionView *myCollectionView, BOOL isFold){
         if (isFold) {
             ws.collectionView.hidden = YES;
 //            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f);
@@ -83,7 +83,7 @@
 //            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT);
         }
     };
-    _collectionView.choiceHandle = ^(FilterCollectionView *myCollectionView, id modelObject, NSInteger idx) {
+    _collectionView.choiceHandle = ^(LoadDetectionFilterCollectionView *myCollectionView, id modelObject, NSInteger idx) {
         switch (idx) {
             case 1:
             {
@@ -164,18 +164,42 @@
             model.sort = obj[@"sort"];
             model.sortKey = obj[@"sortKey"];
             model.state = obj[@"state"];
-            if (idx== 0) {
+            /*if (idx== 0) {
                 ws.foldSection = idx;
                 [ws loadItemWithModel:model andSection:idx];
                 ws.curveView.titleLab.text = model.device_name;
                 [ws loadCurveWithModel:model andSection:idx];
-                /*ws.sVC.tTitle = model.device_name;
-                [ws.sVC reloadDataUI];*/
                 model.isFold = YES;
             } else {
                 model.isFold = NO;
+            }*/
+            if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
+                NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
+                if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
+                    !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
+                    if (idx== 0) {
+                        ws.foldSection = idx;
+                        [ws loadItemWithModel:model andSection:idx];
+                        [ws loadCurveWithModel:model andSection:idx];
+                        model.isFold = YES;
+                    } else {
+                        model.isFold = NO;
+                    }
+                    [ws.listMutableArray addObject:model];
+                } else {
+                    NSLog(@"没有");
+                }
+            } else {
+                if (idx== 0) {
+                    ws.foldSection = idx;
+                    [ws loadItemWithModel:model andSection:idx];
+                    [ws loadCurveWithModel:model andSection:idx];
+                    model.isFold = YES;
+                } else {
+                    model.isFold = NO;
+                }
+                [ws.listMutableArray addObject:model];
             }
-            [ws.listMutableArray addObject:model];
         }];
         [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
