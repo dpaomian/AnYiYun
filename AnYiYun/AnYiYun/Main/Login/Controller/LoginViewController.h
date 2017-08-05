@@ -13,4 +13,6 @@
  */
 @interface LoginViewController : UIViewController
 
+@property (nonatomic,strong)NSString  *isLogOut;
+
 @end

@@ -110,8 +110,10 @@
     [loginButton addTarget:self action:@selector(loginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
 
-    [self.view addSubview:self.defultView];
-
+    if ([_isLogOut boolValue]==NO)
+    {
+        [self.view addSubview:self.defultView];
+    }
 }
 
 -(void)defultRemoveLaunchView

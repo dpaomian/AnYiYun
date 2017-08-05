@@ -213,6 +213,7 @@
     [BaseCacheHelper releaseAllCache];
 
     LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.isLogOut=@"1";
     BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
     kWindow.rootViewController = navigation;
 }

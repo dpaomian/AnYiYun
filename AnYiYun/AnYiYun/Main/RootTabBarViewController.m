@@ -23,6 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessageIsUnRead) name:@"getMessageIsRead" object:nil];
+    
     self.tabBar.backgroundColor = UIColorFromRGB(0xFFFFFF);
     [self addChildVC:[[HomeMainViewController alloc] init] title:@"首页" image:@"bottom_btn_1" selectedImage:@"ic_tab_home_blue"];
      [self addChildVC:[[DailyMainViewController alloc] init] title:@"日报" image:@"bottom_btn_2" selectedImage:@"ic_tab_me_blue"];
@@ -56,6 +59,7 @@
 {
     [super viewWillAppear:animated];
     
+    DLog(@"请求消息---------");
     [self getMessageIsUnRead];
 }
 
@@ -75,19 +79,20 @@
       parameters:param
         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
-         BOOL isUnRead = (BOOL)responseObject;
+         BOOL isRead = (BOOL)responseObject;
+         DLog(@"是否有新消息  %@  %d",responseObject,isRead);
          MAIN(^{
          [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
              UIViewController *vc = obj.viewControllers.firstObject;
              if ([vc isKindOfClass:[MeMainViewController class]])
              {
-                 if (isUnRead==NO)
+                 if (isRead==YES)
                  {
-                     [self.tabBar hideBadgeOnItemIndex:idx+1];
+                    [self.tabBar showBadgeOnItemIndex:idx];
                  }
                  else
                  {
-                     [self.tabBar showBadgeOnItemIndex:idx+1];
+                     [self.tabBar hideBadgeOnItemIndex:idx];
                  }
              }
          }];

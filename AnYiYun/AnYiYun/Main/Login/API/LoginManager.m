@@ -86,6 +86,7 @@ completionBlockWithSuccess:(requestBlockSuccess)success
     else
         {
         LoginViewController *loginVC = [[LoginViewController alloc] init];
+            loginVC.isLogOut = @"1";
         BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
         kWindow.rootViewController = navigation;
         }
@@ -97,6 +98,7 @@ completionBlockWithSuccess:(requestBlockSuccess)success
         [MBProgressHUD hideHUDForView:kWindow animated:YES];
     });
     LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.isLogOut = @"1";
     BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
     kWindow.rootViewController = navigation;
 }

@@ -46,6 +46,9 @@
     [super viewWillAppear:animated];
     [self getHistoryMessageDataRequest];
     [self updatePersonInfo];
+    
+    //刷新是否有未读消息
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
 }
 
 #pragma mark - 请求消息
