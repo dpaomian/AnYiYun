@@ -31,3 +31,9 @@
 }
 
 @end
+
+
+@implementation HomeModuleModel
+
+
+@end

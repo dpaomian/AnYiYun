@@ -23,7 +23,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
         {
-        tapLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 10, 60, 20)];
+        tapLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 10, 70, 20)];
         tapLabel.backgroundColor = kAppTitleRedColor;
         tapLabel.layer.masksToBounds=YES;
         tapLabel.layer.cornerRadius = 4;
@@ -61,7 +61,7 @@
         {
         titleLabel.text = @"安易云已为您服务";
         tapLabel.backgroundColor = RGB(74, 191, 131);
-        descLabel.font = [UIFont systemFontOfSize:14];
+        descLabel.font = [UIFont boldSystemFontOfSize:16];
         descLabel.text = day;
         descLabel.textColor = RGB(74, 191, 131);
     }

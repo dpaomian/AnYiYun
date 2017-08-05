@@ -22,6 +22,8 @@
     NSMutableArray  *adverArray;
     BOOL            isHaveAlertMessage;
     NSString        *safeTimeString;//安全运行时间
+    
+    NSMutableArray  *_menuArray;
 }
 /**广告图*/
 @property (nonatomic,strong)UIView                     *adBgView;
@@ -38,6 +40,9 @@
     [super viewDidLoad];
     
     self.title = @"首页";
+    
+    _menuArray = [[NSMutableArray alloc]init];
+    
     [self setLeftBarItem];
         //广告
     [self getPictureRequestAction];
@@ -76,19 +81,28 @@
 
 -(void)moduleBtnClick:(UIButton *)sender
 {
-    if (sender.tag == 100) {
+    HomeModuleModel *model = _menuArray[sender.tag-100];
+    
+    if ([model.name isEqualToString:@"能源管理"])
+    {
         EnergyManagementViewController *energyVC = [[EnergyManagementViewController alloc]init];
         energyVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:energyVC animated:YES];
-    } else if (sender.tag == 101){
+    }
+    else if ([model.name isEqualToString:@"供配电"])
+    {
         PowerDistributionTabBarRootViewController *powerRootVC = [[PowerDistributionTabBarRootViewController alloc]init];
         powerRootVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:powerRootVC animated:YES];
-    }  else if (sender.tag == 102){
+    }
+    else if ([model.name isEqualToString:@"电气火灾"])
+    {
         ElectricalFireTabBarRootViewController *fireVC = [[ElectricalFireTabBarRootViewController alloc]init];
         fireVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:fireVC animated:YES];
-    } else {
+    }
+    else if ([model.name isEqualToString:@"消防电源"])
+    {
         FirePowerSupplyTabBarRootViewController *allApplicationVC = [[FirePowerSupplyTabBarRootViewController alloc]init];
         allApplicationVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:allApplicationVC animated:YES];
@@ -100,22 +114,26 @@
 -(void)makeView
 {
     [self.view addSubview:self.bpTableView];
-    
-    NSArray *imageArray = @[@"home_icon_n.png",@"home_icon_g.png",@"home_icon_d.png",@"all_icon_5.png"];
-    NSArray *titleArray = @[@"能源管理",@"供配电",@"电气火灾",@"消防电源"];
-    
-    CGFloat btnWidth = (kScreen_Width-3*1)/titleArray.count;
+    [self initTableHeadView];
+}
+
+-(void)initTableHeadView
+{
+
+    NSInteger moduleCount = _menuArray.count;
+    CGFloat btnWidth = (kScreen_Width-(moduleCount-1)*1)/moduleCount;
     CGFloat btnHeight = (kScreen_Width-3*1)/4;
-    for (int i=0; i<titleArray.count; i++)
-        {
-        CGFloat xx = i%titleArray.count*(btnWidth+1);
+    for (int i=0; i<moduleCount; i++)
+    {
+        HomeModuleModel *item = _menuArray[i];
+        CGFloat xx = i%moduleCount*(btnWidth+1);
         CGFloat yy = i/4*btnHeight+AD_Height;
         
         UIButton *useBtn = [[UIButton alloc]initWithFrame: CGRectMake(xx, yy, btnWidth, btnHeight)];
         useBtn.backgroundColor = [UIColor whiteColor];
         
         UIImageView  *itemImgView = [[UIImageView alloc]initWithFrame:CGRectMake((btnWidth-40)/2, (btnHeight-60)/3, 40, 40)];
-        itemImgView.image = [UIImage imageNamed:imageArray[i]];
+        itemImgView.image =[UIImage imageNamed:item.imageStr];
         [useBtn addSubview:itemImgView];
         
         UILabel  *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (btnHeight-60)/3*2+40, btnWidth, 20)];
@@ -123,7 +141,7 @@
         titleLabel.numberOfLines = 2;
         titleLabel.font = [UIFont systemFontOfSize:16];
         titleLabel.textColor = RGB(51, 51, 51);
-        titleLabel.text = titleArray[i];
+        titleLabel.text = item.name;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [useBtn addSubview:titleLabel];
         
@@ -134,8 +152,7 @@
         UILabel *lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(xx+btnWidth, yy, 1, btnHeight)];
         lineLabel.backgroundColor = kAPPTableViewLineColor;
         [_tableHeadView addSubview:lineLabel];
-        
-        }
+    }
     
     UILabel *bottomLineLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, btnHeight+AD_Height, kScreen_Width, 1)];
     bottomLineLabel.backgroundColor = kAPPTableViewLineColor;
@@ -270,8 +287,80 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/menuOpen",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object)
+    {
+        NSDictionary *menuDic = object;
+        NSArray *keyArray = [menuDic allKeys];
         
+        for (int i=0; i<keyArray.count; i++)
+        {
+            HomeModuleModel *model = [[HomeModuleModel alloc]init];
+            model.code = keyArray[i];
+            model.isShow = [menuDic[model.code] boolValue];
+            
+            if ([model.code isEqualToString:@"01"])
+            {
+                model.name = @"能源管理";
+                model.imageStr = @"home_icon_n.png";
+            }
+            else if ([model.code isEqualToString:@"02"])
+            {
+                model.name = @"供配电";
+                model.imageStr = @"home_icon_g.png";
+            }
+            else if ([model.code isEqualToString:@"03"])
+            {
+                model.name = @"消防";
+                model.imageStr = @"";
+                model.isShow = NO;
+            }
+            else if ([model.code isEqualToString:@"0302"])
+            {
+                model.name = @"消防电源";
+                model.imageStr = @"all_icon_5.png";
+                BOOL isUse = [menuDic[@"03"] boolValue];
+                if (isUse==NO)
+                {
+                    model.isShow=NO;
+                }
+            }
+            else if ([model.code isEqualToString:@"0301"])
+            {
+                model.name = @"电气火灾";
+                model.imageStr = @"home_icon_d.png";
+                BOOL isUse = [menuDic[@"03"] boolValue];
+                if (isUse==NO)
+                {
+                    model.isShow=NO;
+                }
+            }
+            else if ([model.code isEqualToString:@"04"])
+            {
+                model.name = @"电梯";
+                model.imageStr = @"all_icon_15.png";
+            }
+            else if ([model.code isEqualToString:@"05"])
+            {
+                model.name = @"照明";
+                model.imageStr = @"all_icon_16.png";
+            }
+            else if ([model.code isEqualToString:@"06"])
+            {
+                model.name = @"给排水";
+                model.imageStr = @"all_icon_17.png";
+            }
+            else if ([model.code isEqualToString:@"07"])
+            {
+                model.name = @"空调";
+                model.imageStr = @"all_icon_18.png";
+            }
+            if (model.isShow==YES)
+            {
+                DLog(@"增加模块  %@",model.name);
+                 [_menuArray addObject:model];
+            }
+        }
+        [self initTableHeadView];
         
     } failureBlock:^(NSError *error) {
         DLog(@"获取推广失败：%@",error);
