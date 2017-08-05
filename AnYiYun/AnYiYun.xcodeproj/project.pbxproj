@@ -26,7 +26,6 @@
 		3B404BBA1F341E290045DA2C /* launch_defult.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3B404BB91F341E290045DA2C /* launch_defult.gif */; };
 		3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */; };
 		3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */; };
-		7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */; };
 		900CEC0B1F2CE5300012D925 /* HJCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 900CEC0A1F2CE5300012D925 /* HJCActionSheet.m */; };
 		901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FC1F26204C00CFED87 /* UserInfoCell.m */; };
 		901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 901787FE1F2620B800CFED87 /* YYCalendarModel.m */; };
@@ -142,6 +141,12 @@
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
+		A84079B21F35DD400029F7FA /* YYChartsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84079B11F35DD400029F7FA /* YYChartsBaseViewController.m */; };
+		A84079C41F363FBB0029F7FA /* YYChartsBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84079C31F363FBB0029F7FA /* YYChartsBaseView.m */; };
+		A84079C71F3640750029F7FA /* YYCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84079C61F3640750029F7FA /* YYCurveView.m */; };
+		A84079C91F3640950029F7FA /* YYCurveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84079C81F3640950029F7FA /* YYCurveView.xib */; };
+		A84079CD1F364FC70029F7FA /* YYCurveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84079CB1F364FC70029F7FA /* YYCurveViewController.m */; };
+		A84079CE1F364FC70029F7FA /* YYCurveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84079CC1F364FC70029F7FA /* YYCurveViewController.xib */; };
 		A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */; };
 		A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */; };
 		A8451F921F2DBC9F00A2CF5A /* LoadDetectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8451F911F2DBC9F00A2CF5A /* LoadDetectionModel.m */; };
@@ -201,7 +206,6 @@
 		A87C53F11F31DB3B008DE42B /* AATooltip.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53C91F31DB3B008DE42B /* AATooltip.m */; };
 		A87C53F21F31DB3B008DE42B /* AAXAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CB1F31DB3B008DE42B /* AAXAxis.m */; };
 		A87C53F31F31DB3B008DE42B /* AAYAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CE1F31DB3B008DE42B /* AAYAxis.m */; };
-		A87C53F61F31DB90008DE42B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53F51F31DB90008DE42B /* SecondViewController.m */; };
 		A89511791F32426B00093DE9 /* UITextView+DisableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */; };
 		A8992F811F34C5F00074DE59 /* libSupperYYTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8992F801F34C5F00074DE59 /* libSupperYYTools.a */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
@@ -232,6 +236,7 @@
 		A8FD789D1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD789C1F2C39E000523E46 /* ElectricalFireTabBarRootViewController.m */; };
 		A8FD78A21F2C6C0200523E46 /* FireMaintenanceRemindersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD78A11F2C6C0200523E46 /* FireMaintenanceRemindersModel.m */; };
 		A8FD78A61F2C943400523E46 /* FireAlarmInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD78A51F2C943400523E46 /* FireAlarmInformationModel.m */; };
+		BF743CA327D3819A4A8B7D6D /* Pods_AnYiYun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A89DB60F402C0EA0E61B55 /* Pods_AnYiYun.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -271,6 +276,7 @@
 		3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAppView.h; sourceTree = "<group>"; };
 		3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAppView.m; sourceTree = "<group>"; };
 		3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		59A89DB60F402C0EA0E61B55 /* Pods_AnYiYun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnYiYun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900CEC091F2CE5300012D925 /* HJCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCActionSheet.h; sourceTree = "<group>"; };
 		900CEC0A1F2CE5300012D925 /* HJCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCActionSheet.m; sourceTree = "<group>"; };
 		901787FB1F26204C00CFED87 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
@@ -436,7 +442,6 @@
 		90CF07B21F1F3BAB008106D2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		90EA5EA31F2DBDAE009DE784 /* DefultLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefultLaunchView.h; path = AnYiYun/Libs/DefultLaunchView.h; sourceTree = SOURCE_ROOT; };
 		90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefultLaunchView.m; path = AnYiYun/Libs/DefultLaunchView.m; sourceTree = SOURCE_ROOT; };
-		95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnYiYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A810BF491F25EDB400B5F2D2 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		A810BF4A1F25EDB400B5F2D2 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		A810BF521F25F43F00B5F2D2 /* YYSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYSegmentedView.h; path = AnYiYun/Main/Home/Main/Controller/YYSegmentedView.h; sourceTree = SOURCE_ROOT; };
@@ -494,6 +499,16 @@
 		A83445B11F3339CC004C46C7 /* AnYiYunApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnYiYunApplication.h; sourceTree = "<group>"; };
 		A83445B21F3339CC004C46C7 /* UIButton+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
 		A83445B31F3339CC004C46C7 /* YYTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTools.h; sourceTree = "<group>"; };
+		A84079B01F35DD400029F7FA /* YYChartsBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYChartsBaseViewController.h; sourceTree = "<group>"; };
+		A84079B11F35DD400029F7FA /* YYChartsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYChartsBaseViewController.m; sourceTree = "<group>"; };
+		A84079C21F363FBB0029F7FA /* YYChartsBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYChartsBaseView.h; sourceTree = "<group>"; };
+		A84079C31F363FBB0029F7FA /* YYChartsBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYChartsBaseView.m; sourceTree = "<group>"; };
+		A84079C51F3640750029F7FA /* YYCurveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCurveView.h; sourceTree = "<group>"; };
+		A84079C61F3640750029F7FA /* YYCurveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCurveView.m; sourceTree = "<group>"; };
+		A84079C81F3640950029F7FA /* YYCurveView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYCurveView.xib; sourceTree = "<group>"; };
+		A84079CA1F364FC70029F7FA /* YYCurveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCurveViewController.h; sourceTree = "<group>"; };
+		A84079CB1F364FC70029F7FA /* YYCurveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCurveViewController.m; sourceTree = "<group>"; };
+		A84079CC1F364FC70029F7FA /* YYCurveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYCurveViewController.xib; sourceTree = "<group>"; };
 		A8451F8B1F2D901900A2CF5A /* SearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionCell.h; sourceTree = "<group>"; };
 		A8451F8C1F2D901900A2CF5A /* SearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionCell.m; sourceTree = "<group>"; };
 		A8451F8D1F2D901900A2CF5A /* SearchCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCollectionCell.xib; sourceTree = "<group>"; };
@@ -602,8 +617,6 @@
 		A87C53CC1F31DB3B008DE42B /* AAYAxis 2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AAYAxis 2.h"; sourceTree = "<group>"; };
 		A87C53CD1F31DB3B008DE42B /* AAYAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAYAxis.h; sourceTree = "<group>"; };
 		A87C53CE1F31DB3B008DE42B /* AAYAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAYAxis.m; sourceTree = "<group>"; };
-		A87C53F41F31DB90008DE42B /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		A87C53F51F31DB90008DE42B /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		A89511771F32426B00093DE9 /* UITextView+DisableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+DisableCopy.h"; sourceTree = "<group>"; };
 		A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+DisableCopy.m"; sourceTree = "<group>"; };
 		A8992F801F34C5F00074DE59 /* libSupperYYTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSupperYYTools.a; sourceTree = "<group>"; };
@@ -665,8 +678,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */,
-				7D536190922CA49695D04FC4 /* libPods-AnYiYun.a in Frameworks */,
 				A8992F811F34C5F00074DE59 /* libSupperYYTools.a in Frameworks */,
+				BF743CA327D3819A4A8B7D6D /* Pods_AnYiYun.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,7 +752,7 @@
 			isa = PBXGroup;
 			children = (
 				3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */,
-				95D04BD7F3BFA977EFF8D239 /* libPods-AnYiYun.a */,
+				59A89DB60F402C0EA0E61B55 /* Pods_AnYiYun.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -870,8 +883,9 @@
 				A81B12281F2AC446001DD06B /* EnergyManagementViewController.m */,
 				A81B12301F2AC446001DD06B /* LoadDetectionViewController.h */,
 				A81B12311F2AC446001DD06B /* LoadDetectionViewController.m */,
-				A87C53F41F31DB90008DE42B /* SecondViewController.h */,
-				A87C53F51F31DB90008DE42B /* SecondViewController.m */,
+				A84079CA1F364FC70029F7FA /* YYCurveViewController.h */,
+				A84079CB1F364FC70029F7FA /* YYCurveViewController.m */,
+				A84079CC1F364FC70029F7FA /* YYCurveViewController.xib */,
 				A81B12251F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.h */,
 				A81B12261F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m */,
 				A8DA96711F2BB1FD00F3032D /* SafetyMonitoringRootViewController.h */,
@@ -1237,6 +1251,13 @@
 				A8E2A5381F30DB4C000F5408 /* PopViewController.xib */,
 				A8E2A53B1F30F139000F5408 /* HelpViewController.h */,
 				A8E2A53C1F30F139000F5408 /* HelpViewController.m */,
+				A84079B01F35DD400029F7FA /* YYChartsBaseViewController.h */,
+				A84079B11F35DD400029F7FA /* YYChartsBaseViewController.m */,
+				A84079C21F363FBB0029F7FA /* YYChartsBaseView.h */,
+				A84079C31F363FBB0029F7FA /* YYChartsBaseView.m */,
+				A84079C51F3640750029F7FA /* YYCurveView.h */,
+				A84079C61F3640750029F7FA /* YYCurveView.m */,
+				A84079C81F3640950029F7FA /* YYCurveView.xib */,
 				90CF07361F1F2F59008106D2 /* Common */,
 				90CF07951F1F361D008106D2 /* Login */,
 				90CF07371F1F2F59008106D2 /* Home_首页 */,
@@ -1738,6 +1759,7 @@
 				A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */,
 				A81B12431F2AC446001DD06B /* EquipmentAccountViewController.xib in Resources */,
 				A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */,
+				A84079C91F3640950029F7FA /* YYCurveView.xib in Resources */,
 				901788081F2620D200CFED87 /* YYCalendarCollectionViewCell.xib in Resources */,
 				90A2EC6E1F209E98008088C4 /* main_back_white@2x.png in Resources */,
 				A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */,
@@ -1762,6 +1784,7 @@
 				A87C53D51F31DB3B008DE42B /* AAFunnel.js in Resources */,
 				A87C53D61F31DB3B008DE42B /* AAHighcharts-3d.js in Resources */,
 				A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */,
+				A84079CE1F364FC70029F7FA /* YYCurveViewController.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
 				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
@@ -1871,6 +1894,7 @@
 				A87C53EE1F31DB3B008DE42B /* AAStyle.m in Sources */,
 				90CF07811F1F3464008106D2 /* NSDateFormatter+Category.m in Sources */,
 				A8FD78991F2C396800523E46 /* FireSafetyMonitoringRootViewController.m in Sources */,
+				A84079C71F3640750029F7FA /* YYCurveView.m in Sources */,
 				901787FF1F2620B800CFED87 /* YYCalendarModel.m in Sources */,
 				90CF07A91F1F3955008106D2 /* StatusBarOverlay.m in Sources */,
 				90272BE21F224382000B1DC0 /* TAPageControl.m in Sources */,
@@ -1881,7 +1905,6 @@
 				A8E2A5391F30DB4C000F5408 /* PopViewController.m in Sources */,
 				90CF078E1F1F3464008106D2 /* UIView+Extension.m in Sources */,
 				A87C53E11F31DB3B008DE42B /* AAItemStyle.m in Sources */,
-				A87C53F61F31DB90008DE42B /* SecondViewController.m in Sources */,
 				90CF07831F1F3464008106D2 /* NSDictionary+XHLogHelper.m in Sources */,
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
 				90CF07871F1F3464008106D2 /* UIColor+Extension.m in Sources */,
@@ -1919,6 +1942,7 @@
 				A87C53EC1F31DB3B008DE42B /* AASeriesElement.m in Sources */,
 				A87C53E31F31DB3B008DE42B /* AALegend.m in Sources */,
 				A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */,
+				A84079B21F35DD400029F7FA /* YYChartsBaseViewController.m in Sources */,
 				90CF07591F1F3300008106D2 /* BaseReachability.m in Sources */,
 				9046D5E01F2B88F2004E3DCC /* DevicePartViewController.m in Sources */,
 				90CF07AC1F1F3985008106D2 /* PersonInfo.m in Sources */,
@@ -1944,9 +1968,11 @@
 				3B02DF461F2ADE0300282116 /* MessageMaintainCell.m in Sources */,
 				3B02DF471F2ADE0300282116 /* MessageTopView.m in Sources */,
 				A821B1271F26E676008B6678 /* SortModel.m in Sources */,
+				A84079CD1F364FC70029F7FA /* YYCurveViewController.m in Sources */,
 				90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */,
 				A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */,
 				90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */,
+				A84079C41F363FBB0029F7FA /* YYChartsBaseView.m in Sources */,
 				A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */,
 				A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */,
 				A8DA96701F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m in Sources */,

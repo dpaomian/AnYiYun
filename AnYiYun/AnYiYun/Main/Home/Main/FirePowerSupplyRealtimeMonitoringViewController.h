@@ -10,6 +10,8 @@
 #import "FilterCollectionView.h"
 #import "RealtimeMonitoringListModel.h"
 #import "RealtimeMonitoringChildCell.h"
+#import "DoubleGraphModel.h"
+#import "YYCurveViewController.h"
 
 /*!实时监测*/
 @interface FirePowerSupplyRealtimeMonitoringViewController : BaseViewController
@@ -18,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
+@property (nonatomic, strong) YYCurveViewController *fullScreenCurveVC;
 
 @end

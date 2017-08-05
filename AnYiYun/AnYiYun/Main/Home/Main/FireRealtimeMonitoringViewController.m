@@ -95,6 +95,8 @@
     };
     [self.view addSubview:_collectionView];
     
+    _fullScreenCurveVC = [[YYCurveViewController alloc] initWithNibName:NSStringFromClass([YYCurveViewController class]) bundle:nil];
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [ws getRealtimeMonitoringData];
     }];
@@ -102,8 +104,6 @@
 }
 
 - (void)getRealtimeMonitoringData {
-    
-    
     __weak FireRealtimeMonitoringViewController *ws = self;
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/electricalFire/realTimeMonFirst",BASE_PLAN_URL];
@@ -163,6 +163,48 @@
     } failureBlock:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
+    } progress:nil];
+}
+
+- (void)loadCurveWithModel:(RealtimeMonitoringListModelList *)itemModel andSection:(NSInteger)section {
+    __weak FireRealtimeMonitoringViewController *ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":itemModel.idF,@"type":itemModel.point_type};
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+        NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
+        NSMutableArray *lines = [NSMutableArray array];
+        [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSArray * value1Array = [NSArray arrayWithArray:obj];
+            NSInteger myIdex = idx;
+            NSMutableArray *arrayOne = [NSMutableArray array];
+            NSMutableArray *arrayTwo = [NSMutableArray array];
+            [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
+                model.idf = obj[@"id"];
+                model.name = obj[@"name"];
+                model.sid = obj[@"sid"];
+                model.time = obj[@"time"];
+                model.timeLong = obj[@"timeLong"];
+                model.value = obj[@"value"];
+                if (myIdex==0) {
+                    [arrayOne addObject:model];
+                } else {
+                    [arrayTwo addObject:model];
+                }
+            }];
+            if (myIdex==0) {
+                [lines addObject:arrayOne];
+            } else {
+                [lines addObject:arrayTwo];
+            }
+        }];
+        ws.fullScreenCurveVC.linesMutableArray = lines;
+        ws.fullScreenCurveVC.xTitleLab.text = itemModel.point_name;
+        [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
+        /*ws.curveView.linesMutableArray = lines;
+         ws.curveView.hidden = NO;*/
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD showError:@"获取曲线失败"];
     } progress:nil];
 }
 
@@ -258,6 +300,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    __weak FireRealtimeMonitoringViewController *ws = self;
     RealtimeMonitoringChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RealtimeMonitoringChildCell" forIndexPath:indexPath];
     RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
     RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
@@ -268,6 +311,12 @@
     } else {
         [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
     }
+    [cell.contentBtn buttonClickedHandle:^(UIButton *sender) {
+        [ws loadCurveWithModel:modelItem andSection:indexPath.section];
+    }];
+    [cell.lineIconBtn buttonClickedHandle:^(UIButton *sender) {
+        [ws loadCurveWithModel:modelItem andSection:indexPath.section];
+    }];
     return cell;
     
 }

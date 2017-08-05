@@ -7,30 +7,15 @@
 //
 
 #import "LoadDetectionViewController.h"
-#import "SecondViewController.h"
 
 @interface LoadDetectionViewController ()
 
-@property (nonatomic, strong) NSMutableArray *constraintsMutableArray;
 /*!记录被展开的区*/
 @property (nonatomic, assign) NSInteger   foldSection;
-@property (nonatomic, strong) SecondViewController *sVC;
 
 @end
 
 @implementation LoadDetectionViewController
-
-- (void)buttonClick:(UIButton *)sender {
-    SecondViewController *vc = [[SecondViewController alloc] init];
-    vc.tTitle = _sVC.tTitle;
-    vc.oneArray = _sVC.oneArray;
-    vc.twoArray = _sVC.twoArray;
-    vc.timeArray = _sVC.timeArray;
-    vc.view.transform=CGAffineTransformMakeRotation(M_PI/2);
-    vc.chartView.frame = CGRectMake(0, 0, SCREEN_HEIGHT, SCREEN_WIDTH);
-    vc.chartView.contentHeight = SCREEN_WIDTH;
-    [self.navigationController presentViewController:vc animated:NO completion:nil];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +26,6 @@
     
     _conditionDic = [NSMutableDictionary dictionary];
     _listMutableArray = [NSMutableArray array];
-    _constraintsMutableArray = [NSMutableArray array];
     _curveMutableArray1 = [NSMutableArray array];
     _curveMutableArray2 = [NSMutableArray array];
     
@@ -56,22 +40,50 @@
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    FilterCollectionView *collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-    collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-    collectionView.selectedIndex = 0;
-    [collectionView iteminitialization];
-    collectionView.isFold = YES;
-    collectionView.foldHandle = ^(FilterCollectionView *myCollectionView, BOOL isFold){
-        [ws.view removeConstraints:ws.constraintsMutableArray];
-        [ws.constraintsMutableArray removeAllObjects];
+    _collectionView = [[FilterCollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT) collectionViewLayout:flowLayout];
+    
+    _curveView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYCurveView class]) owner:nil options:nil][0];
+    _curveView.translatesAutoresizingMaskIntoConstraints = NO;
+    _curveView.hidden = YES;
+    [_curveView.rotate buttonClickedHandle:^(UIButton *sender) {
+        ws.fullScreenCurveVC.linesMutableArray = ws.curveView.linesMutableArray;
+        ws.fullScreenCurveVC.xTitleLab.text = ws.curveView.titleLab.text;
+        [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
+        
+    }];
+    [_curveView.screenBtn buttonClickedHandle:^(UIButton *sender) {
+//        ws.collectionView.selectedIndex = 1;
+        ws.collectionView.hidden = NO;
+    }];
+    [self.view addSubview:_curveView];
+    
+    _fullScreenCurveVC = [[YYCurveViewController alloc] initWithNibName:NSStringFromClass([YYCurveViewController class]) bundle:nil];
+    
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_curveView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_curveView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|[_curveView(==%f)][_tableView]|",SCREEN_WIDTH*4.0f/7.0f] options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_curveView, _tableView)]];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [ws getLoadDetectionData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+    _collectionView.selectedIndex = 1;
+    [_collectionView iteminitialization];
+    _collectionView.isFold = YES;
+    _collectionView.hidden = YES;
+    _collectionView.foldHandle = ^(FilterCollectionView *myCollectionView, BOOL isFold){
         if (isFold) {
-            [ws.constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[myCollectionView(==34)]" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(myCollectionView)]];
+            ws.collectionView.hidden = YES;
+//            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f);
         } else {
-            [ws.constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[myCollectionView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(myCollectionView)]];
+            ws.collectionView.hidden = NO;
+//            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT);
         }
-        [ws.view addConstraints:ws.constraintsMutableArray];
     };
-    collectionView.choiceHandle = ^(FilterCollectionView *myCollectionView, id modelObject, NSInteger idx) {
+    _collectionView.choiceHandle = ^(FilterCollectionView *myCollectionView, id modelObject, NSInteger idx) {
         switch (idx) {
             case 1:
             {
@@ -118,32 +130,7 @@
                 break;
         }
     };
-    [self.view addSubview:collectionView];
-    //曲线图
-    _sVC = [[SecondViewController alloc]init];
-    _sVC.SecondeViewControllerChartType = 5;
-    _sVC.view.userInteractionEnabled = NO;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*SCREEN_WIDTH/SCREEN_HEIGHT)];
-    [view addSubview:_sVC.view];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(8, 0, 32, 32);
-    [button setImage:[UIImage imageNamed:@"Pull_icon.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:button];
-    view.clipsToBounds = YES;
-    [self.view addSubview:view];
-    
-    float tableViewTop = SCREEN_WIDTH*SCREEN_WIDTH/SCREEN_HEIGHT;
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    [_constraintsMutableArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|[collectionView(==%d)]",34] options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
-    [self.view addConstraints:_constraintsMutableArray];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-%f-[_tableView]|",tableViewTop] options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [ws getLoadDetectionData];
-    }];
-    [self.tableView.mj_header beginRefreshing];
+    [self.view addSubview:_collectionView];
 }
 
 - (void)getLoadDetectionData {
@@ -180,9 +167,10 @@
             if (idx== 0) {
                 ws.foldSection = idx;
                 [ws loadItemWithModel:model andSection:idx];
+                ws.curveView.titleLab.text = model.device_name;
                 [ws loadCurveWithModel:model andSection:idx];
-                ws.sVC.tTitle = model.device_name;
-                [ws.sVC reloadDataUI];
+                /*ws.sVC.tTitle = model.device_name;
+                [ws.sVC reloadDataUI];*/
                 model.isFold = YES;
             } else {
                 model.isFold = NO;
@@ -244,12 +232,12 @@
         [ws.curveMutableArray1 removeAllObjects];
         [ws.curveMutableArray2 removeAllObjects];
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
+        NSMutableArray *lines = [NSMutableArray array];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray * value1Array = [NSArray arrayWithArray:obj];
             NSInteger myIdex = idx;
             NSMutableArray *arrayOne = [NSMutableArray array];
             NSMutableArray *arrayTwo = [NSMutableArray array];
-            NSMutableArray *timeArray = [NSMutableArray array];
             [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
                 model.idf = obj[@"id"];
@@ -258,31 +246,20 @@
                 model.time = obj[@"time"];
                 model.timeLong = obj[@"timeLong"];
                 model.value = obj[@"value"];
-                float numberToRound;
-                int result;
-                numberToRound = [model.value floatValue];
-                
-                result = (int)roundf(numberToRound);
                 if (myIdex==0) {
-                    [ws.curveMutableArray1 addObject:model];
-                    [arrayOne addObject:@(result)];
+                    [arrayOne addObject:model];
                 } else {
-                    [ws.curveMutableArray2 addObject:model];
-//                     NSLog(@"roundf(%.2f) = %d", numberToRound, result);
-                    [arrayTwo addObject:@(result)];
-                    [timeArray addObject:model.time];
+                    [arrayTwo addObject:model];
                 }
             }];
             if (myIdex==0) {
-                _sVC.oneArray = [NSArray arrayWithArray:arrayOne];
+                [lines addObject:arrayOne];
             } else {
-                _sVC.twoArray = [NSArray arrayWithArray:arrayTwo];
-                _sVC.timeArray = [NSArray arrayWithArray:timeArray];
+                [lines addObject:arrayTwo];
             }
         }];
-
-        [_sVC reloadDataUI];
-//        [self.stockDatadict setObject:array forKey:@"1"];
+        ws.curveView.linesMutableArray = lines;
+        ws.curveView.hidden = NO;
     } failureBlock:^(NSError *error) {
         [MBProgressHUD showError:@"获取曲线失败"];
     } progress:nil];
@@ -330,8 +307,8 @@
             currentModel.isFold = NO;
             currentModel.itemsMutableArray = [@[] mutableCopy];
             [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:ws.foldSection] withRowAnimation:UITableViewRowAnimationNone];
-            ws.sVC.tTitle = hView.titleLab.text;
-            [ws.sVC reloadDataUI];
+            /*ws.sVC.tTitle = hView.titleLab.text;
+            [ws.sVC reloadDataUI];*/
             ws.foldSection = section;
             model.isFold = YES;
             [ws loadItemWithModel:model andSection:section];
