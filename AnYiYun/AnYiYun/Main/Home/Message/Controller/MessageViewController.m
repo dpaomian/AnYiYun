@@ -266,6 +266,11 @@
          {
          [BaseHelper waringInfo:@"提交失败"];
         }
+     else
+     {
+         [self updateDataSource];
+     }
+         
         
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -297,13 +302,10 @@
          {
          [BaseHelper waringInfo:@"提交失败"];
          }
-     else
-     {
-         _selectModel.isRead = @"0";
-         _selectModel.uploadtime = [BaseHelper getSystemNowTimeLong];
-         _selectModel.type = @"103";//报修
-         [[DBDaoDataBase sharedDataBase] addHistoryMessageInfoTableClassify:_selectModel];
-     }
+         else
+         {
+             [self updateDataSource];
+         }
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              [MBProgressHUD hideHUD];
@@ -431,6 +433,11 @@
 -(void)curveAlarmButtonActionWithItem:(MessageModel *)contentModel
 {
     _selectModel = contentModel;
+     NSString *pointId = [BaseHelper isSpaceString:contentModel.pointId andReplace:@""];
+    if (pointId.length>0)
+    {
+        
+    }
 
 }
     //定位

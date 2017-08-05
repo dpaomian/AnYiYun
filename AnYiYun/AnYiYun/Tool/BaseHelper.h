@@ -52,4 +52,7 @@
 /*!计算当前用户使用时间，传进来创建时的时间戳*/
 + (NSString *)getUserTimeStringWith:(NSString *)timeStamp;
 
+/*!计算显示时间，传进来创建时的时间戳*/
++ (NSString *)getShowTimeWithLong:(long )timeStamp;
+
 @end

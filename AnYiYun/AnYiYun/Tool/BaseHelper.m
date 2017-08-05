@@ -300,4 +300,38 @@
     }
 }
 
+
+/*!计算显示时间，传进来创建时的时间戳*/
++ (NSString *)getShowTimeWithLong:(long )timeStamp
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:timeStamp/1000];
+    NSDate *today = [NSDate date];//当前时间
+    unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    NSDateComponents *d = [calendar components:unitFlags fromDate:createDate toDate:today options:0];
+    
+    if ([d day]>0)
+    {
+        return [NSString stringWithFormat:@"%.2li天前", [d day]];
+    }
+    else
+    {
+        if ([d hour]>0)
+        {
+            return [NSString stringWithFormat:@"%.2li小时前", [d hour]];
+        }
+        else
+        {
+            if ([d minute]>0)
+            {
+                return [NSString stringWithFormat:@"%.2li分钟前", [d minute]];
+            }
+            else
+            {
+                return @"刚刚";
+            }
+        }
+    }
+}
+
 @end

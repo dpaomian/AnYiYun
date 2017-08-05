@@ -69,31 +69,7 @@
     _timeLabel.text = @"";
     if (itemModel.rtime>0)
     {
-        long long yu = itemModel.rtime - [BaseHelper getSystemNowTimeLong];
-        NSString *timeString;
-        if (yu>3600*24)
-        {
-            timeString = [NSString stringWithFormat:@"%lld天前",yu/(3600*24)];
-        }
-        else
-        {
-            if (yu>3600&&yu<3600*24)
-            {
-                timeString = [NSString stringWithFormat:@"%lld小时前",yu/3600];
-            }
-            else
-            {
-                if (yu>60&&yu<3600)
-                {
-                    timeString = [NSString stringWithFormat:@"%lld分钟前",yu/60];
-                }
-                else
-                {
-                    timeString = [NSString stringWithFormat:@"%lld秒前",yu/60];
-                }
-            }
-        }
-        _timeLabel.text = timeString;
+        _timeLabel.text = [BaseHelper getShowTimeWithLong:itemModel.rtime];
     }
 }
 

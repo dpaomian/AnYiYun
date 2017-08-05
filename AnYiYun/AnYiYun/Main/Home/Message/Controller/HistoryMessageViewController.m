@@ -47,7 +47,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
 
-    long long useTime = [BaseHelper getSystemNowTimeLong];
+    long long useTime = [BaseHelper getSystemNowTimeLong]-3600*24*10;
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                             @"version":[NSString stringWithFormat:@"%lld", useTime]};
     
@@ -70,7 +70,15 @@
                  {
                      NSDictionary *useDic = [useArray objectAtIndex:i];
                      HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                     [_datasource addObject:itemModel];
+                     
+                     [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:itemModel];
+                     
+                     NSMutableArray *tempArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:[NSString stringWithFormat:@"%ld",(long)itemModel.type]];
+                     
+                     if (itemModel.num>0||tempArray.count>0)
+                     {
+                         [_datasource addObject:itemModel];
+                     }
                  }
                  [_bgTableView reloadData];
              }

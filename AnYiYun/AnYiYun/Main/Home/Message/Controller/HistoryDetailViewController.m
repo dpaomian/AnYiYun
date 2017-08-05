@@ -33,6 +33,13 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[DBDaoDataBase sharedDataBase]updateHistoryMessageReadStatusWithType:self.typeString];
+}
+
 - (void)makeupComponentUI
 {
     _datasource = [[NSMutableArray alloc]init];
@@ -51,13 +58,14 @@
 #pragma mark - request
 -(void)getUseDataRequest
 {
+    HistoryMessageModel *itemModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:self.typeString];
+    
     [_datasource removeAllObjects];
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/showMessage",BASE_PLAN_URL];
     
-    long long useTime = [BaseHelper getSystemNowTimeLong];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"version":[NSString stringWithFormat:@"%lld", useTime],
+                            @"version":[NSString stringWithFormat:@"%ld", (long)itemModel.rtime],
                             @"type":self.typeString
                             };
     
@@ -84,23 +92,35 @@
                      itemModel.type = self.typeString;
                      itemModel.isRead = @"0";
                      [[DBDaoDataBase sharedDataBase] addHistoryMessageInfoTableClassify:itemModel];
-                     
-                     [_datasource addObject:itemModel];
                  }
                  
-                 if (_datasource.count==0)
-                 {
-                     NSMutableArray *useArray = [[NSMutableArray alloc] init];
-                     useArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
-                     _datasource = [NSMutableArray arrayWithArray:useArray];
-                 }
+                 //取数据库中值
+                 NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+                 tempArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
+                 _datasource = [NSMutableArray arrayWithArray:tempArray];
                  
                  [_bgTableView reloadData];
              }
          }
+         else
+         {
+             //取数据库中值
+             NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+             tempArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
+             _datasource = [NSMutableArray arrayWithArray:tempArray];
+             
+             [_bgTableView reloadData];
+         }
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"请求失败：%@",error);
+             
+             //取数据库中值
+             NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+             tempArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
+             _datasource = [NSMutableArray arrayWithArray:tempArray];
+             
+             [_bgTableView reloadData];
          }];
     
 }

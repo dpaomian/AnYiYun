@@ -35,8 +35,18 @@
 
 -(void)setCellContentWithModel:(MessageModel *)itemModel
 {
+    if ([itemModel.isRead isEqualToString:@"0"])
+    {
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _contentLabel.font = [UIFont boldSystemFontOfSize:13];
+    }
+    else
+    {
+        _titleLabel.font = SYSFONT_(14);
+        _contentLabel.font = SYSFONT_(13);
+    }
     _titleLabel.text = itemModel.messageTitle;
-    _timeLabel.text = @"";
+    _timeLabel.text = [BaseHelper getShowTimeWithLong:itemModel.uploadtime];
     
     _contentLabel.text =itemModel.messageContent;
 }

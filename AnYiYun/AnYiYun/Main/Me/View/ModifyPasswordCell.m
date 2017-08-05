@@ -28,7 +28,7 @@
     if (!_leftTextLabel) {
         _leftTextLabel = [[UILabel alloc] init];
         _leftTextLabel.frame = CGRectMake(0, 0, 80, 50);
-        _leftTextLabel.font = SYSFONT_(16);
+        _leftTextLabel.font = SYSFONT_(14);
         _leftTextLabel.textAlignment = NSTextAlignmentRight;
     }
     return _leftTextLabel;
