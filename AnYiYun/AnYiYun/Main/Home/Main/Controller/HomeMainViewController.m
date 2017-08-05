@@ -37,8 +37,8 @@
 {
     [super viewDidLoad];
     
-    self.title = @"安易云";
-    
+    self.title = @"首页";
+    [self setLeftBarItem];
         //广告
     [self getPictureRequestAction];
         //公告
@@ -53,7 +53,16 @@
     [self getAdverRequestAction];
     
     [self makeView];
-    
+}
+
+-(void)setLeftBarItem {
+    UIButton *anYiYunBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [anYiYunBtn setImage:[UIImage imageNamed:@"logo_white.png"] forState:UIControlStateNormal];
+    [anYiYunBtn setTitle:@" 安易云" forState:UIControlStateNormal];
+    [anYiYunBtn sizeToFit];
+    [anYiYunBtn setTitleColor:UIColorFromRGB(0xFFFFFF) forState:UIControlStateNormal];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:anYiYunBtn];
+    self.navigationItem.titleView = [UIView new];
 }
 
 -(void)moduleBtnClick:(UIButton *)sender
