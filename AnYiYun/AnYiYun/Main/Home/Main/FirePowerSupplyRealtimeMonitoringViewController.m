@@ -169,6 +169,15 @@
 - (void)loadCurveWithModel:(RealtimeMonitoringListModelList *)itemModel andSection:(NSInteger)section {
     __weak FirePowerSupplyRealtimeMonitoringViewController *ws = self;
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    if ([itemModel.point_type integerValue] == 103) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    } else if ([itemModel.point_type integerValue] == 101) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    } else if ([itemModel.point_type integerValue] == 104) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/singleGraph",BASE_PLAN_URL];
+    } else if ([itemModel.point_type integerValue] == 105) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/singleGraph",BASE_PLAN_URL];
+    } else {};
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":itemModel.idF,@"type":itemModel.point_type};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];

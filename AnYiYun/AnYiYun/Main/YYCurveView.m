@@ -73,7 +73,7 @@
             }
         }];
     }];
-    [self setDataCount:[linesMutableArray count] range:range];
+    [self setDataCount:count range:range];
 }
 
 - (void)setDataCount:(NSInteger)count range:(double)range {

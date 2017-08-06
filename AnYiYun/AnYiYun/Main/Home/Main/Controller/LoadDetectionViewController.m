@@ -283,6 +283,7 @@
             }
         }];
         ws.curveView.linesMutableArray = lines;
+        ws.curveView.titleLab.text = itemModel.device_name;
         ws.curveView.hidden = NO;
     } failureBlock:^(NSError *error) {
         [MBProgressHUD showError:@"获取曲线失败"];

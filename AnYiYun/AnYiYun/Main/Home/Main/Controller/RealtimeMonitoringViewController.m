@@ -168,16 +168,26 @@
 - (void)loadCurveWithModel:(RealtimeMonitoringListModelList *)itemModel andSection:(NSInteger)section {
     __weak RealtimeMonitoringViewController *ws = self;
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    if ([itemModel.point_type integerValue] == 103) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    } else if ([itemModel.point_type integerValue] == 101) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/doubleGraph",BASE_PLAN_URL];
+    } else if ([itemModel.point_type integerValue] == 104) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/singleGraph",BASE_PLAN_URL];
+    } else if ([itemModel.point_type integerValue] == 105) {
+        urlString = [NSString stringWithFormat:@"%@rest/busiData/singleGraph",BASE_PLAN_URL];
+    } else {};
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":itemModel.idF,@"type":itemModel.point_type};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *lines = [NSMutableArray array];
+
+        NSMutableArray *arrayOne = [NSMutableArray array];
+        NSMutableArray *arrayTwo = [NSMutableArray array];
+        
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSArray * value1Array = [NSArray arrayWithArray:obj];
-            NSInteger myIdex = idx;
-            NSMutableArray *arrayOne = [NSMutableArray array];
-            NSMutableArray *arrayTwo = [NSMutableArray array];
-            [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([itemModel.point_type integerValue] == 104 ||
+                [itemModel.point_type integerValue] == 105) {
                 DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
                 model.idf = obj[@"id"];
                 model.name = obj[@"name"];
@@ -185,18 +195,34 @@
                 model.time = obj[@"time"];
                 model.timeLong = obj[@"timeLong"];
                 model.value = obj[@"value"];
-                if (myIdex==0) {
-                    [arrayOne addObject:model];
-                } else {
-                    [arrayTwo addObject:model];
-                }
-            }];
-            if (myIdex==0) {
-                [lines addObject:arrayOne];
+                [arrayOne addObject:model];
             } else {
-                [lines addObject:arrayTwo];
+                NSArray * value1Array = [NSArray arrayWithArray:obj];
+                NSInteger myIdex = idx;
+                
+                [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
+                    model.idf = obj[@"id"];
+                    model.name = obj[@"name"];
+                    model.sid = obj[@"sid"];
+                    model.time = obj[@"time"];
+                    model.timeLong = obj[@"timeLong"];
+                    model.value = obj[@"value"];
+                    if (myIdex==0) {
+                        [arrayOne addObject:model];
+                    } else {
+                        [arrayTwo addObject:model];
+                    }
+                }];
+                /*if (myIdex==0) {
+                    [lines addObject:arrayOne];
+                } else {
+                    [lines addObject:arrayTwo];
+                }*/
             }
         }];
+        [lines addObject:arrayOne];
+        [lines addObject:arrayTwo];
         ws.fullScreenCurveVC.linesMutableArray = lines;
         ws.fullScreenCurveVC.xTitleLab.text = itemModel.point_name;
         [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
