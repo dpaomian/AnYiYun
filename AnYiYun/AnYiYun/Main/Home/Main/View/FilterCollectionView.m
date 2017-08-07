@@ -29,6 +29,7 @@
     });
     return filter;
 }
+
 - (void)loadCommpanyItemsWithManager:(AFHTTPSessionManager *)manager {
     __weak FilterCollectionView *ws = self;
     NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/busiData/allOrg"];

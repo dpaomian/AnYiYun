@@ -9,12 +9,12 @@
 #import "BaseTableViewController.h"
 #import "LoadDatectionHeaderView.h"
 #import "LoadDatectionCell.h"
-#import "FilterCollectionView.h"
+#import "LoadDetectionFilterCollectionView.h"
 #import "LoadDetectionModel.h"
 #import "RealtimeMonitoringListModel.h"
 #import "DoubleGraphModel.h"
 #import <Masonry/Masonry.h>
-
+#import "YYCurveViewController.h"
 
 /*!负荷监测*/
 @interface LoadDetectionViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
@@ -29,5 +29,9 @@
 @property (nonatomic, strong) NSMutableArray   *curveMutableArray2;
 /*!*/
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
+
+@property (nonatomic, strong) YYCurveView *curveView;
+@property (nonatomic, strong) YYCurveViewController *fullScreenCurveVC;
+@property (nonatomic, strong) LoadDetectionFilterCollectionView *collectionView;
 
 @end

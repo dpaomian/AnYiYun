@@ -192,10 +192,26 @@
     cell.allTitleLab.text = model.name;
     cell.tailImageView.image = [UIImage imageNamed:([model.state integerValue]==1)?@"onLine.png":@"outLine.png"];
     cell.allValueLab.text = [NSString stringWithFormat:@"%@ %@",model.now,model.unit];
-    cell.yesteDayLab.text = [NSString stringWithFormat:@"%@ %@",model.ldData,model.unit];
-    cell.TodayLab.text = [NSString stringWithFormat:@"%@ %@",model.dData,model.unit];
-    cell.lastmonthLab.text = [NSString stringWithFormat:@"%@ %@",model.lmData,model.unit];
-    cell.monthLab.text = [NSString stringWithFormat:@"%@ %@",model.mData,model.unit];
+    
+    cell.yesteDayLab.text = [NSString stringWithFormat:@"昨日电量：%@ %@",model.ldData,model.unit];
+    
+    NSString *todayCustomStr = [NSString stringWithFormat:@"今日电量：%@ %@",model.dData,model.unit];
+    NSRange todayRange = [todayCustomStr rangeOfString:model.dData];
+    NSMutableAttributedString *todayStr = [[NSMutableAttributedString alloc] initWithString:todayCustomStr];
+    [todayStr addAttribute:NSForegroundColorAttributeName
+                     value:[model.dData floatValue] >[model.ldData floatValue]?[UIColor redColor]:UIColorFromRGB(0x5987F8)
+                        range:todayRange];
+    [cell.TodayLab setAttributedText:todayStr];
+    
+    cell.lastmonthLab.text = [NSString stringWithFormat:@"上月电量：%@ %@",model.lmData,model.unit];
+    
+    NSString *monthCustomStr = [NSString stringWithFormat:@"当月电量：%@ %@",model.mData,model.unit];
+    NSRange monthRange = [monthCustomStr rangeOfString:model.mData];
+    NSMutableAttributedString *monthStr = [[NSMutableAttributedString alloc] initWithString:monthCustomStr];
+    [monthStr addAttribute:NSForegroundColorAttributeName
+                     value:[model.mData floatValue] >[model.lmData floatValue]?[UIColor redColor]:UIColorFromRGB(0x5987F8)
+                     range:monthRange];
+    [cell.monthLab setAttributedText:monthStr];
     return cell;
     
 }
