@@ -55,7 +55,7 @@
 - (void)setLinesMutableArray:(NSMutableArray *)linesMutableArray {
     _linesMutableArray = linesMutableArray;
     
-    __block NSInteger count = 0;
+   /* __block NSInteger count = 0;
     __block double range = 0;
     [linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray *currentArray = [NSMutableArray arrayWithArray:obj];
@@ -72,8 +72,8 @@
                 range = [currentmodel.value doubleValue];
             }
         }];
-    }];
-    [self setDataCount:count range:range];
+    }];*/
+    [self setDataCount:20 range:20];
 }
 
 - (void)setDataCount:(NSInteger)count range:(double)range {
@@ -86,7 +86,7 @@
         NSMutableArray *currentMutableArray = [NSMutableArray array];
         [objMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             DoubleGraphModel *currentmodel = obj;
-            [currentMutableArray addObject:[[ChartDataEntry alloc] initWithX:[currentmodel.time floatValue] y:[currentmodel.value doubleValue]]];
+            [currentMutableArray addObject:[[ChartDataEntry alloc] initWithX:[currentmodel.time doubleValue] y:[currentmodel.value doubleValue]]];
         }];
         if (idx == 0) {
             [greenLineValue addObjectsFromArray:currentMutableArray];

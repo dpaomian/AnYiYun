@@ -195,7 +195,7 @@
                 model.time = obj[@"time"];
                 model.timeLong = obj[@"timeLong"];
                 model.value = obj[@"value"];
-                [arrayOne addObject:model];
+                [arrayTwo addObject:model];
             } else {
                 NSArray * value1Array = [NSArray arrayWithArray:obj];
                 NSInteger myIdex = idx;

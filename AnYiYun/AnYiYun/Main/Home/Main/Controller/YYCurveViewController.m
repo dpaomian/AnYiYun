@@ -35,12 +35,24 @@
         }];
         _curveView.chartDescription.enabled = NO;
         
+        _curveView.noDataText = @"";
         _curveView.dragEnabled = YES;
         [_curveView setScaleEnabled:YES];
-        _curveView.pinchZoomEnabled = YES;
         _curveView.drawGridBackgroundEnabled = NO;
+        _curveView.pinchZoomEnabled = YES;
         
         _curveView.legend.form = ChartLegendFormLine;
+        
+            // 设置X轴
+        ChartXAxis *xAxis = _curveView.xAxis;
+        xAxis.labelPosition = XAxisLabelPositionBottom;
+        xAxis.labelCount = 12;
+        xAxis.labelTextColor = [UIColor lightGrayColor];
+        xAxis.labelFont = [UIFont systemFontOfSize:11.f];
+        xAxis.axisMinValue = 0.0;
+//        xAxis.granularity = 1.0;
+        xAxis.drawAxisLineEnabled = YES;    //是否画x轴线
+        xAxis.drawGridLinesEnabled = NO;   //是否画网格
         
         ChartYAxis *leftAxis = _curveView.leftAxis;
         leftAxis.labelTextColor = [UIColor lightGrayColor];
@@ -51,17 +63,7 @@
         
         _curveView.rightAxis.enabled = NO;
         
-        // 设置X轴
-        ChartXAxis *xAxis = _curveView.xAxis;
-        xAxis.labelPosition = XAxisLabelPositionBottom;
-        xAxis.labelTextColor = [UIColor lightGrayColor];
-        xAxis.labelFont = [UIFont systemFontOfSize:11.f];
-        xAxis.axisMinValue = 0.0;
-        xAxis.granularity = 1.0;
-        xAxis.drawAxisLineEnabled = YES;    //是否画x轴线
-        xAxis.drawGridLinesEnabled = NO;   //是否画网格
-        
-        _curveView.legend.form = ChartLegendFormLine;
+//        _curveView.legend.form = ChartLegendFormLine;
         
         [_curveView animateWithXAxisDuration:2.5];
     }
@@ -75,7 +77,7 @@
 - (void)setLinesMutableArray:(NSMutableArray *)linesMutableArray {
     _linesMutableArray =linesMutableArray;
     
-    __block NSInteger count = 0;
+    /*__block NSInteger count = 0;
     __block double range = 0;
     [linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray *currentArray = [NSMutableArray arrayWithArray:obj];
@@ -92,30 +94,50 @@
                 range = [currentmodel.value doubleValue];
             }
         }];
-    }];
-    [self setDataCount:count range:range];
+    }];*/
+    [self setDataCount:0 range:0];
     
 }
 
 - (void)setDataCount:(NSInteger)count range:(double)range {
     NSMutableArray *blueLineValue = [[NSMutableArray alloc] init];
     NSMutableArray *greenLineValue = [[NSMutableArray alloc] init];
+    NSMutableArray *xValue = [[NSMutableArray alloc] init];
+    NSMutableArray *Values = [[NSMutableArray alloc] init];
     
     /*第一层遍历，遍历出有几条线*/
     [_linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray * objMutableArray = [NSMutableArray arrayWithArray:obj];
         NSMutableArray *currentMutableArray = [NSMutableArray array];
+        NSInteger myIdx = idx;
         [objMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             DoubleGraphModel *currentmodel = obj;
-            [currentMutableArray addObject:[[ChartDataEntry alloc] initWithX:[currentmodel.time floatValue] y:[currentmodel.value doubleValue]]];
+            double value = [currentmodel.value doubleValue];
+            NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
+            [Values addObject:valueString];
+            [currentMutableArray addObject:[[ChartDataEntry alloc] initWithX:[currentmodel.time doubleValue] y:value]];
+            if (myIdx == 0) {
+            } else {
+                NSString *timeString = [NSString stringWithFormat:@"%.2f",[currentmodel.time doubleValue]];
+                [xValue addObject:timeString];
+            }
         }];
+        
         if (idx == 0) {
+            [greenLineValue removeAllObjects];
             [greenLineValue addObjectsFromArray:currentMutableArray];
         } else {
+            [blueLineValue removeAllObjects];
             [blueLineValue addObjectsFromArray:currentMutableArray];
         }
+        [blueLineValue removeAllObjects];
+        [Values enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [blueLineValue addObject:[[ChartDataEntry alloc] initWithX:idx y:[obj doubleValue]]];
+        }];
     }];
     
+    ChartIndexAxisValueFormatter *formatteer = [[ChartIndexAxisValueFormatter alloc] initWithValues:xValue];
+    _curveView.xAxis.valueFormatter = formatteer;
     
     LineChartDataSet *blueSet = nil;
     LineChartDataSet *greenSet = nil;
@@ -143,8 +165,8 @@
         blueSet.fillColor = UIColorFromRGB(0x5987F8);
         blueSet.circleRadius = 0.0;
         blueSet.drawValuesEnabled = NO;
-        
-        
+    
+    
         greenSet = [[LineChartDataSet alloc] initWithValues:greenLineValue label:@"今天"];
         greenSet.drawIconsEnabled = NO;
         greenSet.highlightEnabled = NO;//不显示十字线
