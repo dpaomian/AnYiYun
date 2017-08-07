@@ -69,7 +69,7 @@
                             @"type":self.typeString
                             };
     
-    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    DLog(@"请求地址获取二级 urlString = %@?%@",urlString,[param serializeToUrlString]);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
