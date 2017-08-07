@@ -62,6 +62,10 @@
                           channel:@"App Store"
                  apsForProduction:[pushProduction boolValue]
             advertisingIdentifier:nil];
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    
+    
     
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -99,6 +103,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
 
+- (void)networkDidReceiveMessage:(NSNotification *)notification
+{
+    NSDictionary * userInfo = [notification userInfo];
+    NSString *content = [userInfo valueForKey:@"content"];
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
+    
+}
 #pragma mark- JPUSHRegisterDelegate
 
 // iOS 10 Support
@@ -106,7 +118,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     // Required
     NSDictionary * userInfo = notification.request.content.userInfo;
-    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]])
+    {
         [JPUSHService handleRemoteNotification:userInfo];
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
@@ -122,7 +135,22 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     completionHandler();  // 系统要求执行这个方法
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    /**
+    // 取得 APNs 标准信息内容
+    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+    NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
+    NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
+    
+    // 取得Extras字段内容
+    NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
+    NSLog(@"content =[%@], badge=[%ld], sound=[%@], customize field  =[%@]",content,(long)badge,sound,customizeField1);
+    
+    // iOS 10 以下 Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    */
     
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
@@ -136,7 +164,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 
-- (void)applicationWillResignActive:(UIApplication *)application {
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    //清空角标
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
+    
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }

@@ -7,7 +7,9 @@
 //
 
 #import "BaseCacheHelper.h"
-
+//极光推送相关
+// 引入JPush功能所需头文件
+#import "JPUSHService.h"
 @implementation BaseCacheHelper
 
 + (void)releaseAllCache
@@ -16,6 +18,14 @@
     [PersonInfo shareInstance].password = @"";
     
     [BaseCacheHelper setPersonInfo];
+    
+    
+   //极光推送,用户退出,别名去掉
+    NSInteger seqID = [[PersonInfo shareInstance].accountID integerValue];
+    [JPUSHService deleteAlias:^(NSInteger iResCode,NSString *iAlias, NSInteger seq)
+     {
+         DLog(@"极光推送  删除别名 iResCode = %ld-------------iAlias=%@,-------------seq=%ld",iResCode,iAlias,seq);
+     } seq:seqID];
     
     [[TMCache sharedCache] removeAllObjects];
 }
