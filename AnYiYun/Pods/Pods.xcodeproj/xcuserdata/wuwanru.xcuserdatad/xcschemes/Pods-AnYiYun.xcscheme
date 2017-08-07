@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F22423D691249F5D8F340640439E4AB0"
-               BuildableName = "libPods-AnYiYun.a"
+               BlueprintIdentifier = "8D54014ED0408151806A4D7D941559FD"
+               BuildableName = "Pods_AnYiYun.framework"
                BlueprintName = "Pods-AnYiYun"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F22423D691249F5D8F340640439E4AB0"
-            BuildableName = "libPods-AnYiYun.a"
+            BlueprintIdentifier = "8D54014ED0408151806A4D7D941559FD"
+            BuildableName = "Pods_AnYiYun.framework"
             BlueprintName = "Pods-AnYiYun"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F22423D691249F5D8F340640439E4AB0"
-            BuildableName = "libPods-AnYiYun.a"
+            BlueprintIdentifier = "8D54014ED0408151806A4D7D941559FD"
+            BuildableName = "Pods_AnYiYun.framework"
             BlueprintName = "Pods-AnYiYun"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

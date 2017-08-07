@@ -114,12 +114,21 @@ completionBlockWithSuccess:(requestBlockSuccess)success
     NSString *userName = [PersonInfo shareInstance].username;
     NSInteger seqID = [[PersonInfo shareInstance].accountID integerValue];
     
+    NSString *comTag = [NSString stringWithFormat:@"C_%@",[PersonInfo shareInstance].comId];
+    NSSet *pushSet = [[NSSet alloc] initWithObjects:@"all",comTag, nil];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [JPUSHService setAlias:userName completion:^(NSInteger iResCode,NSString *iAlias, NSInteger seq)
         {
              DLog(@"极光推送 设置别名iResCode = %ld-------------iAlias=%@,-------------seq=%ld",iResCode,iAlias,seq);
         } seq:seqID];
+
+        [JPUSHService setTags:pushSet completion:^(NSInteger iResCode,NSSet *iTags, NSInteger seq){
+            DLog(@"极光推送 设置Tag值 iResCode = %ld-------------iTags=%@,-------------seq=%ld",iResCode,iTags,seq);
+        } seq:seqID];
+        
+        
     });
 }
 

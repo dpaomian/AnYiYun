@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "251BAD17812F7EBF6532EACF66F941C3"
-               BuildableName = "FMDB.framework"
-               BlueprintName = "FMDB"
+               BlueprintIdentifier = "F307B842FF76B2DE6C55DB67C0885325"
+               BuildableName = "Charts.framework"
+               BlueprintName = "Charts"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "251BAD17812F7EBF6532EACF66F941C3"
-            BuildableName = "FMDB.framework"
-            BlueprintName = "FMDB"
+            BlueprintIdentifier = "F307B842FF76B2DE6C55DB67C0885325"
+            BuildableName = "Charts.framework"
+            BlueprintName = "Charts"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "251BAD17812F7EBF6532EACF66F941C3"
-            BuildableName = "FMDB.framework"
-            BlueprintName = "FMDB"
+            BlueprintIdentifier = "F307B842FF76B2DE6C55DB67C0885325"
+            BuildableName = "Charts.framework"
+            BlueprintName = "Charts"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

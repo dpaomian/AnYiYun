@@ -22,10 +22,17 @@
     
    //极光推送,用户退出,别名去掉
     NSInteger seqID = [[PersonInfo shareInstance].accountID integerValue];
+    NSString *comTag = [NSString stringWithFormat:@"C_%@",[PersonInfo shareInstance].comId];
+    NSSet *pushSet = [[NSSet alloc] initWithObjects:@"all",comTag, nil];
+    
     [JPUSHService deleteAlias:^(NSInteger iResCode,NSString *iAlias, NSInteger seq)
      {
          DLog(@"极光推送  删除别名 iResCode = %ld-------------iAlias=%@,-------------seq=%ld",iResCode,iAlias,seq);
      } seq:seqID];
+    
+    [JPUSHService deleteTags:pushSet completion:^(NSInteger iResCode,NSSet *iTags, NSInteger seq){
+        DLog(@"极光推送 删除Tag值 iResCode = %ld-------------iTags=%@,-------------seq=%ld",iResCode,iTags,seq);
+    } seq:seqID];
     
     [[TMCache sharedCache] removeAllObjects];
 }
