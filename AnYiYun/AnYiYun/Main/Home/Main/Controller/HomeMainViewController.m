@@ -52,7 +52,7 @@
     [self getMenuRequestAction];
     
         //消息中心
-    [self getMessageRequestAction];
+        // [self getMessageRequestAction];
     [self getSafetyRequestAction];
         //推广
     [self getAdverRequestAction];
@@ -64,6 +64,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+        //消息中心
+    [self getMessageRequestAction];
     
     //刷新是否有未读消息
     [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
@@ -220,6 +223,8 @@
     {
         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         isHaveAlertMessage  = [string boolValue];
+    
+    DLog(@"是否有告警 %@",string);
             NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
             [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
         }
