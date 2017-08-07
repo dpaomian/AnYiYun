@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A0BD7CD64501724E362D9DAD41AB8516"
-               BuildableName = "libTMCache.a"
+               BlueprintIdentifier = "49058C286FBA539A163DEF8AC0ADA5BB"
+               BuildableName = "TMCache.framework"
                BlueprintName = "TMCache"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A0BD7CD64501724E362D9DAD41AB8516"
-            BuildableName = "libTMCache.a"
+            BlueprintIdentifier = "49058C286FBA539A163DEF8AC0ADA5BB"
+            BuildableName = "TMCache.framework"
             BlueprintName = "TMCache"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A0BD7CD64501724E362D9DAD41AB8516"
-            BuildableName = "libTMCache.a"
+            BlueprintIdentifier = "49058C286FBA539A163DEF8AC0ADA5BB"
+            BuildableName = "TMCache.framework"
             BlueprintName = "TMCache"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
