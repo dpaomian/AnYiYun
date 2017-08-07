@@ -7,6 +7,7 @@
 //
 
 #import "FirePowerSupplyAlarmInformationViewController.h"
+#import "DoubleGraphModel.h"
 
 @interface FirePowerSupplyAlarmInformationViewController ()
 
@@ -30,6 +31,8 @@
         [ws getAlarmInformationData];
     }];
     [self.tableView.mj_header beginRefreshing];
+    
+    _fullScreenCurveVC = [[YYCurveViewController alloc] initWithNibName:NSStringFromClass([YYCurveViewController class]) bundle:nil];
 }
 
 - (void)getAlarmInformationData {
@@ -179,7 +182,7 @@
                 break;
             case YYAlarmCellButtonTypeCurve:
             {
-                [MBProgressHUD showSuccess:@"曲线"];
+                [ws loadCurveWithModel:modelItem andIndex:indexPath.row];
             }
                 break;
             case YYAlarmCellButtonTypeLocation:
@@ -197,6 +200,36 @@
     };
     return cell;
     
+}
+
+- (void)loadCurveWithModel:(FireAlarmInformationModel *)itemModel andIndex:(NSInteger)index {
+    __weak FirePowerSupplyAlarmInformationViewController *ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/showAlarm_graph",BASE_PLAN_URL];
+    NSDictionary *param = @{@"bugId":itemModel.idF};
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+        NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
+        NSMutableArray *lines = [NSMutableArray array];
+        
+        NSMutableArray *arrayOne = [NSMutableArray array];
+        NSMutableArray *arrayTwo = [NSMutableArray array];
+        
+        [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
+            model.idf = obj[@"id"];
+            model.name = obj[@"name"];
+            model.sid = obj[@"sid"];
+            model.time = obj[@"time"];
+            model.timeLong = obj[@"timeLong"];
+            model.value = obj[@"value"];
+        }];
+        [lines addObject:arrayOne];
+        [lines addObject:arrayTwo];
+        ws.fullScreenCurveVC.linesMutableArray = lines;
+        ws.fullScreenCurveVC.xTitleLab.text = itemModel.content;
+        [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD showError:@"获取曲线失败"];
+    } progress:nil];
 }
 
 - (void)didReceiveMemoryWarning {

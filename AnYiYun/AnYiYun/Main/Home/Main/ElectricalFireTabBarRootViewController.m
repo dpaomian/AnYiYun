@@ -33,7 +33,7 @@
     _popNavVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     _popNavVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
-    [self addChildVC:[[FireSafetyMonitoringRootViewController alloc] init] title:@"实时监测" image:@"monitor_icon.png" selectedImage:@"monitor_icon_blue.png"];
+    [self addChildVC:[[FireSafetyMonitoringRootViewController alloc] init] title:@"安全监控" image:@"monitor_icon.png" selectedImage:@"monitor_icon_blue.png"];
     [self addChildVC:[[FireEquipmentManagementRootViewController alloc] init] title:@"设备管理" image:@"Management_icon.png" selectedImage:@"Management_icon_blue.png"];
 }
 

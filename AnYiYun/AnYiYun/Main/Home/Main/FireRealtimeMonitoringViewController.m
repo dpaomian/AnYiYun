@@ -182,12 +182,13 @@
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *lines = [NSMutableArray array];
+        
+        NSMutableArray *arrayOne = [NSMutableArray array];
+        NSMutableArray *arrayTwo = [NSMutableArray array];
+        
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSArray * value1Array = [NSArray arrayWithArray:obj];
-            NSInteger myIdex = idx;
-            NSMutableArray *arrayOne = [NSMutableArray array];
-            NSMutableArray *arrayTwo = [NSMutableArray array];
-            [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([itemModel.point_type integerValue] == 104 ||
+                [itemModel.point_type integerValue] == 105) {
                 DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
                 model.idf = obj[@"id"];
                 model.name = obj[@"name"];
@@ -195,20 +196,48 @@
                 model.time = obj[@"time"];
                 model.timeLong = obj[@"timeLong"];
                 model.value = obj[@"value"];
-                if (myIdex==0) {
-                    [arrayOne addObject:model];
-                } else {
-                    [arrayTwo addObject:model];
-                }
-            }];
-            if (myIdex==0) {
-                [lines addObject:arrayOne];
+                [arrayOne addObject:model];
             } else {
-                [lines addObject:arrayTwo];
+                NSArray * value1Array = [NSArray arrayWithArray:obj];
+                NSInteger myIdex = idx;
+                
+                [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
+                    model.idf = obj[@"id"];
+                    model.name = obj[@"name"];
+                    model.sid = obj[@"sid"];
+                    model.time = obj[@"time"];
+                    model.timeLong = obj[@"timeLong"];
+                    model.value = obj[@"value"];
+                    if (myIdex==0) {
+                        [arrayOne addObject:model];
+                    } else {
+                        [arrayTwo addObject:model];
+                    }
+                }];
             }
         }];
+        [lines addObject:arrayOne];
+        [lines addObject:arrayTwo];
+        
         ws.fullScreenCurveVC.linesMutableArray = lines;
         ws.fullScreenCurveVC.xTitleLab.text = itemModel.point_name;
+        if ([itemModel.point_type integerValue] == 103) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"负荷(KW)";
+        } else if ([itemModel.point_type integerValue] == 101) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"电流(A)";
+        } else if ([itemModel.point_type integerValue] == 104) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"漏电(A)";
+        } else if ([itemModel.point_type integerValue] == 105) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(日.小时)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"温度(ºC)";
+        } else {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"电流(A)";
+        };
         [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
         /*ws.curveView.linesMutableArray = lines;
          ws.curveView.hidden = NO;*/
@@ -316,8 +345,12 @@
     cell.titleLab.text = modelItem.point_name;
     [cell.contentBtn setTitle:[NSString stringWithFormat:@"%@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
     if (modelItem.displayIcon) {
+        cell.lineIconBtn.userInteractionEnabled = YES;
+        cell.contentBtn.userInteractionEnabled = YES;
         [cell.lineIconBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
     } else {
+        cell.lineIconBtn.userInteractionEnabled = NO;
+        cell.contentBtn.userInteractionEnabled = NO;
         [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
     }
     [cell.contentBtn buttonClickedHandle:^(UIButton *sender) {

@@ -103,37 +103,38 @@
     NSMutableArray *blueLineValue = [[NSMutableArray alloc] init];
     NSMutableArray *greenLineValue = [[NSMutableArray alloc] init];
     NSMutableArray *xValue = [[NSMutableArray alloc] init];
-    NSMutableArray *Values = [[NSMutableArray alloc] init];
+    NSMutableArray *greenValues = [[NSMutableArray alloc] init];
+    NSMutableArray *blueValues = [[NSMutableArray alloc] init];
     
     /*第一层遍历，遍历出有几条线*/
     [_linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [greenLineValue removeAllObjects];
+        [blueLineValue removeAllObjects];
+        
         NSMutableArray * objMutableArray = [NSMutableArray arrayWithArray:obj];
-        NSMutableArray *currentMutableArray = [NSMutableArray array];
         NSInteger myIdx = idx;
         [objMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             DoubleGraphModel *currentmodel = obj;
-            double value = [currentmodel.value doubleValue];
-            NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
-            [Values addObject:valueString];
-            [currentMutableArray addObject:[[ChartDataEntry alloc] initWithX:[currentmodel.time doubleValue] y:value]];
             if (myIdx == 0) {
+                double value = [currentmodel.value doubleValue];
+                NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
+                [greenValues addObject:valueString];
             } else {
+                double value = [currentmodel.value doubleValue];
+                NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
+                [blueValues addObject:valueString];
                 NSString *timeString = [NSString stringWithFormat:@"%.2f",[currentmodel.time doubleValue]];
                 [xValue addObject:timeString];
             }
         }];
-        
-        if (idx == 0) {
-            [greenLineValue removeAllObjects];
-            [greenLineValue addObjectsFromArray:currentMutableArray];
-        } else {
-            [blueLineValue removeAllObjects];
-            [blueLineValue addObjectsFromArray:currentMutableArray];
-        }
-        [blueLineValue removeAllObjects];
-        [Values enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [blueLineValue addObject:[[ChartDataEntry alloc] initWithX:idx y:[obj doubleValue]]];
-        }];
+    }];
+    [blueLineValue removeAllObjects];
+    [blueValues enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [blueLineValue addObject:[[ChartDataEntry alloc] initWithX:idx y:[obj doubleValue]]];
+    }];
+    [greenLineValue removeAllObjects];
+    [greenValues enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [greenLineValue addObject:[[ChartDataEntry alloc] initWithX:idx y:[obj doubleValue]]];
     }];
     
     ChartIndexAxisValueFormatter *formatteer = [[ChartIndexAxisValueFormatter alloc] initWithValues:xValue];
@@ -157,12 +158,12 @@
         blueSet.highlightEnabled = NO;//不显示十字线
         blueSet.axisDependency = AxisDependencyLeft;
         blueSet.mode = LineChartModeHorizontalBezier;
-        [blueSet setColor:UIColorFromRGB(0x5987F8)];
+        [blueSet setColor:UIColorFromRGB(0x94B0EF)];
         blueSet.lineWidth = 2.0;
         blueSet.drawCircleHoleEnabled = NO;
-        [blueSet setCircleColor:UIColorFromRGB(0x5987F8)];
+        [blueSet setCircleColor:UIColorFromRGB(0x94B0EF)];
         blueSet.fillAlpha = 65/255.0;
-        blueSet.fillColor = UIColorFromRGB(0x5987F8);
+        blueSet.fillColor = UIColorFromRGB(0x94B0EF);
         blueSet.circleRadius = 0.0;
         blueSet.drawValuesEnabled = NO;
     
@@ -179,7 +180,7 @@
         [greenSet setCircleColor:[UIColor greenColor]];
         greenSet.fillAlpha = 65/255.0;
         greenSet.fillColor = [UIColor greenColor];
-        if ([greenLineValue count] < 4) {
+        if ([greenLineValue count] < 4 && [blueLineValue count] >0) {
             greenSet.circleRadius = 3.0;
             greenSet.drawValuesEnabled = YES;
         } else {
