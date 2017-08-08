@@ -64,8 +64,14 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/showMessage",BASE_PLAN_URL];
     
+    long long time = itemModel.rtime;
+    if (time==0)
+        {
+        time = [BaseHelper getSystemNowTimeLong];
+    }
+    
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"version":[NSString stringWithFormat:@"%ld",(long) itemModel.rtime],
+                            @"version":[NSNumber numberWithInteger:time],
                             @"type":self.typeString
                             };
     
