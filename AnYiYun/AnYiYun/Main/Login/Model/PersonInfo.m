@@ -42,7 +42,6 @@ static PersonInfo *instance = nil;
     NSDictionary *dictionary = [BaseHelper filterNullObj:dic];
     _accountID = [BaseHelper filterNullObj:dictionary[@"id"]];
     _comId = [BaseHelper filterNullObj:dictionary[@"comId"]];
-    _loginSuccess = [dictionary[@"loginSuccess"] boolValue];
 }
 
 - (void)initWithCacheDic:(NSDictionary *)dic
@@ -56,6 +55,7 @@ static PersonInfo *instance = nil;
     _comName = dictionary[@"comName"];
     _comLogoUrl = dictionary[@"comLogoUrl"];
     _loginSuccess = [dictionary[@"loginSuccess"] boolValue];
+    _isUnread = [dictionary[@"isUnread"] boolValue];
     
 }
 

@@ -35,10 +35,14 @@
 {
     _datasource = [[NSMutableArray alloc]init];
     [self.view addSubview:self.bgTableView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     [self getUseDataRequest];
 }
-
 
 #pragma mark - request
 -(void)getUseDataRequest
@@ -47,7 +51,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
 
-    long long useTime = [BaseHelper getSystemNowTimeLong]-3600*24*10;
+    long long useTime = [BaseHelper getSystemNowTimeLong];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                             @"version":[NSString stringWithFormat:@"%lld", useTime]};
     

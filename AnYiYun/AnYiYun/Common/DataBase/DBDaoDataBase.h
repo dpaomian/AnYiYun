@@ -30,6 +30,9 @@
 /**添加消息历史记录*/
 - (void)addHistoryMessageInfoTableClassify:(MessageModel *)adModel;
 
+    //是否包含未读消息
+- (NSInteger)getAllUnreadHistoryMessagesCount;
+
 /**获取消息历史记录表中的不同类型的数据*/
 - (NSMutableArray *)getAllHistoryMessagesInfoWithType:(NSString *)type;
 

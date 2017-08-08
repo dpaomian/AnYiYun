@@ -10,7 +10,7 @@
 
 @interface MessageModel : NSObject
 
-@property (nonatomic,assign) NSInteger messageId;
+@property (nonatomic,strong) NSString *messageId;
 @property (nonatomic,strong) NSString  *messageTitle;
 @property (nonatomic,strong) NSString  *messageContent;
 @property (nonatomic,assign) NSInteger  ctime;

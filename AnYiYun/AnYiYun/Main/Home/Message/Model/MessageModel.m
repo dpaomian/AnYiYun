@@ -26,7 +26,7 @@
 {
     if (self = [super init])
         {
-        _messageId = [[BaseHelper isSpaceString:[userDictionary valueForKey:@"id"] andReplace:@""] integerValue];
+        _messageId = [BaseHelper isSpaceString:[userDictionary valueForKey:@"id"] andReplace:@""];
         _messageTitle = [BaseHelper isSpaceString:[userDictionary valueForKey:@"title"] andReplace:@""];
         
         _messageContent = [BaseHelper isSpaceString:[userDictionary valueForKey:@"content"] andReplace:@""];

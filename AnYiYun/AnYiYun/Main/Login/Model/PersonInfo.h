@@ -28,6 +28,8 @@
 /**是否登录成功过*/
 @property (nonatomic) BOOL loginSuccess;
 
+/**是否有未读消息*/
+@property (nonatomic) BOOL isUnread;
 
 + (instancetype)shareInstance;
 
