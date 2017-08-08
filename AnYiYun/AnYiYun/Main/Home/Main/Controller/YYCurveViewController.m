@@ -17,10 +17,13 @@
 -(void) viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES animated:NO]; //设置隐藏
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -193,6 +196,23 @@
         
         _curveView.data = [[LineChartData alloc] initWithDataSets:dataSets];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+-(BOOL)prefersStatusBarHidden {
+    return YES;// 返回YES表示隐藏，返回NO表示显示
 }
 
 - (void)didReceiveMemoryWarning {

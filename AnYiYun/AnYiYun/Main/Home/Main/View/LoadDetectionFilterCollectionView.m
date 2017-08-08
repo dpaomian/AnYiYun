@@ -134,7 +134,7 @@
 - (void)iteminitialization {
     self.hidden = NO;
     [_screenMutableArray removeAllObjects];
-    [_screenMutableArray addObjectsFromArray:@[@{@"name":@"供电室",@"isSelected":@NO,@"searchValue":@""},
+    [_screenMutableArray addObjectsFromArray:@[@{@"name":@"配电室",@"isSelected":@NO,@"searchValue":@""},
                                                @{@"name":@"楼",@"isSelected":@NO,@"searchValue":@""},
                                                @{@"name":@"排序",@"isSelected":@NO,@"searchValue":@""},
                                                @{@"name":@"搜索",@"isSelected":@NO,@"searchValue":@""}]];
@@ -170,7 +170,7 @@
     allCommpanyModel.idF =@"all";
     allCommpanyModel.name =@"all";
     allCommpanyModel.companyId =@"all";
-    allCommpanyModel.companyName =@"全部供电室";
+    allCommpanyModel.companyName =@"全部配电室";
     allCommpanyModel.sort =@"all";
     allCommpanyModel.lev =@"all";
     allCommpanyModel.manager =@"all";
@@ -207,7 +207,7 @@
         _buildingMutableArray = [NSMutableArray array];
         _sortMutableArray = [NSMutableArray array];
         
-        _screenMutableArray = [@[@{@"name":@"供电室",@"isSelected":@NO,@"searchValue":@""},
+        _screenMutableArray = [@[@{@"name":@"配电室",@"isSelected":@NO,@"searchValue":@""},
                                  @{@"name":@"楼",@"isSelected":@NO,@"searchValue":@""},
                                  @{@"name":@"排序",@"isSelected":@NO,@"searchValue":@""},
                                  @{@"name":@"搜索",@"isSelected":@NO,@"searchValue":@""}] mutableCopy];
