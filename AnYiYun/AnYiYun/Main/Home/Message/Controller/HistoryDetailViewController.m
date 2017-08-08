@@ -58,14 +58,14 @@
 #pragma mark - request
 -(void)getUseDataRequest
 {
-        //HistoryMessageModel *itemModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:self.typeString];
+    HistoryMessageModel *itemModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:self.typeString];
     
     [_datasource removeAllObjects];
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/showMessage",BASE_PLAN_URL];
     
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"version":[NSString stringWithFormat:@"%lld", [BaseHelper getSystemNowTimeLong]],
+                            @"version":[NSString stringWithFormat:@"%ld",(long) itemModel.rtime],
                             @"type":self.typeString
                             };
     
