@@ -19,12 +19,11 @@
       "scale" : "2x"
     },
     {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "retina4",
-      "filename" : "Default-640x1136@2x.png",
       "orientation" : "portrait",
-      "unassigned" : true,
+      "idiom" : "iphone",
+      "filename" : "Default-640x960@2x.png",
+      "extent" : "full-screen",
+      "minimum-system-version" : "7.0",
       "scale" : "2x"
     },
     {
@@ -34,7 +33,6 @@
       "filename" : "Default-640x1136@2x-1.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
-      "unassigned" : true,
       "scale" : "2x"
     }
   ],
