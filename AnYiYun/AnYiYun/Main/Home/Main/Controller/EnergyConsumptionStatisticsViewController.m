@@ -199,7 +199,7 @@
     NSRange todayRange = [todayCustomStr rangeOfString:model.dData];
     NSMutableAttributedString *todayStr = [[NSMutableAttributedString alloc] initWithString:todayCustomStr];
     [todayStr addAttribute:NSForegroundColorAttributeName
-                     value:[model.dData floatValue] >[model.ldData floatValue]?[UIColor redColor]:UIColorFromRGB(0x5987F8)
+                     value:[model.dData floatValue] >[model.ldData floatValue]?[UIColor redColor]:UIColorFromRGB(0x94B0EF)
                         range:todayRange];
     [cell.TodayLab setAttributedText:todayStr];
     
@@ -209,7 +209,7 @@
     NSRange monthRange = [monthCustomStr rangeOfString:model.mData];
     NSMutableAttributedString *monthStr = [[NSMutableAttributedString alloc] initWithString:monthCustomStr];
     [monthStr addAttribute:NSForegroundColorAttributeName
-                     value:[model.mData floatValue] >[model.lmData floatValue]?[UIColor redColor]:UIColorFromRGB(0x5987F8)
+                     value:[model.mData floatValue] >[model.lmData floatValue]?[UIColor redColor]:UIColorFromRGB(0x94B0EF)
                      range:monthRange];
     [cell.monthLab setAttributedText:monthStr];
     return cell;

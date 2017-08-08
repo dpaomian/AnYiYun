@@ -10,6 +10,7 @@
 #import "YYAlarmCell.h"
 #import "FireAlarmInformationModel.h"
 #import "LocationViewController.h"
+#import "YYCurveViewController.h"
 
 /*!告警信息*/
 @interface FirePowerSupplyAlarmInformationViewController : BaseViewController
@@ -18,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
+@property (nonatomic, strong) YYCurveViewController *fullScreenCurveVC;
 
 @end

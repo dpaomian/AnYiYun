@@ -214,17 +214,28 @@
                         [arrayTwo addObject:model];
                     }
                 }];
-                /*if (myIdex==0) {
-                    [lines addObject:arrayOne];
-                } else {
-                    [lines addObject:arrayTwo];
-                }*/
             }
         }];
         [lines addObject:arrayOne];
         [lines addObject:arrayTwo];
         ws.fullScreenCurveVC.linesMutableArray = lines;
         ws.fullScreenCurveVC.xTitleLab.text = itemModel.point_name;
+        if ([itemModel.point_type integerValue] == 103) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"负荷(KW)";
+        } else if ([itemModel.point_type integerValue] == 101) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"电流(A)";
+        } else if ([itemModel.point_type integerValue] == 104) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"漏电(A)";
+        } else if ([itemModel.point_type integerValue] == 105) {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(日.小时)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"温度(ºC)";
+        } else {
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.yTitleLab.text = @"电流(A)";
+        };
         [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
         /*ws.curveView.linesMutableArray = lines;
         ws.curveView.hidden = NO;*/
@@ -331,9 +342,14 @@
     RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
     cell.titleLab.text = modelItem.point_name;
     [cell.contentBtn setTitle:[NSString stringWithFormat:@"%@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
+    
     if (modelItem.displayIcon) {
+        cell.lineIconBtn.userInteractionEnabled = YES;
+        cell.contentBtn.userInteractionEnabled = YES;
         [cell.lineIconBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
     } else {
+        cell.lineIconBtn.userInteractionEnabled = NO;
+        cell.contentBtn.userInteractionEnabled = NO;
         [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
     }
     [cell.contentBtn buttonClickedHandle:^(UIButton *sender) {

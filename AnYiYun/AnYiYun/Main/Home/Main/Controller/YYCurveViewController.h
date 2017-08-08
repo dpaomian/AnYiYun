@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *xTitleLab;
 @property (weak, nonatomic) IBOutlet UILabel *todayLab;
 @property (weak, nonatomic) IBOutlet UILabel *yestodayLab;
+@property (weak, nonatomic) IBOutlet UILabel *xTimeLab;
 
 @end

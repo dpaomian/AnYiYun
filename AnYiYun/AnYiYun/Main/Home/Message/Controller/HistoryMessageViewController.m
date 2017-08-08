@@ -51,7 +51,7 @@
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                             @"version":[NSString stringWithFormat:@"%lld", useTime]};
     
-    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    DLog(@"请求地址获取一级 urlString = %@?%@",urlString,[param serializeToUrlString]);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

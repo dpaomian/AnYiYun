@@ -11,6 +11,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -105,7 +110,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>251BAD17812F7EBF6532EACF66F941C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>279AA6726F52A334C45E85774BD21A3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>41FA54D12162DAD51D02FC58A2CD5034</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4601F98472B98FABD9D4730DE2C8C627</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>49058C286FBA539A163DEF8AC0ADA5BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -120,6 +145,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5AA17C95E926B760FD08E0B487DAEFA2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>663F3244653A7B0C2E2F5309892636A2</key>
 		<dict>
 			<key>primary</key>
@@ -130,7 +160,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>83B5B60C676A8D31829A6AE91CE86A75</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8642CC820CE8C5B88C113D7F47AF4BC3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8D54014ED0408151806A4D7D941559FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -170,12 +210,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D058B89EB3B3DF45457A2DCD3971AFFE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D52144DE9D7255DE912490FF5A806573</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E14A62900910444707A5504D25EC98DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EBA1450FCDA80B56EDDB708430A9D557</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F22423D691249F5D8F340640439E4AB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F307B842FF76B2DE6C55DB67C0885325</key>
 		<dict>
 			<key>primary</key>
 			<true/>

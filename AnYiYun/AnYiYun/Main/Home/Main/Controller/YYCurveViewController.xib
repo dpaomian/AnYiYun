@@ -15,6 +15,7 @@
                 <outlet property="rotateBtn" destination="Z5a-CC-acv" id="jni-V5-P97"/>
                 <outlet property="todayLab" destination="BCP-vG-dju" id="DVo-7T-n40"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="xTimeLab" destination="zpO-J7-VNP" id="Avr-EO-3qh"/>
                 <outlet property="xTitleLab" destination="uwu-99-lEX" id="jRf-bR-oPt"/>
                 <outlet property="yTitleLab" destination="zMw-5a-ClV" id="Cx9-Gz-IVS"/>
                 <outlet property="yestodayLab" destination="rw7-XH-1ub" id="xEN-zh-rLe"/>
@@ -28,7 +29,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPK-r6-Zkw" customClass="LineChartView" customModule="Charts">
                     <rect key="frame" x="44" y="34" width="315" height="633"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间(小时、分钟)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpO-J7-VNP">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间(小时.分钟)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpO-J7-VNP">
                             <rect key="frame" x="0.0" y="603" width="315" height="30"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <constraints>
