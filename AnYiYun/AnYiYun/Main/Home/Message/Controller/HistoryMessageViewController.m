@@ -51,9 +51,61 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
 
-    long long useTime = [BaseHelper getSystemNowTimeLong];
+    HistoryMessageModel *alarmModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"101"];
+    NSString *alarmString = [NSString stringWithFormat:@"%ld",(long)alarmModel.rtime];
+    if ([[BaseHelper isSpaceString:alarmString andReplace:@""] integerValue]==0)
+        {
+        alarmString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+        }
+    
+    
+    HistoryMessageModel *warningModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"102"];
+    NSString *warningString = [NSString stringWithFormat:@"%ld",(long)warningModel.rtime];
+    if ([[BaseHelper isSpaceString:warningString andReplace:@""] integerValue]==0)
+        {
+        warningString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+        }
+    
+    
+    HistoryMessageModel *repairModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"103"];
+    NSString *repairString = [NSString stringWithFormat:@"%ld",(long)repairModel.rtime];
+    if ([[BaseHelper isSpaceString:repairString andReplace:@""] integerValue]==0)
+        {
+        repairString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+        }
+    
+    
+    HistoryMessageModel *upkeepModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"104"];
+    NSString *upkeepString = [NSString stringWithFormat:@"%ld",(long)upkeepModel.rtime];
+    if ([[BaseHelper isSpaceString:upkeepString andReplace:@""] integerValue]==0)
+        {
+        upkeepString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+        }
+    
+    
+    HistoryMessageModel *noticeModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"105"];
+    NSString *noticeString = [NSString stringWithFormat:@"%ld",(long)noticeModel.rtime];
+    if ([[BaseHelper isSpaceString:noticeString andReplace:@""] integerValue]==0)
+        {
+        noticeString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+        }
+
+    NSDictionary *versionDic = @{@"alarm":[NSNumber numberWithInteger:
+                                           [alarmString integerValue]],
+                                 @"warning":[NSNumber numberWithInteger:
+                                             [warningString integerValue]],
+                                 @"repair":[NSNumber numberWithInteger:
+                                            [repairString integerValue]],
+                                 @"upkeep":[NSNumber numberWithInteger:
+                                            [upkeepString integerValue]],
+                                 @"notice":[NSNumber numberWithInteger:
+                                            [noticeString integerValue]]
+                                     };
+    
+    NSString *versionString = [BaseHelper dictionaryToJson:versionDic];
+
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"version":[NSString stringWithFormat:@"%lld", useTime]};
+                            @"version":versionString};
     
     DLog(@"请求地址获取一级 urlString = %@?%@",urlString,[param serializeToUrlString]);
     
@@ -74,9 +126,11 @@
                  {
                      NSDictionary *useDic = [useArray objectAtIndex:i];
                      HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                     
+                 if (itemModel.rtime>0)
+                     {
                      [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:itemModel];
-                     
+                 }
+                 
                      NSMutableArray *tempArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:[NSString stringWithFormat:@"%ld",(long)itemModel.type]];
                      
                      if (itemModel.num>0||tempArray.count>0)
