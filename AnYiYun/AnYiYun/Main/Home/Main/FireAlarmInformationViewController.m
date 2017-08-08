@@ -94,7 +94,7 @@
         [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal] ;
         [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
     } else {
-        [cell.dealBtn setTitle:@" 未处理" forState:UIControlStateNormal];
+        [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal];
         [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
     }
     cell.btnClickedHandle = ^(YYAlarmCell *yyCell, YYAlarmCellButtonType clickedType){
