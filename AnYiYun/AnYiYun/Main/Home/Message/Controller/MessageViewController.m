@@ -415,7 +415,7 @@
 {
     _selectModel = contentModel;
     
-    NSString *message = @"您确认要选择“已处理”么？";
+    NSString *message = @"您确认要选择\"已处理\"么？";
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alertView.tag = 100;
     [alertView show];
@@ -426,7 +426,7 @@
 {
     _selectModel = contentModel;
 
-    NSString *message = @"您确认要选择“报修”么？";
+    NSString *message = @"您确认要选择\"提交检修\"么？";
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alertView.tag = 101;
     [alertView show];
@@ -460,7 +460,7 @@
 {
     _selectModel = contentModel;
     
-    NSString *message = @"您确认要选择“已处理”么？";
+    NSString *message = @"您确认要选择\"已处理\"么？";
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alertView.tag = 102;
     [alertView show];
@@ -471,27 +471,10 @@
 {
     _selectModel = contentModel;
     
-    NSString *message = @"您确认要选择“已处理”么？";
+    NSString *message = @"您确认要选择\"已处理\"么？";
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alertView.tag = 103;
     [alertView show];
-}
-    //报修
--(void)repairMaintainButtonActionWithItem:(MessageModel *)contentModel
-{
-    [self repairMaintainButtonActionWithItem:contentModel];
-}
-
-    //曲线
--(void)curveMaintainButtonActionWithItem:(MessageModel *)contentModel
-{
-    [self curveMaintainButtonActionWithItem:contentModel];
-}
-
-    //定位
--(void)locationMaintainActionWithItem:(MessageModel *)contentModel
-{
-    [self locationMaintainActionWithItem:contentModel];
 }
 
 #pragma mark - UIAlertViewDelegate

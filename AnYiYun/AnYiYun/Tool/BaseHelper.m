@@ -269,6 +269,8 @@
 {
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
     long long date = (long long )time;
+        //临时测试
+        //long long date = (long long )time-3600*1*1000;
     return date;
 }
 

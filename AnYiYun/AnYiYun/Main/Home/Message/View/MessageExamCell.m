@@ -114,7 +114,7 @@
         [_dealButton setTitle:@"已处理" forState:UIControlStateNormal];
         [_dealButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
         _dealButton.titleLabel.font = SYSFONT_(13);
-        [_dealButton setImage:[UIImage imageNamed:@"main_test.png"] forState:UIControlStateNormal];
+        [_dealButton setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
         _dealButton.layoutStyle = JXLayoutButtonStyleLeftImageRightTitle;
         [_dealButton addTarget:self action:@selector(dealButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         _dealButton.imageSize = CGSizeMake(20, 20);

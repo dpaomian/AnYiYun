@@ -65,6 +65,71 @@
 
 -(void)getMessageIsUnRead
 {
+        //数据库
+    /**
+    NSInteger messageCount = [DBDaoDataBase sharedDataBase].getAllUnreadHistoryMessagesCount;
+   
+        MAIN(^{
+            [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                UIViewController *vc = obj.viewControllers.firstObject;
+                if ([vc isKindOfClass:[MeMainViewController class]])
+                    {
+                    if (messageCount>0)
+                        {
+                        [self.tabBar showBadgeOnItemIndex:idx];
+                        }
+                    else
+                        {
+                        [self.tabBar hideBadgeOnItemIndex:idx];
+                        }
+                    }
+            }];
+        });
+     */
+
+        //获取一级列表
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
+    
+    long long useTime = [BaseHelper getSystemNowTimeLong];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"version":[NSString stringWithFormat:@"%lld", useTime]};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+     if ([responseObject isKindOfClass:[NSData class]])
+         {
+         id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+         
+         if ([jsonObject isKindOfClass:[NSArray class]])
+             {
+             BOOL isRead = NO;
+             NSArray *useArray = (NSArray *)jsonObject;
+             for (int i=0; i<useArray.count; i++)
+                 {
+                 NSDictionary *useDic = [useArray objectAtIndex:i];
+                 HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
+                 if (itemModel.num>0)
+                     {
+                     isRead = YES;
+                     break;
+                     }
+                 }
+             [self updateMainMessageRead:isRead];
+             }
+         }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求失败：%@",error);
+         }];
+    
+    
+    /**
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageDisplay",BASE_PLAN_URL];
     
     long long useTime = [BaseHelper getSystemNowTimeLong];
@@ -82,27 +147,41 @@
          NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
          BOOL isRead = [string boolValue];
          DLog(@"是否有新消息  %@  %d",responseObject,isRead);
-         MAIN(^{
-         [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-             UIViewController *vc = obj.viewControllers.firstObject;
-             if ([vc isKindOfClass:[MeMainViewController class]])
-             {
-                 if (isRead==YES)
-                 {
-                    [self.tabBar showBadgeOnItemIndex:idx];
-                 }
-                 else
-                 {
-                     [self.tabBar hideBadgeOnItemIndex:idx];
-                 }
-             }
-         }];
-         });
+     [self updateMainMessageRead:isRead];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"请求失败：%@",error);
          }];
-
+     */
+    
+}
+    //是否有已读消息
+-(void)updateMainMessageRead:(BOOL)isRead
+{
+    [PersonInfo shareInstance].isUnread = isRead;
+    [BaseCacheHelper setPersonInfo];
+    
+     DLog(@"是否有新消息   %d",[PersonInfo shareInstance].isUnread);
+    
+    //刷新是否有未读消息
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadMeTable" object:@""];
+    
+    MAIN(^{
+        [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UINavigationController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIViewController *vc = obj.viewControllers.firstObject;
+            if ([vc isKindOfClass:[MeMainViewController class]])
+                {
+                if (isRead==YES)
+                    {
+                    [self.tabBar showBadgeOnItemIndex:idx];
+                    }
+                else
+                    {
+                    [self.tabBar hideBadgeOnItemIndex:idx];
+                    }
+                }
+        }];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

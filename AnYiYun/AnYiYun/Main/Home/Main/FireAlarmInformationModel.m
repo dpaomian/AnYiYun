@@ -12,7 +12,7 @@
 
 - (MessageModel *)conversionToMessModelWith:(FireAlarmInformationModel *)model {
     MessageModel *message = [[MessageModel alloc] init];
-    message.messageId = [model.idF integerValue];
+    message.messageId = model.idF;
     message.messageTitle = model.title;
     message.messageContent = model.content;
     message.ctime = [model.ctime integerValue];

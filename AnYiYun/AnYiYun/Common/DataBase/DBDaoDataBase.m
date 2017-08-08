@@ -152,8 +152,6 @@ static DBDaoDataBase *_instance;
     
 }
 
-
-
 #pragma mark - 消息历史记录表 T_HistoryMessage_TABLE
 /**创建消息历史记录表*/
 - (BOOL)createHistoryMessageTable
@@ -162,7 +160,7 @@ static DBDaoDataBase *_instance;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
      [db open];
-     NSString *sql = @"CREATE TABLE IF NOT EXISTS T_HistoryMessage_TABLE(messageId    integer not null primary key,\
+     NSString *sql = @"CREATE TABLE IF NOT EXISTS T_HistoryMessage_TABLE(messageId    TEXT primary key,\
      messageTitle   TEXT,\
      messageContent TEXT,\
      ctime  integer not null,\
@@ -194,7 +192,7 @@ static DBDaoDataBase *_instance;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
      [db open];
-     NSString *addSqlString = [NSString stringWithFormat:@"insert or replace into T_HistoryMessage_TABLE (messageId, messageTitle, messageContent, ctime, time,result,state,deviceId,pointId,userId,userName,type,isRead,uploadtime,remark) values ('%ld', '%@', '%@', '%ld', '%@','%@', '%ld', '%@', '%@', '%@', '%@', '%@', '%@', '%lld', '%@')", (long)adModel.messageId, adModel.messageTitle, adModel.messageContent, (long)adModel.ctime, adModel.time, adModel.result, (long)adModel.state, adModel.deviceId, adModel.pointId, adModel.userId,adModel.userName,adModel.type,adModel.isRead,adModel.uploadtime,adModel.remark];
+     NSString *addSqlString = [NSString stringWithFormat:@"insert or replace into T_HistoryMessage_TABLE (messageId, messageTitle, messageContent, ctime, time,result,state,deviceId,pointId,userId,userName,type,isRead,uploadtime,remark) values ('%@', '%@', '%@', '%ld', '%@','%@', '%ld', '%@', '%@', '%@', '%@', '%@', '%@', '%lld', '%@')", adModel.messageId, adModel.messageTitle, adModel.messageContent, (long)adModel.ctime, adModel.time, adModel.result, (long)adModel.state, adModel.deviceId, adModel.pointId, adModel.userId,adModel.userName,adModel.type,adModel.isRead,adModel.uploadtime,adModel.remark];
      success = [db executeUpdate:addSqlString];
      if (success)
          {
@@ -216,12 +214,12 @@ static DBDaoDataBase *_instance;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
          [db open];
-         NSString *findSqlString = [NSString stringWithFormat:@"select * from T_HistoryMessage_TABLE WHERE type='%@' order by messageId desc",type];
+         NSString *findSqlString = [NSString stringWithFormat:@"select * from T_HistoryMessage_TABLE WHERE type='%@' order by ctime desc",type];
          FMResultSet *rs = [db executeQuery:findSqlString];
          while (rs && [rs next])
          {
              MessageModel *adObject = [[MessageModel alloc] init];
-             adObject.messageId = [rs longForColumn:@"messageId"];
+             adObject.messageId = [rs stringForColumn:@"messageId"];
              adObject.messageTitle = [rs stringForColumn:@"messageTitle"];
              adObject.messageContent = [rs stringForColumn:@"messageContent"];
              adObject.ctime = [rs longForColumn:@"ctime"];
@@ -242,6 +240,25 @@ static DBDaoDataBase *_instance;
      }];
     return mutable;
     
+}
+
+    //是否包含未读消息
+- (NSInteger)getAllUnreadHistoryMessagesCount
+{
+    __block  NSInteger messagecount = 0;
+    [_dbQueue inDatabase:^(FMDatabase *db)
+     {
+     [db open];
+     NSString *sqlString = [NSString stringWithFormat:@"SELECT COUNT(*) FROM T_HistoryMessage_TABLE WHERE isRead = 0"];
+     
+     FMResultSet *rs = [db executeQuery:sqlString];
+     while([rs next])
+         {
+         messagecount = [rs intForColumnIndex:0];
+         }
+     [db close];
+     }];
+    return messagecount;
 }
 
 /**批量修改某类型消息 为已读状态*/
@@ -285,7 +302,7 @@ static DBDaoDataBase *_instance;
          while (rs && [rs next])
          {
              MessageModel *adObject = [[MessageModel alloc] init];
-             adObject.messageId = [rs longForColumn:@"messageId"];
+             adObject.messageId = [rs stringForColumn:@"messageId"];
              adObject.messageTitle = [rs stringForColumn:@"messageTitle"];
              adObject.messageContent = [rs stringForColumn:@"messageContent"];
              adObject.ctime = [rs longForColumn:@"ctime"];
