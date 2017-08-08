@@ -21,8 +21,6 @@
 
 @interface DeviceFileViewController ()
 
-@property (nonatomic,strong)UILabel  *titleLabel;
-
 @property (nonatomic,strong)UIView  *tabMapView;
 
 @end
@@ -34,19 +32,16 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = RGB(239, 239, 244);
-    
-    self.title = @"设备档案";
-    
+
     [self makeUIView];
-    
-    _titleLabel.text = _deviceNameString;
+
 }
 
 #pragma mark - makeUI
 
 -(void)makeUIView
 {
-    [self.view addSubview:self.titleLabel];
+    [self setLeftBarItem];
     [self.view addSubview:self.tabMapView];
     
     NSArray *titleArray = @[@"基本信息",@"技术资料",@"主要部件",@"维修记录",@"保养记录",@"检测记录",@"巡检记录",@"告警记录",@"安装位置"];
@@ -57,13 +52,13 @@
     
     CGFloat viewHeight = chu*(btnWidth+10);
     if (yu>0)
-        {
+    {
         viewHeight = chu*(btnWidth+10)+(btnWidth+10);
-        }
-    _tabMapView.frame = CGRectMake(0, 50, SCREEN_WIDTH, viewHeight);
+    }
+    _tabMapView.frame = CGRectMake(0, 30, SCREEN_WIDTH, viewHeight);
     
     for (int i=0; i<titleArray.count; i++)
-        {
+    {
         CGFloat xx = 10+i%3*(btnWidth+10);
         CGFloat yy = i/3*(btnWidth+10);
         
@@ -88,24 +83,62 @@
         [itemBtn addSubview:titleLabel];
         
         if (i%2!=0)
-            {
+        {
             itemBtn.backgroundColor = [UIColor whiteColor];
             titleLabel.textColor = [UIColor orangeColor];
-            }
+        }
         else
-            {
+        {
             itemBtn.backgroundColor = [UIColor orangeColor];
             titleLabel.textColor = [UIColor whiteColor];
-            }
+        }
         
         [_tabMapView addSubview:itemBtn];
         
-        }
+    }
     
     
 }
 
+-(void)setLeftBarItem
+{
+    UIButton  *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    CGFloat width = [BaseHelper width:_deviceNameString heightOfFatherView:20 textFont:[UIFont systemFontOfSize:10]];
+    if (width<100)
+    {
+        width = 100;
+    }
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 22, 20, 20)];
+    imageView.image = [UIImage imageNamed:@"main_back_white.png"];
+    [leftButton addSubview:imageView];
+    
+    UILabel *upTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, SCREEN_WIDTH-20, 20)];
+    upTitleLabel.textColor = [UIColor whiteColor];
+    upTitleLabel.font = SYSFONT_(14);
+    upTitleLabel.textAlignment = NSTextAlignmentCenter;
+    upTitleLabel.backgroundColor = [UIColor clearColor];
+    upTitleLabel.text = @"设备档案";
+    [leftButton addSubview:upTitleLabel];
+    
+    UILabel *downTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 40, width, 15)];
+    downTitleLabel.textColor = [UIColor whiteColor];
+    downTitleLabel.font = SYSFONT_(10);
+    downTitleLabel.textAlignment = NSTextAlignmentCenter;
+    downTitleLabel.backgroundColor = [UIColor clearColor];
+    downTitleLabel.text = _deviceNameString;
+    [leftButton addSubview:downTitleLabel];
+    
+    leftButton.frame = CGRectMake(0, 20, width+40, 44);
+    [leftButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+}
+
 #pragma mark - action
+-(void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
     //详情内容
 - (void)detailBtnClick:(UIButton *)sender
@@ -218,19 +251,6 @@
 }
 
 #pragma mark - getter
-
-- (UILabel *)titleLabel
-{
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-20, 50)];
-        _titleLabel.textColor = kAppTitleBlackColor;
-        _titleLabel.font = SYSFONT_(14);
-        _titleLabel.numberOfLines = 2;
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.backgroundColor = [UIColor clearColor];
-    }
-    return _titleLabel;
-}
 
 
 - (UIView *)tabMapView
