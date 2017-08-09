@@ -114,12 +114,12 @@
         blueSet.highlightEnabled = NO;//不显示十字线
         blueSet.axisDependency = AxisDependencyLeft;
         blueSet.mode = LineChartModeHorizontalBezier;
-        [blueSet setColor:UIColorFromRGB(0x94B0EF)];
+        [blueSet setColor:UIColorFromRGB(0xAA66CC)];
         blueSet.lineWidth = 2.0;
         blueSet.drawCircleHoleEnabled = NO;
-        [blueSet setCircleColor:UIColorFromRGB(0x94B0EF)];
+        [blueSet setCircleColor:UIColorFromRGB(0xAA66CC)];
         blueSet.fillAlpha = 65/255.0;
-        blueSet.fillColor = UIColorFromRGB(0x94B0EF);
+        blueSet.fillColor = UIColorFromRGB(0xAA66CC);
         blueSet.circleRadius = 0.0;
         blueSet.drawValuesEnabled = NO;
         

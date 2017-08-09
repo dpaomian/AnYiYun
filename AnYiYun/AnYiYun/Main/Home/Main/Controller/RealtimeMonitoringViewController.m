@@ -227,7 +227,7 @@
             ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
             ws.fullScreenCurveVC.yTitleLab.text = @"电流(A)";
         } else if ([itemModel.point_type integerValue] == 104) {
-            ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
+            ws.fullScreenCurveVC.xTimeLab.text = @"时间(日.小时)";
             ws.fullScreenCurveVC.yTitleLab.text = @"漏电(A)";
         } else if ([itemModel.point_type integerValue] == 105) {
             ws.fullScreenCurveVC.xTimeLab.text = @"时间(日.小时)";
