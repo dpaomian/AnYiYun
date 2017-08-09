@@ -95,8 +95,10 @@
     FireAlarmInformationModel *modelItem = _listMutableArray[indexPath.row];
     if ([modelItem.pointId isEqual:[NSNull null]] || modelItem.pointId == nil) {
         cell.curveBtn.userInteractionEnabled = NO;
+        cell.curveBtn.selected = YES;
     } else {
         cell.curveBtn.userInteractionEnabled = YES;
+        cell.curveBtn.selected = NO;
     }
     cell.titleLab.text = modelItem.title;
     cell.contentLab.text = modelItem.content;
