@@ -207,6 +207,8 @@
 		A87C53F11F31DB3B008DE42B /* AATooltip.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53C91F31DB3B008DE42B /* AATooltip.m */; };
 		A87C53F21F31DB3B008DE42B /* AAXAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CB1F31DB3B008DE42B /* AAXAxis.m */; };
 		A87C53F31F31DB3B008DE42B /* AAYAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CE1F31DB3B008DE42B /* AAYAxis.m */; };
+		A882D3E51F3B67A900DCF865 /* NoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = A882D3E41F3B67A900DCF865 /* NoDataView.m */; };
+		A882D3E71F3B67B500DCF865 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A882D3E61F3B67B500DCF865 /* NoDataView.xib */; };
 		A89511791F32426B00093DE9 /* UITextView+DisableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */; };
 		A8992F811F34C5F00074DE59 /* libSupperYYTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8992F801F34C5F00074DE59 /* libSupperYYTools.a */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
@@ -620,6 +622,9 @@
 		A87C53CC1F31DB3B008DE42B /* AAYAxis 2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AAYAxis 2.h"; sourceTree = "<group>"; };
 		A87C53CD1F31DB3B008DE42B /* AAYAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAYAxis.h; sourceTree = "<group>"; };
 		A87C53CE1F31DB3B008DE42B /* AAYAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAYAxis.m; sourceTree = "<group>"; };
+		A882D3E31F3B67A900DCF865 /* NoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDataView.h; sourceTree = "<group>"; };
+		A882D3E41F3B67A900DCF865 /* NoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataView.m; sourceTree = "<group>"; };
+		A882D3E61F3B67B500DCF865 /* NoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
 		A89511771F32426B00093DE9 /* UITextView+DisableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+DisableCopy.h"; sourceTree = "<group>"; };
 		A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+DisableCopy.m"; sourceTree = "<group>"; };
 		A8992F801F34C5F00074DE59 /* libSupperYYTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSupperYYTools.a; sourceTree = "<group>"; };
@@ -747,6 +752,9 @@
 				3B02DF3A1F2ADE0300282116 /* MessageMaintainCell.m */,
 				3B02DF3B1F2ADE0300282116 /* MessageTopView.h */,
 				3B02DF3C1F2ADE0300282116 /* MessageTopView.m */,
+				A882D3E31F3B67A900DCF865 /* NoDataView.h */,
+				A882D3E41F3B67A900DCF865 /* NoDataView.m */,
+				A882D3E61F3B67B500DCF865 /* NoDataView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1779,6 +1787,7 @@
 				A810BF591F25F49300B5F2D2 /* YYSegmentedCollectionCell.xib in Resources */,
 				A87C53521F31720F008DE42B /* FirePowerSupplyMaintenanceRemindersViewController.xib in Resources */,
 				A87C53541F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.xib in Resources */,
+				A882D3E71F3B67B500DCF865 /* NoDataView.xib in Resources */,
 				A8E2A53A1F30DB4C000F5408 /* PopViewController.xib in Resources */,
 				A87C534D1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib in Resources */,
 				A810BF5E1F26051800B5F2D2 /* LoadDatectionHeaderView.xib in Resources */,
@@ -1896,6 +1905,7 @@
 				A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				A8DA96761F2BB22C00F3032D /* EquipmentManagementRootViewController.m in Sources */,
+				A882D3E51F3B67A900DCF865 /* NoDataView.m in Sources */,
 				A87C53EE1F31DB3B008DE42B /* AAStyle.m in Sources */,
 				90CF07811F1F3464008106D2 /* NSDateFormatter+Category.m in Sources */,
 				A8FD78991F2C396800523E46 /* FireSafetyMonitoringRootViewController.m in Sources */,

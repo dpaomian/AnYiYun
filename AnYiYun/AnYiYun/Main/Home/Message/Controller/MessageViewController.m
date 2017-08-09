@@ -17,6 +17,7 @@
 #import "DoubleGraphModel.h"
 #import "HistoryMessageViewController.h"
 #import "PopViewController.h"
+#import "NoDataView.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate,UIAlertViewDelegate>
 {
@@ -38,6 +39,7 @@
 @property (nonatomic, strong) NSMutableArray *alarmDataSource;
 @property (nonatomic, strong) NSMutableArray *examDataSource;
 @property (nonatomic, strong) NSMutableArray *maintainDataSource;
+@property (nonatomic, strong) NoDataView *nodataView;
 
 @end
 
@@ -55,6 +57,11 @@
     
     selectViewTag = 11;
     [self dataRequest];
+    
+    _nodataView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([NoDataView class]) owner:nil options:nil][0];
+    _nodataView.frame = CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_WIDTH);
+    _nodataView.hidden = YES;
+    [self.view addSubview:_nodataView];
     
     _fullScreenCurveVC = [[YYCurveViewController alloc] initWithNibName:NSStringFromClass([YYCurveViewController class]) bundle:nil];
 }
@@ -179,6 +186,11 @@
          MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
          [_alarmDataSource addObject:item];
      }
+         if (_alarmDataSource.count > 0) {
+             _nodataView.hidden = YES;
+         } else {
+             _nodataView.hidden = NO;
+         }
      [self getWarnDataRequest];
      [self endRefreshing];
      }
@@ -260,6 +272,11 @@
          MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
          [_examDataSource addObject:item];
          }
+         if (_examDataSource.count > 0) {
+             _nodataView.hidden = YES;
+         } else {
+             _nodataView.hidden = NO;
+         }
      [_examTableView reloadData];
      [self endRefreshing];
      }
@@ -290,6 +307,11 @@
          {
          MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
          [_maintainDataSource addObject:item];
+         }
+         if (_maintainDataSource.count > 0) {
+             _nodataView.hidden = YES;
+         } else {
+             _nodataView.hidden = NO;
          }
      [_maintainTableView reloadData];
      [self endRefreshing];
