@@ -227,13 +227,15 @@
 
 -(void)setAPPLogout
 {
-    kWindow.rootViewController = nil;
-    
     [BaseCacheHelper releaseAllCache];
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-        //loginVC.isLogOut=@"1";
-    BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
-    kWindow.rootViewController = navigation;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        /*这里切换*/
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.isLogOut=@"1";
+        BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
+        kWindow.rootViewController = navigation;
+    });
 }
 
 #pragma mark - getter
