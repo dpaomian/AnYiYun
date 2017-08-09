@@ -53,6 +53,10 @@
             itemModel.state = obj[@"state"];
             itemModel.time = obj[@"time"];
             itemModel.title = obj[@"title"];
+            itemModel.pointId = obj[@"pointId"];
+            itemModel.result = obj[@"result"];
+            itemModel.userId = obj[@"userId"];
+            itemModel.userName = obj[@"userName"];
             [ws.listMutableArray addObject:itemModel];
         }];
         ws.noDataView.hidden = ws.listMutableArray.count>0;
@@ -89,6 +93,11 @@
     __weak AlarmInformationViewController *ws = self;
     YYAlarmCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYAlarmCell" forIndexPath:indexPath];
     FireAlarmInformationModel *modelItem = _listMutableArray[indexPath.row];
+    if ([modelItem.pointId isEqual:[NSNull null]] || modelItem.pointId == nil) {
+        cell.curveBtn.userInteractionEnabled = NO;
+    } else {
+        cell.curveBtn.userInteractionEnabled = YES;
+    }
     cell.titleLab.text = modelItem.title;
     cell.contentLab.text = modelItem.content;
     cell.timeLab.text = modelItem.time;

@@ -18,6 +18,11 @@
 @property (nonatomic, copy) NSString *deviceId;
 @property (nonatomic, copy) NSString *time;
 
+@property (nonatomic, copy) NSString *pointId;
+@property (nonatomic, copy) NSString *result;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *userName;
+
 /*!袁经理  18:08:57  2017-07-29
  这个state是告警信息处理状态，1代表已处理，0代表未处理。在你这消息中心没有用，消息中心都是服务端过滤过的，未处理的
  */
