@@ -68,7 +68,7 @@
 {
     NSString *useImageStr = [BaseHelper isSpaceString:string andReplace:BASE_PLAN_URL];
     DLog(@"自动生成二维码地址:  %@",useImageStr);
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2, 40, 150, 150)];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-160)/2, 40, 160, 160)];
     if (!iOS7Later)
         {
         imageView.image = [UIImage imageNamed:@"me_downCode.png"];
@@ -77,23 +77,23 @@
         {
         UIImage *qrCodeImage = [YYQRCode customColorImage:[YYQRCode resizeUIImageFormCIImage:[YYQRCode creatQRCodeWithString:useImageStr] withSize:512] withColor:UIColorFromRGB(0x000000)];
             //添加logo
-        imageView.image = [YYQRCode addImageToQRCodeImage:qrCodeImage withImage:[UIImage imageNamed:@"AppIcon"] withScale:0.2];
+        imageView.image = [YYQRCode addImageToQRCodeImage:qrCodeImage withImage:[UIImage imageNamed:@"icon_logo_blue"] withScale:0.2];
         }
     [self.view addSubview:imageView];
     
     UILabel *titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 230, SCREEN_WIDTH, 40)];
     [titleLable setBackgroundColor:[UIColor clearColor]];
     [titleLable setTextColor:RGBA(51.0, 51.0, 51.0, 1.0)];
-    [titleLable setFont:[UIFont systemFontOfSize:30]];
+    [titleLable setFont:[UIFont systemFontOfSize:20]];
     [titleLable setText:@"让设备管理变得更简单"];
     [titleLable setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:titleLable];
     
     
-    UILabel *versionLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, 20)];
+    UILabel *versionLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, 30)];
     [versionLable setBackgroundColor:[UIColor clearColor]];
     [versionLable setTextColor:RGBA(51.0, 51.0, 51.0, 1.0)];
-    [versionLable setFont:[UIFont systemFontOfSize:18]];
+    [versionLable setFont:[UIFont systemFontOfSize:20]];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSString *versionString = [NSString stringWithFormat:@"当前版本号为：V%@",app_Version];
