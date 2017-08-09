@@ -65,10 +65,10 @@
     _userNameField.returnKeyType = UIReturnKeyNext;
     _userNameField.placeholder = @"用户名/手机号码";
     _userNameField.font = [UIFont systemFontOfSize:14];
-    if ([PersonInfo shareInstance].loginTextAccount.length>0)
-    {
-        _userNameField.text = [PersonInfo shareInstance].loginTextAccount;
-    }
+//    if ([PersonInfo shareInstance].loginTextAccount.length>0)
+//    {
+//        _userNameField.text = [PersonInfo shareInstance].loginTextAccount;
+//    }
     [inputView addSubview:_userNameField];
     
     UILabel *lineLabel = [[UILabel alloc]init];

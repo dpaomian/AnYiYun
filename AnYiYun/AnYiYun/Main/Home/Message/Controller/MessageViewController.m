@@ -157,7 +157,11 @@
     NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_alarmDataSource];
     
     NSArray *sortedArray = [tempArray sortedArrayUsingComparator:^NSComparisonResult(MessageModel *p1, MessageModel *p2){
-        return [p1.time compare:p2.time];
+        NSString *p1Ctime = [NSString stringWithFormat:@"%ld",p1.ctime];
+         NSString *p2Ctime = [NSString stringWithFormat:@"%ld",p2.ctime];
+        return [p2Ctime compare:p1Ctime];
+        
+        //return [p1.time compare:p2.time];
     }];
     _alarmDataSource = [NSMutableArray arrayWithArray:sortedArray];
     
@@ -718,7 +722,7 @@
 - (UIScrollView *)scrolView
 {
     if (!_scrolView) {
-        _scrolView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topView.frame), self.view.width, self.view.height - self.topView.height)];
+        _scrolView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topView.frame), self.view.width, kScreen_Height - 64 - self.topView.height)];
         _scrolView.contentSize = CGSizeMake(kScreen_Width *3, 0);
         _scrolView.pagingEnabled = YES;
         _scrolView.delegate = self;
@@ -729,7 +733,7 @@
 - (UITableView *)alarmTableView
 {
     if (!_alarmTableView) {
-        _alarmTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStyleGrouped];
+        _alarmTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 40) style:UITableViewStyleGrouped];
         _alarmTableView.dataSource = self;
         _alarmTableView.delegate = self;
         _alarmTableView.backgroundColor = [UIColor clearColor];
@@ -746,7 +750,7 @@
 - (UITableView *)examTableView
 {
     if (!_examTableView) {
-        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStyleGrouped];
+        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 40) style:UITableViewStyleGrouped];
         _examTableView.dataSource = self;
         _examTableView.delegate = self;
         _examTableView.backgroundColor = [UIColor clearColor];
@@ -762,7 +766,7 @@
 - (UITableView *)maintainTableView
 {
     if (!_maintainTableView) {
-        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.scrolView.height - 64) style:UITableViewStyleGrouped];
+        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 40) style:UITableViewStyleGrouped];
         _maintainTableView.dataSource = self;
         _maintainTableView.delegate = self;
         _maintainTableView.backgroundColor = [UIColor clearColor];

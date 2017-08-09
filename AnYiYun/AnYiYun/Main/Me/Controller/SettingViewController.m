@@ -202,6 +202,19 @@
             DLog(@"取消");
             }
         }
+    else if (alertView.tag==101)
+    {
+        if (buttonIndex==1)
+        {
+            //    DLog(@"退出");
+            [BaseCacheHelper releaseAllCache];
+            
+            LoginViewController *loginVC = [[LoginViewController alloc] init];
+            loginVC.isLogOut=@"1";
+            BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
+            kWindow.rootViewController = navigation;
+        }
+    }
 }
 
 
@@ -209,13 +222,11 @@
 
 - (void)logoutAction
 {
-        //    DLog(@"退出");
-    [BaseCacheHelper releaseAllCache];
-
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    loginVC.isLogOut=@"1";
-    BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
-    kWindow.rootViewController = navigation;
+    
+    NSString *message = @"您确认要\"注销登录\"么？";
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = 101;
+    [alertView show];
 }
 
 
