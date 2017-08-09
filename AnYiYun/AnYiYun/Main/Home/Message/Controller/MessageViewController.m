@@ -14,6 +14,7 @@
 #import "PromptView.h"
 #import "LocationViewController.h"
 #import "DBDaoDataBase.h"
+#import "DoubleGraphModel.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate,UIAlertViewDelegate>
 {
@@ -47,6 +48,8 @@
     
     selectViewTag = 11;
     [self dataRequest];
+    
+    _fullScreenCurveVC = [[YYCurveViewController alloc] initWithNibName:NSStringFromClass([YYCurveViewController class]) bundle:nil];
 }
 #pragma mark - public methods
 - (void)updateDataSource
@@ -315,6 +318,36 @@
          }];
     
 }
+    //加载曲线
+- (void)loadCurveWithModel:(MessageModel *)itemModel{
+    __weak MessageViewController *ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/showAlarm_graph",BASE_PLAN_URL];
+    NSDictionary *param = @{@"bugId":itemModel.messageId};
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+        NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
+        NSMutableArray *lines = [NSMutableArray array];
+        
+        NSMutableArray *arrayOne = [NSMutableArray array];
+        NSMutableArray *arrayTwo = [NSMutableArray array];
+        
+        [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            DoubleGraphModel *model = [[DoubleGraphModel alloc] init];
+            model.idf = obj[@"id"];
+            model.name = obj[@"name"];
+            model.sid = obj[@"sid"];
+            model.time = obj[@"time"];
+            model.timeLong = obj[@"timeLong"];
+            model.value = obj[@"value"];
+        }];
+        [lines addObject:arrayOne];
+        [lines addObject:arrayTwo];
+        ws.fullScreenCurveVC.linesMutableArray = lines;
+        ws.fullScreenCurveVC.xTitleLab.text = itemModel.messageTitle;
+        [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD showError:@"获取曲线失败"];
+    } progress:nil];
+}
 
 #pragma mark - Private methods
 
@@ -438,7 +471,7 @@
      NSString *pointId = [BaseHelper isSpaceString:contentModel.pointId andReplace:@""];
     if (pointId.length>0)
     {
-        
+    [self loadCurveWithModel:contentModel];
     }
 
 }

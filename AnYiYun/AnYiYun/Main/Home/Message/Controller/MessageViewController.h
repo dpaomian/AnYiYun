@@ -7,10 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "YYCurveViewController.h"
 
 /**
  消息中心
  */
 @interface MessageViewController : BaseViewController
+
+@property (nonatomic, strong) YYCurveViewController *fullScreenCurveVC;
 
 @end
