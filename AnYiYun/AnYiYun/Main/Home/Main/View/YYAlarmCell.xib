@@ -53,7 +53,7 @@
                             <constraint firstAttribute="height" constant="36" id="mQL-Xw-qf4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="未处理" image="icon_Round">
+                        <state key="normal" title=" 未处理" image="icon_Round">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
