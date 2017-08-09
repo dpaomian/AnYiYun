@@ -90,7 +90,9 @@
     headerView.markButton.selected = model.isFold;
     headerView.tailImage.hidden = YES;
     headerView.titleLab.text = model.device_name;
-    headerView.contentLab.text = model.device_location;
+    headerView.contentLab.text = [NSString stringWithFormat:@"%d",[model.itemsMutableArray count]];
+    headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
+    headerView.contentLab.textColor = UIColorFromRGB(0x666666);
     headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
     headerView.contentLab.textColor = UIColorFromRGB(0x666666);
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
