@@ -24,7 +24,7 @@
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     
     //设置按钮的尺寸是当前图片的尺寸
-    button.size = button.currentBackgroundImage.size;
+    button.size = CGSizeMake(20, 20);
     
     //返回自定义的导航按钮
     return [[UIBarButtonItem alloc] initWithCustomView:button];

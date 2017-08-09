@@ -308,21 +308,21 @@
         {
         urlString = [NSString stringWithFormat:@"%@rest/process/bugP",BASE_PLAN_URL];
         param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                                @"bugId":[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId],
+                                @"bugId":_selectModel.messageId,
                                 @"type":@"1"};
     }
     if ([type intValue]==2)
         {
         urlString = [NSString stringWithFormat:@"%@rest/process/todoP",BASE_PLAN_URL];
         param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                  @"todoId":[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId],
+                  @"todoId":_selectModel.messageId,
                   @"type":@"1"};
         }
     if ([type intValue]==3)
         {
         urlString = [NSString stringWithFormat:@"%@rest/process/todoP",BASE_PLAN_URL];
         param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                  @"todoId":[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId],
+                  @"todoId":_selectModel.messageId,
                   @"type":@"2"};
         }
     

@@ -301,28 +301,27 @@
     }
     else
     {
+       NSString *showTime = @"";
         if ([d day]>0)
         {
-            return [NSString stringWithFormat:@"%.2li天%.2li小时%.2li分钟", [d day], [d hour], [d minute]];
+        showTime = [showTime stringByAppendingString:[NSString stringWithFormat:@"%.li天",[d day]]];
         }
-        else
+    
+       if ([d hour]>0)
         {
-            if ([d hour]>0)
-            {
-                return [NSString stringWithFormat:@"%.2li小时%.2li分钟", [d hour], [d minute]];
-            }
-            else
-            {
-                if ([d minute]>0)
-                {
-                    return [NSString stringWithFormat:@"%.2li分钟", [d minute]];
-                }
-                else
-                {
-                    return @"刚刚";
-                }
-            }
+        showTime = [showTime stringByAppendingString:[NSString stringWithFormat:@"%.li小时",[d day]]];
         }
+    
+       if ([d minute]>0)
+        {
+        showTime = [showTime stringByAppendingString:[NSString stringWithFormat:@"%.li分钟",[d day]]];
+        }
+    if (showTime.length==0)
+        {
+        showTime = @"刚刚";
+        }
+    
+    return showTime;
     }
 }
 
@@ -338,19 +337,19 @@
     
     if ([d day]>0)
     {
-        return [NSString stringWithFormat:@"%.2li天前", [d day]];
+        return [NSString stringWithFormat:@"%.li天前", [d day]];
     }
     else
     {
         if ([d hour]>0)
         {
-            return [NSString stringWithFormat:@"%.2li小时前", [d hour]];
+            return [NSString stringWithFormat:@"%.li小时前", [d hour]];
         }
         else
         {
             if ([d minute]>0)
             {
-                return [NSString stringWithFormat:@"%.2li分钟前", [d minute]];
+                return [NSString stringWithFormat:@"%.li分钟前", [d minute]];
             }
             else
             {

@@ -22,6 +22,9 @@
 @property (nonatomic, copy) NSString *comName;
 /**公司logo*/
 @property (nonatomic, copy) NSString *comLogoUrl;
+
+/**公司启动图*/
+@property (nonatomic, copy) NSString *comLaunchUrl;
 /**姓名*/
 @property (nonatomic, copy) NSString *username;
 

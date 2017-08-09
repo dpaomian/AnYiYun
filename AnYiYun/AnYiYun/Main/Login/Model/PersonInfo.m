@@ -54,6 +54,7 @@ static PersonInfo *instance = nil;
     _comId = dictionary[@"comId"];
     _comName = dictionary[@"comName"];
     _comLogoUrl = dictionary[@"comLogoUrl"];
+    _comLaunchUrl = dictionary[@"comLaunchUrl"];
     _loginSuccess = [dictionary[@"loginSuccess"] boolValue];
     _isUnread = [dictionary[@"isUnread"] boolValue];
     

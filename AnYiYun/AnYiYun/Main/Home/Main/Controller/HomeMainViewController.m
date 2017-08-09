@@ -44,6 +44,8 @@
     _menuArray = [[NSMutableArray alloc]init];
     
     [self setLeftBarItem];
+        //启动图
+    [self getComLaunchRequestAction];
         //广告
     [self getPictureRequestAction];
         //公告
@@ -75,7 +77,7 @@
 -(void)setLeftBarItem {
     UIButton *anYiYunBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [anYiYunBtn setImage:[UIImage imageNamed:@"logo_white.png"] forState:UIControlStateNormal];
-    [anYiYunBtn setTitle:@" 安易云" forState:UIControlStateNormal];
+    [anYiYunBtn setTitle:@"安易云" forState:UIControlStateNormal];
     [anYiYunBtn sizeToFit];
     [anYiYunBtn setTitleColor:UIColorFromRGB(0xFFFFFF) forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:anYiYunBtn];
@@ -163,6 +165,25 @@
 }
 
 #pragma mark - 请求相关
+
+    //获取启动图
+-  (void)getComLaunchRequestAction
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/bgImg",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object)
+    {
+    NSString *string = object[@"url"];
+    [PersonInfo shareInstance].comLaunchUrl = string;
+    [BaseCacheHelper setPersonInfo];
+    
+    } failureBlock:^(NSError *error) {
+        DLog(@"获取启动图信息失败：%@",error);
+    } progress:nil];
+    
+}
+
     //请求广告
 -  (void)getPictureRequestAction
 {

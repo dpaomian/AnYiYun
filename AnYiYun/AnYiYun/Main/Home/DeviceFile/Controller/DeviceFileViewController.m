@@ -109,22 +109,20 @@
     {
         width = 100;
     }
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 22, 20, 20)];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 12, 20, 20)];
     imageView.image = [UIImage imageNamed:@"main_back_white.png"];
     [leftButton addSubview:imageView];
     
-    UILabel *upTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, SCREEN_WIDTH-20, 20)];
+    UILabel *upTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH-20, 24)];
     upTitleLabel.textColor = [UIColor whiteColor];
-    upTitleLabel.font = SYSFONT_(14);
-    upTitleLabel.textAlignment = NSTextAlignmentCenter;
+    upTitleLabel.font = SYSFONT_(16);
     upTitleLabel.backgroundColor = [UIColor clearColor];
     upTitleLabel.text = @"设备档案";
     [leftButton addSubview:upTitleLabel];
     
-    UILabel *downTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 40, width, 15)];
+    UILabel *downTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 22, width, 20)];
     downTitleLabel.textColor = [UIColor whiteColor];
     downTitleLabel.font = SYSFONT_(10);
-    downTitleLabel.textAlignment = NSTextAlignmentCenter;
     downTitleLabel.backgroundColor = [UIColor clearColor];
     downTitleLabel.text = _deviceNameString;
     [leftButton addSubview:downTitleLabel];

@@ -43,8 +43,6 @@
         
         //读取gif图片数据
         [self addSubview:self.aniamtionImageView];
-        
-        //[self addSubview:self.titleLabel];
     }
     
     return self;

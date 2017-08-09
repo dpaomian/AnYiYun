@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) NSString *password;
 
+@property (nonatomic,strong)UIImageView *defultView;
+
 @end
 
 @implementation LoadingViewController
@@ -24,16 +26,13 @@
     self = [super init];
     if (self) {
         self.navigationController.navigationBar.hidden = YES;  //隐藏导航栏
-        UIImage *loadingImage;
-        if (IS_IPHONE_4)
-            {
-            loadingImage = [UIImage imageNamed:@"splash_default"];
-            }
-        else
-            {
-            loadingImage = [UIImage imageNamed:@"splash_default_568h"];
-            }
-        self.view.layer.contents = (id)loadingImage.CGImage;
+        
+        [self.view addSubview:self.defultView];
+        
+        UIImage *loadingImage = [UIImage imageNamed:@"Default-1242x2208.png"];
+        NSString *picString = [PersonInfo shareInstance].comLaunchUrl;
+        [_defultView sd_setImageWithURL:[NSURL URLWithString:picString] placeholderImage:loadingImage];
+            
         _account = account;
         _password = passsword;
         
@@ -58,12 +57,13 @@
 {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;  //隐藏导航栏
-    
 }
 
 #pragma mark - Data Request
 - (void)dataRequestWithAccount:(NSString *)account password:(NSString *)password
 {
+    [NSThread sleepForTimeInterval:3.0];
+    
         //登录流程
 //    [LoginManager getIPWithAccount:account inVC:self completionBlockWithSuccess:^() {
 //        MAIN(^{
@@ -82,5 +82,13 @@
     self.view = nil;
 }
 
+
+-(UIImageView *)defultView
+{
+    if (!_defultView) {
+        _defultView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
+    }
+    return _defultView;
+}
 
 @end
