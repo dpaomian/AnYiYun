@@ -71,11 +71,13 @@
     NSString *pointId = [BaseHelper isSpaceString:itemModel.pointId andReplace:@""];
     if (pointId.length==0)
         {
+            [_curveButton setImage:[UIImage imageNamed:@"ployline_icon_gray.png"] forState:UIControlStateNormal];
         [_curveButton setTitleColor:kAppTitleLightGrayColor forState:UIControlStateNormal];
         _curveButton.userInteractionEnabled = NO;
     }
     else
         {
+            [_curveButton setImage:[UIImage imageNamed:@"ployline_icon.png"] forState:UIControlStateNormal];
         [_curveButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
         _curveButton.userInteractionEnabled = YES;
         }
@@ -166,7 +168,7 @@
         [_dealButton setTitle:@"已处理" forState:UIControlStateNormal];
         [_dealButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
         _dealButton.titleLabel.font = SYSFONT_(13);
-        [_dealButton setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
+        [_dealButton setImage:[UIImage imageNamed:@"deal_icon.png"] forState:UIControlStateNormal];
         _dealButton.layoutStyle = JXLayoutButtonStyleLeftImageRightTitle;
         [_dealButton addTarget:self action:@selector(dealButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         _dealButton.imageSize = CGSizeMake(20, 20);
@@ -180,7 +182,7 @@
         [_repairButton setTitle:@"报修" forState:UIControlStateNormal];
         [_repairButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
         _repairButton.titleLabel.font = SYSFONT_(13);
-        [_repairButton setImage:[UIImage imageNamed:@"Repair.png"] forState:UIControlStateNormal];
+        [_repairButton setImage:[UIImage imageNamed:@"repair_icon.png"] forState:UIControlStateNormal];
         _repairButton.layoutStyle = JXLayoutButtonStyleLeftImageRightTitle;
         [_repairButton addTarget:self action:@selector(repairButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         _repairButton.imageSize = CGSizeMake(20, 20);
@@ -195,7 +197,7 @@
         [_curveButton setTitle:@"曲线" forState:UIControlStateNormal];
         [_curveButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
         _curveButton.titleLabel.font = SYSFONT_(13);
-        [_curveButton setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
+        [_curveButton setImage:[UIImage imageNamed:@"ployline_icon.png"] forState:UIControlStateNormal];
         _curveButton.layoutStyle = JXLayoutButtonStyleLeftImageRightTitle;
         [_curveButton addTarget:self action:@selector(curveButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         _curveButton.imageSize = CGSizeMake(20, 20);
@@ -210,7 +212,7 @@
         [_locationButton setTitle:@"定位" forState:UIControlStateNormal];
         [_locationButton setTitleColor:kAppTitleGrayColor forState:UIControlStateNormal];
         _locationButton.titleLabel.font = SYSFONT_(13);
-        [_locationButton setImage:[UIImage imageNamed:@"Location.png"] forState:UIControlStateNormal];
+        [_locationButton setImage:[UIImage imageNamed:@"location_icon.png"] forState:UIControlStateNormal];
         _locationButton.layoutStyle = JXLayoutButtonStyleLeftImageRightTitle;
         [_locationButton addTarget:self action:@selector(locationAction:) forControlEvents:UIControlEventTouchUpInside];
         _locationButton.imageSize = CGSizeMake(20, 20);

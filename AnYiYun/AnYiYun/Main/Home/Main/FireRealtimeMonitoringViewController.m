@@ -347,7 +347,7 @@
     if (modelItem.displayIcon) {
         cell.lineIconBtn.userInteractionEnabled = YES;
         cell.contentBtn.userInteractionEnabled = YES;
-        [cell.lineIconBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
+        [cell.lineIconBtn setImage:[UIImage imageNamed:@"ployline_icon.png"] forState:UIControlStateNormal];
     } else {
         cell.lineIconBtn.userInteractionEnabled = NO;
         cell.contentBtn.userInteractionEnabled = NO;

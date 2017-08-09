@@ -103,10 +103,10 @@
     cell.timeLab.text = modelItem.time;
     if ([modelItem.state boolValue]) {
         [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal] ;
-        [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
+        [cell.dealBtn setImage:[UIImage imageNamed:@"deal_icon.png"] forState:UIControlStateNormal];
     } else {
         [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal];
-        [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];
+        [cell.dealBtn setImage:[UIImage imageNamed:@"deal_icon.png"] forState:UIControlStateNormal];
     }
     cell.btnClickedHandle = ^(YYAlarmCell *yyCell, YYAlarmCellButtonType clickedType){
         switch (clickedType) {

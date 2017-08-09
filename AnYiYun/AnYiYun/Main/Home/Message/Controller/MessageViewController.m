@@ -15,12 +15,17 @@
 #import "LocationViewController.h"
 #import "DBDaoDataBase.h"
 #import "DoubleGraphModel.h"
+#import "HistoryMessageViewController.h"
+#import "PopViewController.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate,UIAlertViewDelegate>
 {
     NSInteger    selectViewTag;
     UITableView *_currentTabelView;
 }
+
+@property (nonatomic, strong) BaseNavigationViewController *popNavVC;
+
 @property (nonatomic, strong) MessageModel *selectModel;
 @property (nonatomic, strong) UIScrollView *scrolView;
 @property (nonatomic, strong) PromptView *promptView;
@@ -44,6 +49,8 @@
     
     self.title = @"消息中心";
     self.view.backgroundColor = RGB(239, 239, 244);
+    
+    [self setRightNavigationBar];
     [self makeupComponentUI];
     
     selectViewTag = 11;
@@ -52,6 +59,67 @@
     _fullScreenCurveVC = [[YYCurveViewController alloc] initWithNibName:NSStringFromClass([YYCurveViewController class]) bundle:nil];
 }
 #pragma mark - public methods
+
+//设置右边的navigationbar
+- (void)setRightNavigationBar
+{
+    //查找群组
+    UIButton *historyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    historyBtn.frame = CGRectMake(0, 0, 24, 24);
+    [historyBtn setImage:[UIImage imageNamed:@"history_icon.png"] forState:UIControlStateNormal];
+    historyBtn.tag = 11;
+    [historyBtn addTarget:self action:@selector(rightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //新建群组
+    UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    moreBtn.frame = CGRectMake(0, 0, 24, 24);
+    [moreBtn setImage:[UIImage imageNamed:@"right_more.png"] forState:UIControlStateNormal];
+    moreBtn.tag = 12;
+    [moreBtn addTarget:self action:@selector(rightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIBarButtonItem *searchBar = [[UIBarButtonItem alloc] initWithCustomView:historyBtn];
+    UIBarButtonItem *addBar = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
+    //间隔
+    UIBarButtonItem *rightSpace = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                   target:nil
+                                   action:nil];
+    rightSpace.width = 20;
+    
+    NSArray *rightBarArr = [[NSArray alloc] initWithObjects: addBar,rightSpace,searchBar,nil];
+    self.navigationItem.rightBarButtonItems = rightBarArr;
+}
+
+-(void)rightBtnClick:(id)sender
+{
+    UIButton *btn = (UIButton *)sender;
+    switch (btn.tag)
+    {
+        case 11:
+        {
+            //历史消息
+            HistoryMessageViewController *vc = [[HistoryMessageViewController alloc]init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 12:
+        {
+            //帮助
+            PopViewController *popVC = [[PopViewController alloc] initWithNibName:NSStringFromClass([PopViewController class]) bundle:nil];
+            _popNavVC = [[BaseNavigationViewController alloc] initWithRootViewController:popVC];
+            _popNavVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            _popNavVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self.navigationController presentViewController:_popNavVC animated:NO completion:nil];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)updateDataSource
 {
     [_currentTabelView.mj_header beginRefreshing];

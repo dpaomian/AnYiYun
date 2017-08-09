@@ -40,7 +40,7 @@
         noExitArr = items;
         /**分享平台数据源获取*/
         shareTypeArr = @[@0,@1];
-        shareIconArr = @[@"main_test",@"main_test"];
+        shareIconArr = @[@"message_icon.png",@"email_icon.png"];
         shareTitleArr = @[@"短信",@"邮件"];
         targetshareIconArr = [shareIconArr mutableCopy];
         targetshareTitleArr = [shareTitleArr mutableCopy];

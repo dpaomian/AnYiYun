@@ -27,7 +27,7 @@
     self.title = self.typeTitleString;
     self.view.backgroundColor = RGB(239, 239, 244);
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"清空" target:self action:@selector(rightBarButtonClick)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"clean_icon.png" hightImageName:@"clean_icon.png" target:self action:@selector(rightBarButtonClick)];
     
     [self makeupComponentUI];
     

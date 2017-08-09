@@ -24,6 +24,7 @@
 		3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75F1F2C05800089C1B0 /* RecordCell.m */; };
 		3B3FD7631F2C117C0089C1B0 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */; };
 		3B404BBA1F341E290045DA2C /* launch_defult.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3B404BB91F341E290045DA2C /* launch_defult.gif */; };
+		3B5B934F1F3AE96D0075AF0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B934E1F3AE96D0075AF0B /* Assets.xcassets */; };
 		3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */; };
 		3BC7CEAE1F2C7E7B00D7333C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */; };
 		900CEC0B1F2CE5300012D925 /* HJCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 900CEC0A1F2CE5300012D925 /* HJCActionSheet.m */; };
@@ -75,7 +76,6 @@
 		90A2EC6E1F209E98008088C4 /* main_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A2EC6C1F209E98008088C4 /* main_back_white@2x.png */; };
 		90CF071D1F1F2BFC008106D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF071C1F1F2BFC008106D2 /* main.m */; };
 		90CF07201F1F2BFC008106D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF071F1F1F2BFC008106D2 /* AppDelegate.m */; };
-		90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90CF07271F1F2BFC008106D2 /* Assets.xcassets */; };
 		90CF072B1F1F2BFC008106D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90CF07291F1F2BFC008106D2 /* LaunchScreen.storyboard */; };
 		90CF073C1F1F2FAE008106D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF073B1F1F2FAE008106D2 /* BaseViewController.m */; };
 		90CF073F1F1F304C008106D2 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF073E1F1F304C008106D2 /* BaseNavigationViewController.m */; };
@@ -274,6 +274,7 @@
 		3B3FD7611F2C117C0089C1B0 /* DeviceInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoCell.h; sourceTree = "<group>"; };
 		3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoCell.m; sourceTree = "<group>"; };
 		3B404BB91F341E290045DA2C /* launch_defult.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = launch_defult.gif; sourceTree = "<group>"; };
+		3B5B934E1F3AE96D0075AF0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAppView.h; sourceTree = "<group>"; };
 		3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAppView.m; sourceTree = "<group>"; };
 		3BC7CEAD1F2C7E7B00D7333C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -371,7 +372,6 @@
 		90CF071C1F1F2BFC008106D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90CF071E1F1F2BFC008106D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90CF071F1F1F2BFC008106D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		90CF07271F1F2BFC008106D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90CF072A1F1F2BFC008106D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90CF072C1F1F2BFC008106D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90CF073A1F1F2FAE008106D2 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -1159,7 +1159,7 @@
 		90CF071B1F1F2BFC008106D2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				90CF07271F1F2BFC008106D2 /* Assets.xcassets */,
+				3B5B934E1F3AE96D0075AF0B /* Assets.xcassets */,
 				90CF07291F1F2BFC008106D2 /* LaunchScreen.storyboard */,
 				90CF072C1F1F2BFC008106D2 /* Info.plist */,
 				90CF071C1F1F2BFC008106D2 /* main.m */,
@@ -1770,6 +1770,7 @@
 				A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */,
 				A81B12481F2AC446001DD06B /* MaintenanceRemindersViewController.xib in Resources */,
 				9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */,
+				3B5B934F1F3AE96D0075AF0B /* Assets.xcassets in Resources */,
 				A81B121D1F2AC3F8001DD06B /* YYAlarmCell.xib in Resources */,
 				A87C53D81F31DB3B008DE42B /* AAHighchartsMore.js in Resources */,
 				A81B123D1F2AC446001DD06B /* AlarmInformationViewController.xib in Resources */,
@@ -1792,7 +1793,6 @@
 				A84079CE1F364FC70029F7FA /* YYCurveViewController.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
-				90CF07281F1F2BFC008106D2 /* Assets.xcassets in Resources */,
 				3B404BBA1F341E290045DA2C /* launch_defult.gif in Resources */,
 				A8FD78921F2C396800523E46 /* FireEquipmentAccountViewController.xib in Resources */,
 				A87C53D41F31DB3B008DE42B /* AAChartView.html in Resources */,

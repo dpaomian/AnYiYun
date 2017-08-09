@@ -27,8 +27,8 @@
     [super viewDidLoad];
     
     self.title = @"分享";
-    
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"分享" target:self action:@selector(rightBarButtonClick)];
+
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"share_icon.png" hightImageName:@"share_icon.png" target:self action:@selector(rightBarButtonClick)];
     
     [self getPictureRequestAction];
     
