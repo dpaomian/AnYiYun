@@ -8,6 +8,7 @@
 
 #import "ChangePwdViewController.h"
 #import "ModifyPasswordCell.h"
+#import "LoginViewController.h"
 
 #define TableFooterHelght 40
 
@@ -25,8 +26,17 @@
 {
     [super viewDidLoad];
     self.title = @"修改密码";
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"" hightImageName:@"" target:self action:@selector(rightBarButtonClick)];
+    
+    
     self.view = self.passwordTableView;
     [self addGesture];
+}
+
+-(void)rightBarButtonClick
+{
+    
 }
 
 #pragma mark - get dataSource
@@ -81,27 +91,42 @@
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                             @"oldpsw":[PersonInfo shareInstance].password,
                             @"newpsw":[newPassword SHA256]};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(NSDictionary *object)
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
-     NSInteger result = [object[@"errCode"] integerValue];
-     if (result==0)
-         {
-         [PersonInfo shareInstance].password = [newPassword SHA256];
-         [BaseCacheHelper setPersonInfo];
-         
-         [StatusBarOverlay initAnimationWithAlertString:@"修改密码成功" theImage:nil];
-         [self.navigationController popViewControllerAnimated:YES];
-         
-         }
+     NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+     BOOL isTure  = [string boolValue];
+     if (isTure==YES)
+        {
+        [BaseHelper waringInfo:@"密码修改成功，请重新登录"];
+        }
      else
          {
-             [StatusBarOverlay initAnimationWithAlertString:@"修改密码失败" theImage:nil];
+         [BaseHelper waringInfo:@"修改失败"];
          }
-     } failureBlock:^(NSError *error) {
-         DLog(@"请求修改密码失败：%@",error);
-     } progress:nil];
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"请求修改密码失败：%@",error);
+         }];
 }
 
+-(void)setAPPLogout
+{
+    
+    [BaseCacheHelper releaseAllCache];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        /*这里切换*/
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.isLogOut=@"1";
+        BaseNavigationViewController *navigation = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
+        kWindow.rootViewController = navigation;
+    });
+}
     //点击空白处隐藏键盘
 - (void) tapGesturedDetected:(UITapGestureRecognizer *)recognizer
 {
