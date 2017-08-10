@@ -89,8 +89,8 @@
     NSString *urlString = [NSString stringWithFormat:@"%@rest/process/changePSW",BASE_PLAN_URL];
     
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"oldpsw":[PersonInfo shareInstance].password,
-                            @"newpsw":[newPassword SHA256]};
+                            @"oldpsw":oldPassword,
+                            @"newpsw":newPassword};
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
