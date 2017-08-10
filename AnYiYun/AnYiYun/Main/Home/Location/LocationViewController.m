@@ -168,7 +168,7 @@
     if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
             //newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
-        newAnnotationView.image = [UIImage imageNamed:@"location_icon.png"];
+        newAnnotationView.image = [UIImage imageNamed:@"location_icon_red.png"];
         newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
         return newAnnotationView;
     }
