@@ -166,10 +166,6 @@
                  {
                  NSDictionary *useDic = [useArray objectAtIndex:i];
                  HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                 if (itemModel.rtime>0)
-                     {
-                     [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:itemModel];
-                     }
                  if (itemModel.num>0)
                      {
                      isRead = YES;

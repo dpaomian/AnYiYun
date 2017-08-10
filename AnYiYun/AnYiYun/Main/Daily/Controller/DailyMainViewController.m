@@ -87,6 +87,14 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //刷新是否有未读消息
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
+}
+
+
     //创建导航栏分栏控件
 -(UISegmentedControl *)createSegMentController{
     NSArray *segmentedArray = [NSArray arrayWithObjects:@"日",@"月",nil];

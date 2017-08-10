@@ -29,6 +29,13 @@
     /*http://101.201.108.246/index.html*/
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //刷新是否有未读消息
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
+}
+
 #pragma mark -
 #pragma mark UIWebViewDelegate -
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
