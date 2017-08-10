@@ -106,6 +106,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (void)networkDidReceiveMessage:(NSNotification *)notification
 {
     NSDictionary * userInfo = [notification userInfo];
+    DLog(@"收到推送消息  %@",userInfo);
+    
     NSString *content = [userInfo valueForKey:@"content"];
     NSDictionary *extras = [userInfo valueForKey:@"extras"];
     NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
@@ -126,7 +128,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
@@ -137,6 +140,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    
+    
     /**
     // 取得 APNs 标准信息内容
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
@@ -155,12 +160,36 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
+    
+    DLog(@"收到推送消息  %@",userInfo);
+    
+    //判断应用是在前台还是后台
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+    {
+        
+        //第一种情况前台运行
+        NSString *apnCount = userInfo[@"aps"][@"alert"];
+        //刷新是否有未读消息
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
+        
+    }
+    else
+    {
+        //第二种情况后台挂起时
+        //刷新是否有未读消息
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
+    }
+    
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
+    
+    DLog(@"收到推送消息  %@",userInfo);
+    
 }
 
 

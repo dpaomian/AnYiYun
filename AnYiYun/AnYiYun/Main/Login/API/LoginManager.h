@@ -16,4 +16,7 @@
 completionBlockWithSuccess:(requestBlockSuccess)success
                  failure:(requestFailure)failure;
 
+
++ (void)operationAfterLogin;
+
 @end

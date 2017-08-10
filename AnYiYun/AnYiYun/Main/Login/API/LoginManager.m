@@ -49,6 +49,7 @@ completionBlockWithSuccess:(requestBlockSuccess)success
                 {
                     //平台登录成功，记录当前用户信息
                 [[PersonInfo shareInstance] initWithDic:object];
+                [PersonInfo shareInstance].username = accountString;
                 [PersonInfo shareInstance].loginSuccess = YES;
                 [BaseCacheHelper setPersonInfo];
                 

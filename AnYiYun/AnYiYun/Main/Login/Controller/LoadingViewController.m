@@ -8,6 +8,7 @@
 
 #import "LoadingViewController.h"
 #import "RootTabBarViewController.h"
+#import "LoginManager.h"
 
 @interface LoadingViewController ()
 
@@ -35,6 +36,8 @@
             
         _account = account;
         _password = passsword;
+        
+        [LoginManager operationAfterLogin];
         
     }
     return self;
