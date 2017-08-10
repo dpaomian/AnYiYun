@@ -7,12 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import "MessageModel.h"
 
 /**
  历史消息 待检修／待保养列表
  */
 @interface HistoryDetailViewController : BaseViewController
 
+@property (nonatomic,strong)HistoryMessageModel *groupItemModel;
 @property (nonatomic,strong)NSString *typeString;
 
 @property (nonatomic,strong)NSString *typeTitleString;

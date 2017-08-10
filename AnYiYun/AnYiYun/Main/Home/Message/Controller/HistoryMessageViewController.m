@@ -126,11 +126,7 @@
                  {
                      NSDictionary *useDic = [useArray objectAtIndex:i];
                      HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                 if (itemModel.rtime>0)
-                     {
-                     [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:itemModel];
-                 }
-                 
+                     
                      NSMutableArray *tempArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:[NSString stringWithFormat:@"%ld",(long)itemModel.type]];
                      
                      if (itemModel.num>0||tempArray.count>0)
@@ -169,6 +165,17 @@
     if (_datasource.count>0)
     {
         HistoryMessageModel *item = [_datasource objectAtIndex:indexPath.section];
+        if (item.rtime==0)
+        {
+            //获取列表没数据 取数据库中数据
+            HistoryMessageModel *localItem = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:[NSString stringWithFormat:@"%ld",item.type]];
+            if (localItem.rtime>0)
+            {
+                item.rtime = localItem.rtime;
+                item.recentMes = localItem.recentMes;
+            }
+        }
+        
         [cell setCellContentWithModel:item];
     }
     return cell;
@@ -184,6 +191,7 @@
     
     HistoryMessageModel *item = [_datasource objectAtIndex:indexPath.section];
     HistoryDetailViewController *vc = [[HistoryDetailViewController alloc]init];
+    vc.groupItemModel = item;
     vc.typeString = [NSString stringWithFormat:@"%ld",(long)item.type];
     vc.typeTitleString = item.typeName;
     [self.navigationController pushViewController:vc animated:YES];

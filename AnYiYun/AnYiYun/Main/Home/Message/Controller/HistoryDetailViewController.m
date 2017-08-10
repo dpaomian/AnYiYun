@@ -14,8 +14,6 @@
 @property (nonatomic, strong) UITableView *bgTableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
 
-
-
 @end
 
 @implementation HistoryDetailViewController
@@ -36,6 +34,10 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    if (self.groupItemModel.rtime>0)
+    {
+        [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:self.groupItemModel];
+    }
     
     [[DBDaoDataBase sharedDataBase]updateHistoryMessageReadStatusWithType:self.typeString];
 }

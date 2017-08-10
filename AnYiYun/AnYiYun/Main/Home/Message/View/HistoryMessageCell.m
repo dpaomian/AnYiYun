@@ -43,7 +43,6 @@
 {
     if ([BaseHelper isSpaceString:itemModel.iconUrl andReplace:@""].length>0)
     {
-        
         [self.leftImgView sd_setImageWithURL:[NSURL URLWithString:itemModel.iconUrl] placeholderImage:nil];
     }
          else
