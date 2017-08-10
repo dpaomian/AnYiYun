@@ -19,6 +19,7 @@
 		3B02DF461F2ADE0300282116 /* MessageMaintainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B02DF3A1F2ADE0300282116 /* MessageMaintainCell.m */; };
 		3B02DF471F2ADE0300282116 /* MessageTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B02DF3C1F2ADE0300282116 /* MessageTopView.m */; };
 		3B02DF491F2AE82400282116 /* main_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B02DF481F2AE82400282116 /* main_more@2x.png */; };
+		3B34271A1F3C3058007F2700 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3B3427191F3C3058007F2700 /* sound.caf */; };
 		3B3FD7571F2C04F50089C1B0 /* DeviceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD7561F2C04F50089C1B0 /* DeviceInfoModel.m */; };
 		3B3FD75D1F2C055B0089C1B0 /* DevicePartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75C1F2C055B0089C1B0 /* DevicePartCell.m */; };
 		3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FD75F1F2C05800089C1B0 /* RecordCell.m */; };
@@ -267,6 +268,7 @@
 		3B02DF3C1F2ADE0300282116 /* MessageTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTopView.m; sourceTree = "<group>"; };
 		3B02DF481F2AE82400282116 /* main_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_more@2x.png"; sourceTree = "<group>"; };
 		3B0A91CD1F35A2EC00B9B935 /* AnYiYun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnYiYun.entitlements; sourceTree = "<group>"; };
+		3B3427191F3C3058007F2700 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
 		3B3FD7551F2C04F50089C1B0 /* DeviceInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoModel.h; sourceTree = "<group>"; };
 		3B3FD7561F2C04F50089C1B0 /* DeviceInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoModel.m; sourceTree = "<group>"; };
 		3B3FD75B1F2C055B0089C1B0 /* DevicePartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicePartCell.h; sourceTree = "<group>"; };
@@ -1118,6 +1120,7 @@
 		90A2EC6A1F209E98008088C4 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				3B3427191F3C3058007F2700 /* sound.caf */,
 				3B404BB91F341E290045DA2C /* launch_defult.gif */,
 				3B02DF481F2AE82400282116 /* main_more@2x.png */,
 				905D5C9C1F28DF6800DF4DF9 /* main_test@2x.png */,
@@ -1799,6 +1802,7 @@
 				A87C53D51F31DB3B008DE42B /* AAFunnel.js in Resources */,
 				A87C53D61F31DB3B008DE42B /* AAHighcharts-3d.js in Resources */,
 				A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */,
+				3B34271A1F3C3058007F2700 /* sound.caf in Resources */,
 				A84079CE1F364FC70029F7FA /* YYCurveViewController.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
