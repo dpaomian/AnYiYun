@@ -619,7 +619,7 @@
         {
         if (buttonIndex==1)
             {
-            [self maintainMessageRequestWithBugId:[NSString stringWithFormat:@"%ld",(long)_selectModel.messageId]];
+            [self maintainMessageRequestWithBugId:_selectModel.messageId];
             }
         }
     if (alertView.tag==102)
