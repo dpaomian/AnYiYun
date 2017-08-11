@@ -133,11 +133,11 @@
                          [MBProgressHUD hideHUD];
                          NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                          BOOL dealState  = [string boolValue];
-                         if (dealState==NO)
+                     if (dealState==NO)
                          {
-                             [BaseHelper waringInfo:@"提交失败"];
+                         [BaseHelper waringInfo:@"处理失败"];
                          } else {
-                             [MBProgressHUD showSuccess:@"报修成功"];
+                             [MBProgressHUD showSuccess:@"已处理成功"];
                          }
                          [ws.tableView.mj_header beginRefreshing];
                      }

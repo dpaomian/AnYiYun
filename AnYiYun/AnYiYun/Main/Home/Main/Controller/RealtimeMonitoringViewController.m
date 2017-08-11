@@ -223,18 +223,28 @@
         if ([itemModel.point_type integerValue] == 103) {
             ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
             ws.fullScreenCurveVC.yTitleLab.text = @"负荷(KW)";
+            ws.fullScreenCurveVC.todayLab.hidden = NO;
+            ws.fullScreenCurveVC.yestodayLab.hidden = NO;
         } else if ([itemModel.point_type integerValue] == 101) {
             ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
             ws.fullScreenCurveVC.yTitleLab.text = @"电流(A)";
+            ws.fullScreenCurveVC.todayLab.hidden = NO;
+            ws.fullScreenCurveVC.yestodayLab.hidden = NO;
         } else if ([itemModel.point_type integerValue] == 104) {
             ws.fullScreenCurveVC.xTimeLab.text = @"时间(日.小时)";
             ws.fullScreenCurveVC.yTitleLab.text = @"漏电(A)";
+            ws.fullScreenCurveVC.todayLab.hidden = YES;
+            ws.fullScreenCurveVC.yestodayLab.hidden = YES;
         } else if ([itemModel.point_type integerValue] == 105) {
             ws.fullScreenCurveVC.xTimeLab.text = @"时间(日.小时)";
             ws.fullScreenCurveVC.yTitleLab.text = @"温度(ºC)";
+            ws.fullScreenCurveVC.todayLab.hidden = YES;
+            ws.fullScreenCurveVC.yestodayLab.hidden = YES;
         } else {
             ws.fullScreenCurveVC.xTimeLab.text = @"时间(小时.分钟)";
             ws.fullScreenCurveVC.yTitleLab.text = @"电流(A)";
+            ws.fullScreenCurveVC.todayLab.hidden = NO;
+            ws.fullScreenCurveVC.yestodayLab.hidden = NO;
         };
         [ws.navigationController pushViewController:ws.fullScreenCurveVC animated:NO];
         /*ws.curveView.linesMutableArray = lines;
@@ -341,6 +351,7 @@
     RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
     RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
     cell.titleLab.text = modelItem.point_name;
+    cell.tailImageView.image = [UIImage imageNamed:([modelItem.point_state integerValue]==0)?@"onLine.png":@"outLine.png"];
     [cell.contentBtn setTitle:[NSString stringWithFormat:@"%@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
     
     if (modelItem.displayIcon) {

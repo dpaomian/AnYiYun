@@ -176,11 +176,12 @@
                     NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                     BOOL dealState  = [string boolValue];
 
-                    if (dealState==NO){
-                        [BaseHelper waringInfo:@"提交失败"];
-                    } else {
-                        [MBProgressHUD showSuccess:@"报修成功"];
-                    }
+                    if (dealState==NO)
+                        {
+                        [BaseHelper waringInfo:@"处理失败"];
+                        } else {
+                            [MBProgressHUD showSuccess:@"已处理成功"];
+                        }
                     [ws.tableView.mj_header beginRefreshing];
                 }
                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
