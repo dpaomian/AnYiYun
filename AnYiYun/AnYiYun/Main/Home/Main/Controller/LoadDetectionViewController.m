@@ -69,6 +69,15 @@
     }];
     [self.tableView.mj_header beginRefreshing];
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        while (TRUE) {
+            [NSThread sleepForTimeInterval:60];
+            [ws getLoadDetectionData];
+
+        };
+    });
+    
+    
     _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     _collectionView.selectedIndex = 1;
     [_collectionView iteminitialization];

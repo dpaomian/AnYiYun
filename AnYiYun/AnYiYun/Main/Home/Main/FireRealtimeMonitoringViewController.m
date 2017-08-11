@@ -12,7 +12,7 @@
 @interface FireRealtimeMonitoringViewController ()
 
 /*!记录被展开的区*/
-@property (nonatomic, assign) NSInteger   foldSection;
+@property (nonatomic, strong) RealtimeMonitoringListModel   *foldSectionModel;
 
 @end
 
@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     
-    _foldSection = 0;
+    _foldSectionModel = [[RealtimeMonitoringListModel alloc] init];
     
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
@@ -101,6 +101,14 @@
         [ws getRealtimeMonitoringData];
     }];
     [self.tableView.mj_header beginRefreshing];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        while (TRUE) {
+            [NSThread sleepForTimeInterval:60];
+            [ws getRealtimeMonitoringData];
+            
+        };
+    });
 }
 
 - (void)getRealtimeMonitoringData {
@@ -123,7 +131,7 @@
         [ws.listMutableArray removeAllObjects];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             RealtimeMonitoringListModel *model = [[RealtimeMonitoringListModel alloc] init];
-            model.idF = obj[@"id"];
+            model.idF = [NSString stringWithFormat:@"%@",obj[@"id"]];
             model.device_location = obj[@"device_location"];
             model.device_name = obj[@"device_name"];
             model.kind = obj[@"kind"];
@@ -132,24 +140,34 @@
             model.sort = obj[@"sort"];
             model.sortKey = obj[@"sortKey"];
             model.state = obj[@"state"];
+            NSString *currentIDFString = [NSString stringWithFormat:@"%@",ws.foldSectionModel.idF?ws.foldSectionModel.idF:@""];
+            
             if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
                 NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
                 if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
                     !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
-                    if (idx== 0) {
-                        ws.foldSection = idx;
-                        [ws loadItemWithModel:model andSection:idx];
+                    [ws.listMutableArray addObject:model];
+                    if (idx== 0 && [currentIDFString length] == 0) {
+                        ws.foldSectionModel = model;
+                        [ws loadItemWithModel:model andSection:[ws.listMutableArray indexOfObject:ws.foldSectionModel]];
                         model.isFold = YES;
-                    } else {
+                    } else if ([currentIDFString isEqualToString:model.idF]) {
+                        ws.foldSectionModel = model;
+                        [ws loadItemWithModel:model andSection:[ws.listMutableArray indexOfObject:ws.foldSectionModel]];
+                        model.isFold = YES;
+                    }else {
                         model.isFold = NO;
                     }
-                    [ws.listMutableArray addObject:model];
                 } else {
                     NSLog(@"没有");
                 }
             } else {
-                if (idx== 0) {
-                    ws.foldSection = idx;
+                if (idx== 0 && [currentIDFString length] == 0) {
+                    ws.foldSectionModel = model;
+                    [ws loadItemWithModel:model andSection:idx];
+                    model.isFold = YES;
+                } else if ([currentIDFString isEqualToString:model.idF]) {
+                    ws.foldSectionModel = model;
                     [ws loadItemWithModel:model andSection:idx];
                     model.isFold = YES;
                 } else {
@@ -158,6 +176,15 @@
                 [ws.listMutableArray addObject:model];
             }
         }];
+        if (![ws.listMutableArray containsObject:ws.foldSectionModel]) {
+            [ws.listMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                RealtimeMonitoringListModel *model = obj;
+                ws.foldSectionModel = model;
+                [ws loadItemWithModel:model andSection:idx];
+                model.isFold = YES;
+                *stop = YES;
+            }];
+        }
         [self.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
@@ -293,12 +320,13 @@
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
         if (isSelected) {
             /*首先关闭原来的选项*/
-            RealtimeMonitoringListModel *currentModel = _listMutableArray[ws.foldSection];
+            NSInteger contentIndex = [ws.listMutableArray indexOfObject:ws.foldSectionModel];
+            RealtimeMonitoringListModel *currentModel = ws.listMutableArray[contentIndex];
             currentModel.isFold = NO;
             currentModel.itemsMutableArray = [@[] mutableCopy];
-            [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:ws.foldSection] withRowAnimation:UITableViewRowAnimationNone];
+            [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:contentIndex] withRowAnimation:UITableViewRowAnimationNone];
             
-            ws.foldSection = section;
+            ws.foldSectionModel = model;
             model.isFold = YES;
             [ws loadItemWithModel:model andSection:section];
         } else {
