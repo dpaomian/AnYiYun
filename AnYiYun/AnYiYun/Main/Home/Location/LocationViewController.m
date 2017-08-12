@@ -11,15 +11,17 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>//引入计算工具所有的头文件
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
+#import <BaiduMapAPI_Location/BMKLocationService.h>//引入计算工具所有的头文件
 #import "DeviceInfoModel.h"
 
-@interface LocationViewController ()<BMKMapViewDelegate>
+@interface LocationViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
 
-@property (nonatomic,strong)NSString *positionString;
-@property (nonatomic,strong)BMKMapView  *mapView;
+@property (nonatomic,strong)NSString           *positionString;
+@property (nonatomic,strong)BMKMapView         *mapView;
+@property (nonatomic,strong)BMKLocationService *locService;
 
-@property (nonatomic,strong)UIView    *locationView;
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic,strong)UIView     *locationView;
+@property (nonatomic,strong)UILabel    *titleLabel;
 
 @end
 
@@ -33,7 +35,11 @@
     [self makeUI];
     
     [self getUseDataRequest];
-    [self getLocationName];
+    
+    if (_deviceNameString.length==0)
+    {
+        [self getLocationName];
+    }
 }
 
 
@@ -64,16 +70,18 @@
         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
      NSDictionary *resuleDic = (NSDictionary *)responseObject;
+         
      DeviceInfoModel *info = [DeviceInfoModel mj_objectWithKeyValues:resuleDic];
-     _titleLabel.text = info.installationSite;
-     _titleLabel.hidden = NO;
-
+         DLog(@"安装位置 = %@",info.installationSite);
+         MAIN(^(){
+             _locationView.hidden = NO;
+             _titleLabel.hidden = NO;
+             _titleLabel.text = info.installationSite;
+         });
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"请求失败：%@",error);
          }];
-    
-
 }
 
 //判断获取页面信息
@@ -120,6 +128,9 @@
     [self.view addSubview:self.mapView];
     [self.view addSubview:self.locationView];
      [self.view addSubview:self.titleLabel];
+    //启动LocationService
+    [self.locService startUserLocationService];
+    
     if (_deviceLocation.length>0)
     {
         _locationView.hidden = NO;
@@ -142,8 +153,6 @@
         {
             double longitude = [[pointArray objectAtIndex:0] doubleValue];
             double latitude = [[pointArray objectAtIndex:1] doubleValue];
-        
-            
             
             // 添加一个PointAnnotation
             BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc]init];
@@ -157,6 +166,7 @@
             [_mapView setRegion:adjustedRegion animated:YES];
             
             [_mapView addAnnotation:annotation];
+            //_mapView.centerCoordinate = coor; //更新当前位置到大头针位置
         }
     }
 }
@@ -175,11 +185,45 @@
     return nil;
 }
 
+#pragma mark - BMKLocationServiceDelegate
+
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    BMKCoordinateRegion region;
+    region.center.latitude = userLocation.location.coordinate.latitude;
+    region.center.longitude = userLocation.location.coordinate.longitude;
+    
+    region.span.latitudeDelta = 0.2;
+    region.span.longitudeDelta = 0.2;
+    if (_mapView)
+    {
+        _mapView.region = region;
+    }
+    [_mapView setZoomLevel:19.0];
+    
+    [_mapView updateLocationData:userLocation]; //更新地图上的位置
+
+    [_locService stopUserLocationService];//定位完成停止位置更新
+}
 #pragma mark -getter
--(BMKMapView *)mapView
+
+- (BMKLocationService *)locService
+{
+    if (!_locService) {
+        _locService = [[BMKLocationService alloc]init];
+        _locService.delegate = self;
+        _locService.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    }
+    return _locService;
+}
+
+- (BMKMapView *)mapView
 {
     if (!_mapView) {
         _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _mapView.showsUserLocation = YES; //是否显示定位图层（即我的位置的小圆点）
+        _mapView.zoomLevel = 19;//地图显示比例
+        _mapView.mapType = BMKMapTypeStandard;//设置地图为空白类型
     }
     return _mapView;
 }

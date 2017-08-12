@@ -32,14 +32,18 @@
     return self;
 }
 
--(void)setCellContentWithModel:(MessageModel *)itemModel
+-(void)setCellContentWithModel:(MessageModel *)itemModel withShowType:(NSString *)showType
 {
     _titleLabel.text = itemModel.messageContent;
     _timeLabel.text = @"";
     NSString *time = itemModel.time;
-    if (time.length>16) {
-        NSString *useTime = [itemModel.time substringToIndex:16];
-        _timeLabel.text = useTime;
+    if (![showType isEqualToString:@"1"])
+    {
+        if (time.length>16)
+        {
+            NSString *useTime = [itemModel.time substringToIndex:16];
+            _timeLabel.text = useTime;
+        }
     }
     _usernameLabel.text =itemModel.userName;
 }

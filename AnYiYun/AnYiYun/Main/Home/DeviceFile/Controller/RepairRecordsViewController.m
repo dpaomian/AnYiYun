@@ -129,7 +129,7 @@
     if (_datasource.count>0)
     {
         MessageModel  *itemModel = _datasource[indexPath.row];
-        [cell setCellContentWithModel:itemModel];
+        [cell setCellContentWithModel:itemModel withShowType:@""];
     }
     cell.backgroundColor = [UIColor whiteColor];
     return cell;

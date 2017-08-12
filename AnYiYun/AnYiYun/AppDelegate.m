@@ -108,7 +108,7 @@
 -(void)reloadMessageNotification
 {
     //刷新是否有未读消息
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@"1"];
 }
 
 - (void)networkDidReceiveMessage:(NSNotification *)notification
@@ -117,7 +117,7 @@
     DLog(@"收到推送 自定义消息  %@",userInfo);
     
     //刷新是否有未读消息
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
+    [self reloadMessageNotification];
     
 }
 

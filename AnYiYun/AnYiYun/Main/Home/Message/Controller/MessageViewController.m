@@ -52,6 +52,8 @@
     self.title = @"消息中心";
     self.view.backgroundColor = RGB(239, 239, 244);
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessageIsUnRead:) name:@"getMessageIsRead" object:nil];
+    
     [self setRightNavigationBar];
     [self makeupComponentUI];
     
@@ -124,6 +126,17 @@
             
         default:
             break;
+    }
+}
+
+//刷新消息界面
+-(void)getMessageIsUnRead:(NSNotification *)notify
+{
+    NSString *messageNotify  = notify.object;
+    if ([messageNotify boolValue]==YES)
+    {
+        //接收到推送 有新消息
+        [self updateDataSource];
     }
 }
 

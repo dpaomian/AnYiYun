@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessageIsUnRead) name:@"getMessageIsRead" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessageIsUnRead:) name:@"getMessageIsRead" object:nil];
     
     self.tabBar.backgroundColor = UIColorFromRGB(0xFFFFFF);
     [self addChildVC:[[HomeMainViewController alloc] init] title:@"首页" image:@"bottom_btn_1" selectedImage:@"ic_tab_home_blue"];
@@ -58,13 +58,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    DLog(@"请求消息---------");
-    //[self getMessageIsUnRead];
 }
 
--(void)getMessageIsUnRead
+-(void)getMessageIsUnRead:(NSNotification *)notify
 {
+    //    MAIN((^{
+    NSString *messageNotify  = notify.object;
         //数据库
     /**
     NSInteger messageCount = [DBDaoDataBase sharedDataBase].getAllUnreadHistoryMessagesCount;
@@ -87,125 +86,106 @@
         });
      */
 
+    if ([messageNotify boolValue]==YES)
+    {
+        //接收到推送 有新消息
+        [self updateMainMessageRead:YES];
+    }
+    else
+    {
         //获取一级列表
-    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
-    
-    HistoryMessageModel *alarmModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"101"];
-    NSString *alarmString = [NSString stringWithFormat:@"%ld",(long)alarmModel.rtime];
-    if ([[BaseHelper isSpaceString:alarmString andReplace:@""] integerValue]==0)
+        NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageGroup",BASE_PLAN_URL];
+        
+        HistoryMessageModel *alarmModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"101"];
+        NSString *alarmString = [NSString stringWithFormat:@"%ld",(long)alarmModel.rtime];
+        if ([[BaseHelper isSpaceString:alarmString andReplace:@""] integerValue]==0)
         {
-        alarmString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+            alarmString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
-    
-    
-    HistoryMessageModel *warningModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"102"];
-    NSString *warningString = [NSString stringWithFormat:@"%ld",(long)warningModel.rtime];
-    if ([[BaseHelper isSpaceString:warningString andReplace:@""] integerValue]==0)
+        
+        
+        HistoryMessageModel *warningModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"102"];
+        NSString *warningString = [NSString stringWithFormat:@"%ld",(long)warningModel.rtime];
+        if ([[BaseHelper isSpaceString:warningString andReplace:@""] integerValue]==0)
         {
-        warningString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+            warningString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
-    
-    
-    HistoryMessageModel *repairModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"103"];
-    NSString *repairString = [NSString stringWithFormat:@"%ld",(long)repairModel.rtime];
-    if ([[BaseHelper isSpaceString:repairString andReplace:@""] integerValue]==0)
+        
+        
+        HistoryMessageModel *repairModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"103"];
+        NSString *repairString = [NSString stringWithFormat:@"%ld",(long)repairModel.rtime];
+        if ([[BaseHelper isSpaceString:repairString andReplace:@""] integerValue]==0)
         {
-        repairString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+            repairString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
-    
-    
-    HistoryMessageModel *upkeepModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"104"];
-    NSString *upkeepString = [NSString stringWithFormat:@"%ld",(long)upkeepModel.rtime];
-    if ([[BaseHelper isSpaceString:upkeepString andReplace:@""] integerValue]==0)
+        
+        
+        HistoryMessageModel *upkeepModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"104"];
+        NSString *upkeepString = [NSString stringWithFormat:@"%ld",(long)upkeepModel.rtime];
+        if ([[BaseHelper isSpaceString:upkeepString andReplace:@""] integerValue]==0)
         {
-        upkeepString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+            upkeepString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
-    
-    
-    HistoryMessageModel *noticeModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"105"];
-    NSString *noticeString = [NSString stringWithFormat:@"%ld",(long)noticeModel.rtime];
-    if ([[BaseHelper isSpaceString:noticeString andReplace:@""] integerValue]==0)
+        
+        
+        HistoryMessageModel *noticeModel = [[DBDaoDataBase sharedDataBase] getHistoryMessagesGroupInfoWithType:@"105"];
+        NSString *noticeString = [NSString stringWithFormat:@"%ld",(long)noticeModel.rtime];
+        if ([[BaseHelper isSpaceString:noticeString andReplace:@""] integerValue]==0)
         {
-        noticeString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
+            noticeString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
-    
-    NSDictionary *versionDic = @{@"alarm":[NSNumber numberWithInteger:
-                                           [alarmString integerValue]],
-                                 @"warning":[NSNumber numberWithInteger:
-                                             [warningString integerValue]],
-                                 @"repair":[NSNumber numberWithInteger:
-                                            [repairString integerValue]],
-                                 @"upkeep":[NSNumber numberWithInteger:
-                                            [upkeepString integerValue]],
-                                 @"notice":[NSNumber numberWithInteger:
-                                            [noticeString integerValue]]
-                                 };
-    
-    NSString *versionString = [BaseHelper dictionaryToJson:versionDic];
-    
-    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"version":versionString};
-    
-    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:urlString
-      parameters:param
-        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-     if ([responseObject isKindOfClass:[NSData class]])
+        
+        NSDictionary *versionDic = @{@"alarm":[NSNumber numberWithInteger:
+                                               [alarmString integerValue]],
+                                     @"warning":[NSNumber numberWithInteger:
+                                                 [warningString integerValue]],
+                                     @"repair":[NSNumber numberWithInteger:
+                                                [repairString integerValue]],
+                                     @"upkeep":[NSNumber numberWithInteger:
+                                                [upkeepString integerValue]],
+                                     @"notice":[NSNumber numberWithInteger:
+                                                [noticeString integerValue]]
+                                     };
+        
+        NSString *versionString = [BaseHelper dictionaryToJson:versionDic];
+        
+        NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                                @"version":versionString};
+        
+        DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        [manager GET:urlString
+          parameters:param
+            progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
-         id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-         
-         if ([jsonObject isKindOfClass:[NSArray class]])
+             if ([responseObject isKindOfClass:[NSData class]])
              {
-             BOOL isRead = NO;
-             NSArray *useArray = (NSArray *)jsonObject;
-             for (int i=0; i<useArray.count; i++)
+                 id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                 
+                 if ([jsonObject isKindOfClass:[NSArray class]])
                  {
-                 NSDictionary *useDic = [useArray objectAtIndex:i];
-                 HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                 if (itemModel.num>0)
+                     BOOL isRead = NO;
+                     NSArray *useArray = (NSArray *)jsonObject;
+                     for (int i=0; i<useArray.count; i++)
                      {
-                     isRead = YES;
-                     break;
+                         NSDictionary *useDic = [useArray objectAtIndex:i];
+                         HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
+                         if (itemModel.num>0)
+                         {
+                             isRead = YES;
+                             break;
+                         }
                      }
+                     [self updateMainMessageRead:isRead];
                  }
-             [self updateMainMessageRead:isRead];
              }
          }
-     }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             DLog(@"请求失败：%@",error);
-         }];
-    
-    
-    /**
-    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/messageDisplay",BASE_PLAN_URL];
-    
-    long long useTime = [BaseHelper getSystemNowTimeLong];
-    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"version":[NSString stringWithFormat:@"%lld", useTime]};
-    
-    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:urlString
-      parameters:param
-        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-         BOOL isRead = [string boolValue];
-         DLog(@"是否有新消息  %@  %d",responseObject,isRead);
-     [self updateMainMessageRead:isRead];
-     }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             DLog(@"请求失败：%@",error);
-         }];
-     */
-    
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                 DLog(@"请求失败：%@",error);
+             }];
+    }
 }
     //是否有已读消息
 -(void)updateMainMessageRead:(BOOL)isRead

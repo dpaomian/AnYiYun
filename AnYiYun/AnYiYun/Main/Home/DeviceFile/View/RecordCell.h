@@ -14,7 +14,7 @@
  */
 @interface RecordCell : UITableViewCell
 
--(void)setCellContentWithModel:(MessageModel *)itemModel;
+-(void)setCellContentWithModel:(MessageModel *)itemModel withShowType:(NSString *)showType;
 
 
 @end
