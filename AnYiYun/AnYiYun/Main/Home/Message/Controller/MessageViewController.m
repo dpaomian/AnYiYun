@@ -234,6 +234,7 @@
      for (int i=0; i<listArray.count; i++)
          {
          MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
+         item.remark = @"预警";
          [_alarmDataSource addObject:item];
          }
      [self getAlarmDataByTime];
@@ -341,10 +342,15 @@
     NSDictionary *param;
     if ([type intValue]==1)
         {
+            NSString *postType = @"1";
+            if ([_selectModel.remark isEqualToString:@"预警"])
+            {
+                postType = @"2";
+            }
         urlString = [NSString stringWithFormat:@"%@rest/process/bugP",BASE_PLAN_URL];
         param = @{@"userSign":[PersonInfo shareInstance].accountID,
                                 @"bugId":_selectModel.messageId,
-                                @"type":@"1"};
+                                @"type":postType};
     }
     if ([type intValue]==2)
         {
@@ -395,9 +401,14 @@
 -(void)maintainMessageRequestWithBugId:(NSString *)bugId
 {
     NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugS",BASE_PLAN_URL];
+    NSString *postType = @"1";
+    if ([_selectModel.remark isEqualToString:@"预警"])
+    {
+        postType = @"2";
+    }
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                             @"bugId":bugId,
-                            @"type":@"1"};
+                            @"type":postType};
     
     DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
     [MBProgressHUD showMessage:@"提交中..."];

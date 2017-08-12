@@ -60,6 +60,11 @@
 {
     _useModel = itemModel;
     _titleLabel.text = [NSString stringWithFormat:@"[告警]%@",itemModel.messageTitle];
+    if ([itemModel.remark isEqualToString:@"预警"])
+    {
+        _titleLabel.text = [NSString stringWithFormat:@"[预警]%@",itemModel.messageTitle];
+    }
+    
     _timeLabel.text = @"";
     NSString *time = itemModel.time;
     if (time.length>14) {

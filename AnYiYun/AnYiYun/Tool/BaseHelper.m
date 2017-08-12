@@ -267,10 +267,16 @@
 /**获取当前手机时间 毫秒值*/
 + (long long)getSystemNowTimeLong
 {
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
-    long long date = (long long )time;
-        //临时测试
-        //long long date = (long long )time-3600*1*1000;
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    long long date = time * 1000;
+    //临时测试
+    //long long date = (long long )time-3600*1*1000;
+    
+    NSDateFormatter *timeDateFormatter = [[NSDateFormatter alloc] init];
+    [timeDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *nowTimeString = [timeDateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:date/1000]];
+    DLog(@"获取系统时间 %@ 毫秒值 %lld",nowTimeString,date);
+    
     return date;
 }
 
