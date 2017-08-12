@@ -19,7 +19,7 @@
 #import "PopViewController.h"
 #import "NoDataView.h"
 
-@interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIScrollViewDelegate,UIAlertViewDelegate>
+@interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIAlertViewDelegate>
 {
     NSInteger    selectViewTag;
     UITableView *_currentTabelView;
@@ -199,11 +199,6 @@
          MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
          [_alarmDataSource addObject:item];
      }
-         if (_alarmDataSource.count > 0) {
-             _nodataView.hidden = YES;
-         } else {
-             _nodataView.hidden = NO;
-         }
      [self getWarnDataRequest];
      [self endRefreshing];
      }
@@ -259,7 +254,13 @@
     }];
     _alarmDataSource = [NSMutableArray arrayWithArray:sortedArray];
     
+    if (_alarmDataSource.count > 0) {
+        _nodataView.hidden = YES;
+    } else {
+        _nodataView.hidden = NO;
+    }
     [_alarmTableView reloadData];
+    
     [self endRefreshing];
 }
 
@@ -508,7 +509,8 @@
     self.examTableView.x = self.scrolView.width;
     self.maintainTableView.x = self.scrolView.width*2;
    
-    self.scrolView.contentSize = CGSizeMake(kScreen_Width *3, 0);
+    self.scrolView.contentSize = CGSizeMake(0, kScreen_Width);
+    
     self.scrolView.y = CGRectGetMaxY(self.topView.frame);
     self.scrolView.height = self.view.height - self.topView.height;
     
@@ -519,6 +521,7 @@
 
 -(void)topViewAction:(UIButton *)sender
 {
+    _nodataView.hidden = YES;
     selectViewTag = sender.tag;
     if (sender.tag == 11)
         {
@@ -663,12 +666,13 @@
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
-
+/**
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if ([scrollView isEqual:self.scrolView])
         {
         NSInteger page = scrollView.contentOffset.x/SCREEN_WIDTH;
+        DLog(@"page =%ld",(long)page);
         if (page == 0)
             {
             selectViewTag = 11;
@@ -712,7 +716,7 @@
         [_currentTabelView reloadData];
     }
 }
-
+*/
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView == self.alarmTableView)
