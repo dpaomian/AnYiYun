@@ -12,7 +12,7 @@
 
 #define TableFooterHelght 40
 
-@interface ChangePwdViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface ChangePwdViewController()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *passwordTableView;
 
@@ -102,7 +102,10 @@
      BOOL isTure  = [string boolValue];
      if (isTure==YES)
         {
-        [BaseHelper waringInfo:@"密码修改成功，请重新登录"];
+            NSString *message = @"密码修改成功，请重新登录";
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            alertView.tag = 103;
+            [alertView show];
         }
      else
          {
@@ -116,7 +119,7 @@
 
 -(void)setAPPLogout
 {
-    
+    [self hiddenKeyBoard];
     [BaseCacheHelper releaseAllCache];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -134,6 +137,18 @@
         [self hiddenKeyBoard];
     }
 }
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==103)
+    {
+        DLog(@"退出登录");
+        [self hiddenKeyBoard];
+        [self setAPPLogout];
+    }
+}
+
 #pragma mark - Private Methods
 - (void)addGesture
 {
