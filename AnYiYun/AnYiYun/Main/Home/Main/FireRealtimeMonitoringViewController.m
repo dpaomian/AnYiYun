@@ -102,13 +102,18 @@
     }];
     [self.tableView.mj_header beginRefreshing];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
-        while (TRUE) {
-            [NSThread sleepForTimeInterval:60];
-            [ws getRealtimeMonitoringData];
-            
-        };
+    NSTimeInterval period = 60.0; //设置时间间隔
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每 period 秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (ws.foldSectionModel.idF && ws.listMutableArray.count >0) {
+                [ws loadItemWithModel:ws.foldSectionModel andSection:[ws.listMutableArray indexOfObject:ws.foldSectionModel]];
+            }
+        });
     });
+    dispatch_resume(_timer);
 }
 
 - (void)getRealtimeMonitoringData {

@@ -18,5 +18,6 @@
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
 /*!*/
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
+@property (nonatomic, strong) dispatch_source_t    timer;
 
 @end

@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray   *curveMutableArray2;
 /*!*/
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
+@property (nonatomic, strong) dispatch_source_t    timer;
 
 @property (nonatomic, strong) YYCurveView *curveView;
 @property (nonatomic, strong) YYCurveViewController *fullScreenCurveVC;

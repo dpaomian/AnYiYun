@@ -11,7 +11,7 @@
 @interface LoadDetectionViewController ()
 
 /*!记录被展开的区*/
-@property (nonatomic, assign) NSInteger   foldSection;
+@property (nonatomic, strong) LoadDetectionModel   *foldSectionModel;
 
 @end
 
@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _foldSection = 0;
+    _foldSectionModel = [[LoadDetectionModel alloc] init];
     
     __weak LoadDetectionViewController *ws = self;
     
@@ -69,14 +69,18 @@
     }];
     [self.tableView.mj_header beginRefreshing];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
-        while (TRUE) {
-            [NSThread sleepForTimeInterval:60];
-            [ws getLoadDetectionData];
-
-        };
+    NSTimeInterval period = 60.0; //设置时间间隔
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每 period 秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (ws.foldSectionModel.idF && ws.listMutableArray.count >0) {
+                [ws loadItemWithModel:ws.foldSectionModel andSection:[ws.listMutableArray indexOfObject:ws.foldSectionModel]];
+            }
+        });
     });
-    
+    dispatch_resume(_timer);
     
     _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     _collectionView.selectedIndex = 1;
@@ -162,7 +166,7 @@
         [ws.listMutableArray removeAllObjects];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             LoadDetectionModel *model = [[LoadDetectionModel alloc] init];
-            model.idF = obj[@"id"];
+            model.idF = [NSString stringWithFormat:@"%@",obj[@"id"]];
             model.device_location = obj[@"device_location"];
             model.device_name = obj[@"device_name"];
             model.extend = obj[@"extend"];
@@ -173,6 +177,47 @@
             model.sort = obj[@"sort"];
             model.sortKey = obj[@"sortKey"];
             model.state = obj[@"state"];
+            NSString *currentIDFString = [NSString stringWithFormat:@"%@",ws.foldSectionModel.idF?ws.foldSectionModel.idF:@""];
+            
+            if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
+                NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
+                if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
+                    !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
+                    [ws.listMutableArray addObject:model];
+                    if (idx== 0 && [currentIDFString length] == 0) {
+                        ws.foldSectionModel = model;
+                        NSInteger contentIndex = [ws.listMutableArray indexOfObject:ws.foldSectionModel];
+                        [ws loadItemWithModel:model andSection:contentIndex];
+                        [ws loadCurveWithModel:model andSection:contentIndex];
+                        model.isFold = YES;
+                    } else if ([currentIDFString isEqualToString:model.idF]) {
+                        ws.foldSectionModel = model;
+                        NSInteger contentIndex = [ws.listMutableArray indexOfObject:ws.foldSectionModel];
+                        [ws loadItemWithModel:model andSection:contentIndex];
+                        [ws loadCurveWithModel:model andSection:contentIndex];
+                        model.isFold = YES;
+                    }else {
+                        model.isFold = NO;
+                    }
+                } else {
+                    NSLog(@"没有");
+                }
+            } else {
+                if (idx== 0 && [currentIDFString length] == 0) {
+                    ws.foldSectionModel = model;
+                    [ws loadItemWithModel:model andSection:idx];
+                    [ws loadCurveWithModel:model andSection:idx];
+                    model.isFold = YES;
+                } else if ([currentIDFString isEqualToString:model.idF]) {
+                    ws.foldSectionModel = model;
+                    [ws loadItemWithModel:model andSection:idx];
+                    [ws loadCurveWithModel:model andSection:idx];
+                    model.isFold = YES;
+                } else {
+                    model.isFold = NO;
+                }
+                [ws.listMutableArray addObject:model];
+            }
             /*if (idx== 0) {
                 ws.foldSection = idx;
                 [ws loadItemWithModel:model andSection:idx];
@@ -182,7 +227,7 @@
             } else {
                 model.isFold = NO;
             }*/
-            if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
+            /*if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
                 NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
                 if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
                     !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
@@ -208,12 +253,12 @@
                     model.isFold = NO;
                 }
                 [ws.listMutableArray addObject:model];
-            }
+            }*/
         }];
-        [self.tableView.mj_header endRefreshing];
+        [ws.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
-        [self.tableView.mj_header endRefreshing];
+        [ws.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
     } progress:nil];
 }
@@ -247,6 +292,7 @@
         itemModel.itemsMutableArray =childItemsMutablearray;
         [ws.listMutableArray replaceObjectAtIndex:section withObject:itemModel];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
+
     } failureBlock:^(NSError *error) {
         itemModel.itemsMutableArray = [@[] mutableCopy];
         [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
@@ -333,17 +379,17 @@
     headerView.contentLab.text =  ([array count]== 3)?[NSString stringWithFormat:@"%@ %@",array[1],array[2]]:@"0.0 kW";
     headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
     headerView.tailImage.image = [UIImage imageNamed:([model.state integerValue] == 1) ? @"onLine.png":@"outLine.png"];
-    __block LoadDatectionHeaderView *hView = headerView;
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
         if (isSelected) {
             /*首先关闭原来的选项*/
-            LoadDetectionModel *currentModel = _listMutableArray[ws.foldSection];
+            NSInteger contentIndex = [ws.listMutableArray indexOfObject:ws.foldSectionModel];
+            LoadDetectionModel *currentModel = ws.listMutableArray[contentIndex];
             currentModel.isFold = NO;
             currentModel.itemsMutableArray = [@[] mutableCopy];
-            [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:ws.foldSection] withRowAnimation:UITableViewRowAnimationNone];
+            [ws.tableView reloadSections:[NSIndexSet indexSetWithIndex:contentIndex] withRowAnimation:UITableViewRowAnimationNone];
             /*ws.sVC.tTitle = hView.titleLab.text;
             [ws.sVC reloadDataUI];*/
-            ws.foldSection = section;
+            ws.foldSectionModel = model;
             model.isFold = YES;
             [ws loadItemWithModel:model andSection:section];
             [ws loadCurveWithModel:model andSection:section];

@@ -72,7 +72,7 @@
                 } else {
                     [ws.conditionDic setObject:model.name forKey:@"secondCondition"];
                 }
-                [self.tableView.mj_header beginRefreshing];
+                [ws.tableView.mj_header beginRefreshing];
             }
                 break;
             case 3:
@@ -100,13 +100,16 @@
     };
     [self.view addSubview:collectionView];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
-        while (TRUE) {
-            [NSThread sleepForTimeInterval:60];
+    NSTimeInterval period = 60.0; //设置时间间隔
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每 period 秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             [ws getEnergyConsumptionStatisticsData];
-            
-        };
+        });
     });
+    dispatch_resume(_timer);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(collectionView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:1.0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
@@ -164,10 +167,10 @@
                 [ws.listMutableArray addObject:model];
             }
         }];
-        [self.tableView.mj_header endRefreshing];
+        [ws.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     } failureBlock:^(NSError *error) {
-        [self.tableView.mj_header endRefreshing];
+        [ws.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
     } progress:nil];
 }
