@@ -267,7 +267,7 @@
 /**获取当前手机时间 毫秒值*/
 + (long long)getSystemNowTimeLong
 {
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970]-3600;
     long long date = time * 1000;
     //临时测试
     //long long date = (long long )time-3600*1*1000;
