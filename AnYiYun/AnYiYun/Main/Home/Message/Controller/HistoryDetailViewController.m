@@ -34,11 +34,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if (self.groupItemModel.rtime>0)
-    {
-        [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:self.groupItemModel];
-    }
-    
+
     [[DBDaoDataBase sharedDataBase]updateHistoryMessageReadStatusWithType:self.typeString];
 }
 
@@ -53,7 +49,11 @@
 -(void)rightBarButtonClick
 {
     [[DBDaoDataBase sharedDataBase] deleteHistoryMessagesWithType:self.typeString];
-    [_datasource removeAllObjects];
+    //取数据库中值
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    tempArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
+    _datasource = [NSMutableArray arrayWithArray:tempArray];
+    
     [_bgTableView reloadData];
 }
 
@@ -106,6 +106,11 @@
                  NSMutableArray *tempArray = [[NSMutableArray alloc] init];
                  tempArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
                  _datasource = [NSMutableArray arrayWithArray:tempArray];
+                 
+                 if (self.groupItemModel.rtime>0)
+                 {
+                     [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:self.groupItemModel];
+                 }
                  
                  [_bgTableView reloadData];
              }
