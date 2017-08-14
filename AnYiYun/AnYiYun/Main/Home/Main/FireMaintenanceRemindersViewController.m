@@ -179,7 +179,6 @@
                     [ws.tableView.mj_header beginRefreshing];
                 }
                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                     NSLog(@"%@",error.localizedDescription);
                      [MBProgressHUD hideHUD];
                      [MBProgressHUD showError:@"处理失败"];
                  }];
