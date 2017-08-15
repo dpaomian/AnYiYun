@@ -34,6 +34,10 @@
                 <constraint firstItem="F0q-ev-Cjb" firstAttribute="centerX" secondItem="v2z-Ge-E7Z" secondAttribute="centerX" id="yYd-hG-Nin"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="F0q-ev-Cjb" id="3w5-zY-p5I"/>
+                <outlet property="titleLable" destination="v2z-Ge-E7Z" id="lWG-pk-EWZ"/>
+            </connections>
             <point key="canvasLocation" x="-119" y="-149"/>
         </view>
     </objects>

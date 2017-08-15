@@ -227,6 +227,9 @@
 		A8E2A5391F30DB4C000F5408 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E2A5371F30DB4C000F5408 /* PopViewController.m */; };
 		A8E2A53A1F30DB4C000F5408 /* PopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E2A5381F30DB4C000F5408 /* PopViewController.xib */; };
 		A8E2A53E1F30F139000F5408 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E2A53C1F30F139000F5408 /* HelpViewController.m */; };
+		A8E80E7A1F43533600394711 /* YYValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E791F43533600394711 /* YYValueFormatter.m */; };
+		A8E80E7D1F436B5700394711 /* EquipmentAccountHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E7C1F436B5700394711 /* EquipmentAccountHeaderFooterView.m */; };
+		A8E80E7F1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E80E7E1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib */; };
 		A8FD788F1F2C396800523E46 /* FireAlarmInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD787E1F2C396800523E46 /* FireAlarmInformationViewController.m */; };
 		A8FD78901F2C396800523E46 /* FireAlarmInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8FD787F1F2C396800523E46 /* FireAlarmInformationViewController.xib */; };
 		A8FD78911F2C396800523E46 /* FireEquipmentAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD78811F2C396800523E46 /* FireEquipmentAccountViewController.m */; };
@@ -656,6 +659,11 @@
 		A8E2A5381F30DB4C000F5408 /* PopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopViewController.xib; sourceTree = "<group>"; };
 		A8E2A53B1F30F139000F5408 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		A8E2A53C1F30F139000F5408 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		A8E80E781F43533600394711 /* YYValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYValueFormatter.h; sourceTree = "<group>"; };
+		A8E80E791F43533600394711 /* YYValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYValueFormatter.m; sourceTree = "<group>"; };
+		A8E80E7B1F436B5700394711 /* EquipmentAccountHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountHeaderFooterView.h; sourceTree = "<group>"; };
+		A8E80E7C1F436B5700394711 /* EquipmentAccountHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentAccountHeaderFooterView.m; sourceTree = "<group>"; };
+		A8E80E7E1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentAccountHeaderFooterView.xib; sourceTree = "<group>"; };
 		A8FD787D1F2C396800523E46 /* FireAlarmInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireAlarmInformationViewController.h; sourceTree = "<group>"; };
 		A8FD787E1F2C396800523E46 /* FireAlarmInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireAlarmInformationViewController.m; sourceTree = "<group>"; };
 		A8FD787F1F2C396800523E46 /* FireAlarmInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FireAlarmInformationViewController.xib; sourceTree = "<group>"; };
@@ -942,6 +950,8 @@
 				A8451F941F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m */,
 				A86E1DBA1F2F31E8000CC2D0 /* DoubleGraphModel.h */,
 				A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */,
+				A8E80E781F43533600394711 /* YYValueFormatter.h */,
+				A8E80E791F43533600394711 /* YYValueFormatter.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -957,6 +967,9 @@
 				A810BF5A1F26043F00B5F2D2 /* LoadDatectionHeaderView.h */,
 				A810BF5B1F26043F00B5F2D2 /* LoadDatectionHeaderView.m */,
 				A810BF5D1F26051800B5F2D2 /* LoadDatectionHeaderView.xib */,
+				A8E80E7B1F436B5700394711 /* EquipmentAccountHeaderFooterView.h */,
+				A8E80E7C1F436B5700394711 /* EquipmentAccountHeaderFooterView.m */,
+				A8E80E7E1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib */,
 				A810BF5F1F260A1400B5F2D2 /* LoadDatectionCell.h */,
 				A810BF601F260A1400B5F2D2 /* LoadDatectionCell.m */,
 				A810BF611F260A1400B5F2D2 /* LoadDatectionCell.xib */,
@@ -1784,6 +1797,7 @@
 				3B5B934F1F3AE96D0075AF0B /* Assets.xcassets in Resources */,
 				A81B121D1F2AC3F8001DD06B /* YYAlarmCell.xib in Resources */,
 				A87C53D81F31DB3B008DE42B /* AAHighchartsMore.js in Resources */,
+				A8E80E7F1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib in Resources */,
 				A81B123D1F2AC446001DD06B /* AlarmInformationViewController.xib in Resources */,
 				A81B121B1F2AC3EC001DD06B /* EquipmentAccountCell.xib in Resources */,
 				A87C53D31F31DB3B008DE42B /* AAChartKit.podspec in Resources */,
@@ -1908,6 +1922,7 @@
 				A8FD78971F2C396800523E46 /* FireRealtimeMonitoringViewController.m in Sources */,
 				A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
+				A8E80E7A1F43533600394711 /* YYValueFormatter.m in Sources */,
 				A8DA96761F2BB22C00F3032D /* EquipmentManagementRootViewController.m in Sources */,
 				A882D3E51F3B67A900DCF865 /* NoDataView.m in Sources */,
 				A87C53EE1F31DB3B008DE42B /* AAStyle.m in Sources */,
@@ -1992,6 +2007,7 @@
 				A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */,
 				90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */,
 				A84079C41F363FBB0029F7FA /* YYChartsBaseView.m in Sources */,
+				A8E80E7D1F436B5700394711 /* EquipmentAccountHeaderFooterView.m in Sources */,
 				A84FA2C71F283C26006F3DB4 /* AllApplicationCollectionViewCell.m in Sources */,
 				A8451F8E1F2D901900A2CF5A /* SearchCollectionCell.m in Sources */,
 				A8DA96701F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m in Sources */,

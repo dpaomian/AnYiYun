@@ -7,6 +7,7 @@
 //
 
 #import "YYCurveView.h"
+#import "YYValueFormatter.h"
 
 @implementation YYCurveView
 
@@ -31,7 +32,7 @@
     ChartYAxis *leftAxis = _chartView.leftAxis;
     leftAxis.labelTextColor = [UIColor lightGrayColor];
     [leftAxis removeAllLimitLines];
-    leftAxis.axisMinimum = 0.0;
+//    leftAxis.axisMinimum = 0.0;
     leftAxis.drawZeroLineEnabled = NO;
     leftAxis.drawLimitLinesBehindDataEnabled = YES;
     
@@ -79,22 +80,45 @@
 - (void)setDataCount:(NSInteger)count range:(double)range {
     NSMutableArray *blueLineValue = [[NSMutableArray alloc] init];
     NSMutableArray *greenLineValue = [[NSMutableArray alloc] init];
+    NSMutableArray *xValue = [[NSMutableArray alloc] init];
+    NSMutableArray *greenValues = [[NSMutableArray alloc] init];
+    NSMutableArray *blueValues = [[NSMutableArray alloc] init];
     
     /*第一层遍历，遍历出有几条线*/
     [_linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [greenLineValue removeAllObjects];
+        [blueLineValue removeAllObjects];
         NSMutableArray * objMutableArray = [NSMutableArray arrayWithArray:obj];
-        NSMutableArray *currentMutableArray = [NSMutableArray array];
+        NSInteger myIdx = idx;
         [objMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             DoubleGraphModel *currentmodel = obj;
-            [currentMutableArray addObject:[[ChartDataEntry alloc] initWithX:[currentmodel.time doubleValue] y:[currentmodel.value doubleValue]]];
+            if (myIdx == 0) {
+                double value = [currentmodel.value doubleValue];
+                NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
+                [greenValues addObject:valueString];
+            } else {
+                double value = [currentmodel.value doubleValue];
+                NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
+                [blueValues addObject:valueString];
+                NSString *timeString = [NSString stringWithFormat:@"%.2f",[currentmodel.time doubleValue]];
+                [xValue addObject:timeString];
+            }
         }];
-        if (idx == 0) {
-            [greenLineValue addObjectsFromArray:currentMutableArray];
-        } else {
-            [blueLineValue addObjectsFromArray:currentMutableArray];
-        }
+    }];
+    [blueLineValue removeAllObjects];
+    [blueValues enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [blueLineValue addObject:[[ChartDataEntry alloc] initWithX:idx y:[obj doubleValue]]];
+    }];
+    [greenLineValue removeAllObjects];
+    [greenValues enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [greenLineValue addObject:[[ChartDataEntry alloc] initWithX:idx y:[obj doubleValue]]];
     }];
     
+    ChartIndexAxisValueFormatter *formatteer = [[ChartIndexAxisValueFormatter alloc] initWithValues:xValue];
+    _chartView.xAxis.valueFormatter = formatteer;
+    
+    
+    _chartView.leftAxis.valueFormatter = [[YYValueFormatter alloc] init];
     
     LineChartDataSet *blueSet = nil;
     LineChartDataSet *greenSet = nil;
@@ -129,14 +153,14 @@
         greenSet.highlightEnabled = NO;//不显示十字线
         greenSet.axisDependency = AxisDependencyLeft;
         greenSet.mode = LineChartModeHorizontalBezier;
-        [greenSet setColor:[UIColor greenColor]];
+        [greenSet setColor:UIColorFromRGB(0x9bcc00)];
         greenSet.lineWidth = 2.0;
         greenSet.drawValuesEnabled = NO;
         greenSet.drawCircleHoleEnabled = NO;
-        [greenSet setCircleColor:[UIColor greenColor]];
+        [greenSet setCircleColor:UIColorFromRGB(0x9bcc00)];
         greenSet.fillAlpha = 65/255.0;
-        greenSet.fillColor = [UIColor greenColor];
-        if ([greenLineValue count] < 4) {
+        greenSet.fillColor = UIColorFromRGB(0x9bcc00);
+        if ([greenLineValue count] < 4 && [blueLineValue count] >0) {
             greenSet.circleRadius = 3.0;
             greenSet.drawValuesEnabled = YES;
         } else {
@@ -150,5 +174,80 @@
         _chartView.data = [[LineChartData alloc] initWithDataSets:dataSets];
     }
 }
+
+//- (void)setDataCount:(NSInteger)count range:(double)range {
+//    NSMutableArray *blueLineValue = [[NSMutableArray alloc] init];
+//    NSMutableArray *greenLineValue = [[NSMutableArray alloc] init];
+//    
+//    /*第一层遍历，遍历出有几条线*/
+//    [_linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSMutableArray * objMutableArray = [NSMutableArray arrayWithArray:obj];
+//        NSMutableArray *currentMutableArray = [NSMutableArray array];
+//        [objMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            DoubleGraphModel *currentmodel = obj;
+//            [currentMutableArray addObject:[[ChartDataEntry alloc] initWithX:[currentmodel.time doubleValue] y:[currentmodel.value doubleValue]]];
+//        }];
+//        if (idx == 0) {
+//            [greenLineValue addObjectsFromArray:currentMutableArray];
+//        } else {
+//            [blueLineValue addObjectsFromArray:currentMutableArray];
+//        }
+//    }];
+//    
+//    
+//    LineChartDataSet *blueSet = nil;
+//    LineChartDataSet *greenSet = nil;
+//    if (_chartView.data.dataSetCount > 0)
+//    {
+//        blueSet = (LineChartDataSet *)_chartView.data.dataSets[0];
+//        blueSet.values = blueLineValue;
+//        greenSet = (LineChartDataSet *)_chartView.data.dataSets[1];
+//        greenSet.values = greenLineValue;
+//        [_chartView.data notifyDataChanged];
+//        [_chartView notifyDataSetChanged];
+//    }
+//    else
+//    {
+//        blueSet = [[LineChartDataSet alloc] initWithValues:blueLineValue label:@"昨天"];
+//        blueSet.drawIconsEnabled = NO;
+//        blueSet.highlightEnabled = NO;//不显示十字线
+//        blueSet.axisDependency = AxisDependencyLeft;
+//        blueSet.mode = LineChartModeHorizontalBezier;
+//        [blueSet setColor:UIColorFromRGB(0xAA66CC)];
+//        blueSet.lineWidth = 2.0;
+//        blueSet.drawCircleHoleEnabled = NO;
+//        [blueSet setCircleColor:UIColorFromRGB(0xAA66CC)];
+//        blueSet.fillAlpha = 65/255.0;
+//        blueSet.fillColor = UIColorFromRGB(0xAA66CC);
+//        blueSet.circleRadius = 0.0;
+//        blueSet.drawValuesEnabled = NO;
+//        
+//        
+//        greenSet = [[LineChartDataSet alloc] initWithValues:greenLineValue label:@"今天"];
+//        greenSet.drawIconsEnabled = NO;
+//        greenSet.highlightEnabled = NO;//不显示十字线
+//        greenSet.axisDependency = AxisDependencyLeft;
+//        greenSet.mode = LineChartModeHorizontalBezier;
+//        [greenSet setColor:UIColorFromRGB(0x9bcc00)];
+//        greenSet.lineWidth = 2.0;
+//        greenSet.drawValuesEnabled = NO;
+//        greenSet.drawCircleHoleEnabled = NO;
+//        [greenSet setCircleColor:UIColorFromRGB(0x9bcc00)];
+//        greenSet.fillAlpha = 65/255.0;
+//        greenSet.fillColor = UIColorFromRGB(0x9bcc00);
+//        if ([greenLineValue count] < 4) {
+//            greenSet.circleRadius = 3.0;
+//            greenSet.drawValuesEnabled = YES;
+//        } else {
+//            greenSet.circleRadius = 0.0;
+//            greenSet.drawValuesEnabled = NO;
+//        }
+//        
+//        NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+//        [dataSets addObjectsFromArray:@[blueSet,greenSet]];
+//        
+//        _chartView.data = [[LineChartData alloc] initWithDataSets:dataSets];
+//    }
+//}
 
 @end

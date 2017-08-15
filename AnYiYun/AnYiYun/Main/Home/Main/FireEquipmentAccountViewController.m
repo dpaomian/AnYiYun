@@ -10,6 +10,7 @@
 #import "EquipmentAccountCell.h"
 #import "RealtimeMonitoringListModel.h"
 #import "DeviceFileViewController.h"
+#import "EquipmentAccountHeaderFooterView.h"
 
 @interface FireEquipmentAccountViewController ()
 
@@ -27,6 +28,7 @@
     
     self.tableView.sectionIndexColor = UIColorFromRGB(0x3D3D3D);
     self.tableView.sectionIndexBackgroundColor = UIColorFromRGBA(0x666666,0.4f);
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountHeaderFooterView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:@"EquipmentAccountHeaderFooterView"];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountCell class]) bundle:nil] forCellReuseIdentifier:@"EquipmentAccountCell"];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -190,10 +192,21 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44.0f;
 }
-- ( NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {\
+/*- ( NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+ NSArray * currentArray = [self sortKeysWithDic:_listMutableDic];
+ NSString *keyString = currentArray[section];
+ return keyString;
+ }*/
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     NSArray * currentArray = [self sortKeysWithDic:_listMutableDic];
     NSString *keyString = currentArray[section];
-    return keyString;
+    
+    EquipmentAccountHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"EquipmentAccountHeaderFooterView"];
+    headerView.headerTitleLab.text = keyString;
+    headerView.headerTitleLab.textColor = section==0?UIColorFromRGB(0x000000):UIColorFromRGB(0x0d8eea);
+    return headerView;
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView

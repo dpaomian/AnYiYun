@@ -258,6 +258,8 @@
         _nodataView.hidden = YES;
     } else {
         _nodataView.hidden = NO;
+        _nodataView.imageView.image = [UIImage imageNamed:@"All_OK.png"];
+        _nodataView.titleLable.text = @"目前全部设备运转正常";
     }
     [_alarmTableView reloadData];
     
@@ -291,6 +293,8 @@
              _nodataView.hidden = YES;
          } else {
              _nodataView.hidden = NO;
+             _nodataView.imageView.image = [UIImage imageNamed:@"ic_device_info_nothing.png"];
+             _nodataView.titleLable.text = @"目前全部设备运转安全";
          }
      [_examTableView reloadData];
      [self endRefreshing];
@@ -327,6 +331,8 @@
              _nodataView.hidden = YES;
          } else {
              _nodataView.hidden = NO;
+             _nodataView.imageView.image = [UIImage imageNamed:@"All_OK.png"];
+             _nodataView.titleLable.text = @"目前全部设备运转正常";
          }
      [_maintainTableView reloadData];
      [self endRefreshing];

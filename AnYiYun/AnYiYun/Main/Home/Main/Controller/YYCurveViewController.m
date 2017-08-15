@@ -60,7 +60,7 @@
         ChartYAxis *leftAxis = _curveView.leftAxis;
         leftAxis.labelTextColor = [UIColor lightGrayColor];
         [leftAxis removeAllLimitLines];
-        leftAxis.axisMinimum = 0.0;
+//        leftAxis.axisMinimum = 0.0;
         leftAxis.drawZeroLineEnabled = NO;
         leftAxis.drawLimitLinesBehindDataEnabled = YES;
         
@@ -109,11 +109,17 @@
     NSMutableArray *greenValues = [[NSMutableArray alloc] init];
     NSMutableArray *blueValues = [[NSMutableArray alloc] init];
     
+    __block BOOL oneLine = NO;
+    [_linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray * objMutableArray = [NSMutableArray arrayWithArray:obj];
+        if (idx == 1 && [objMutableArray count] ==0) {
+            oneLine = YES;
+        }
+    }];
     /*第一层遍历，遍历出有几条线*/
     [_linesMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [greenLineValue removeAllObjects];
         [blueLineValue removeAllObjects];
-        
         NSMutableArray * objMutableArray = [NSMutableArray arrayWithArray:obj];
         NSInteger myIdx = idx;
         [objMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -123,11 +129,17 @@
                 NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
                 [greenValues addObject:valueString];
                 NSString *timeString = [NSString stringWithFormat:@"%.2f",[currentmodel.time doubleValue]];
-                [xValue addObject:timeString];
+                if (oneLine) {
+                    [xValue addObject:timeString];
+                }
             } else {
                 double value = [currentmodel.value doubleValue];
                 NSString *valueString = [NSString stringWithFormat:@"%.2f",value];
                 [blueValues addObject:valueString];
+                NSString *timeString = [NSString stringWithFormat:@"%.2f",[currentmodel.time doubleValue]];
+                if (!oneLine) {
+                    [xValue addObject:timeString];
+                }
             }
         }];
     }];
@@ -142,6 +154,9 @@
     
     ChartIndexAxisValueFormatter *formatteer = [[ChartIndexAxisValueFormatter alloc] initWithValues:xValue];
     _curveView.xAxis.valueFormatter = formatteer;
+
+    
+    _curveView.leftAxis.valueFormatter = [[YYValueFormatter alloc] init];
     
     LineChartDataSet *blueSet = nil;
     LineChartDataSet *greenSet = nil;
@@ -176,13 +191,13 @@
         greenSet.highlightEnabled = NO;//不显示十字线
         greenSet.axisDependency = AxisDependencyLeft;
         greenSet.mode = LineChartModeHorizontalBezier;
-        [greenSet setColor:[UIColor greenColor]];
+        [greenSet setColor:UIColorFromRGB(0x9bcc00)];
         greenSet.lineWidth = 2.0;
         greenSet.drawValuesEnabled = NO;
         greenSet.drawCircleHoleEnabled = NO;
-        [greenSet setCircleColor:[UIColor greenColor]];
+        [greenSet setCircleColor:UIColorFromRGB(0x9bcc00)];
         greenSet.fillAlpha = 65/255.0;
-        greenSet.fillColor = [UIColor greenColor];
+        greenSet.fillColor = UIColorFromRGB(0x9bcc00);
         if ([greenLineValue count] < 4 && [blueLineValue count] >0) {
             greenSet.circleRadius = 3.0;
             greenSet.drawValuesEnabled = YES;

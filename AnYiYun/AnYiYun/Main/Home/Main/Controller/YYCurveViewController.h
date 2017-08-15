@@ -8,6 +8,7 @@
 
 #import "YYChartsBaseViewController.h"
 #import "YYCurveView.h"
+#import "YYValueFormatter.h"
 
 @interface YYCurveViewController : YYChartsBaseViewController
 

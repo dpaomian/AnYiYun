@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NoDataView : UIView
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLable;
 
 @end
