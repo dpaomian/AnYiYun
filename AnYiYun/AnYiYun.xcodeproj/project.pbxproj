@@ -2184,8 +2184,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2ebceffe-d157-4d85-ba86-698b64a4ac0b";
-				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.ios;
+				PROVISIONING_PROFILE = "d6f78144-1374-4a5b-9e70-a48a12f8b9c9";
+				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosAdHocPush;
 			};
 			name = Debug;
 		};
@@ -2210,8 +2210,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2ebceffe-d157-4d85-ba86-698b64a4ac0b";
-				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.ios;
+				PROVISIONING_PROFILE = "d6f78144-1374-4a5b-9e70-a48a12f8b9c9";
+				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosAdHocPush;
 			};
 			name = Release;
 		};
