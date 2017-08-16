@@ -74,7 +74,7 @@
 
 -(float)getCacheSize
 {
-    float cacheSize = 2;
+    float cacheSize = [BaseHelper getFolderSizeAtPath:PATH_AT_CACHEDIR(kUserImagesFolder)];
     return cacheSize;
 }
 

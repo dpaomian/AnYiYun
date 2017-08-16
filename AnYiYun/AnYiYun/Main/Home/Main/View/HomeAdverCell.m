@@ -1,10 +1,10 @@
-//
-//  HomeAdverCell.m
-//  AnYiYun
-//
-//  Created by wwr on 2017/7/25.
-//  Copyright © 2017年 wwr. All rights reserved.
-//
+    //
+    //  HomeAdverCell.m
+    //  AnYiYun
+    //
+    //  Created by wwr on 2017/7/25.
+    //  Copyright © 2017年 wwr. All rights reserved.
+    //
 
 #import "HomeAdverCell.h"
 
@@ -12,6 +12,7 @@
 {
     UILabel             *titleLabel;
     UIImageView         *desImageView;
+    UIImageView         *aaaImageView;
 }
 @end
 
@@ -46,6 +47,12 @@
         titleLabel.numberOfLines = 2;
         [self.contentView addSubview:titleLabel];
         
+        aaaImageView = [[UIImageView alloc]init];
+        aaaImageView.image = [UIImage imageNamed:@"image_aaa.png"];
+        aaaImageView.frame = CGRectMake(SCREEN_WIDTH-60, 0, 30 ,30);
+        [self.contentView addSubview:aaaImageView];
+        
+        
         desImageView = [[UIImageView alloc]init];
         desImageView.clipsToBounds = YES;
         desImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -61,18 +68,35 @@
     titleLabel.text = [BaseHelper isSpaceString:itemModel.name andReplace:@""];
     
     UIImage *defultImg = [UIImage imageNamed:@""];
-    [desImageView sd_setImageWithURL:[NSURL URLWithString:[BaseHelper isSpaceString:itemModel.pic_url andReplace:@""]] placeholderImage:defultImg];
+
+    NSString *imageStr = [BaseHelper isSpaceString:itemModel.pic_url andReplace:@""];
+    NSString *cachePath = [NSString stringWithFormat:@"%@/%@",PATH_AT_CACHEDIR(kUserImagesFolder),[imageStr lastPathComponent]];
+    [desImageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:defultImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+     {
+     if (image!=nil)
+         {
+             //保存加载过后的图片到头像文件夹里
+         NSData *imageData = UIImageJPEGRepresentation(image, 1);
+         if (cachePath)
+             {
+             dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                 [BaseCacheHelper createFolder:cachePath isDirectory:NO];
+                 [imageData writeToFile:cachePath atomically:NO];
+             });
+             }
+         }
+     }];
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+        // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+        // Configure the view for the selected state
 }
 
 @end

@@ -32,6 +32,13 @@
 
 -(void)getChangeDataWithType:(NSInteger)type
 {
+    if (![BaseHelper checkNetworkStatus])
+        {
+        DLog(@"网络异常 请求被返回");
+        [StatusBarOverlay initAnimationWithAlertString:@"网络异常,请检查网络是否可用！" theImage:nil];
+        return;
+    }
+    
     NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/initApp/change_ds"];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                             @"deviceId":self.deviceIdString,

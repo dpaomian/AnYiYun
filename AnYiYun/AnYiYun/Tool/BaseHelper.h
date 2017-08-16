@@ -55,4 +55,9 @@
 /*!计算显示时间，传进来创建时的时间戳*/
 + (NSString *)getShowTimeWithLong:(long )timeStamp;
 
+/**
+ 监控网络状态
+ */
++ (BOOL)checkNetworkStatus;
+
 @end

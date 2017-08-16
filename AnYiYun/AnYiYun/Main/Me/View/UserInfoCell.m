@@ -38,7 +38,27 @@
     NSString *twoStr = [usePhoneStr substringFromIndex:9];
     
     self.rightLabel.text = [NSString stringWithFormat:@"帐号：%@******%@",oneStr,twoStr];
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[PersonInfo shareInstance].comLogoUrl] placeholderImage:nil];
+
+    NSString *imageStr = [PersonInfo shareInstance].comLogoUrl;
+    NSString *cachePath = [NSString stringWithFormat:@"%@/%@",PATH_AT_CACHEDIR(kUserImagesFolder),[imageStr lastPathComponent]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+     {
+     /**
+     if (image!=nil)
+         {
+             //保存加载过后的图片到头像文件夹里
+         NSData *imageData = UIImageJPEGRepresentation(image, 1);
+         if (cachePath)
+             {
+             dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                 [BaseCacheHelper createFolder:cachePath isDirectory:NO];
+                 [imageData writeToFile:cachePath atomically:NO];
+             });
+             }
+         }
+      */
+     }];
+    
     _bottomLineView.hidden = YES;
 }
 

@@ -105,3 +105,6 @@ dispatch_async(dispatch_get_main_queue(), block);\
 #define PATH_AT_CACHEDIR(name)		[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:name]
     //Libary文件夹路径
 #define PATH_AT_LIBDIR(name)		[[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:name]
+
+#define kUserImagesFolder       [NSString stringWithFormat:@"%@/images",[PersonInfo shareInstance].accountID]
+

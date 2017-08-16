@@ -365,4 +365,19 @@
     }
 }
 
+/**
+ 监控网络状态
+ */
++ (BOOL)checkNetworkStatus
+{
+    __block BOOL isNetworkUse = YES;
+    NSInteger status = [[BaseCacheHelper valueForKey:kNotifierNetWork] integerValue];
+    if (status == 0) {
+        isNetworkUse = NO;
+    }else{
+        isNetworkUse = YES;
+    }
+    return isNetworkUse;
+}
+
 @end

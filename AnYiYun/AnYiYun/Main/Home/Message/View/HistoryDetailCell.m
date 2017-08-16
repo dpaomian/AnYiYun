@@ -46,7 +46,7 @@
         _contentLabel.font = SYSFONT_(13);
     }
     _titleLabel.text = itemModel.messageTitle;
-    _timeLabel.text = [BaseHelper getShowTimeWithLong:itemModel.uploadtime];
+    _timeLabel.text = [BaseHelper getShowTimeWithLong:itemModel.ctime];
     
     _contentLabel.text =itemModel.messageContent;
 }

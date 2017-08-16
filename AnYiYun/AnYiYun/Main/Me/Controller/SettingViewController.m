@@ -146,6 +146,7 @@
         if([titleString isEqualToString:@"清除缓存"])
             {
                 //设置缓存
+            typeString = @"2";
             }
         [cell setCellContentWithTitle:titleString withImageString:imageString withType:typeString];
         return cell;
@@ -195,7 +196,7 @@
         if (buttonIndex == 1)
             {
             DLog(@"确定");
-            [MBProgressHUD showSuccess:@"清理完成"];
+            [self deleteDownVideoByfilePath:PATH_AT_CACHEDIR(kUserImagesFolder)];
             }
         else
             {
@@ -210,6 +211,33 @@
         [self setAPPLogout];
         }
     }
+}
+
+    //清除班级圈下载小视频
+-(void)deleteDownVideoByfilePath:(NSString *)filePath
+{
+    [MBProgressHUD showMessage:@"清理中..." ];
+    BACK( ^{
+            //取出抓图文件夹下得所有文件
+        NSString *documentsDirectory = filePath;
+        NSFileManager *fileManage = [NSFileManager defaultManager];
+        NSArray *imageFiles = [fileManage subpathsOfDirectoryAtPath: documentsDirectory error:nil];
+        
+        for (NSString *p in imageFiles) {
+            NSError *error;
+            NSString *path = [documentsDirectory stringByAppendingPathComponent:p];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+            }
+        }
+        MAIN(^{
+            [MBProgressHUD hideHUD];
+            [StatusBarOverlay initAnimationWithAlertString:@"清理完成" theImage:nil];
+            
+            [_settingTableView reloadData];
+            
+        });
+    });
 }
 
 

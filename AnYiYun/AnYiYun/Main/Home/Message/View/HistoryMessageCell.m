@@ -43,7 +43,25 @@
 {
     if ([BaseHelper isSpaceString:itemModel.iconUrl andReplace:@""].length>0)
     {
-        [self.leftImgView sd_setImageWithURL:[NSURL URLWithString:itemModel.iconUrl] placeholderImage:nil];
+    
+    NSString *imageStr = [BaseHelper isSpaceString:itemModel.iconUrl andReplace:@""];
+    NSString *cachePath = [NSString stringWithFormat:@"%@/%@",PATH_AT_CACHEDIR(kUserImagesFolder),[imageStr lastPathComponent]];
+    [self.leftImgView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+     {
+     if (image!=nil)
+         {
+             //保存加载过后的图片到头像文件夹里
+         NSData *imageData = UIImageJPEGRepresentation(image, 1);
+         if (cachePath)
+             {
+             dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                 [BaseCacheHelper createFolder:cachePath isDirectory:NO];
+                 [imageData writeToFile:cachePath atomically:NO];
+             });
+             }
+         }
+     }];
+    
     }
          else
          {

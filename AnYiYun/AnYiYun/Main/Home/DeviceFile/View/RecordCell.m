@@ -37,6 +37,7 @@
     _titleLabel.text = itemModel.messageContent;
     _timeLabel.text = @"";
     NSString *time = itemModel.time;
+    _timeLabel.text = time;
     if (![showType isEqualToString:@"1"])
     {
         if (time.length>16)
