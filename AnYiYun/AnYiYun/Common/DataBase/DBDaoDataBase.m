@@ -110,7 +110,7 @@ static DBDaoDataBase *_instance;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
          [db open];
-         NSString *addSqlString = [NSString stringWithFormat:@"insert or replace into T_HistoryMessageGroup_TABLE (historyMessageId, type, typeName,iconUrl,rtime,recentMes,num,remark) values ('%ld', '%ld', '%@', '%@', '%ld','%@', '%ld', '%@')", (long)adModel.historyMessageId, adModel.type, adModel.typeName, adModel.iconUrl, (long)adModel.rtime, adModel.recentMes, (long)adModel.num, @""];
+         NSString *addSqlString = [NSString stringWithFormat:@"insert or replace into T_HistoryMessageGroup_TABLE (historyMessageId, type, typeName,iconUrl,rtime,recentMes,num,remark) values ('%ld', '%ld', '%@', '%@', '%ld','%@', '%ld', '%@')", (long)adModel.historyMessageId, (long)adModel.type, adModel.typeName, adModel.iconUrl, (long)adModel.rtime, adModel.recentMes, (long)adModel.num, @""];
          success = [db executeUpdate:addSqlString];
          if (success)
          {
@@ -125,6 +125,33 @@ static DBDaoDataBase *_instance;
     
 }
 
+/**获取消息历史记录表中的不同类型的数据*/
+- (NSMutableArray *)getAllHistoryGroupInfo
+{
+    __block  NSMutableArray *mutable = [[NSMutableArray alloc] init];
+    [_dbQueue inDatabase:^(FMDatabase *db)
+     {
+     [db open];
+     NSString *findSqlString = [NSString stringWithFormat:@"select * from T_HistoryMessageGroup_TABLE"];
+     FMResultSet *rs = [db executeQuery:findSqlString];
+     while (rs && [rs next])
+         {
+         HistoryMessageModel *adObject = [[HistoryMessageModel alloc] init];
+         adObject.historyMessageId = [rs longForColumn:@"historyMessageId"];
+         adObject.type = [rs longForColumn:@"type"];
+         adObject.typeName = [rs stringForColumn:@"typeName"];
+         adObject.iconUrl = [rs stringForColumn:@"iconUrl"];
+         adObject.rtime = [rs longForColumn:@"rtime"];
+         adObject.recentMes = [rs stringForColumn:@"recentMes"];
+         adObject.num = [rs longForColumn:@"num"];
+         [mutable addObject:adObject];
+         }
+     [db close];
+     }];
+    return mutable;
+    
+}
+
 /**根据消息id获取消息*/
 - (HistoryMessageModel *)getHistoryMessagesGroupInfoWithType:(NSString *)type
 {
@@ -132,7 +159,7 @@ static DBDaoDataBase *_instance;
     [_dbQueue inDatabase:^(FMDatabase *db)
      {
          [db open];
-         NSString *findSqlString = [NSString stringWithFormat:@"select * from T_HistoryMessageGroup_TABLE WHERE type='%@'",type];
+         NSString *findSqlString = [NSString stringWithFormat:@"select * from T_HistoryMessageGroup_TABLE WHERE type= %ld",[type integerValue]];
          FMResultSet *rs = [db executeQuery:findSqlString];
          while (rs && [rs next])
          {
@@ -150,6 +177,20 @@ static DBDaoDataBase *_instance;
      }];
     return useObject;
     
+}
+
+/**批量修改某类型消息 为已读状态*/
+- (BOOL)updateHistoryGroupMessageNumWithType:(NSString *)type
+{
+    __block BOOL success = NO;
+    [_dbQueue inDatabase:^(FMDatabase *db)
+     {
+     [db open];
+     NSString *sqlString3 = [NSString stringWithFormat:@"update T_HistoryMessageGroup_TABLE set num = %d where type = %ld ", 0 ,[type integerValue]];
+     success = [db executeUpdate:sqlString3];
+     [db close];
+     }];
+    return success;
 }
 
 #pragma mark - 消息历史记录表 T_HistoryMessage_TABLE
@@ -284,7 +325,12 @@ static DBDaoDataBase *_instance;
          [db open];
          NSString *sqlString = [NSString stringWithFormat:@"delete from T_HistoryMessage_TABLE where type='%@'",type];
          success = [db executeUpdate:sqlString];
-         
+     
+     if (!success)
+         {
+         DLog(@"delete from T_HistoryMessage_TABLE where type=%@ failed, error:%@",type,[db lastErrorMessage]);
+         }
+     
          [db close];
      }];
     return success;

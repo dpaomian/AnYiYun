@@ -39,7 +39,7 @@
         [self.contentView addSubview:tapLabel];
         
         
-        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, SCREEN_WIDTH-130, 50)];
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, SCREEN_WIDTH-140, 50)];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.textColor = [UIColor blackColor];
         titleLabel.backgroundColor = [UIColor clearColor];

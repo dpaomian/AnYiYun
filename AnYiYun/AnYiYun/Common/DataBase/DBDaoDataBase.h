@@ -20,6 +20,9 @@
 - (BOOL)createHistoryMessageGroupTable;
 /**添加消息分组历史记录*/
 - (void)addHistoryMessageGroupInfoTableClassify:(HistoryMessageModel *)adModel;
+- (NSMutableArray *)getAllHistoryGroupInfo;
+/**批量修改某类型消息 为已读状态*/
+- (BOOL)updateHistoryGroupMessageNumWithType:(NSString *)type;
 /**根据消息id获取消息*/
 - (HistoryMessageModel *)getHistoryMessagesGroupInfoWithType:(NSString *)type;
 

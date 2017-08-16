@@ -12,6 +12,9 @@
 #import "HistoryDetailViewController.h"
 
 @interface HistoryMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSDictionary *versionDic;
+}
 
 @property (nonatomic, strong) UITableView *bgTableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
@@ -90,7 +93,9 @@
         noticeString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
 
-    NSDictionary *versionDic = @{@"alarm":[NSNumber numberWithInteger:
+    DLog(@" alarmString=  %@ \n warningString=  %@ \n repairString=%@  \n upkeepString=  %@  \n noticeString=  %@",[BaseHelper getTimeStringWithDate:alarmString],[BaseHelper getTimeStringWithDate:warningString],[BaseHelper getTimeStringWithDate:repairString],[BaseHelper getTimeStringWithDate:upkeepString],[BaseHelper getTimeStringWithDate:noticeString]);
+    
+    versionDic = @{@"alarm":[NSNumber numberWithInteger:
                                            [alarmString integerValue]],
                                  @"warning":[NSNumber numberWithInteger:
                                              [warningString integerValue]],
@@ -126,20 +131,26 @@
                  {
                      NSDictionary *useDic = [useArray objectAtIndex:i];
                      HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                     
-                     NSMutableArray *tempArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:[NSString stringWithFormat:@"%ld",(long)itemModel.type]];
-                     
-                     if (itemModel.num>0||tempArray.count>0)
+
+                 if (itemModel.num>0)
                      {
-                         [_datasource addObject:itemModel];
+                     DLog(@"执行插入 %ld  类型 %ld",itemModel.historyMessageId,itemModel.type);
+                     [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:itemModel];
                      }
                  }
-                 [_bgTableView reloadData];
              }
          }
+     
+     _datasource = [NSMutableArray arrayWithArray:[[DBDaoDataBase sharedDataBase] getAllHistoryGroupInfo]];
+     [_bgTableView reloadData];
+     
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"请求失败：%@",error);
+             
+             _datasource = [NSMutableArray arrayWithArray:[[DBDaoDataBase sharedDataBase] getAllHistoryGroupInfo]];
+             
+             [_bgTableView reloadData];
          }];
     
 }

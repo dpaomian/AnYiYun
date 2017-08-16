@@ -146,6 +146,9 @@
         {
             noticeString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
+    
+    DLog(@" alarmString=  %@ \n warningString=  %@ \n repairString=%@  \n upkeepString=  %@  \n noticeString=  %@",[BaseHelper getTimeStringWithDate:alarmString],[BaseHelper getTimeStringWithDate:warningString],[BaseHelper getTimeStringWithDate:repairString],[BaseHelper getTimeStringWithDate:upkeepString],[BaseHelper getTimeStringWithDate:noticeString]);
+    
         
         NSDictionary *versionDic = @{@"alarm":[NSNumber numberWithInteger:
                                                [alarmString integerValue]],
