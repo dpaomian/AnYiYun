@@ -13,6 +13,8 @@
 #import "MeMainViewController.h"
 #import "UITabBar+badge.h"
 #import "DBDaoDataBase.h"
+#import "MessageViewController.h"
+
 
 @interface RootTabBarViewController ()
 
@@ -90,6 +92,16 @@
     {
         //接收到推送 有新消息
         [self updateMainMessageRead:YES];
+    
+        // 接收到推送 进入消息列表
+    UINavigationController *nav = self.childViewControllers.firstObject;
+    MessageViewController *vc = [[MessageViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    MAIN(^{
+        [nav pushViewController:vc animated:YES];
+    });
+    
+    
     }
     else
     {
