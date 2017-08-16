@@ -51,6 +51,14 @@
 
 -(void)getUseDataRequest
 {
+    
+    if (![BaseHelper checkNetworkStatus])
+        {
+        DLog(@"网络异常 请求被返回");
+        [StatusBarOverlay initAnimationWithAlertString:@"网络异常,请检查网络是否可用！" theImage:nil];
+        return;
+        }
+    
     [_datasource removeAllObjects];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,[self getMiddleRequestValue]];
