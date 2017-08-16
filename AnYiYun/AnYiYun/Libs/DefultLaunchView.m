@@ -22,7 +22,7 @@
         
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        imageView.image = [UIImage imageNamed:@"start_page"];
+        imageView.image = [UIImage imageNamed:@"start_page.png"];
         [self addSubview:imageView];
         
         

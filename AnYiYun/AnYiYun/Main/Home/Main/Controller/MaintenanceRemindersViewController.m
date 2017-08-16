@@ -159,10 +159,10 @@
             
         }];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSString *urlString = [NSString stringWithFormat:@"%@rest/process/bugP",BASE_PLAN_URL];
+            NSString *urlString = [NSString stringWithFormat:@"%@rest/process/todoP",BASE_PLAN_URL];
             NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                                    @"bugId":modelItem.idF,
-                                    @"type":@"1"};
+                                    @"todoId":modelItem.idF,
+                                    @"type":indexPath.section==0?@"1":@"2"};
             
             [MBProgressHUD showMessage:@"提交中..."];
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
