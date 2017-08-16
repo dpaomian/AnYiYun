@@ -2186,7 +2186,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AnYiYun/AnYiYun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HENAN LION M&C TECHNOLOGY CO.,LTD (VDPTSZGHY4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VDPTSZGHY4;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2200,8 +2200,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d6f78144-1374-4a5b-9e70-a48a12f8b9c9";
-				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosAdHocPush;
+				PROVISIONING_PROFILE = "0d63778d-10d9-4442-8c58-919263e9592b";
+				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosDeveloperPush;
 			};
 			name = Debug;
 		};
@@ -2226,8 +2226,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d6f78144-1374-4a5b-9e70-a48a12f8b9c9";
-				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosAdHocPush;
+				PROVISIONING_PROFILE = "a7078de8-91cb-465e-845b-3a0a7c0c76fe";
+				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosPush;
 			};
 			name = Release;
 		};

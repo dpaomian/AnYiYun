@@ -264,6 +264,16 @@
     return dic;
 }
 
+
+/**显示请求时间手机时间 传毫秒值*/
++ (NSString *)getTimeStringWithDate:(NSString *)miaoString
+{
+    NSDateFormatter *timeDateFormatter = [[NSDateFormatter alloc] init];
+    [timeDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *nowTimeString = [timeDateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[miaoString longLongValue]/1000]];
+    return nowTimeString;
+}
+
 /**获取当前手机时间 毫秒值*/
 + (long long)getSystemNowTimeLong
 {
@@ -274,7 +284,7 @@
     
     NSDateFormatter *timeDateFormatter = [[NSDateFormatter alloc] init];
     [timeDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *nowTimeString = [timeDateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:date/1000]];
+    NSString *nowTimeString = [timeDateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
     DLog(@"获取系统时间 %@ 毫秒值 %lld",nowTimeString,date);
     
     return date;

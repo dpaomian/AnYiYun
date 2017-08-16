@@ -12,6 +12,9 @@
 #import "HistoryDetailViewController.h"
 
 @interface HistoryMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSDictionary *versionDic;
+}
 
 @property (nonatomic, strong) UITableView *bgTableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
@@ -90,7 +93,9 @@
         noticeString = [NSString stringWithFormat:@"%lld",[BaseHelper getSystemNowTimeLong]];
         }
 
-    NSDictionary *versionDic = @{@"alarm":[NSNumber numberWithInteger:
+    DLog(@" alarmString=  %@ \n warningString=  %@ \n repairString=%@  \n upkeepString=  %@  \n noticeString=  %@",[BaseHelper getTimeStringWithDate:alarmString],[BaseHelper getTimeStringWithDate:warningString],[BaseHelper getTimeStringWithDate:repairString],[BaseHelper getTimeStringWithDate:upkeepString],[BaseHelper getTimeStringWithDate:noticeString]);
+    
+    versionDic = @{@"alarm":[NSNumber numberWithInteger:
                                            [alarmString integerValue]],
                                  @"warning":[NSNumber numberWithInteger:
                                              [warningString integerValue]],
@@ -126,9 +131,14 @@
                  {
                      NSDictionary *useDic = [useArray objectAtIndex:i];
                      HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                     
+                 
+                 if (itemModel.num>0)
+                     {
+                     [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:itemModel];
+                     }
+                 
                      NSMutableArray *tempArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:[NSString stringWithFormat:@"%ld",(long)itemModel.type]];
-                     
+                 
                      if (itemModel.num>0||tempArray.count>0)
                      {
                          [_datasource addObject:itemModel];

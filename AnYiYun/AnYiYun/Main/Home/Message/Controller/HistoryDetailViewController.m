@@ -106,12 +106,7 @@
                  NSMutableArray *tempArray = [[NSMutableArray alloc] init];
                  tempArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];
                  _datasource = [NSMutableArray arrayWithArray:tempArray];
-                 
-                 if (self.groupItemModel.rtime>0)
-                 {
-                     [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:self.groupItemModel];
-                 }
-                 
+             
                  [_bgTableView reloadData];
              }
          }

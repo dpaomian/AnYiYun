@@ -284,7 +284,12 @@ static DBDaoDataBase *_instance;
          [db open];
          NSString *sqlString = [NSString stringWithFormat:@"delete from T_HistoryMessage_TABLE where type='%@'",type];
          success = [db executeUpdate:sqlString];
-         
+     
+     if (!success)
+         {
+         DLog(@"delete from T_HistoryMessage_TABLE where type=%@ failed, error:%@",type,[db lastErrorMessage]);
+         }
+     
          [db close];
      }];
     return success;
