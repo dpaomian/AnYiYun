@@ -36,6 +36,9 @@
     [super viewWillDisappear:animated];
 
     [[DBDaoDataBase sharedDataBase]updateHistoryMessageReadStatusWithType:self.typeString];
+    [[DBDaoDataBase sharedDataBase]updateHistoryGroupMessageNumWithType:self.typeString];
+    
+    
 }
 
 - (void)makeupComponentUI
@@ -101,7 +104,12 @@
                      itemModel.isRead = @"0";
                      [[DBDaoDataBase sharedDataBase] addHistoryMessageInfoTableClassify:itemModel];
                  }
-                 
+             
+             if (self.groupItemModel.num>0)
+                 {
+                 [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:self.groupItemModel];
+                 }
+             
                  //取数据库中值
                  NSMutableArray *tempArray = [[NSMutableArray alloc] init];
                  tempArray = [[DBDaoDataBase sharedDataBase] getAllHistoryMessagesInfoWithType:self.typeString];

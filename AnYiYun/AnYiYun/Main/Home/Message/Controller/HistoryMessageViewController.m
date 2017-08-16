@@ -131,25 +131,26 @@
                  {
                      NSDictionary *useDic = [useArray objectAtIndex:i];
                      HistoryMessageModel *itemModel = [HistoryMessageModel mj_objectWithKeyValues:useDic];
-                 
+
                  if (itemModel.num>0)
                      {
+                     DLog(@"执行插入 %ld  类型 %ld",itemModel.historyMessageId,itemModel.type);
                      [[DBDaoDataBase sharedDataBase]addHistoryMessageGroupInfoTableClassify:itemModel];
                      }
-                 
-                     NSMutableArray *tempArray = [[DBDaoDataBase sharedDataBase]getAllHistoryMessagesInfoWithType:[NSString stringWithFormat:@"%ld",(long)itemModel.type]];
-                 
-                     if (itemModel.num>0||tempArray.count>0)
-                     {
-                         [_datasource addObject:itemModel];
-                     }
                  }
-                 [_bgTableView reloadData];
              }
          }
+     
+     _datasource = [NSMutableArray arrayWithArray:[[DBDaoDataBase sharedDataBase] getAllHistoryGroupInfo]];
+     [_bgTableView reloadData];
+     
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              DLog(@"请求失败：%@",error);
+             
+             _datasource = [NSMutableArray arrayWithArray:[[DBDaoDataBase sharedDataBase] getAllHistoryGroupInfo]];
+             
+             [_bgTableView reloadData];
          }];
     
 }
