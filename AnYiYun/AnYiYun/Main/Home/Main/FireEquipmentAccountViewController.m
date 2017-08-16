@@ -205,7 +205,7 @@
     
     EquipmentAccountHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"EquipmentAccountHeaderFooterView"];
     headerView.headerTitleLab.text = keyString;
-    headerView.headerTitleLab.textColor = section==0?UIColorFromRGB(0x000000):UIColorFromRGB(0x0d8eea);
+    headerView.headerTitleLab.textColor = section==0?UIColorFromRGB(0x000000):UIColorFromRGB(0x128BF5);
     return headerView;
 }
 

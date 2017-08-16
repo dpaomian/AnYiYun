@@ -153,13 +153,13 @@
         greenSet.highlightEnabled = NO;//不显示十字线
         greenSet.axisDependency = AxisDependencyLeft;
         greenSet.mode = LineChartModeHorizontalBezier;
-        [greenSet setColor:UIColorFromRGB(0x9bcc00)];
+        [greenSet setColor:UIColorFromRGB(0x99cc00)];
         greenSet.lineWidth = 2.0;
         greenSet.drawValuesEnabled = NO;
         greenSet.drawCircleHoleEnabled = NO;
-        [greenSet setCircleColor:UIColorFromRGB(0x9bcc00)];
+        [greenSet setCircleColor:UIColorFromRGB(0x99cc00)];
         greenSet.fillAlpha = 65/255.0;
-        greenSet.fillColor = UIColorFromRGB(0x9bcc00);
+        greenSet.fillColor = UIColorFromRGB(0x99cc00);
         if ([greenLineValue count] < 4 && [blueLineValue count] >0) {
             greenSet.circleRadius = 3.0;
             greenSet.drawValuesEnabled = YES;
@@ -228,13 +228,13 @@
 //        greenSet.highlightEnabled = NO;//不显示十字线
 //        greenSet.axisDependency = AxisDependencyLeft;
 //        greenSet.mode = LineChartModeHorizontalBezier;
-//        [greenSet setColor:UIColorFromRGB(0x9bcc00)];
+//        [greenSet setColor:UIColorFromRGB(0x99cc00)];
 //        greenSet.lineWidth = 2.0;
 //        greenSet.drawValuesEnabled = NO;
 //        greenSet.drawCircleHoleEnabled = NO;
-//        [greenSet setCircleColor:UIColorFromRGB(0x9bcc00)];
+//        [greenSet setCircleColor:UIColorFromRGB(0x99cc00)];
 //        greenSet.fillAlpha = 65/255.0;
-//        greenSet.fillColor = UIColorFromRGB(0x9bcc00);
+//        greenSet.fillColor = UIColorFromRGB(0x99cc00);
 //        if ([greenLineValue count] < 4) {
 //            greenSet.circleRadius = 3.0;
 //            greenSet.drawValuesEnabled = YES;
