@@ -89,7 +89,7 @@
     headerView.titleLab.text = model.device_name;
     headerView.contentLab.text = [NSString stringWithFormat:@"%d",[model.itemsMutableArray count]];
     headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
-    headerView.contentLab.textColor = [UIColor redColor];
+    headerView.contentLab.textColor = UIColorFromRGB(0xF44336);
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
         if (isSelected) {
             /*首先关闭原来的选项*/
@@ -160,7 +160,7 @@
             NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                                     @"bugId":modelItem.idF,
                                     @"type":@"1"};
-            
+            DLog(@"url :%@  param: %@",urlString,param);
             [MBProgressHUD showMessage:@"提交中..."];
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer = [AFHTTPResponseSerializer serializer];
