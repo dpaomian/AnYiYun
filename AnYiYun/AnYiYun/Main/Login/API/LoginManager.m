@@ -35,7 +35,7 @@ completionBlockWithSuccess:(requestBlockSuccess)success
             [MBProgressHUD showHUDAddedTo:kWindow animated:YES];
         });
         if (![BaseAFNRequest checkNetworkStatus]) {
-            [StatusBarOverlay initAnimationWithAlertString:@"网络异常,请检查网络是否可用！" theImage:nil];
+            [BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
             [weakSelf setRootViewAfterPlatFormLogin];
             return;
         }

@@ -47,5 +47,7 @@
 @property (nonatomic,assign)NSInteger rtime;
 @property (nonatomic,assign)NSInteger num;
 
+- (id)initWithDictionary:(NSDictionary *)userDictionary;
+
 @end
 

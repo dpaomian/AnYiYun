@@ -32,6 +32,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (![BaseHelper checkNetworkStatus])
+    {
+        DLog(@"网络异常 请求被返回");
+        [BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
+    }
+    
     //刷新是否有未读消息
     [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
 }
