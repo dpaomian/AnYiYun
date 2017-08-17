@@ -51,12 +51,28 @@
 
 @implementation HistoryMessageModel
 
+- (id)initWithDictionary:(NSDictionary *)userDictionary
+{
+    if (self = [super init])
+    {
+        _historyMessageId = [[BaseHelper isSpaceString:[userDictionary valueForKey:@"id"] andReplace:@""] integerValue];
+        _type = [[BaseHelper isSpaceString:[userDictionary valueForKey:@"type"] andReplace:@""] integerValue];
+        
+        _typeName = [BaseHelper isSpaceString:[userDictionary valueForKey:@"typeName"] andReplace:@""];
+        _iconUrl = [BaseHelper isSpaceString:[userDictionary valueForKey:@"iconUrl"] andReplace:@""];
+        _recentMes = [BaseHelper isSpaceString:[userDictionary valueForKey:@"recentMes"] andReplace:@""];
+        
+        _rtime = [[BaseHelper isSpaceString:[userDictionary valueForKey:@"rtime"] andReplace:@""] integerValue];
+        _num = [[BaseHelper isSpaceString:[userDictionary valueForKey:@"num"] andReplace:@""] integerValue];
+    }
+    return self;
+}
+
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
     return @{
              @"id": @"historyMessageId"
              };
 }
-
 
 @end
