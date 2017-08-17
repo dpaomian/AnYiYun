@@ -378,7 +378,7 @@
     NSArray * array = [model.extend componentsSeparatedByString:@":"];
     headerView.contentLab.text =  ([array count]== 3)?[NSString stringWithFormat:@"%@ %@",array[1],array[2]]:@"0.0 kW";
     headerView.contentLab.font = [UIFont systemFontOfSize:12.0f];
-    headerView.tailImage.image = [UIImage imageNamed:([model.state integerValue] == 1) ? @"onLine.png":@"outLine.png"];
+    headerView.tailImage.image = [UIImage imageNamed:([model.pointState integerValue] == 0) ? @"onLine.png":@"outLine.png"];
     headerView.headerTouchHandle = ^(LoadDatectionHeaderView *dateHeaderView, BOOL isSelected){
         if (isSelected) {
             /*首先关闭原来的选项*/
@@ -410,7 +410,7 @@
     RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
     cell.titleLab.text = modelItem.point_name;
     cell.contentLab.text = [NSString stringWithFormat:@"%@ %@",modelItem.point_value,modelItem.point_unit];
-    cell.tailImageView.image = [UIImage imageNamed:([model.state integerValue]==1)?@"onLine.png":@"outLine.png"];
+    cell.tailImageView.image = [UIImage imageNamed:([modelItem.point_state integerValue]==0)?@"onLine.png":@"outLine.png"];
     return cell;
  
 }
