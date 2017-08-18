@@ -113,6 +113,13 @@
 
 -(void)getUseDataRequest
 {
+    if (![BaseHelper checkNetworkStatus])
+    {
+        DLog(@"网络异常 请求被返回");
+        [BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
+        return;
+    }
+    
     NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,[self getMiddleRequestValue]];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
                             @"deviceId":self.deviceIdString};
