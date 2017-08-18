@@ -201,7 +201,7 @@
     EnergyConsumptionStatisticsModel *model = _listMutableArray[indexPath.row];
     EnergyConsumptionStatisticsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EnergyConsumptionStatisticsCell" forIndexPath:indexPath];
     cell.allTitleLab.text = model.name;
-    cell.tailImageView.image = [UIImage imageNamed:([model.state integerValue]==1)?@"onLine.png":@"outLine.png"];
+    cell.tailImageView.image = [UIImage imageNamed:([model.pointState integerValue]==0)?@"onLine.png":@"outLine.png"];
     cell.allValueLab.text = [NSString stringWithFormat:@"%@ %@",model.now,model.unit];
     
     cell.yesteDayLab.text = [NSString stringWithFormat:@"昨日电量：%@ %@",model.ldData,model.unit];
