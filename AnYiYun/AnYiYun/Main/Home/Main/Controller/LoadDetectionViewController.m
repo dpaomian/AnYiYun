@@ -26,8 +26,8 @@
     
     _conditionDic = [NSMutableDictionary dictionary];
     _listMutableArray = [NSMutableArray array];
-    _curveMutableArray1 = [NSMutableArray array];
-    _curveMutableArray2 = [NSMutableArray array];
+//    _curveMutableArray1 = [NSMutableArray array];
+//    _curveMutableArray2 = [NSMutableArray array];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -90,10 +90,8 @@
     _collectionView.foldHandle = ^(LoadDetectionFilterCollectionView *myCollectionView, BOOL isFold){
         if (isFold) {
             ws.collectionView.hidden = YES;
-//            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 34.0f);
         } else {
             ws.collectionView.hidden = NO;
-//            ws.collectionView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT -NAV_HEIGHT);
         }
     };
     _collectionView.choiceHandle = ^(LoadDetectionFilterCollectionView *myCollectionView, id modelObject, NSInteger idx) {
@@ -218,42 +216,6 @@
                 }
                 [ws.listMutableArray addObject:model];
             }
-            /*if (idx== 0) {
-                ws.foldSection = idx;
-                [ws loadItemWithModel:model andSection:idx];
-                ws.curveView.titleLab.text = model.device_name;
-                [ws loadCurveWithModel:model andSection:idx];
-                model.isFold = YES;
-            } else {
-                model.isFold = NO;
-            }*/
-            /*if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
-                NSString *keyString = ws.conditionDic[@"fifthCondition"]?ws.conditionDic[@"fifthCondition"]:@"";
-                if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
-                    !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
-                    if (idx== 0) {
-                        ws.foldSection = idx;
-                        [ws loadItemWithModel:model andSection:idx];
-                        [ws loadCurveWithModel:model andSection:idx];
-                        model.isFold = YES;
-                    } else {
-                        model.isFold = NO;
-                    }
-                    [ws.listMutableArray addObject:model];
-                } else {
-                    NSLog(@"没有");
-                }
-            } else {
-                if (idx== 0) {
-                    ws.foldSection = idx;
-                    [ws loadItemWithModel:model andSection:idx];
-                    [ws loadCurveWithModel:model andSection:idx];
-                    model.isFold = YES;
-                } else {
-                    model.isFold = NO;
-                }
-                [ws.listMutableArray addObject:model];
-            }*/
         }];
         [ws.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
@@ -268,7 +230,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/energyData/loadMonitorSecond",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"deviceId":itemModel.idF};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         itemModel.itemsMutableArray = [@[] mutableCopy];
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *childItemsMutablearray = [NSMutableArray array];
@@ -280,9 +242,11 @@
             model.idF = obj[@"id"];
             model.point_name = obj[@"point_name"];
             model.point_state = obj[@"point_state"];
+            /*如果设备离线，将区头也改为离线*/
+            itemModel.pointState = obj[@"point_state"];
+            model.point_value = obj[@"point_value"];
             model.point_type = obj[@"point_type"];
             model.point_unit = obj[@"point_unit"];
-            model.point_value = obj[@"point_value"];
             model.sid = obj[@"sid"];
             model.sortDevice = obj[@"sortDevice"];
             model.terminal_id = obj[@"terminal_id"];
@@ -308,8 +272,8 @@
     NSString * idString = [array count]>0?array[0]:@"";
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":idString,@"type":@"103"};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
-        [ws.curveMutableArray1 removeAllObjects];
-        [ws.curveMutableArray2 removeAllObjects];
+//        [ws.curveMutableArray1 removeAllObjects];
+//        [ws.curveMutableArray2 removeAllObjects];
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *lines = [NSMutableArray array];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

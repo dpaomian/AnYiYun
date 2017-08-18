@@ -23,10 +23,10 @@
 @property (nonatomic, strong) UITableView *tableView;
 /*!*/
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
-/*!*/
-@property (nonatomic, strong) NSMutableArray   *curveMutableArray1;
-/*!*/
-@property (nonatomic, strong) NSMutableArray   *curveMutableArray2;
+///*!*/
+//@property (nonatomic, strong) NSMutableArray   *curveMutableArray1;
+///*!*/
+//@property (nonatomic, strong) NSMutableArray   *curveMutableArray2;
 /*!*/
 @property (nonatomic, strong) NSMutableDictionary   *conditionDic;
 @property (nonatomic, strong) dispatch_source_t    timer;
