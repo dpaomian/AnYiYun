@@ -17,7 +17,7 @@
     UITextField          *_userPswField;
 }
 
-@property (nonatomic,strong)DefultLaunchView *defultView;
+@property (nonatomic,strong)DefultLaunchView *gifDefultView;
 
 @end
 
@@ -127,14 +127,14 @@
 
     if ([_isLogOut boolValue]==NO)
     {
-        [self.view addSubview:self.defultView];
+        [self.view addSubview:self.gifDefultView];
     }
 }
 
 -(void)defultRemoveLaunchView
 {
-    [_defultView removeFromSuperview];
-    _defultView = nil;
+    [_gifDefultView removeFromSuperview];
+    _gifDefultView = nil;
 }
 
     //登录
@@ -203,18 +203,18 @@
 
 #pragma mark -定时器
 
--(DefultLaunchView *)defultView
+-(DefultLaunchView *)gifDefultView
 {
     __weak typeof (self) weakSelf = self;
     
-    if (!_defultView) {
-        _defultView = [[DefultLaunchView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _defultView.backgroundColor = kAPPBlueColor;
-        _defultView.aniamtionImageView.loopCompletionBlock = ^(NSUInteger loopCountRemaining){
+    if (!_gifDefultView) {
+        _gifDefultView = [[DefultLaunchView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _gifDefultView.backgroundColor = kAPPBlueColor;
+        _gifDefultView.aniamtionImageView.loopCompletionBlock = ^(NSUInteger loopCountRemaining){
             [weakSelf defultRemoveLaunchView];
         };
     }
-    return _defultView;
+    return _gifDefultView;
 }
 
 

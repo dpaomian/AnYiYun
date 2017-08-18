@@ -268,7 +268,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/energyData/loadMonitorSecond",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"deviceId":itemModel.idF};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
         itemModel.itemsMutableArray = [@[] mutableCopy];
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *childItemsMutablearray = [NSMutableArray array];
@@ -307,7 +307,7 @@
     NSArray * array = [NSArray arrayWithArray:[[itemModel extend] componentsSeparatedByString:@":"]];
     NSString * idString = [array count]>0?array[0]:@"";
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":idString,@"type":@"103"};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
         [ws.curveMutableArray1 removeAllObjects];
         [ws.curveMutableArray2 removeAllObjects];
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];

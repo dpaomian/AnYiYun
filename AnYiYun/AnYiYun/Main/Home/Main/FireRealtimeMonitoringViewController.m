@@ -211,7 +211,7 @@
         urlString = [NSString stringWithFormat:@"%@rest/busiData/singleGraph",BASE_PLAN_URL];
     } else {};
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":itemModel.idF,@"type":itemModel.point_type};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *lines = [NSMutableArray array];
         
@@ -349,7 +349,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/electricalFire/realTimeMonSecond",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"deviceId":itemModel.idF};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
         itemModel.itemsMutableArray = [@[] mutableCopy];
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *childItemsMutablearray = [NSMutableArray array];

@@ -9,6 +9,7 @@
 #import "LoginManager.h"
 #import "RootTabBarViewController.h"
 #import "LoginViewController.h"
+#import "CompanyModel.h"
 
 //极光推送相关
 // 引入JPush功能所需头文件
@@ -39,7 +40,7 @@ completionBlockWithSuccess:(requestBlockSuccess)success
             [weakSelf setRootViewAfterPlatFormLogin];
             return;
         }
-        [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(NSDictionary *object){
+        [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(NSDictionary *object){
             MAIN(^{
                 [MBProgressHUD hideHUDForView:kWindow animated:YES];
             });
@@ -111,6 +112,9 @@ completionBlockWithSuccess:(requestBlockSuccess)success
     //登录后执行的操作
 + (void)operationAfterLogin
 {
+    [self getComLaunchRequestAction];
+    [self updatePersonInfo];
+    
     //设置极光推送别名
     NSString *userName = [PersonInfo shareInstance].username;
     NSInteger seqID = [[PersonInfo shareInstance].accountID integerValue];
@@ -131,6 +135,98 @@ completionBlockWithSuccess:(requestBlockSuccess)success
         
         
     });
+}
+
+
+//获取启动图
++  (void)getComLaunchRequestAction
+{
+    if ([PersonInfo shareInstance].comLaunchUrl.length>0)
+    {
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@",PATH_AT_CACHEDIR(kUserLaunchFolder),[[PersonInfo shareInstance].comLaunchUrl lastPathComponent]];
+        
+        BACK( ^{
+            //取出抓图文件夹下得所有文件
+            NSString *documentsDirectory = filePath;
+            NSFileManager *fileManage = [NSFileManager defaultManager];
+            NSArray *imageFiles = [fileManage subpathsOfDirectoryAtPath: documentsDirectory error:nil];
+            
+            for (NSString *p in imageFiles) {
+                NSError *error;
+                NSString *path = [documentsDirectory stringByAppendingPathComponent:p];
+                if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+                }
+            }
+        });
+    }
+    
+    //发送请求
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/bgImg",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object)
+     {
+         NSString *string = object[@"url"];
+         [PersonInfo shareInstance].comLaunchUrl = string;
+         [BaseCacheHelper setPersonInfo];
+         
+         if ([BaseHelper isSpaceString:string andReplace:@""].length>0)
+         {
+             NSString *imageStr = [BaseHelper isSpaceString:[PersonInfo shareInstance].comLaunchUrl andReplace:@""];
+             NSString *cachePath = [NSString stringWithFormat:@"%@/%@",PATH_AT_CACHEDIR(kUserLaunchFolder),[imageStr lastPathComponent]];
+             
+             UIImageView *imageView = [[UIImageView alloc]init];
+             [imageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+              {
+                  if (image!=nil)
+                  {
+                      //保存加载过后的图片到头像文件夹里
+                      NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                      if (cachePath)
+                      {
+                          dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                              [BaseCacheHelper createFolder:cachePath isDirectory:NO];
+                              [imageData writeToFile:cachePath atomically:NO];
+                          });
+                      }
+                  }
+              }];
+             
+         }
+         
+         
+     } failureBlock:^(NSError *error) {
+         DLog(@"获取启动图信息失败：%@",error);
+     } progress:nil];
+    
+}
+
+
++ (void)updatePersonInfo
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/baseData/company",BASE_PLAN_URL];
+    
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(NSDictionary *object)
+     {
+         NSInteger result = [object[@"errCode"] integerValue];
+         if (result==0)
+         {
+             CompanyModel *model = [[CompanyModel alloc]initWithDictionary:object];
+             [PersonInfo shareInstance].comId = model.companyId;
+             [PersonInfo shareInstance].comName = model.companyName;
+             [PersonInfo shareInstance].comLogoUrl = model.companyLogoUrl;
+             [BaseCacheHelper setPersonInfo];
+         }
+         else
+         {
+             DLog(@"获取公司信息失败");
+         }
+         
+     } failureBlock:^(NSError *error) {
+         DLog(@"获取获取公司信息失败：%@",error);
+     } progress:nil];
 }
 
 

@@ -17,6 +17,8 @@
     [PersonInfo shareInstance].loginSuccess = NO;
     [PersonInfo shareInstance].accountID = @"";
     [PersonInfo shareInstance].password = @"";
+    [PersonInfo shareInstance].comLaunchUrl=@"";
+    [PersonInfo shareInstance].comName = @"";
     
     [BaseCacheHelper setPersonInfo];
     

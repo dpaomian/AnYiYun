@@ -114,8 +114,9 @@
 
     if (![self checkNetworkStatus]) {
         BOOL isNeedAlert = [param[@"isNeedAlert"] boolValue];
-        if (isNeedAlert) {
-            [StatusBarOverlay initAnimationWithAlertString:@"网络异常,请检查网络是否可用！" theImage:nil];
+        if (isNeedAlert)
+        {
+            [BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
         }
         
         MAIN(^{

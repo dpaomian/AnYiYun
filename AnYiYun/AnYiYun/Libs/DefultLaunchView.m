@@ -41,6 +41,16 @@
         [self  addSubview:titleLabel];
         
         
+        UILabel *descLabel = [[UILabel alloc]init];
+        descLabel.frame = CGRectMake(0, frame.size.height - 140, frame.size.width, 40);
+        descLabel.backgroundColor = [UIColor clearColor];
+        descLabel.textColor = [UIColor whiteColor];
+        descLabel.font = [UIFont boldSystemFontOfSize:20];
+        descLabel.text = [PersonInfo shareInstance].comName;
+        descLabel.textAlignment = NSTextAlignmentCenter;
+        [self  addSubview:descLabel];
+        
+        
         //读取gif图片数据
         [self addSubview:self.aniamtionImageView];
     }

@@ -44,8 +44,7 @@
     _menuArray = [[NSMutableArray alloc]init];
     
     [self setLeftBarItem];
-        //启动图
-    [self getComLaunchRequestAction];
+
         //广告
     [self getPictureRequestAction];
         //公告
@@ -171,24 +170,6 @@
 
 #pragma mark - 请求相关
 
-    //获取启动图
--  (void)getComLaunchRequestAction
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/bgImg",BASE_PLAN_URL];
-    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
-    
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object)
-    {
-    NSString *string = object[@"url"];
-    [PersonInfo shareInstance].comLaunchUrl = string;
-    [BaseCacheHelper setPersonInfo];
-    
-    } failureBlock:^(NSError *error) {
-        DLog(@"获取启动图信息失败：%@",error);
-    } progress:nil];
-    
-}
-
     //请求广告
 -  (void)getPictureRequestAction
 {
@@ -226,7 +207,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/notice",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
         
     } failureBlock:^(NSError *error) {
         DLog(@"获取公告失败：%@",error);
@@ -293,7 +274,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/adver",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
         NSArray *dataArray = (NSArray *)object;
         
         for (int i=0; i<dataArray.count; i++)
@@ -318,7 +299,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@rest/initApp/menuOpen",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
-    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object)
+    [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object)
     {
         NSDictionary *menuDic = object;
         NSArray *keyArray = [menuDic allKeys];
