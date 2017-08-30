@@ -128,8 +128,7 @@
                 NSString *valueSting = sortDic[keyString];
                 model.idF = keyString;
                 model.name = valueSting;
-                NSLog(@"%@",model.idF);
-                model.isSelected = NO;
+                model.isSelected = idx == 0 ? YES : NO;
                 [_sortMutableArray addObject:model];
             }];
             [ws reloadData];
@@ -138,7 +137,7 @@
             SortModel *model = [[SortModel alloc] init];
             model.idF = @"500";
             model.name = @"智能排序";
-            model.isSelected = NO;
+            model.isSelected = YES;
             [_sortMutableArray addObject:model];
             [ws reloadData];
         }];
@@ -192,7 +191,7 @@
     allCommpanyModel.partentName =@"all";
     allCommpanyModel.sign =@"all";
     allCommpanyModel.delFlag =@"all";
-    allCommpanyModel.isSelected = NO;
+    allCommpanyModel.isSelected = YES;
     [self.roomMutableArray addObject:allCommpanyModel];
 }
 
@@ -202,7 +201,7 @@
     allBuildingModel.idF =@"all";
     allBuildingModel.name =@"所有楼";
     allBuildingModel.pid =@"all";
-    allBuildingModel.isSelected = NO;
+    allBuildingModel.isSelected = YES;
     [self.buildingMutableArray addObject:allBuildingModel];
 }
 
@@ -214,7 +213,7 @@
         self.layer.borderWidth = 0.5f;
         
         self.scrollEnabled = NO;
-        _isFoldItem = NO;
+        _isFoldItem = YES;
         
         _selectedIndex = 0;
         _roomMutableArray = [NSMutableArray array];
@@ -316,7 +315,8 @@
             NSDictionary *titleItemDictionary = [NSDictionary dictionaryWithDictionary:_screenMutableArray[indexPath.row]];
             cell.titleLable.text = titleItemDictionary[@"name"];
             cell.cornerImageView.hidden = NO;
-            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+//            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+            BOOL isSelected = _selectedIndex == indexPath.row+1 && self.isFoldItem == NO;
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
             cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.leadingConstraints.constant = 0;
@@ -330,7 +330,8 @@
             cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.leadingConstraints.constant = 0;
             cell.cornerImageView.hidden = NO;
-            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+//            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+            BOOL isSelected = _selectedIndex == indexPath.row+1 && self.isFoldItem == NO;
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
         } else  if (indexPath.row >= screenItemCount && indexPath.row < screenItemCount+roomItemCount) {
             cell.cornerImageView.hidden = YES;
@@ -360,7 +361,8 @@
             NSDictionary *titleItemDictionary = [NSDictionary dictionaryWithDictionary:_screenMutableArray[indexPath.row]];
             cell.titleLable.text = titleItemDictionary[@"name"];
             cell.cornerImageView.hidden = NO;
-            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+//            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+            BOOL isSelected = _selectedIndex == indexPath.row+1 && self.isFoldItem == NO;
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
             cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.leadingConstraints.constant = 0;
@@ -394,7 +396,8 @@
             cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.leadingConstraints.constant = 0;
             cell.cornerImageView.hidden = NO;
-            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+//            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+            BOOL isSelected = _selectedIndex == indexPath.row+1 && self.isFoldItem == NO;
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
         } else if (indexPath.row >= screenItemCount && indexPath.row < screenItemCount+sortItemCount) {
             cell.cornerImageView.hidden = YES;
@@ -426,7 +429,8 @@
             cell.titleLable.textAlignment = NSTextAlignmentCenter;
             cell.leadingConstraints.constant = 0;
             cell.cornerImageView.hidden = NO;
-            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+//            BOOL isSelected = [titleItemDictionary[@"isSelected"] boolValue];
+            BOOL isSelected = _selectedIndex == indexPath.row+1 && self.isFoldItem == NO;
             cell.cornerImageView.image = [UIImage imageNamed:isSelected?@"Triangle_selected.png":@"Triangle.png"];
         } else if (indexPath.row == 5) {
             cell.cornerImageView.hidden = YES;
@@ -554,10 +558,18 @@
     NSInteger buildingItemCount = [_buildingMutableArray count];
     NSInteger sortItemCount = [_sortMutableArray count];
     if (indexPath.row < 4) {
-        _selectedIndex = indexPath.row +1;
-        _isFoldItem = NO;
-        if (_foldHandle) {
-            _foldHandle(self,_isFoldItem);
+        if (_selectedIndex == indexPath.row +1) {
+            _selectedIndex = indexPath.row +1;
+            _isFoldItem = !_isFoldItem;
+            if (_foldHandle) {
+                _foldHandle(self,_isFoldItem);
+            }
+        } else {
+            _selectedIndex = indexPath.row +1;
+            _isFoldItem = NO;
+            if (_foldHandle) {
+                _foldHandle(self,_isFoldItem);
+            }
         }
     } else {
         self.hidden = self.isFold?NO:YES;
