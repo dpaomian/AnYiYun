@@ -120,9 +120,12 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@rest/supplyPower/realTimeMonFirst",BASE_PLAN_URL];
     
-   NSString *jsonString = nil;
+    NSMutableDictionary *jsonDic = [NSMutableDictionary dictionaryWithDictionary:_conditionDic];
+    [jsonDic setObject:@"" forKey:@"fifthCondition"];
+    
+    NSString *jsonString = nil;
     NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_conditionDic options:NSJSONWritingPrettyPrinted error:&error];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDic options:NSJSONWritingPrettyPrinted error:&error];
     if (! jsonData) {
         DLog(@"Got an error: %@", error);
     } else {
