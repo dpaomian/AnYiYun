@@ -325,12 +325,12 @@
     
        if ([d hour]>0)
         {
-        showTime = [showTime stringByAppendingString:[NSString stringWithFormat:@"%.li小时",[d day]]];
+        showTime = [showTime stringByAppendingString:[NSString stringWithFormat:@"%.li小时",[d hour]]];
         }
     
        if ([d minute]>0)
         {
-        showTime = [showTime stringByAppendingString:[NSString stringWithFormat:@"%.li分钟",[d day]]];
+        showTime = [showTime stringByAppendingString:[NSString stringWithFormat:@"%.li分钟",[d minute]]];
         }
     if (showTime.length==0)
         {
