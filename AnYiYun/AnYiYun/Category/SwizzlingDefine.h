@@ -3,7 +3,7 @@
 //  NIM
 //
 //  Created by chris on 15/6/23.
-//  Copyright (c) 2015年 Netease. All rights reserved.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #ifndef NIM_SwizzlingDefine_h

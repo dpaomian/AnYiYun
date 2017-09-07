@@ -3,7 +3,7 @@
 //  HNRuMi
 //
 //  Created by 韩亚周 on 16/1/25.
-//  Copyright © 2016年 HYZ. All rights reserved.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import "MBProgressHUD+YY.h"

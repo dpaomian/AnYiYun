@@ -2,8 +2,8 @@
 //  AAAnimation.m
 //  AAChartKit
 //
-//  Created by An An on 2017/5/21.
-//  Copyright © 2017年 An An. All rights reserved.
+//  Created by 韩亚周 on 2017/5/21.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import "AAAnimation.h"

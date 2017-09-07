@@ -3,7 +3,7 @@
 //  MJExtensionExample
 //
 //  Created by MJ Lee on 14/7/16.
-//  Copyright (c) 2014年 小码哥. All rights reserved.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

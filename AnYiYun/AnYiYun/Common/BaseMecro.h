@@ -2,8 +2,8 @@
 //  BaseMecro.h
 //  AnYiYun 宏定义项目基本配置
 //
-//  Created by wwr on 2017/7/19.
-//  Copyright © 2017年 wwr. All rights reserved.
+//  Created by 韩亚周 on 2017/7/19.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #ifndef BaseMecro_h

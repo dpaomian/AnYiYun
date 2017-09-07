@@ -2,8 +2,8 @@
 //  TADotView.m
 //  TAPageControl
 //
-//  Created by Tanguy Aladenise on 2015-01-22.
-//  Copyright (c) 2015 Tanguy Aladenise. All rights reserved.
+//  Created by 韩亚周 on 2015-01-22.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import "TADotView.h"

@@ -2,8 +2,8 @@
 //  UIView+Border.h
 //  ToKnow
 //
-//  Created by zhongyekeji on 15/11/2.
-//  Copyright © 2015年 wxs. All rights reserved.
+//  Created by 韩亚周 on 15/11/2.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

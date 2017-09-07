@@ -2,8 +2,8 @@
 //  BaseAFNRequest.h
 //  BaseProject
 //
-//  Created by wxs on 16/7/27.
-//  Copyright © 2016年 mac. All rights reserved.
+//  Created by 韩亚周 on 16/7/27.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

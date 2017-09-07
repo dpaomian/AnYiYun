@@ -2,8 +2,8 @@
 //  RecordCell.h
 //  AnYiYun
 //
-//  Created by wuwanru on 29/7/17.
-//  Copyright © 2017年 wwr. All rights reserved.
+//  Created by 韩亚周 on 29/7/17.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

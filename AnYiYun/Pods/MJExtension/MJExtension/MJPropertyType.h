@@ -3,7 +3,7 @@
 //  MJExtension
 //
 //  Created by mj on 14-1-15.
-//  Copyright (c) 2014年 小码哥. All rights reserved.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //  包装一种类型
 
 #import <Foundation/Foundation.h>

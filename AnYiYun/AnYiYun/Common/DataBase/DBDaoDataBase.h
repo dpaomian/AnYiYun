@@ -2,8 +2,8 @@
 //  DBDaoDataBase.h
 //  xuexin
 //
-//  Created by mac on 15/6/19.
-//  Copyright (c) 2015年 mx. All rights reserved.
+//  Created by 韩亚周 on 15/6/19.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -4,7 +4,7 @@
 //  MJRefreshExample
 //
 //  Created by MJ Lee on 14-5-28.
-//  Copyright (c) 2014年 小码哥. All rights reserved.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import "UIScrollView+MJExtension.h"

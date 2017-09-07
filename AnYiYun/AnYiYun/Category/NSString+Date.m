@@ -2,8 +2,8 @@
 //  NSString+Date.m
 //  BaseProject
 //
-//  Created by mac on 16/7/27.
-//  Copyright © 2016年 mac. All rights reserved.
+//  Created by 韩亚周 on 16/7/27.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import "NSString+Date.h"

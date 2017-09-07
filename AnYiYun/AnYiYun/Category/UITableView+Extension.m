@@ -2,8 +2,8 @@
 //  UITableView+ScrollToBottom.m
 //  xuexin
 //
-//  Created by wxs on 16/6/13.
-//  Copyright © 2016年 julong. All rights reserved.
+//  Created by 韩亚周 on 16/6/13.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import "UITableView+Extension.h"

@@ -3,7 +3,7 @@
 //  AnYiYun
 //
 //  Created by 韩亚周 on 2017/8/1.
-//  Copyright © 2017年 wwr. All rights reserved.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import "PopViewController.h"

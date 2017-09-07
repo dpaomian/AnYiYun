@@ -2,8 +2,8 @@
 //  JXLayoutButton.h
 //  JXLayoutButtonDemo
 //
-//  Created by JiongXing on 16/9/24.
-//  Copyright © 2016年 JiongXing. All rights reserved.
+//  Created by 韩亚周 on 16/9/24.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

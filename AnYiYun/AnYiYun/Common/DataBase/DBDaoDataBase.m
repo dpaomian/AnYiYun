@@ -1,10 +1,10 @@
-    //
-    //  DBDaoDataBase.m
-    //  xuexin
-    //
-    //  Created by mac on 15/6/19.
-    //  Copyright (c) 2015年 mx. All rights reserved.
-    //
+//
+//  DBDaoDataBase.m
+//  xuexin
+//
+//  Created by 韩亚周 on 15/6/19.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
+//
 
 #import "DBDaoDataBase.h"
 #import "FMDatabase.h"

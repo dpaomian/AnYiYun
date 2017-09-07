@@ -3,7 +3,7 @@
 //  QRCodeCreat
 //
 //  Created by 韩亚周 on 15/10/28.
-//  Copyright © 2015年 韩亚周. All rights reserved.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

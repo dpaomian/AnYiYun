@@ -2,7 +2,7 @@
 //  AASeriesElement.m
 //  AAChartKit
 //
-//  Created by An An on 17/1/19.
+//  Created by 韩亚周 on 17/1/19.
 //  Copyright © 2017年 An An. xAll rights reserved.
 //
 

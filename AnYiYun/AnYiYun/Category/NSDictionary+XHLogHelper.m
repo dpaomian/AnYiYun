@@ -1,8 +1,8 @@
 //
 //  NSDictionary+LogHelper.m
 //
-//  Created by wxs on 16/7/25.
-//  Copyright © 2017年 julong. All rights reserved.
+//  Created by 韩亚周 on 16/7/25.
+//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
 //  代码地址:https://github.com/CoderZhuXH/XHLogHelper
 
 #import "NSDictionary+XHLogHelper.h"
