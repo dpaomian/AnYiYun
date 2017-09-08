@@ -133,6 +133,8 @@
             {
                 UISearchBar * bar = modelObject;
                 [ws.conditionDic setObject:bar.text forKey:@"fifthCondition"];
+                ws.foldSectionModel = nil;
+                ws.foldSectionModel = [[LoadDetectionModel alloc] init];
                 [ws.tableView.mj_header beginRefreshing];
             }
                 break;
@@ -160,6 +162,7 @@
     
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"conditions":jsonString};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
+        __block NSInteger currentIdx = 0;
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         [ws.listMutableArray removeAllObjects];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -175,6 +178,7 @@
             model.sort = obj[@"sort"];
             model.sortKey = obj[@"sortKey"];
             model.state = obj[@"state"];
+            
             NSString *currentIDFString = [NSString stringWithFormat:@"%@",ws.foldSectionModel.idF?ws.foldSectionModel.idF:@""];
             
             if ([ws.conditionDic[@"fifthCondition"] length] > 0) {
@@ -182,7 +186,10 @@
                 if (!([model.device_name rangeOfString:keyString].location == NSNotFound) ||
                     !([model.device_location rangeOfString:keyString].location == NSNotFound)) {
                     [ws.listMutableArray addObject:model];
-                    if (idx== 0 && [currentIDFString length] == 0) {
+                    if (ws.listMutableArray.count == 1) {
+                        currentIdx = idx;
+                    }
+                    if (idx== currentIdx && [currentIDFString length] == 0) {
                         ws.foldSectionModel = model;
                         NSInteger contentIndex = [ws.listMutableArray indexOfObject:ws.foldSectionModel];
                         [ws loadItemWithModel:model andSection:contentIndex];
@@ -194,7 +201,7 @@
                         [ws loadItemWithModel:model andSection:contentIndex];
                         [ws loadCurveWithModel:model andSection:contentIndex];
                         model.isFold = YES;
-                    }else {
+                    } else {
                         model.isFold = NO;
                     }
                 } else {
