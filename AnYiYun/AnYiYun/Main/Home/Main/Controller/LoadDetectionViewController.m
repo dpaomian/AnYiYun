@@ -133,8 +133,8 @@
             {
                 UISearchBar * bar = modelObject;
                 [ws.conditionDic setObject:bar.text forKey:@"fifthCondition"];
-                ws.foldSectionModel = nil;
-                ws.foldSectionModel = [[LoadDetectionModel alloc] init];
+                /*ws.foldSectionModel = nil;
+                ws.foldSectionModel = [[LoadDetectionModel alloc] init];*/
                 [ws.tableView.mj_header beginRefreshing];
             }
                 break;
