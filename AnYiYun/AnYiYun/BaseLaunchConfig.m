@@ -45,6 +45,8 @@
     
     NSString  *networkStatusString = @(temp).stringValue;
     DLog(@"网络状态变化:%@",networkStatusString);
+    [networkStatusString integerValue]!=0?:[BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
+    
    [BaseCacheHelper setValue:networkStatusString forKey:kNotifierNetWork];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNetWorkStatusChangeNotification object:nil];
 }
