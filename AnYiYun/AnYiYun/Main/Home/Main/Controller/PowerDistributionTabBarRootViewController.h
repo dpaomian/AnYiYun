@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-/*!供配电*/
+/*!智慧用电*/
 @interface PowerDistributionTabBarRootViewController : UITabBarController
 
 @end

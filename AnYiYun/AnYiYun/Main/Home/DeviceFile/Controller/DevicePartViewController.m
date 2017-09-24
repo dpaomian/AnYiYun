@@ -69,7 +69,8 @@
          if ([responseObject isKindOfClass:[NSData class]])
          {
              id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-             
+             DLog(@"请求结果 = %@",jsonObject);
+
              if ([jsonObject isKindOfClass:[NSArray class]])
              {
                  NSArray *useArray = (NSArray *)jsonObject;
@@ -94,7 +95,8 @@
     _datasource = [[NSMutableArray alloc]init];
     [self.view addSubview:self.bgTableView];
     
-    _leftArray = @[@"名称",@"型号",@"生产厂商",@"购置时间",@"数量"];
+//    _leftArray = @[@"名称",@"型号",@"生产厂商",@"购置时间",@"数量"];
+    _leftArray = @[@"名称",@[@"型号：",@"部件类型："],@"生产厂商",@[@"在线数量：",@"库存数量："]];
     [self getUseDataRequest];
     
 }
@@ -107,7 +109,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [_leftArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -120,42 +122,92 @@
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = [NSString stringWithFormat:@"bgTableView_%ld_%ld",(long)indexPath.section,(long)indexPath.row];
+    /*NSString *cellIdentifier = [NSString stringWithFormat:@"bgTableView_%ld_%ld",(long)indexPath.section,(long)indexPath.row];
     DevicePartCell  *cell = (DevicePartCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil)
     {
         cell = [[DevicePartCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+     if (_datasource.count>0)
+     {
+     DevicePartModel  *itemModel = _datasource[indexPath.section];
+     NSString *leftString = _leftArray[indexPath.row];
+     NSString *rightString = @"";
+     if (indexPath.row==0)
+     {
+     rightString = itemModel.name;
+     }
+     else if (indexPath.row==1)
+     {
+     rightString = itemModel.specification;
+     }
+     else if (indexPath.row==2)
+     {
+     rightString = itemModel.manufacturer;
+     }
+     else if (indexPath.row==3)
+     {
+     rightString = itemModel.product_time;
+     }
+     else if (indexPath.row==4)
+     {
+     rightString = [NSString stringWithFormat:@"%ld",(long)itemModel.number];
+     }
+     [cell setCellContentWithLeftLabelStr:leftString andRightLabelStr:rightString];
+     }
+     cell.backgroundColor = [UIColor whiteColor];
+     */
+    
     if (_datasource.count>0)
     {
         DevicePartModel  *itemModel = _datasource[indexPath.section];
-        NSString *leftString = _leftArray[indexPath.row];
         NSString *rightString = @"";
         if (indexPath.row==0)
         {
+            DevicePartCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"DevicePartCell" forIndexPath:indexPath];
             rightString = itemModel.name;
+            cell.backgroundColor = [UIColor whiteColor];
+            NSString *leftString = _leftArray[indexPath.row];
+            [cell setCellContentWithLeftLabelStr:leftString andRightLabelStr:rightString];
+            return cell;
         }
         else if (indexPath.row==1)
         {
-            rightString = itemModel.specification;
+            YYDevicePartCell  *yyCell = [tableView dequeueReusableCellWithIdentifier:@"YYDevicePartCell" forIndexPath:indexPath];
+            NSArray *leftArray = _leftArray[indexPath.row];
+            yyCell.titleOne.text = leftArray[0];
+            yyCell.titleTwo.text = leftArray[1];
+            yyCell.contentOne.text = itemModel.specification;
+            yyCell.contentTwo.text = itemModel.kind;
+            yyCell.backgroundColor = [UIColor whiteColor];
+            return yyCell;
         }
         else if (indexPath.row==2)
         {
-            rightString = itemModel.manufacturer;
+            DevicePartCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"DevicePartCell" forIndexPath:indexPath];
+            rightString = itemModel.name;
+            NSString *leftString = _leftArray[indexPath.row];
+            cell.backgroundColor = [UIColor whiteColor];
+            [cell setCellContentWithLeftLabelStr:leftString andRightLabelStr:rightString];
+            return cell;
         }
-        else if (indexPath.row==3)
+        else
         {
-            rightString = itemModel.product_time;
+            YYDevicePartCell  *yyCell = [tableView dequeueReusableCellWithIdentifier:@"YYDevicePartCell" forIndexPath:indexPath];
+            NSArray *leftArray = _leftArray[indexPath.row];
+            yyCell.titleOne.text = leftArray[0];
+            yyCell.titleTwo.text = leftArray[1];
+            yyCell.contentOne.text = [NSString stringWithFormat:@"%d",itemModel.inUse];
+            yyCell.contentTwo.text = [NSString stringWithFormat:@"%d",itemModel.stock];
+            yyCell.backgroundColor = [UIColor whiteColor];
+            return yyCell;
         }
-        else if (indexPath.row==4)
-        {
-            rightString = [NSString stringWithFormat:@"%ld",(long)itemModel.number];
-        }
-        [cell setCellContentWithLeftLabelStr:leftString andRightLabelStr:rightString];
+    }else {
+        DevicePartCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"DevicePartCell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor whiteColor];
+        return cell;
     }
-    cell.backgroundColor = [UIColor whiteColor];
-    return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -172,6 +224,8 @@
 {
     if (!_bgTableView) {
         _bgTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64) style:UITableViewStyleGrouped];
+        [_bgTableView registerClass:[DevicePartCell class] forCellReuseIdentifier:@"DevicePartCell"];
+        [_bgTableView registerNib:[UINib nibWithNibName:NSStringFromClass([YYDevicePartCell class]) bundle:nil] forCellReuseIdentifier:@"YYDevicePartCell"];
         _bgTableView.dataSource = self;
         _bgTableView.delegate = self;
         _bgTableView.backgroundColor = [UIColor clearColor];

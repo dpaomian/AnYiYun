@@ -98,11 +98,17 @@
         energyVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:energyVC animated:YES];
     }
-    else if ([model.name isEqualToString:@"供配电"])
+    else if ([model.name isEqualToString:@"智慧用电"])
     {
         PowerDistributionTabBarRootViewController *powerRootVC = [[PowerDistributionTabBarRootViewController alloc]init];
         powerRootVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:powerRootVC animated:YES];
+    }
+    else if ([model.name isEqualToString:@"规程与标准"])
+    {
+        StandardViewController *sVC = [[StandardViewController alloc]init];
+        sVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:sVC animated:YES];
     }
     else if ([model.name isEqualToString:@"电气火灾"])
     {
@@ -317,7 +323,7 @@
             }
             else if ([model.code isEqualToString:@"02"])
             {
-                model.name = @"供配电";
+                model.name = @"智慧用电";
                 model.imageStr = @"home_icon_g.png";
             }
             else if ([model.code isEqualToString:@"03"])
@@ -338,6 +344,13 @@
             }
             else if ([model.code isEqualToString:@"0301"])
             {
+                HomeModuleModel *standardModel = [[HomeModuleModel alloc]init];
+                standardModel.code = @"YY001";
+                standardModel.isShow = YES;
+                standardModel.name = @"规程与标准";
+                standardModel.imageStr = @"home_icon_s.png";
+                [_menuArray addObject:standardModel];
+                
                 model.name = @"电气火灾";
                 model.imageStr = @"home_icon_d.png";
                 BOOL isUse = [menuDic[@"03"] boolValue];

@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"供配电";
+    self.title = @"智慧用电";
     
     self.tabBar.backgroundColor = UIColorFromRGB(0xFFFFFF);
     
