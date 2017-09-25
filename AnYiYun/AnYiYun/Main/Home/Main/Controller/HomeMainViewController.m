@@ -346,13 +346,6 @@
             }
             else if ([model.code isEqualToString:@"0301"])
             {
-                HomeModuleModel *standardModel = [[HomeModuleModel alloc]init];
-                standardModel.code = @"YY001";
-                standardModel.isShow = YES;
-                standardModel.name = @"规程与标准";
-                standardModel.imageStr = @"home_icon_s.png";
-                [_menuArray addObject:standardModel];
-                
                 model.name = @"电气火灾";
                 model.imageStr = @"home_icon_d.png";
                 BOOL isUse = [menuDic[@"03"] boolValue];
@@ -387,6 +380,12 @@
                  [_menuArray addObject:model];
             }
         }
+        HomeModuleModel *standardModel = [[HomeModuleModel alloc]init];
+        standardModel.code = @"YY001";
+        standardModel.isShow = YES;
+        standardModel.name = @"规程与标准";
+        standardModel.imageStr = @"home_icon_s.png";
+        [_menuArray addObject:standardModel];
         [self initTableHeadView];
         
     } failureBlock:^(NSError *error) {

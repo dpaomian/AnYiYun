@@ -96,7 +96,7 @@
     [self.view addSubview:self.bgTableView];
     
 //    _leftArray = @[@"名称",@"型号",@"生产厂商",@"购置时间",@"数量"];
-    _leftArray = @[@"名称",@[@"型号：",@"部件类型："],@"生产厂商",@[@"在线数量：",@"库存数量："]];
+    _leftArray = @[@"名称",@[@"型号：",@"部件类型："],@"生产厂商",@[@"装机量：",@"库存量："],@"上线时间"];
     [self getUseDataRequest];
     
 }
@@ -192,7 +192,7 @@
             [cell setCellContentWithLeftLabelStr:leftString andRightLabelStr:rightString];
             return cell;
         }
-        else
+        else if (indexPath.row==3)
         {
             YYDevicePartCell  *yyCell = [tableView dequeueReusableCellWithIdentifier:@"YYDevicePartCell" forIndexPath:indexPath];
             NSArray *leftArray = _leftArray[indexPath.row];
@@ -202,6 +202,13 @@
             yyCell.contentTwo.text = [NSString stringWithFormat:@"%d",itemModel.stock];
             yyCell.backgroundColor = [UIColor whiteColor];
             return yyCell;
+        } else {
+            DevicePartCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"DevicePartCell" forIndexPath:indexPath];
+            rightString = itemModel.product_time;
+            NSString *leftString = _leftArray[indexPath.row];
+            cell.backgroundColor = [UIColor whiteColor];
+            [cell setCellContentWithLeftLabelStr:leftString andRightLabelStr:rightString];
+            return cell;
         }
     }else {
         DevicePartCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"DevicePartCell" forIndexPath:indexPath];

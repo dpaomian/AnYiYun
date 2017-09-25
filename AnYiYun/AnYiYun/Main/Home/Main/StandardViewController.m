@@ -101,7 +101,7 @@
         DeviceDocModel *itemModel = [_datasource objectAtIndex:indexPath.row];
         cell.textLabel.text = itemModel.name;
         cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
-        cell.textLabel.textColor = kAppTitleBlackColor;
+        cell.textLabel.textColor = UIColorFromRGB(0x000000);
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fK",itemModel.size/1024.0f];
         cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[itemModel.suffix stringByReplacingOccurrencesOfString:@"." withString:@""]]];

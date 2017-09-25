@@ -93,11 +93,11 @@
                           @{@"所属部门":[BaseHelper isSpaceString:info.orgName andReplace:@""]},
                           @{@"安装位置":[BaseHelper isSpaceString:info.installationSite andReplace:@""]},
                           @{@"坐标":[BaseHelper isSpaceString:info.position andReplace:@""]},
-                          @{@"资产原值":[NSString stringWithFormat:@"%ld",(long)info.originalValue]},
+                          /*@{@"资产原值":[NSString stringWithFormat:@"%ld",(long)info.originalValue]},
                           @{@"资产净值":[NSString stringWithFormat:@"%ld",(long)info.netValue]},
                           @{@"报废年限":[NSString stringWithFormat:@"%ld",(long)info.discarded]},
                           @{@"距离报废":@""},
-                          @{@"累计运行":[BaseHelper isSpaceString:info.func_day andReplace:@""]},
+                          @{@"累计运行":[BaseHelper isSpaceString:info.func_day andReplace:@""]},*/
                           @{@"设备状态":statesString},
                           ];
     _datasource = [NSMutableArray arrayWithArray:dicArray];
