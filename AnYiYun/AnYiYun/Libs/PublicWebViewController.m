@@ -38,8 +38,18 @@
 }
 
 -(void)setRightBarItem {
-    
+    if ([self.titleStr isEqualToString:@"资讯"]) {
+        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    }
 }
+
+- (void)refresh {
+    NSString *myUrl = self.myUrl;
+    NSURL *url = [NSURL URLWithString:myUrl];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [myWebView loadRequest:request];
+}
+
 
 - (void)setTheWebView
 {

@@ -10,9 +10,9 @@
 @implementation NSDictionary (LogHelper)
 
 #if DEBUG
-- (NSString *)descriptionWithLocale:(nullable id)locale{
-
-  return [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-}
+//- (NSString *)descriptionWithLocale:(nullable id)locale{
+//
+//  return [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+//}
 #endif
 @end

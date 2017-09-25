@@ -9,9 +9,13 @@
 #import "BaseViewController.h"
 #import "DeviceInfoModel.h"
 #import "PublicWebViewController.h"
+#import "MBProgressHUD+YY.h"
 
 /*!规程与标准*/
-@interface StandardViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface StandardViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,UIDocumentInteractionControllerDelegate>
+
+@property(nonatomic,strong) UIDocumentInteractionController *documentInteractionController;
+
 
 @property (nonatomic,strong)UITableView *bgTableView;
 @property (nonatomic,strong)NSMutableArray *datasource;
