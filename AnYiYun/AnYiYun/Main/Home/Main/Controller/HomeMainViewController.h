@@ -12,6 +12,7 @@
 #import "PowerDistributionTabBarRootViewController.h"
 #import "ElectricalFireTabBarRootViewController.h"
 #import "FirePowerSupplyTabBarRootViewController.h"/*消防电源*/
+#import "StandardViewController.h" /*规程与标准*/
 
 /**
  首页

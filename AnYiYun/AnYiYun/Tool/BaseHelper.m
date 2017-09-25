@@ -295,7 +295,7 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[timeStamp doubleValue]/1000];
     NSDate *today = [NSDate date];//当前时间
-    unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    unsigned int unitFlags = NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     NSDateComponents *d = [calendar components:unitFlags fromDate:createDate toDate:today options:0];
     /**
     if ([d day] <= 0 &&

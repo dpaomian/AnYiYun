@@ -215,6 +215,9 @@
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
 		A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */; };
 		A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */; };
+		A8A588261F77B75200F5D327 /* YYDevicePartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A588241F77B75200F5D327 /* YYDevicePartCell.m */; };
+		A8A588271F77B75200F5D327 /* YYDevicePartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A588251F77B75200F5D327 /* YYDevicePartCell.xib */; };
+		A8A5882E1F78007E00F5D327 /* StandardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A5882D1F78007E00F5D327 /* StandardViewController.m */; };
 		A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */; };
 		A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */; };
 		A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */; };
@@ -639,6 +642,11 @@
 		A8A14BBF1F2DE0C9008745F1 /* MonthCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCalendarViewController.m; sourceTree = "<group>"; };
 		A8A14BC11F2DE91A008745F1 /* YYDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDatePicker.h; sourceTree = "<group>"; };
 		A8A14BC21F2DE91A008745F1 /* YYDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDatePicker.m; sourceTree = "<group>"; };
+		A8A588231F77B75200F5D327 /* YYDevicePartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDevicePartCell.h; sourceTree = "<group>"; };
+		A8A588241F77B75200F5D327 /* YYDevicePartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDevicePartCell.m; sourceTree = "<group>"; };
+		A8A588251F77B75200F5D327 /* YYDevicePartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYDevicePartCell.xib; sourceTree = "<group>"; };
+		A8A5882C1F78007E00F5D327 /* StandardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardViewController.h; sourceTree = "<group>"; };
+		A8A5882D1F78007E00F5D327 /* StandardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardViewController.m; sourceTree = "<group>"; };
 		A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringChildCell.h; sourceTree = "<group>"; };
 		A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringChildCell.m; sourceTree = "<group>"; };
 		A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealtimeMonitoringChildCell.xib; sourceTree = "<group>"; };
@@ -883,6 +891,7 @@
 		901A08201F20E3AA009488C1 /* Main_业务模块 */ = {
 			isa = PBXGroup;
 			children = (
+				A8A588281F78004900F5D327 /* Standard */,
 				A87C53361F316CC5008DE42B /* FirePowerSupply */,
 				A81B12621F2AD8DC001DD06B /* ElectricalFire */,
 				901A08241F20E3AA009488C1 /* Model */,
@@ -1106,6 +1115,9 @@
 				3B3FD7621F2C117C0089C1B0 /* DeviceInfoCell.m */,
 				3B3FD75B1F2C055B0089C1B0 /* DevicePartCell.h */,
 				3B3FD75C1F2C055B0089C1B0 /* DevicePartCell.m */,
+				A8A588231F77B75200F5D327 /* YYDevicePartCell.h */,
+				A8A588241F77B75200F5D327 /* YYDevicePartCell.m */,
+				A8A588251F77B75200F5D327 /* YYDevicePartCell.xib */,
 				3B3FD75E1F2C05800089C1B0 /* RecordCell.h */,
 				3B3FD75F1F2C05800089C1B0 /* RecordCell.m */,
 			);
@@ -1659,6 +1671,39 @@
 			path = AAOptionsModel;
 			sourceTree = "<group>";
 		};
+		A8A588281F78004900F5D327 /* Standard */ = {
+			isa = PBXGroup;
+			children = (
+				A8A5882B1F78005900F5D327 /* Controllers */,
+				A8A5882A1F78005600F5D327 /* Models */,
+				A8A588291F78005300F5D327 /* Views */,
+			);
+			name = Standard;
+			sourceTree = "<group>";
+		};
+		A8A588291F78005300F5D327 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A8A5882A1F78005600F5D327 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A8A5882B1F78005900F5D327 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8A5882C1F78007E00F5D327 /* StandardViewController.h */,
+				A8A5882D1F78007E00F5D327 /* StandardViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		A8FD789E1F2C6BDD00523E46 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1819,6 +1864,7 @@
 				3B34271A1F3C3058007F2700 /* sound.caf in Resources */,
 				A84079CE1F364FC70029F7FA /* YYCurveViewController.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
+				A8A588271F77B75200F5D327 /* YYDevicePartCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
 				3B404BBA1F341E290045DA2C /* launch_defult.gif in Resources */,
 				A8FD78921F2C396800523E46 /* FireEquipmentAccountViewController.xib in Resources */,
@@ -1895,6 +1941,7 @@
 				A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */,
 				A87C53DA1F31DB3B008DE42B /* AAAnimation.m in Sources */,
 				90272BE41F224382000B1DC0 /* SDCycleScrollView.m in Sources */,
+				A8A5882E1F78007E00F5D327 /* StandardViewController.m in Sources */,
 				90CF07821F1F3464008106D2 /* NSDictionary+Extension.m in Sources */,
 				A87C53F21F31DB3B008DE42B /* AAXAxis.m in Sources */,
 				3B3FD7601F2C05800089C1B0 /* RecordCell.m in Sources */,
@@ -2060,6 +2107,7 @@
 				901788221F26349E00CFED87 /* ShareViewController.m in Sources */,
 				A87C53DF1F31DB3B008DE42B /* AAColumn.m in Sources */,
 				A87C53EF1F31DB3B008DE42B /* AASubtitle.m in Sources */,
+				A8A588261F77B75200F5D327 /* YYDevicePartCell.m in Sources */,
 				901A081C1F20E32F009488C1 /* DailyMainViewController.m in Sources */,
 				A87C53D11F31DB3B008DE42B /* AAJsonConverter.m in Sources */,
 				A81B12411F2AC446001DD06B /* EnergyManagementViewController.m in Sources */,

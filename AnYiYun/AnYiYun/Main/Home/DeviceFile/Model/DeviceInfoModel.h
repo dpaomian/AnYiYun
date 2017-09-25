@@ -78,6 +78,9 @@
 @property (nonatomic,strong) NSString *specification;
 @property (nonatomic,strong) NSString *manufacturer;
 @property (nonatomic,assign) NSInteger number;
+@property (nonatomic,assign) NSInteger inUse;
+@property (nonatomic,strong) NSString *kind;
+@property (nonatomic,assign) NSInteger stock;
 
 @end
 
