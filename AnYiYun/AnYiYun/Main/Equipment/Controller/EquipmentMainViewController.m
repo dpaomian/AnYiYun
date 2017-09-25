@@ -43,6 +43,24 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"getMessageIsRead" object:@""];
 }
 
+-(void)setRightBarItem {
+    UIBarButtonItem *moreItem =[UIBarButtonItem itemWithImageName:@"right_more.png" hightImageName:@"right_more.png" target:self action:@selector(rightBarButtonAction)];
+    UIBarButtonItem *refreshItem =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    self.navigationItem.rightBarButtonItems = @[moreItem, refreshItem];
+}
+
+- (void)refresh {
+    NSString * urlStr = @"http://101.201.108.246/index.html";
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
+    [_webView loadRequest:request];
+}
+
+//    //点击弹出框
+//-(void)rightBarButtonAction
+//{
+//    [self.tabBarController presentViewController:self.popNavVC animated:NO completion:nil];
+//}
+
 #pragma mark -
 #pragma mark UIWebViewDelegate -
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

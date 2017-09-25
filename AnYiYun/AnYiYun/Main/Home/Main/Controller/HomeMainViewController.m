@@ -156,6 +156,8 @@
         titleLabel.numberOfLines = 2;
         titleLabel.font = [UIFont systemFontOfSize:16];
         titleLabel.textColor = RGB(51, 51, 51);
+        titleLabel.minimumScaleFactor = 0.8f;
+        titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.text = item.name;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [useBtn addSubview:titleLabel];

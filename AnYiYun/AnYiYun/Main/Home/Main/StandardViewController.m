@@ -89,22 +89,24 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = [NSString stringWithFormat:@"bgTableView_%ld_%ld",(long)indexPath.section,(long)indexPath.row];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"cellIdentifier"];
     UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    if (_datasource.count>0)
-    {
+    if (_datasource.count>0) {
         DeviceDocModel *itemModel = [_datasource objectAtIndex:indexPath.row];
         cell.textLabel.text = itemModel.name;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
         cell.textLabel.textColor = kAppTitleBlackColor;
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fK",itemModel.size/1024.0f];
+        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[itemModel.suffix stringByReplacingOccurrencesOfString:@"." withString:@""]]];
     }
     cell.backgroundColor = [UIColor whiteColor];
-    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,33 +119,74 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     DeviceDocModel *item = [_datasource objectAtIndex:indexPath.row];
-    //分享的标题
-    NSString *textToShare = item.name;
-    //分享的url
-    NSURL *urlToShare = [NSURL URLWithString:item.url];
-    //在这里呢 如果想分享图片 就把图片添加进去  文字什么的通上
-    NSArray *activityItems = @[textToShare, urlToShare];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
-    //不出现在活动项目
-    activityVC.excludedActivityTypes = @[UIActivityTypePostToFacebook, UIActivityTypePostToTwitter,UIActivityTypePostToWeibo,UIActivityTypeMessage,UIActivityTypeMail,UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop];
-    [self presentViewController:activityVC animated:YES completion:nil];
-    // 分享之后的回调
-    activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
-        if (completed) {
-            NSLog(@"completed");
-            //分享 成功
-        } else  {
-            NSLog(@"cancled");
-            //分享 取消
-        }
-    };
     
-    /*PublicWebViewController *vc = [[PublicWebViewController alloc]init];
-    vc.myUrl = item.url;
-    vc.titleStr = item.name;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];*/
-    
+    if ([item.suffix isEqualToString:@".gif"] ||
+        [item.suffix isEqualToString:@".png"] ||
+        [item.suffix isEqualToString:@".jpg"]) {
+        PublicWebViewController *vc = [[PublicWebViewController alloc]init];
+        vc.myUrl = item.url;
+        vc.titleStr = item.name;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
+            //创建传话管理者
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:item.url]];
+            //下载文件
+        /*
+         第一个参数:请求对象
+         第二个参数:progress 进度回调
+         第三个参数:destination 回调(目标位置)
+         有返回值
+         targetPath:临时文件路径
+         response:响应头信息
+         第四个参数:completionHandler 下载完成后的回调
+         filePath:最终的文件路径
+         */
+        NSURLSessionDownloadTask *download = [manager downloadTaskWithRequest:request
+                                                                     progress:^(NSProgress * _Nonnull downloadProgress) {
+                                                                             //下载进度
+                                                                         NSLog(@"%f",1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
+                                                                         CGFloat progress = 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount;
+                                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                                             hud.progress = progress;
+                                                                             hud.label.text = [NSString stringWithFormat:@"%.2f%%",progress*100.f];
+                                                                             if (progress == 1.0f) {
+                                                                                 [hud hideAnimated:YES];
+                                                                             }
+                                                                         });
+                                                                     }
+                                                                  destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+                                                                          //保存的文件路径
+                                                                      NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:response.suggestedFilename];
+                                                                      return [NSURL fileURLWithPath:fullPath];
+                                                                  }
+                                                            completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+                                                                if (error == nil) {
+                                                                    /*url 为需要调用第三方打开的文件地址-*/
+                                                                    NSURL *url = [NSURL fileURLWithPath:[filePath path]];
+                                                                    _documentInteractionController = [UIDocumentInteractionController
+                                                                                                      interactionControllerWithURL:url];
+                                                                    [_documentInteractionController setDelegate:self];
+                                                                    
+                                                                    [_documentInteractionController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+                                                                }else{//下载失败的时候，只列举判断了两种错误状态码
+                                                                    NSString * message = nil;
+                                                                    if (error.code == - 1005) {
+                                                                        message = @"网络异常";
+                                                                    }else if (error.code == -1001){
+                                                                        message = @"请求超时";
+                                                                    }else{
+                                                                        message = @"未知错误";
+                                                                    }
+                                                                    [MBProgressHUD showError:message];
+                                                                }
+                                                            }];
+            //执行Task
+        [download resume];
+    }
 }
 #pragma mark - getter
 - (UITableView *)bgTableView
