@@ -4,7 +4,7 @@
 //  MJRefreshExample
 //
 //  Created by MJ Lee on 15/3/4.
-//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
+//  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshComponent.h"
@@ -65,7 +65,7 @@
         // 设置永远支持垂直弹簧效果
         _scrollView.alwaysBounceVertical = YES;
         // 记录UIScrollView最开始的contentInset
-        _scrollViewOriginalInset = _scrollView.contentInset;
+        _scrollViewOriginalInset = _scrollView.mj_inset;
         
         // 添加监听
         [self addObservers];
@@ -95,7 +95,7 @@
 - (void)removeObservers
 {
     [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentOffset];
-    [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentSize];;
+    [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentSize];
     [self.pan removeObserver:self forKeyPath:MJRefreshKeyPathPanState];
     self.pan = nil;
 }

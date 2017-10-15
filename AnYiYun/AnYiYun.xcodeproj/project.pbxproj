@@ -159,6 +159,12 @@
 		A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DC1F287D90006F3DB4 /* YYTabBarView.m */; };
 		A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */; };
 		A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */; };
+		A85D13C71F93542F00FE41CE /* MANaviRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13BF1F93542E00FE41CE /* MANaviRoute.m */; };
+		A85D13C81F93542F00FE41CE /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13C01F93542E00FE41CE /* LineDashPolyline.m */; };
+		A85D13C91F93542F00FE41CE /* MANaviAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13C41F93542F00FE41CE /* MANaviAnnotation.m */; };
+		A85D13CA1F93542F00FE41CE /* MANaviPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13C61F93542F00FE41CE /* MANaviPolyline.m */; };
+		A85D13CD1F9355B800FE41CE /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13CB1F9355B800FE41CE /* CommonUtility.m */; };
+		A85D13D01F93562200FE41CE /* ErrorInfoUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13CE1F93562200FE41CE /* ErrorInfoUtility.m */; };
 		A86E1DBC1F2F31E8000CC2D0 /* DoubleGraphModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */; };
 		A87C534C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C533B1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.m */; };
 		A87C534D1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87C533C1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.xib */; };
@@ -539,6 +545,18 @@
 		A84FA2DE1F287E06006F3DB4 /* YYTabBarCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTabBarCollectionCell.h; sourceTree = "<group>"; };
 		A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTabBarCollectionCell.m; sourceTree = "<group>"; };
 		A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYTabBarCollectionCell.xib; sourceTree = "<group>"; };
+		A85D13BF1F93542E00FE41CE /* MANaviRoute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANaviRoute.m; sourceTree = "<group>"; };
+		A85D13C01F93542E00FE41CE /* LineDashPolyline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
+		A85D13C11F93542E00FE41CE /* MANaviPolyline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANaviPolyline.h; sourceTree = "<group>"; };
+		A85D13C21F93542F00FE41CE /* MANaviRoute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANaviRoute.h; sourceTree = "<group>"; };
+		A85D13C31F93542F00FE41CE /* MANaviAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANaviAnnotation.h; sourceTree = "<group>"; };
+		A85D13C41F93542F00FE41CE /* MANaviAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANaviAnnotation.m; sourceTree = "<group>"; };
+		A85D13C51F93542F00FE41CE /* LineDashPolyline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
+		A85D13C61F93542F00FE41CE /* MANaviPolyline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANaviPolyline.m; sourceTree = "<group>"; };
+		A85D13CB1F9355B800FE41CE /* CommonUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
+		A85D13CC1F9355B800FE41CE /* CommonUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
+		A85D13CE1F93562200FE41CE /* ErrorInfoUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorInfoUtility.m; sourceTree = "<group>"; };
+		A85D13CF1F93562200FE41CE /* ErrorInfoUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorInfoUtility.h; sourceTree = "<group>"; };
 		A86E1DBA1F2F31E8000CC2D0 /* DoubleGraphModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleGraphModel.h; sourceTree = "<group>"; };
 		A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleGraphModel.m; sourceTree = "<group>"; };
 		A87C533A1F31720F008DE42B /* FirePowerSupplyAlarmInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirePowerSupplyAlarmInformationViewController.h; sourceTree = "<group>"; };
@@ -717,6 +735,18 @@
 			children = (
 				3B02DF231F2ADE0300282116 /* LocationViewController.h */,
 				3B02DF241F2ADE0300282116 /* LocationViewController.m */,
+				A85D13C51F93542F00FE41CE /* LineDashPolyline.h */,
+				A85D13C01F93542E00FE41CE /* LineDashPolyline.m */,
+				A85D13C31F93542F00FE41CE /* MANaviAnnotation.h */,
+				A85D13C41F93542F00FE41CE /* MANaviAnnotation.m */,
+				A85D13C11F93542E00FE41CE /* MANaviPolyline.h */,
+				A85D13C61F93542F00FE41CE /* MANaviPolyline.m */,
+				A85D13C21F93542F00FE41CE /* MANaviRoute.h */,
+				A85D13BF1F93542E00FE41CE /* MANaviRoute.m */,
+				A85D13CC1F9355B800FE41CE /* CommonUtility.h */,
+				A85D13CB1F9355B800FE41CE /* CommonUtility.m */,
+				A85D13CF1F93562200FE41CE /* ErrorInfoUtility.h */,
+				A85D13CE1F93562200FE41CE /* ErrorInfoUtility.m */,
 			);
 			name = "Location_通用定位";
 			path = Location;
@@ -1882,9 +1912,32 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TMCache/TMCache.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMCache.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1897,13 +1950,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AnYiYun-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E64F701828E029E3CFF5647B /* [CP] Copy Pods Resources */ = {
@@ -1912,9 +1968,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AnYiYun/Pods-AnYiYun-resources.sh",
+				"${PODS_ROOT}/AMap3DMap-NO-IDFA/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/AMapNavi-NO-IDFA/AMapNaviKit.framework/AMapNavi.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1929,6 +1989,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90CF07201F1F2BFC008106D2 /* AppDelegate.m in Sources */,
+				A85D13C81F93542F00FE41CE /* LineDashPolyline.m in Sources */,
 				90272BE11F224382000B1DC0 /* TADotView.m in Sources */,
 				901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */,
 				A87C53F11F31DB3B008DE42B /* AATooltip.m in Sources */,
@@ -1949,6 +2010,7 @@
 				A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */,
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
+				A85D13C71F93542F00FE41CE /* MANaviRoute.m in Sources */,
 				A87C53E01F31DB3B008DE42B /* AADataLabels.m in Sources */,
 				A87C53D01F31DB3B008DE42B /* AAChartView.m in Sources */,
 				A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */,
@@ -1957,6 +2019,7 @@
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
 				3B02DF3F1F2ADE0300282116 /* HistoryMessageViewController.m in Sources */,
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
+				A85D13CA1F93542F00FE41CE /* MANaviPolyline.m in Sources */,
 				9046D5EC1F2B898F004E3DCC /* InspectionRecordsViewController.m in Sources */,
 				A8FD78941F2C396800523E46 /* FireMaintenanceRemindersViewController.m in Sources */,
 				900CEC0B1F2CE5300012D925 /* HJCActionSheet.m in Sources */,
@@ -2035,6 +2098,7 @@
 				A87C53531F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m in Sources */,
 				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
+				A85D13C91F93542F00FE41CE /* MANaviAnnotation.m in Sources */,
 				A8DA967A1F2BBB3800F3032D /* MaintenanceRemindersCell.m in Sources */,
 				A8FD788F1F2C396800523E46 /* FireAlarmInformationViewController.m in Sources */,
 				9017882E1F263B2200CFED87 /* UIImage+RoundRect.m in Sources */,
@@ -2095,9 +2159,11 @@
 				A87C534E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
 				A87C53E61F31DB3B008DE42B /* AAOptions.m in Sources */,
+				A85D13CD1F9355B800FE41CE /* CommonUtility.m in Sources */,
 				9046D5F21F2B89BF004E3DCC /* DeviceFileViewController.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
 				A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */,
+				A85D13D01F93562200FE41CE /* ErrorInfoUtility.m in Sources */,
 				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,
 				A84079D11F3676980029F7FA /* LoadDetectionFilterCollectionView.m in Sources */,
 				90CF073F1F1F304C008106D2 /* BaseNavigationViewController.m in Sources */,
@@ -2248,7 +2314,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0d63778d-10d9-4442-8c58-919263e9592b";
 				PROVISIONING_PROFILE = "987a69f9-d090-4277-a117-28e26ea86068";
 				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosDeveloperPush;
 			};

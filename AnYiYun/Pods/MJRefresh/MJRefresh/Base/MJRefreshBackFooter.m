@@ -3,7 +3,7 @@
 //  MJRefreshExample
 //
 //  Created by MJ Lee on 15/4/24.
-//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
+//  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshBackFooter.h"
@@ -31,7 +31,7 @@
     // 如果正在刷新，直接返回
     if (self.state == MJRefreshStateRefreshing) return;
     
-    _scrollViewOriginalInset = self.scrollView.contentInset;
+    _scrollViewOriginalInset = self.scrollView.mj_inset;
     
     // 当前的contentOffset
     CGFloat currentOffsetY = self.scrollView.mj_offsetY;
