@@ -9,6 +9,9 @@
 #import "BaseViewController.h"
 #import "MessageModel.h"
 
+#import <MAMapKit/MAMapKit.h>
+#import <AMapNaviKit/AMapNaviKit.h>
+
 /**
  定位
  */
@@ -21,5 +24,10 @@
 @property (nonatomic,strong)NSString *deviceIdString;//设备id
 @property (nonatomic,strong)NSString *deviceNameString;//设备标题
 @property (nonatomic,strong)NSString *deviceLocation;//设备位置
+
+
+@property (nonatomic, strong) MAMapView *mapView;
+
+@property (nonatomic, strong) AMapNaviWalkManager *walkManager;
 
 @end
