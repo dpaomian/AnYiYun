@@ -4,7 +4,7 @@
 //  MJRefreshExample
 //
 //  Created by MJ Lee on 15/3/4.
-//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
+//  Copyright (c) 2015年 小码哥. All rights reserved.
 //  刷新控件的基类
 
 #import <UIKit/UIKit.h>
@@ -68,7 +68,8 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)();
 - (void)endRefreshing;
 - (void)endRefreshingWithCompletionBlock:(void (^)())completionBlock;
 /** 是否正在刷新 */
-- (BOOL)isRefreshing;
+@property (assign, nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
+//- (BOOL)isRefreshing;
 /** 刷新状态 一般交给子类内部实现 */
 @property (assign, nonatomic) MJRefreshState state;
 

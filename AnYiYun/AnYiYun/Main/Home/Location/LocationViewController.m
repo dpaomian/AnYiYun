@@ -7,270 +7,288 @@
 //
 
 #import "LocationViewController.h"
-#import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
-#import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
-#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>//引入计算工具所有的头文件
-#import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
-#import <BaiduMapAPI_Location/BMKLocationService.h>//引入计算工具所有的头文件
-#import "DeviceInfoModel.h"
+#import "CommonUtility.h"
+#import "MANaviRoute.h"
+#import "ErrorInfoUtility.h"
 
-@interface LocationViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
+static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
+static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
+static const NSInteger RoutePlanningPaddingEdge                    = 20;
 
-@property (nonatomic,strong)NSString           *positionString;
-@property (nonatomic,strong)BMKMapView         *mapView;
-@property (nonatomic,strong)BMKLocationService *locService;
+@interface LocationViewController ()<MAMapViewDelegate, AMapSearchDelegate>
+/* 路径规划类型 */
+@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) AMapSearchAPI *search;
 
-@property (nonatomic,strong)UIView     *locationView;
-@property (nonatomic,strong)UILabel    *titleLabel;
+@property (nonatomic, strong) AMapRoute *route;
+
+/* 当前路线方案索引值. */
+@property (nonatomic) NSInteger currentCourse;
+/* 路线方案个数. */
+@property (nonatomic) NSInteger totalCourse;
+
+/* 起始点经纬度. */
+@property (nonatomic) CLLocationCoordinate2D startCoordinate;
+/* 终点经纬度. */
+@property (nonatomic) CLLocationCoordinate2D destinationCoordinate;
+
+/* 用于显示当前路线方案. */
+@property (nonatomic) MANaviRoute * naviRoute;
+
+@property (nonatomic, strong) MAPointAnnotation *startAnnotation;
+@property (nonatomic, strong) MAPointAnnotation *destinationAnnotation;
 
 @end
 
 @implementation LocationViewController
 
+#pragma mark - Life Cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor redColor];
+    self.startCoordinate        = CLLocationCoordinate2DMake(39.910267, 116.370888);
+    self.destinationCoordinate  = CLLocationCoordinate2DMake(39.989872, 116.481956);
+    self.mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
+    self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.mapView.delegate = self;
+    [self.view addSubview:self.mapView];
     
-    self.title = @"安装位置";
-    [self makeUI];
+    self.search = [[AMapSearchAPI alloc] init];
+    self.search.delegate = self;
     
-    [self getUseDataRequest];
+    [self addDefaultAnnotations];
     
-    if (_deviceNameString.length==0)
-    {
-        [self getLocationName];
-    }
+    [self searchRoutePlanningWalk];
 }
 
-
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
-}
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    _mapView.delegate = nil; // 不用时，置nil
 }
 
-#pragma mark - request
--(void)getLocationName
+#pragma mark - do search
+- (void)searchRoutePlanningWalk
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,@"rest/initApp/basic_info"];
-    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"deviceId":self.deviceIdString};
+    self.startAnnotation.coordinate = self.startCoordinate;
+    self.destinationAnnotation.coordinate = self.destinationCoordinate;
     
-    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    AMapWalkingRouteSearchRequest *navi = [[AMapWalkingRouteSearchRequest alloc] init];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:urlString
-      parameters:param
-        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-     NSDictionary *resuleDic = (NSDictionary *)responseObject;
-         
-     DeviceInfoModel *info = [DeviceInfoModel mj_objectWithKeyValues:resuleDic];
-         DLog(@"安装位置 = %@",info.installationSite);
-         MAIN(^(){
-             _locationView.hidden = NO;
-             _titleLabel.hidden = NO;
-             _titleLabel.text = info.installationSite;
-         });
-     }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             DLog(@"请求失败：%@",error);
-         }];
+    /* 提供备选方案*/
+//    navi.multipath = 1;
+    
+    /* 出发点. */
+    navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+                                           longitude:self.startCoordinate.longitude];
+    /* 目的地. */
+    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+                                                longitude:self.destinationCoordinate.longitude];
+    
+    [self.search AMapWalkingRouteSearch:navi];
 }
 
-//判断获取页面信息
--(NSString *)getMiddleRequestValue
+- (void)updateTotal
 {
-    NSString *requestString = @"rest/initApp/position";
-    if ([self.pushType isEqualToString:@"devicePatrol"])
+    self.totalCourse = self.route.paths.count;
+}
+
+- (BOOL)increaseCurrentCourse
+{
+    BOOL result = NO;
+    
+    if (self.currentCourse < self.totalCourse - 1)
     {
-        requestString = @"rest/devicePatrol/position";
+        self.currentCourse++;
+        
+        result = YES;
     }
-    return requestString;
+    
+    return result;
 }
 
--(void)getUseDataRequest
+- (BOOL)decreaseCurrentCourse
 {
+    BOOL result = NO;
     
-    if (![BaseHelper checkNetworkStatus])
+    if (self.currentCourse > 0)
+    {
+        self.currentCourse--;
+        
+        result = YES;
+    }
+    
+    return result;
+}
+
+/* 展示当前路线方案. */
+- (void)presentCurrentCourse
+{
+    MANaviAnnotationType type = MANaviAnnotationTypeWalking;
+    self.naviRoute = [MANaviRoute naviRouteForPath:self.route.paths[self.currentCourse] withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+    [self.naviRoute addToMapView:self.mapView];
+    
+    /* 缩放地图使其适应polylines的展示. */
+    [self.mapView showOverlays:self.naviRoute.routePolylines edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge) animated:YES];
+}
+
+/* 清空地图上已有的路线. */
+- (void)clear
+{
+    [self.naviRoute removeFromMapView];
+}
+
+#pragma mark - MAMapViewDelegate
+- (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[LineDashPolyline class]])
+    {
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:((LineDashPolyline *)overlay).polyline];
+        polylineRenderer.lineWidth   = 8;
+//        polylineRenderer.lineDashPattern = @[@10, @15];
+        polylineRenderer.strokeColor = [UIColor redColor];
+        
+        return polylineRenderer;
+    }
+    if ([overlay isKindOfClass:[MANaviPolyline class]])
+    {
+        MANaviPolyline *naviPolyline = (MANaviPolyline *)overlay;
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:naviPolyline.polyline];
+        
+        polylineRenderer.lineWidth = 8;
+        
+        if (naviPolyline.type == MANaviAnnotationTypeWalking)
         {
-        DLog(@"网络异常 请求被返回");
-        [BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
-        return;
+            polylineRenderer.strokeColor = self.naviRoute.walkingColor;
         }
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,[self getMiddleRequestValue]];
-    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
-                            @"deviceId":self.deviceIdString};
-    
-    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:urlString
-      parameters:param
-        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-         DLog(@"定位请求回来的值 %@",string);
-         _positionString = string;
-         MAIN(^(){
-             [self addCllocation];
-         });
-     }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             DLog(@"请求失败：%@",error);
-         }];
-    
-}
-
-#pragma mark - makeUI
--(void)makeUI
-{
-    [self.view addSubview:self.mapView];
-    [self.view addSubview:self.locationView];
-     [self.view addSubview:self.titleLabel];
-    //启动LocationService
-    [self.locService startUserLocationService];
-    
-    if (_deviceLocation.length>0)
-    {
-        _locationView.hidden = NO;
-        _titleLabel.hidden = NO;
-        _titleLabel.text = _deviceLocation;
-    }
-    else
-    {
-        _locationView.hidden = YES;
-        _titleLabel.hidden = YES;
-    }
-}
-
--(void)addCllocation
-{
-    if (_positionString.length>0)
-    {
-        NSArray *pointArray = [_positionString componentsSeparatedByString:@","];
-        if (pointArray.count==2)
+        else if (naviPolyline.type == MANaviAnnotationTypeRailway)
         {
-            double longitude = [[pointArray objectAtIndex:0] doubleValue];
-            double latitude = [[pointArray objectAtIndex:1] doubleValue];
-            
-            // 添加一个PointAnnotation
-            BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc]init];
-            CLLocationCoordinate2D coor;
-            coor.latitude = latitude;
-            coor.longitude = longitude;
-            annotation.coordinate = coor;
-            
-            BMKCoordinateRegion viewRegion = BMKCoordinateRegionMake(coor,BMKCoordinateSpanMake(0.02, 0.02));
-            BMKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
-            [_mapView setRegion:adjustedRegion animated:YES];
-            
-            [_mapView addAnnotation:annotation];
-            //_mapView.centerCoordinate = coor; //更新当前位置到大头针位置
+            polylineRenderer.strokeColor = self.naviRoute.railwayColor;
         }
+        else
+        {
+            polylineRenderer.strokeColor = self.naviRoute.routeColor;
+        }
+        
+        return polylineRenderer;
     }
-}
-
-#pragma mark -getter
-// Override
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
-{
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
-            //newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
-        newAnnotationView.image = [UIImage imageNamed:@"location_icon_red.png"];
-        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
-        return newAnnotationView;
+    if ([overlay isKindOfClass:[MAMultiPolyline class]])
+    {
+        MAMultiColoredPolylineRenderer * polylineRenderer = [[MAMultiColoredPolylineRenderer alloc] initWithMultiPolyline:overlay];
+        
+        polylineRenderer.lineWidth = 8;
+        polylineRenderer.strokeColors = [self.naviRoute.multiPolylineColors copy];
+        polylineRenderer.gradient = YES;
+        
+        return polylineRenderer;
     }
+    
     return nil;
 }
 
-#pragma mark - BMKLocationServiceDelegate
-
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
 {
-    BMKCoordinateRegion region;
-    region.center.latitude = userLocation.location.coordinate.latitude;
-    region.center.longitude = userLocation.location.coordinate.longitude;
-    
-    region.span.latitudeDelta = 0.2;
-    region.span.longitudeDelta = 0.2;
-    if (_mapView)
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
-        _mapView.region = region;
+        static NSString *routePlanningCellIdentifier = @"RoutePlanningCellIdentifier";
+        
+        MAAnnotationView *poiAnnotationView = (MAAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:routePlanningCellIdentifier];
+        if (poiAnnotationView == nil)
+        {
+            poiAnnotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                             reuseIdentifier:routePlanningCellIdentifier];
+        }
+        
+        poiAnnotationView.canShowCallout = YES;
+        poiAnnotationView.image = nil;
+        
+        if ([annotation isKindOfClass:[MANaviAnnotation class]])
+        {
+            switch (((MANaviAnnotation*)annotation).type)
+            {
+                case MANaviAnnotationTypeRailway:
+                    poiAnnotationView.image = [UIImage imageNamed:@"railway_station"];
+                    break;
+                    
+                case MANaviAnnotationTypeBus:
+                    poiAnnotationView.image = [UIImage imageNamed:@"bus"];
+                    break;
+                    
+                case MANaviAnnotationTypeDrive:
+                    poiAnnotationView.image = [UIImage imageNamed:@"car"];
+                    break;
+                    
+                case MANaviAnnotationTypeWalking:
+                    poiAnnotationView.image = [UIImage imageNamed:@"man"];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            /* 起点. */
+            if ([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerStartTitle])
+            {
+                poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
+            }
+            /* 终点. */
+            else if([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerDestinationTitle])
+            {
+                poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
+            }
+            
+        }
+        
+        return poiAnnotationView;
     }
-    [_mapView setZoomLevel:19.0];
     
-    [_mapView updateLocationData:userLocation]; //更新地图上的位置
-
-    [_locService stopUserLocationService];//定位完成停止位置更新
+    return nil;
 }
-#pragma mark -getter
 
-- (BMKLocationService *)locService
+#pragma mark - AMapSearchDelegate
+- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error
 {
-    if (!_locService) {
-        _locService = [[BMKLocationService alloc]init];
-        _locService.delegate = self;
-        _locService.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    }
-    return _locService;
+    NSLog(@"Error: %@ - %@", error, [ErrorInfoUtility errorDescriptionWithCode:error.code]);
 }
 
-- (BMKMapView *)mapView
+/* 路径规划搜索回调. */
+- (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response
 {
-    if (!_mapView) {
-        _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _mapView.showsUserLocation = YES; //是否显示定位图层（即我的位置的小圆点）
-        _mapView.zoomLevel = 19;//地图显示比例
-        _mapView.mapType = BMKMapTypeStandard;//设置地图为空白类型
+    if (response.route == nil)
+    {
+        return;
     }
-    return _mapView;
+    
+    self.route = response.route;
+    [self updateTotal];
+    self.currentCourse = 0;
+    
+    if (response.count > 0)
+    {
+        [self presentCurrentCourse];
+    }
 }
 
--(UIView *)locationView
+- (void)addDefaultAnnotations
 {
-    if (!_locationView) {
-        _locationView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-NAV_HEIGHT, SCREEN_WIDTH, 40)];
-        _locationView.backgroundColor = [UIColor blackColor];
-        _locationView.alpha = 0.7;
-    }
-    return _locationView;
+    MAPointAnnotation *startAnnotation = [[MAPointAnnotation alloc] init];
+    startAnnotation.coordinate = self.startCoordinate;
+    startAnnotation.title      = (NSString*)RoutePlanningViewControllerStartTitle;
+    startAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.startCoordinate.latitude, self.startCoordinate.longitude];
+    self.startAnnotation = startAnnotation;
+    
+    MAPointAnnotation *destinationAnnotation = [[MAPointAnnotation alloc] init];
+    destinationAnnotation.coordinate = self.destinationCoordinate;
+    destinationAnnotation.title      = (NSString*)RoutePlanningViewControllerDestinationTitle;
+    destinationAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.destinationCoordinate.latitude, self.destinationCoordinate.longitude];
+    self.destinationAnnotation = destinationAnnotation;
+    
+    [self.mapView addAnnotation:startAnnotation];
+    [self.mapView addAnnotation:destinationAnnotation];
 }
 
-- (UILabel *)titleLabel
-{
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-NAV_HEIGHT, SCREEN_WIDTH, 40)];
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.font = SYSFONT_(14);
-        _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    return _titleLabel;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
+

@@ -11,8 +11,7 @@
 #import "RootTabBarViewController.h"
 #import "BaseLaunchConfig.h"
 #import "FilterCollectionView.h"
-#import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
-#import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
+#import <AMapFoundationKit/AMapFoundationKit.h>
 #import "YYTools.h"
 
 //极光推送相关
@@ -27,7 +26,7 @@
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 {
-    BMKMapManager * _mapManager;
+    
 }
 @end
 
@@ -36,16 +35,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    /*!百度地图初始化，重要代码，勿动*/
-    _mapManager = [[BMKMapManager alloc]init];
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    /*客户提供：fshy22N5vKMkq8lb5oi4CbAuOWmYS9We
-     原有：VG5ijKGlg4rHpq6h6P5qazM5MnwsKnif
-     */
-    BOOL ret = [_mapManager start:@"fshy22N5vKMkq8lb5oi4CbAuOWmYS9We"  generalDelegate:nil];
-    if (!ret) {
-        DLog(@"manager start failed!");
-    }
+    /*!高德地图初始化，重要代码，勿动*/
+    [AMapServices sharedServices].apiKey = @"94c9e6d0c24fd53d43e09d961850a75e";
     
     
     /*!极光推送初始化，重要代码，勿动*/
