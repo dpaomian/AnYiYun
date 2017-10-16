@@ -159,12 +159,6 @@
 		A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DC1F287D90006F3DB4 /* YYTabBarView.m */; };
 		A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */; };
 		A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */; };
-		A85D13C71F93542F00FE41CE /* MANaviRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13BF1F93542E00FE41CE /* MANaviRoute.m */; };
-		A85D13C81F93542F00FE41CE /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13C01F93542E00FE41CE /* LineDashPolyline.m */; };
-		A85D13C91F93542F00FE41CE /* MANaviAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13C41F93542F00FE41CE /* MANaviAnnotation.m */; };
-		A85D13CA1F93542F00FE41CE /* MANaviPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13C61F93542F00FE41CE /* MANaviPolyline.m */; };
-		A85D13CD1F9355B800FE41CE /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13CB1F9355B800FE41CE /* CommonUtility.m */; };
-		A85D13D01F93562200FE41CE /* ErrorInfoUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A85D13CE1F93562200FE41CE /* ErrorInfoUtility.m */; };
 		A86E1DBC1F2F31E8000CC2D0 /* DoubleGraphModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */; };
 		A87A08CF1F94A1C900E66B89 /* NaviPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A87A08CE1F94A1C800E66B89 /* NaviPointAnnotation.m */; };
 		A87A08D21F94A66100E66B89 /* SelectableOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = A87A08D01F94A66100E66B89 /* SelectableOverlay.m */; };
@@ -241,6 +235,8 @@
 		A8E80E7A1F43533600394711 /* YYValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E791F43533600394711 /* YYValueFormatter.m */; };
 		A8E80E7D1F436B5700394711 /* EquipmentAccountHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E7C1F436B5700394711 /* EquipmentAccountHeaderFooterView.m */; };
 		A8E80E7F1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E80E7E1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib */; };
+		A8FC48C51F950AF40072B529 /* YYNaverTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FC48C41F950AF40072B529 /* YYNaverTopView.m */; };
+		A8FC48C71F950B0B0072B529 /* YYNaverTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */; };
 		A8FD788F1F2C396800523E46 /* FireAlarmInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD787E1F2C396800523E46 /* FireAlarmInformationViewController.m */; };
 		A8FD78901F2C396800523E46 /* FireAlarmInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8FD787F1F2C396800523E46 /* FireAlarmInformationViewController.xib */; };
 		A8FD78911F2C396800523E46 /* FireEquipmentAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FD78811F2C396800523E46 /* FireEquipmentAccountViewController.m */; };
@@ -547,18 +543,6 @@
 		A84FA2DE1F287E06006F3DB4 /* YYTabBarCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTabBarCollectionCell.h; sourceTree = "<group>"; };
 		A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTabBarCollectionCell.m; sourceTree = "<group>"; };
 		A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYTabBarCollectionCell.xib; sourceTree = "<group>"; };
-		A85D13BF1F93542E00FE41CE /* MANaviRoute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANaviRoute.m; sourceTree = "<group>"; };
-		A85D13C01F93542E00FE41CE /* LineDashPolyline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
-		A85D13C11F93542E00FE41CE /* MANaviPolyline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANaviPolyline.h; sourceTree = "<group>"; };
-		A85D13C21F93542F00FE41CE /* MANaviRoute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANaviRoute.h; sourceTree = "<group>"; };
-		A85D13C31F93542F00FE41CE /* MANaviAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANaviAnnotation.h; sourceTree = "<group>"; };
-		A85D13C41F93542F00FE41CE /* MANaviAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANaviAnnotation.m; sourceTree = "<group>"; };
-		A85D13C51F93542F00FE41CE /* LineDashPolyline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
-		A85D13C61F93542F00FE41CE /* MANaviPolyline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANaviPolyline.m; sourceTree = "<group>"; };
-		A85D13CB1F9355B800FE41CE /* CommonUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
-		A85D13CC1F9355B800FE41CE /* CommonUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
-		A85D13CE1F93562200FE41CE /* ErrorInfoUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorInfoUtility.m; sourceTree = "<group>"; };
-		A85D13CF1F93562200FE41CE /* ErrorInfoUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorInfoUtility.h; sourceTree = "<group>"; };
 		A86E1DBA1F2F31E8000CC2D0 /* DoubleGraphModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleGraphModel.h; sourceTree = "<group>"; };
 		A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleGraphModel.m; sourceTree = "<group>"; };
 		A87A08CD1F94A1C700E66B89 /* NaviPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaviPointAnnotation.h; sourceTree = "<group>"; };
@@ -696,6 +680,9 @@
 		A8E80E7B1F436B5700394711 /* EquipmentAccountHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountHeaderFooterView.h; sourceTree = "<group>"; };
 		A8E80E7C1F436B5700394711 /* EquipmentAccountHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentAccountHeaderFooterView.m; sourceTree = "<group>"; };
 		A8E80E7E1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentAccountHeaderFooterView.xib; sourceTree = "<group>"; };
+		A8FC48C31F950AF40072B529 /* YYNaverTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYNaverTopView.h; sourceTree = "<group>"; };
+		A8FC48C41F950AF40072B529 /* YYNaverTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNaverTopView.m; sourceTree = "<group>"; };
+		A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YYNaverTopView.xib; sourceTree = "<group>"; };
 		A8FD787D1F2C396800523E46 /* FireAlarmInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireAlarmInformationViewController.h; sourceTree = "<group>"; };
 		A8FD787E1F2C396800523E46 /* FireAlarmInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireAlarmInformationViewController.m; sourceTree = "<group>"; };
 		A8FD787F1F2C396800523E46 /* FireAlarmInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FireAlarmInformationViewController.xib; sourceTree = "<group>"; };
@@ -741,22 +728,13 @@
 			children = (
 				3B02DF231F2ADE0300282116 /* LocationViewController.h */,
 				3B02DF241F2ADE0300282116 /* LocationViewController.m */,
+				A8FC48C31F950AF40072B529 /* YYNaverTopView.h */,
+				A8FC48C41F950AF40072B529 /* YYNaverTopView.m */,
+				A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */,
 				A87A08CD1F94A1C700E66B89 /* NaviPointAnnotation.h */,
 				A87A08CE1F94A1C800E66B89 /* NaviPointAnnotation.m */,
 				A87A08D11F94A66100E66B89 /* SelectableOverlay.h */,
 				A87A08D01F94A66100E66B89 /* SelectableOverlay.m */,
-				A85D13C51F93542F00FE41CE /* LineDashPolyline.h */,
-				A85D13C01F93542E00FE41CE /* LineDashPolyline.m */,
-				A85D13C31F93542F00FE41CE /* MANaviAnnotation.h */,
-				A85D13C41F93542F00FE41CE /* MANaviAnnotation.m */,
-				A85D13C11F93542E00FE41CE /* MANaviPolyline.h */,
-				A85D13C61F93542F00FE41CE /* MANaviPolyline.m */,
-				A85D13C21F93542F00FE41CE /* MANaviRoute.h */,
-				A85D13BF1F93542E00FE41CE /* MANaviRoute.m */,
-				A85D13CC1F9355B800FE41CE /* CommonUtility.h */,
-				A85D13CB1F9355B800FE41CE /* CommonUtility.m */,
-				A85D13CF1F93562200FE41CE /* ErrorInfoUtility.h */,
-				A85D13CE1F93562200FE41CE /* ErrorInfoUtility.m */,
 			);
 			name = "Location_通用定位";
 			path = Location;
@@ -1878,6 +1856,7 @@
 				90A2EC6E1F209E98008088C4 /* main_back_white@2x.png in Resources */,
 				A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */,
 				A81B12481F2AC446001DD06B /* MaintenanceRemindersViewController.xib in Resources */,
+				A8FC48C71F950B0B0072B529 /* YYNaverTopView.xib in Resources */,
 				9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */,
 				3B5B934F1F3AE96D0075AF0B /* Assets.xcassets in Resources */,
 				A81B121D1F2AC3F8001DD06B /* YYAlarmCell.xib in Resources */,
@@ -1999,10 +1978,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				90CF07201F1F2BFC008106D2 /* AppDelegate.m in Sources */,
-				A85D13C81F93542F00FE41CE /* LineDashPolyline.m in Sources */,
 				90272BE11F224382000B1DC0 /* TADotView.m in Sources */,
 				901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */,
 				A87C53F11F31DB3B008DE42B /* AATooltip.m in Sources */,
+				A8FC48C51F950AF40072B529 /* YYNaverTopView.m in Sources */,
 				901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */,
 				A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */,
 				A87C53E21F31DB3B008DE42B /* AALabels.m in Sources */,
@@ -2020,7 +1999,6 @@
 				A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */,
 				90CF078F1F1F3464008106D2 /* UIViewController+Swizzling.m in Sources */,
 				90CF079B1F1F363F008106D2 /* LoginViewController.m in Sources */,
-				A85D13C71F93542F00FE41CE /* MANaviRoute.m in Sources */,
 				A87C53E01F31DB3B008DE42B /* AADataLabels.m in Sources */,
 				A87C53D01F31DB3B008DE42B /* AAChartView.m in Sources */,
 				A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */,
@@ -2029,7 +2007,6 @@
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
 				3B02DF3F1F2ADE0300282116 /* HistoryMessageViewController.m in Sources */,
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
-				A85D13CA1F93542F00FE41CE /* MANaviPolyline.m in Sources */,
 				9046D5EC1F2B898F004E3DCC /* InspectionRecordsViewController.m in Sources */,
 				A8FD78941F2C396800523E46 /* FireMaintenanceRemindersViewController.m in Sources */,
 				900CEC0B1F2CE5300012D925 /* HJCActionSheet.m in Sources */,
@@ -2108,7 +2085,6 @@
 				A87C53531F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m in Sources */,
 				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
-				A85D13C91F93542F00FE41CE /* MANaviAnnotation.m in Sources */,
 				A8DA967A1F2BBB3800F3032D /* MaintenanceRemindersCell.m in Sources */,
 				A8FD788F1F2C396800523E46 /* FireAlarmInformationViewController.m in Sources */,
 				9017882E1F263B2200CFED87 /* UIImage+RoundRect.m in Sources */,
@@ -2171,11 +2147,9 @@
 				A87C534E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
 				A87C53E61F31DB3B008DE42B /* AAOptions.m in Sources */,
-				A85D13CD1F9355B800FE41CE /* CommonUtility.m in Sources */,
 				9046D5F21F2B89BF004E3DCC /* DeviceFileViewController.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
 				A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */,
-				A85D13D01F93562200FE41CE /* ErrorInfoUtility.m in Sources */,
 				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,
 				A84079D11F3676980029F7FA /* LoadDetectionFilterCollectionView.m in Sources */,
 				90CF073F1F1F304C008106D2 /* BaseNavigationViewController.m in Sources */,

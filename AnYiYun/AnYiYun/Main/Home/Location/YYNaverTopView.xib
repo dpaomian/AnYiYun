@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YYNaverTopView">
+            <rect key="frame" x="0.0" y="0.0" width="503" height="229"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  河南省郑州市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkC-PN-iba">
+                    <rect key="frame" x="0.0" y="0.0" width="503" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="5it-vM-nlX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="bkC-PN-iba" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2sO-gS-fOF"/>
+                <constraint firstItem="bkC-PN-iba" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8Ff-GX-6dw"/>
+                <constraint firstAttribute="trailing" secondItem="bkC-PN-iba" secondAttribute="trailing" id="r77-Yx-EU3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="navTitleLable" destination="bkC-PN-iba" id="Olr-D8-u49"/>
+            </connections>
+            <point key="canvasLocation" x="87.5" y="-170.5"/>
+        </view>
+    </objects>
+</document>

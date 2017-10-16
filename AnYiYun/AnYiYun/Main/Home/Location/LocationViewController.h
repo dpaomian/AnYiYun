@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "MessageModel.h"
+#import "YYNaverTopView.h"
 
 #import <MAMapKit/MAMapKit.h>
 #import <AMapNaviKit/AMapNaviKit.h>
@@ -26,6 +27,7 @@
 @property (nonatomic,strong)NSString *deviceLocation;//设备位置
 
 
+@property (nonatomic, strong) YYNaverTopView *mapTopView;
 @property (nonatomic, strong) MAMapView *mapView;
 
 @property (nonatomic, strong) AMapNaviWalkManager *walkManager;

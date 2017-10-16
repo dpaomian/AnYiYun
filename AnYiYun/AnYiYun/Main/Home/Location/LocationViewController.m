@@ -10,7 +10,7 @@
 
 #import "NaviPointAnnotation.h"
 #import "SelectableOverlay.h"
-//#import "RouteCollectionViewCell.h"
+#import "YYNaverTopView.h"
 
 #define kCollectionCellIdentifier   @"kCollectionCellIdentifier"
 
@@ -39,15 +39,13 @@
     
     [self initWalkManager];
     
-    [self configSubViews];
+    [self routePlanAction];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//
-//    self.navigationController.navigationBarHidden = NO;
-//    self.navigationController.toolbarHidden = YES;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -70,15 +68,64 @@
 
 - (void)initMapView
 {
+    _mapTopView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYNaverTopView class]) owner:nil options:nil][0];
+    _mapTopView.backgroundColor = [UIColor redColor];
+    _mapTopView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64.0f);
+    [self.view addSubview:_mapTopView];
+    
     if (self.mapView == nil)
         {
-        self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0,
+        self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64,
                                                                    self.view.bounds.size.width,
-                                                                   self.view.bounds.size.height)];
+                                                                   self.view.bounds.size.height-64-64)];
         [self.mapView setDelegate:self];
-        
+        self.mapView.showsUserLocation = YES;
         [self.view addSubview:self.mapView];
         }
+    
+    UIButton *ret = [[UIButton alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.mapView.frame)*2.0f/3.0f, 40, 40)];
+    ret.backgroundColor = [UIColor whiteColor];
+    ret.layer.cornerRadius = 20.0f ;
+    
+    [ret setImage:[UIImage imageNamed:@"gpsStat1"] forState:UIControlStateNormal];
+    [ret addTarget:self action:@selector(gpsAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.mapView addSubview:ret];
+    
+    
+    UIView *retView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.mapView.frame)-60.0f, CGRectGetHeight(self.mapView.frame)/2.0f, 53, 98)];
+    
+    UIButton *incBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 53, 49)];
+    [incBtn setImage:[UIImage imageNamed:@"increase"] forState:UIControlStateNormal];
+    [incBtn sizeToFit];
+    [incBtn addTarget:self action:@selector(zoomPlusAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *decBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 49, 53, 49)];
+    [decBtn setImage:[UIImage imageNamed:@"decrease"] forState:UIControlStateNormal];
+    [decBtn sizeToFit];
+    [decBtn addTarget:self action:@selector(zoomMinusAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [retView addSubview:incBtn];
+    [retView addSubview:decBtn];
+    [self.mapView addSubview:retView];
+}
+
+#pragma mark - Action Handlers
+- (void)gpsAction {
+    if(self.mapView.userLocation.updating && self.mapView.userLocation.location) {
+        [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
+    }
+}
+
+- (void)zoomPlusAction
+{
+    CGFloat oldZoom = self.mapView.zoomLevel;
+    [self.mapView setZoomLevel:(oldZoom + 1) animated:YES];
+}
+
+- (void)zoomMinusAction
+{
+    CGFloat oldZoom = self.mapView.zoomLevel;
+    [self.mapView setZoomLevel:(oldZoom - 1) animated:YES];
 }
 
 - (void)initWalkManager
@@ -105,26 +152,11 @@
     endAnnotation.navPointType = NaviPointAnnotationEnd;
 
     [self.mapView addAnnotation:endAnnotation];
-    
-//    MAPointAnnotation *startAnnotation = [[MAPointAnnotation alloc] init];
-//    startAnnotation.coordinate = CLLocationCoordinate2DMake(self.startPoint.latitude, self.startPoint.longitude);
-//    startAnnotation.title      = @"起点";
-//    startAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.startPoint.latitude, self.startPoint.longitude];
-////    self.startAnnotation = startAnnotation;
-//
-//    MAPointAnnotation *destinationAnnotation = [[MAPointAnnotation alloc] init];
-//    destinationAnnotation.coordinate = CLLocationCoordinate2DMake(self.endPoint.latitude, self.endPoint.longitude);
-//    destinationAnnotation.title      = @"终点";
-//    destinationAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.endPoint.latitude, self.endPoint.longitude];
-////    self.destinationAnnotation = destinationAnnotation;
-//
-//    [self.mapView addAnnotation:startAnnotation];
-//    [self.mapView addAnnotation:destinationAnnotation];
 }
 
 #pragma mark - Button Action
 
-- (void)routePlanAction:(id)sender
+- (void)routePlanAction
 {
         //进行步行路径规划
     [self.walkManager calculateWalkRouteWithStartPoints:@[self.startPoint]
@@ -168,47 +200,6 @@
 }
 
 #pragma mark - SubViews
-
-- (void)configSubViews
-{
-    UILabel *startPointLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, CGRectGetWidth(self.view.bounds), 20)];
-    
-    startPointLabel.textAlignment = NSTextAlignmentCenter;
-    startPointLabel.font = [UIFont systemFontOfSize:14];
-    startPointLabel.text = [NSString stringWithFormat:@"起 点：%f, %f", self.startPoint.latitude, self.startPoint.longitude];
-    
-    [self.view addSubview:startPointLabel];
-    
-    UILabel *endPointLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, CGRectGetWidth(self.view.bounds), 20)];
-    
-    endPointLabel.textAlignment = NSTextAlignmentCenter;
-    endPointLabel.font = [UIFont systemFontOfSize:14];
-    endPointLabel.text = [NSString stringWithFormat:@"终 点：%f, %f", self.endPoint.latitude, self.endPoint.longitude];
-    
-    [self.view addSubview:endPointLabel];
-    
-    UIButton *routeBtn = [self createToolButton];
-    [routeBtn setFrame:CGRectMake((CGRectGetWidth(self.view.bounds)-80)/2.0, 60, 80, 30)];
-    [routeBtn setTitle:@"路径规划" forState:UIControlStateNormal];
-    [routeBtn addTarget:self action:@selector(routePlanAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:routeBtn];
-}
-
-- (UIButton *)createToolButton
-{
-    UIButton *toolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    toolBtn.layer.borderColor  = [UIColor lightGrayColor].CGColor;
-    toolBtn.layer.borderWidth  = 0.5;
-    toolBtn.layer.cornerRadius = 5;
-    
-    [toolBtn setBounds:CGRectMake(0, 0, 80, 30)];
-    [toolBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    toolBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    
-    return toolBtn;
-}
 
 #pragma mark - AMapNaviDriveManager Delegate
 
