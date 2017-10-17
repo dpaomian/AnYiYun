@@ -220,7 +220,8 @@
                 {
                 if (isRead==YES)
                     {
-                    [self.tabBar showBadgeOnItemIndex:idx];
+//                    [self.tabBar showBadgeOnItemIndex:idx];
+                        [self.tabBar hideBadgeOnItemIndex:idx];
                     }
                 else
                     {

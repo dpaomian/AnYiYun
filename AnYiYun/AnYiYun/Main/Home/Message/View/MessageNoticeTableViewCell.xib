@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="KGk-i7-Jjw" customClass="MessageNoticeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="405" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="405" height="95.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统公告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G04-c3-IwX">
+                        <rect key="frame" x="18" y="8" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-18 00:22:51" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAw-4p-OBN">
+                        <rect key="frame" x="307.5" y="10.5" width="79.5" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热烈祝贺设备能源智慧管理云平台成功上线" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRj-tx-fA7">
+                        <rect key="frame" x="20" y="48" width="365" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="G04-c3-IwX" firstAttribute="centerY" secondItem="xAw-4p-OBN" secondAttribute="centerY" id="PP9-se-K4w"/>
+                    <constraint firstItem="bRj-tx-fA7" firstAttribute="top" secondItem="G04-c3-IwX" secondAttribute="bottom" constant="22" id="WML-Zb-tdO"/>
+                    <constraint firstItem="bRj-tx-fA7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="dF8-8v-3aq"/>
+                    <constraint firstAttribute="trailing" secondItem="xAw-4p-OBN" secondAttribute="trailing" constant="18" id="kxN-Lr-tYu"/>
+                    <constraint firstAttribute="trailing" secondItem="bRj-tx-fA7" secondAttribute="trailing" constant="20" id="ll4-dw-LvQ"/>
+                    <constraint firstItem="G04-c3-IwX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="oPd-Mg-i8e"/>
+                    <constraint firstItem="G04-c3-IwX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="yQ2-vx-bNY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLab" destination="bRj-tx-fA7" id="K8C-qQ-kgB"/>
+                <outlet property="timeLab" destination="xAw-4p-OBN" id="F5D-j2-5I8"/>
+                <outlet property="titleLab" destination="G04-c3-IwX" id="x3a-sH-o1r"/>
+            </connections>
+            <point key="canvasLocation" x="-169.5" y="9"/>
+        </tableViewCell>
+    </objects>
+</document>

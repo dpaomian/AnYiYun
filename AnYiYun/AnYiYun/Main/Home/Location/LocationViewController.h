@@ -32,6 +32,10 @@
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) YYNaverBottomButton *mapBottomButton;
 
+/*!路径规划选项卡*/
+@property (nonatomic, strong) YYSegmentedView *navTypesView;
 @property (nonatomic, strong) AMapNaviWalkManager *walkManager;
+@property (nonatomic, strong) AMapNaviRideManager *rideManager;
+@property (nonatomic, strong) AMapNaviDriveManager *driveManager;
 
 @end

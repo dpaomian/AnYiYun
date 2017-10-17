@@ -85,7 +85,11 @@
 #pragma mark UICollectionViewDelegateFlowLayout -
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((SCREEN_WIDTH)/([_titlesArray count]), 44.0f);
+    if ([_titlesArray count] == 5) {
+        return CGSizeMake((SCREEN_WIDTH)/([_titlesArray count]*2-1)*2, 44.0f);
+    } else {
+        return CGSizeMake((SCREEN_WIDTH)/([_titlesArray count]), 44.0f);
+    }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

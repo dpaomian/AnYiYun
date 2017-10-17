@@ -185,6 +185,17 @@
     return 10;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, 10.0f)];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, 10.0f)];
+    }
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;

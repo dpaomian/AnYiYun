@@ -212,6 +212,7 @@
 		A87C53F31F31DB3B008DE42B /* AAYAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C53CE1F31DB3B008DE42B /* AAYAxis.m */; };
 		A882D3E51F3B67A900DCF865 /* NoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = A882D3E41F3B67A900DCF865 /* NoDataView.m */; };
 		A882D3E71F3B67B500DCF865 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A882D3E61F3B67B500DCF865 /* NoDataView.xib */; };
+		A88313CE1F9646EA003DF91B /* MessSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A88313CC1F9646EA003DF91B /* MessSettingViewController.m */; };
 		A89511791F32426B00093DE9 /* UITextView+DisableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */; };
 		A8992F811F34C5F00074DE59 /* libSupperYYTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8992F801F34C5F00074DE59 /* libSupperYYTools.a */; };
 		A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A89FBFCF1F23175A001405E8 /* CalendarViewController.m */; };
@@ -222,6 +223,9 @@
 		A8A5882E1F78007E00F5D327 /* StandardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A5882D1F78007E00F5D327 /* StandardViewController.m */; };
 		A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */; };
 		A8B3DF8A1F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */; };
+		A8BBB76B1F96654700DCEF59 /* MessageNoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BBB7691F96654700DCEF59 /* MessageNoticeTableViewCell.m */; };
+		A8BBB76C1F96654700DCEF59 /* MessageNoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8BBB76A1F96654700DCEF59 /* MessageNoticeTableViewCell.xib */; };
+		A8BBB76F1F9679BF00DCEF59 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BBB76D1F9679BF00DCEF59 /* PreferenceView.m */; };
 		A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */; };
 		A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */; };
 		A8DA96701F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DA966F1F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m */; };
@@ -642,6 +646,8 @@
 		A882D3E31F3B67A900DCF865 /* NoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDataView.h; sourceTree = "<group>"; };
 		A882D3E41F3B67A900DCF865 /* NoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataView.m; sourceTree = "<group>"; };
 		A882D3E61F3B67B500DCF865 /* NoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
+		A88313CB1F9646EA003DF91B /* MessSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessSettingViewController.h; sourceTree = "<group>"; };
+		A88313CC1F9646EA003DF91B /* MessSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessSettingViewController.m; sourceTree = "<group>"; };
 		A89511771F32426B00093DE9 /* UITextView+DisableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+DisableCopy.h"; sourceTree = "<group>"; };
 		A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+DisableCopy.m"; sourceTree = "<group>"; };
 		A8992F801F34C5F00074DE59 /* libSupperYYTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSupperYYTools.a; sourceTree = "<group>"; };
@@ -659,6 +665,11 @@
 		A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringChildCell.h; sourceTree = "<group>"; };
 		A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringChildCell.m; sourceTree = "<group>"; };
 		A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealtimeMonitoringChildCell.xib; sourceTree = "<group>"; };
+		A8BBB7681F96654700DCEF59 /* MessageNoticeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageNoticeTableViewCell.h; sourceTree = "<group>"; };
+		A8BBB7691F96654700DCEF59 /* MessageNoticeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageNoticeTableViewCell.m; sourceTree = "<group>"; };
+		A8BBB76A1F96654700DCEF59 /* MessageNoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageNoticeTableViewCell.xib; sourceTree = "<group>"; };
+		A8BBB76D1F9679BF00DCEF59 /* PreferenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceView.m; sourceTree = "<group>"; };
+		A8BBB76E1F9679BF00DCEF59 /* PreferenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceView.h; sourceTree = "<group>"; };
 		A8C4B12F1F26342800E5F682 /* EnergyConsumptionStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnergyConsumptionStatisticsCell.h; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.h; sourceTree = SOURCE_ROOT; };
 		A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnergyConsumptionStatisticsCell.m; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.m; sourceTree = SOURCE_ROOT; };
 		A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnergyConsumptionStatisticsCell.xib; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.xib; sourceTree = SOURCE_ROOT; };
@@ -740,6 +751,8 @@
 				A87A08CE1F94A1C800E66B89 /* NaviPointAnnotation.m */,
 				A87A08D11F94A66100E66B89 /* SelectableOverlay.h */,
 				A87A08D01F94A66100E66B89 /* SelectableOverlay.m */,
+				A8BBB76E1F9679BF00DCEF59 /* PreferenceView.h */,
+				A8BBB76D1F9679BF00DCEF59 /* PreferenceView.m */,
 			);
 			name = "Location_通用定位";
 			path = Location;
@@ -791,6 +804,9 @@
 				3B02DF381F2ADE0300282116 /* MessageExamCell.m */,
 				3B02DF391F2ADE0300282116 /* MessageMaintainCell.h */,
 				3B02DF3A1F2ADE0300282116 /* MessageMaintainCell.m */,
+				A8BBB7681F96654700DCEF59 /* MessageNoticeTableViewCell.h */,
+				A8BBB7691F96654700DCEF59 /* MessageNoticeTableViewCell.m */,
+				A8BBB76A1F96654700DCEF59 /* MessageNoticeTableViewCell.xib */,
 				3B02DF3B1F2ADE0300282116 /* MessageTopView.h */,
 				3B02DF3C1F2ADE0300282116 /* MessageTopView.m */,
 				A882D3E31F3B67A900DCF865 /* NoDataView.h */,
@@ -1379,6 +1395,8 @@
 				90CF074D1F1F313F008106D2 /* MeMainViewController.m */,
 				9017881D1F26349000CFED87 /* SettingViewController.h */,
 				9017881E1F26349000CFED87 /* SettingViewController.m */,
+				A88313CB1F9646EA003DF91B /* MessSettingViewController.h */,
+				A88313CC1F9646EA003DF91B /* MessSettingViewController.m */,
 				901788201F26349E00CFED87 /* ShareViewController.h */,
 				901788211F26349E00CFED87 /* ShareViewController.m */,
 				901788231F2637BD00CFED87 /* ChangePwdViewController.h */,
@@ -1858,6 +1876,7 @@
 				A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */,
 				A84079C91F3640950029F7FA /* YYCurveView.xib in Resources */,
 				901788081F2620D200CFED87 /* YYCalendarCollectionViewCell.xib in Resources */,
+				A8BBB76C1F96654700DCEF59 /* MessageNoticeTableViewCell.xib in Resources */,
 				90A2EC6E1F209E98008088C4 /* main_back_white@2x.png in Resources */,
 				A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */,
 				A81B12481F2AC446001DD06B /* MaintenanceRemindersViewController.xib in Resources */,
@@ -2022,6 +2041,7 @@
 				90CF07A21F1F38D5008106D2 /* SJAvatarBrowser.m in Sources */,
 				A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */,
 				A8FD78971F2C396800523E46 /* FireRealtimeMonitoringViewController.m in Sources */,
+				A8BBB76F1F9679BF00DCEF59 /* PreferenceView.m in Sources */,
 				A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				A8E80E7A1F43533600394711 /* YYValueFormatter.m in Sources */,
@@ -2147,9 +2167,11 @@
 				A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */,
 				90CF079E1F1F375B008106D2 /* BaseHelper.m in Sources */,
 				90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */,
+				A88313CE1F9646EA003DF91B /* MessSettingViewController.m in Sources */,
 				90CF07881F1F3464008106D2 /* UIImage+Extension.m in Sources */,
 				901788251F2637BD00CFED87 /* ChangePwdViewController.m in Sources */,
 				3B02DF431F2ADE0300282116 /* HistoryMessageCell.m in Sources */,
+				A8BBB76B1F96654700DCEF59 /* MessageNoticeTableViewCell.m in Sources */,
 				A87C534E1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.m in Sources */,
 				909E1A921F279086008EECAF /* HomeAdverCell.m in Sources */,
 				A87C53E61F31DB3B008DE42B /* AAOptions.m in Sources */,

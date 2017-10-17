@@ -96,7 +96,7 @@
     _sectionOneArray = @[@{@"icon":@"InformationIcon.png",
                            @"title":@"资讯"},
                          @{@"icon":@"MessageIcon.png",
-                           @"title":@"消息"}];
+                           @"title":@"设备服务"}];
         //设置 & 分享
     _sectionTwoArray = @[@{@"icon":@"SettingIcon.png",
                              @"title":@"设置"},
@@ -108,31 +108,34 @@
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.001;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, 10.0f)];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 64;
     }
     return 44;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1)
         {
         return _sectionOneArray.count;
@@ -230,9 +233,14 @@
             }
     else if ([textTitle isEqualToString:@"消息"])
         {
-        HistoryMessageViewController *vc = [[HistoryMessageViewController alloc]init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+//        HistoryMessageViewController *vc = [[HistoryMessageViewController alloc]init];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+            PublicWebViewController *vc = [[PublicWebViewController alloc] init];
+            vc.titleStr = @"设备服务";
+            vc.myUrl = @"http://101.201.108.246/index.html";
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     else if ([textTitle isEqualToString:@"设置"])
         {

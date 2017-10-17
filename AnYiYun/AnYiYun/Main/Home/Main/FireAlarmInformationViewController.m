@@ -20,6 +20,8 @@
     
     __weak FireAlarmInformationViewController *ws = self;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:@"getMessageIsRead" object:nil];
+    
     _listMutableArray = [NSMutableArray array];
     _conditionDic = [NSMutableDictionary dictionary];
     
@@ -31,6 +33,16 @@
     [self.tableView.mj_header beginRefreshing];
     
     _fullScreenCurveVC = [[YYCurveViewController alloc] initWithNibName:NSStringFromClass([YYCurveViewController class]) bundle:nil];
+}
+
+//刷新消息界面
+-(void)refresh:(NSNotification *)notify
+{
+    NSString *messageNotify  = notify.object;
+    if ([messageNotify boolValue]==YES) {
+        //接收到推送 有新消息
+        [self getAlarmInformationData];
+    }
 }
 
 - (void)getAlarmInformationData {
@@ -109,7 +121,7 @@
     }
     cell.titleLab.text = modelItem.title;
     cell.contentLab.text = modelItem.content;
-    cell.timeLab.text = modelItem.time;
+    cell.timeLab.text = [modelItem.time substringFromIndex:5];
     if ([modelItem.state boolValue]) {
         [cell.dealBtn setTitle:@" 已处理" forState:UIControlStateNormal] ;
         [cell.dealBtn setImage:[UIImage imageNamed:@"icon_Round.png"] forState:UIControlStateNormal];

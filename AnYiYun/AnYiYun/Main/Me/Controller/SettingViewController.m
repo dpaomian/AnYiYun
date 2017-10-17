@@ -18,7 +18,7 @@
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
-    NSArray *_sectionOneArray,*_sectionTwoArray;
+    NSArray *_sectionOneArray, *_yySectionArray,*_sectionTwoArray;
 }
 
 @property (nonatomic, strong) UIView *footerView;
@@ -38,8 +38,7 @@
     [self getDataSource];
     
 }
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
 
@@ -49,6 +48,9 @@
         //修改密码
     _sectionOneArray = @[@{@"icon":@"changepassword.png",
                            @"title":@"修改密码"}];
+    //消息设置
+    _yySectionArray = @[@{@"icon":@"changepassword.png",
+                          @"title":@"消息设置"}];
         //清除缓存
     _sectionTwoArray = @[@{@"icon":@"cleancache.png",
                            @"title":@"清除缓存"}];
@@ -57,59 +59,54 @@
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.001;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, 10.0f)];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 64;
     }
     return 44;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 3;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 1)
-        {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 1) {
         return _sectionOneArray.count;
-        }
-    else if (section == 2)
-        {
+    } else if (section == 2) {
+        return _yySectionArray.count;
+    } else if (section == 3) {
         return _sectionTwoArray.count;
-        }
-    
+    }
     return 1;
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *reuseIdentifier = [NSString stringWithFormat:@"%ld_%ld",(long)indexPath.section,(long)indexPath.row];
-    
-    if (indexPath.section == 0)
-        {
+    if (indexPath.section == 0) {
         UserInfoCell *meCell = (UserInfoCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (!meCell) {
             meCell = [[UserInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
             meCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         return meCell;
-        }
-    else
-        {
+        } else {
         MeCell *cell = (MeCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (!cell) {
             cell = [[MeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
@@ -118,16 +115,22 @@
         }
         cell.bottomLineView.hidden = NO;
         NSDictionary *dic;
-        if (indexPath.section == 1)
-            {
+        if (indexPath.section == 1) {
             dic = [_sectionOneArray objectAtIndex:indexPath.row];
             if (indexPath.row==_sectionOneArray.count-1)
                 {
                 cell.bottomLineView.hidden = YES;
                 }
-            }
-        else if (indexPath.section == 2)
+        } else if (indexPath.section == 2) {
+            dic = [_yySectionArray objectAtIndex:indexPath.row];
+            if (_yySectionArray.count>0)
             {
+                if (indexPath.row==_yySectionArray.count-1)
+                {
+                    cell.bottomLineView.hidden = YES;
+                }
+            }
+        } else if (indexPath.section == 3) {
             dic = [_sectionTwoArray objectAtIndex:indexPath.row];
             if (_sectionTwoArray.count>0)
                 {
@@ -154,8 +157,7 @@
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *textTitle =@"";
     NSDictionary *dic;
     if (indexPath.section == 1)
@@ -164,6 +166,11 @@
         textTitle =dic[@"title"];
         }
     else if (indexPath.section == 2)
+    {
+        dic = [_yySectionArray objectAtIndex:indexPath.row];
+        textTitle =dic[@"title"];
+    }
+    else if (indexPath.section == 3)
         {
         dic = [_sectionTwoArray objectAtIndex:indexPath.row];
         textTitle =dic[@"title"];
@@ -178,6 +185,12 @@
             [self.navigationController pushViewController:vc animated:YES];
             
             }
+        else if ([textTitle isEqualToString:@"消息设置"])
+        {
+            MessSettingViewController *vc = [[MessSettingViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
         else if ([textTitle isEqualToString:@"清除缓存"])
             {
             NSString *messageString = @"本次清除内容包括:\n 1.网络数据缓存; \n 2.所有图片缓存; \n   3.消息中心缓存。";
@@ -189,8 +202,7 @@
 }
 
 #pragma mark UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag==100)
         {
         if (buttonIndex == 1)
@@ -214,8 +226,7 @@
 }
 
     //清除班级圈下载小视频
--(void)deleteDownVideoByfilePath:(NSString *)filePath
-{
+-(void)deleteDownVideoByfilePath:(NSString *)filePath {
     [MBProgressHUD showMessage:@"清理中..." ];
     BACK( ^{
             //取出抓图文件夹下得所有文件
@@ -243,9 +254,7 @@
 
 #pragma mark - Action
 
-- (void)logoutAction
-{
-    
+- (void)logoutAction {
     NSString *message = @"您确认要\"注销登录\"么？";
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alertView.tag = 103;
@@ -253,8 +262,7 @@
      
 }
 
--(void)setAPPLogout
-{
+-(void)setAPPLogout {
     [PersonInfo shareInstance].loginTextAccount = @"";
     [BaseCacheHelper releaseAllCache];
     
@@ -268,8 +276,7 @@
 }
 
 #pragma mark - getter
-- (UITableView *)settingTableView
-{
+- (UITableView *)settingTableView {
     if (!_settingTableView) {
         _settingTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT) style:UITableViewStyleGrouped];
         _settingTableView.delegate = self;
@@ -282,8 +289,7 @@
     return _settingTableView;
 }
 
-- (UIView *)footerView
-{
+- (UIView *)footerView {
     if (!_footerView) {
         _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, kScreen_Width, TableFooterHelght + 40)];
         UIButton *logoutButton = [[UIButton alloc] init];
@@ -302,17 +308,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-        // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

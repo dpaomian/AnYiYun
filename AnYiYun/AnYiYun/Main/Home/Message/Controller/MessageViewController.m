@@ -10,7 +10,8 @@
 #import "MessageAlarmCell.h"
 #import "MessageExamCell.h"
 #import "MessageMaintainCell.h"
-#import "MessageTopView.h"
+#import "MessageNoticeTableViewCell.h"
+#import "YYSegmentedView.h"
 #import "PromptView.h"
 #import "LocationViewController.h"
 #import "DBDaoDataBase.h"
@@ -20,25 +21,27 @@
 #import "NoDataView.h"
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource,MessageExamCellDeleagte,MessageAlarmCellDeleagte,MessageMaintainCellDeleagte,UIAlertViewDelegate>
-{
-    NSInteger    selectViewTag;
-    UITableView *_currentTabelView;
-}
 
+@property (nonatomic, assign) NSInteger    selectViewTag;
+@property (nonatomic, strong) UITableView *currentTabelView;
 @property (nonatomic, strong) BaseNavigationViewController *popNavVC;
 
 @property (nonatomic, strong) MessageModel *selectModel;
 @property (nonatomic, strong) UIScrollView *scrolView;
 @property (nonatomic, strong) PromptView *promptView;
-@property (nonatomic, strong) MessageTopView *topView;
+@property (nonatomic, strong) YYSegmentedView *topView;
 
 @property (nonatomic, strong) UITableView *alarmTableView;
 @property (nonatomic, strong) UITableView *examTableView;
 @property (nonatomic, strong) UITableView *maintainTableView;
+@property (nonatomic, strong) UITableView *checkTableView;
+@property (nonatomic, strong) UITableView *systemTableView;
 
 @property (nonatomic, strong) NSMutableArray *alarmDataSource;
 @property (nonatomic, strong) NSMutableArray *examDataSource;
 @property (nonatomic, strong) NSMutableArray *maintainDataSource;
+@property (nonatomic, strong) NSMutableArray *checkDataSource;
+@property (nonatomic, strong) NSMutableArray *systemDataSource;
 @property (nonatomic, strong) NoDataView *nodataView;
 
 @end
@@ -57,7 +60,7 @@
     [self setRightNavigationBar];
     [self makeupComponentUI];
     
-    selectViewTag = 11;
+    _selectViewTag = 11;
     [self dataRequest];
     
     _nodataView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([NoDataView class]) owner:nil options:nil][0];
@@ -160,29 +163,27 @@
 - (void)dataRequest
 {
     
-    if (![BaseHelper checkNetworkStatus])
-    {
+    if (![BaseHelper checkNetworkStatus]) {
         DLog(@"网络异常 请求被返回");
         [BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
         return;
     }
-
-    
-    if (selectViewTag==11)
-        {
+    if (_selectViewTag==11) {
             //获取告警信息
         [self getAlarmDataRequest];
-    }
-    else if (selectViewTag==12)
-        {
+    } else if (_selectViewTag==12) {
             //获取待检修
         [self getExamDataRequest];
-        }
-    else if (selectViewTag==13)
-        {
+    } else if (_selectViewTag==13){
             //获取待保养
         [self getMaintainDataRequest];
-        }
+    } else if (_selectViewTag==14){
+        //获取待保养
+        [self getCheckDataRequest];
+    } else if (_selectViewTag==15){
+        //获取待保养
+        [self getNoticeDataRequest];
+    }
 }
 
 //获取告警信息
@@ -351,6 +352,87 @@
          }];
 }
 
+//获取待检测
+-(void)getCheckDataRequest
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/check",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         [_checkDataSource removeAllObjects];
+         
+         id  object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+         NSArray *listArray = (NSArray *)object;
+         for (int i=0; i<listArray.count; i++)
+         {
+             MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
+             [_checkDataSource addObject:item];
+         }
+         if (_checkDataSource.count > 0) {
+             _nodataView.hidden = YES;
+         } else {
+             _nodataView.hidden = NO;
+             _nodataView.imageView.image = [UIImage imageNamed:@"ic_device_info_nothing.png"];
+             _nodataView.titleLable.text = @"暂无检测记录";
+         }
+         [_checkTableView reloadData];
+         [self endRefreshing];
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"获取待保养 失败：%@",error);
+         }];
+}
+
+//获取系统通知
+-(void)getNoticeDataRequest
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/notice",BASE_PLAN_URL];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         [_systemDataSource removeAllObjects];
+         
+         id  object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+         NSArray *listArray = (NSArray *)object;
+         for (int i=0; i<listArray.count; i++)
+         {
+             MessageModel *item = [[MessageModel alloc]initWithDictionary:[listArray objectAtIndex:i]];
+             [_systemDataSource addObject:item];
+         }
+         if (_systemDataSource.count > 0) {
+             _nodataView.hidden = YES;
+         } else {
+             _nodataView.hidden = NO;
+             _nodataView.imageView.image = [UIImage imageNamed:@"ic_device_info_nothing.png"];
+             _nodataView.titleLable.text = @"暂无系统消息";
+         }
+         [_systemTableView reloadData];
+         [self endRefreshing];
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             DLog(@"获取待保养 失败：%@",error);
+         }];
+}
+
+/*
+ http://59.110.127.192:18084/Android/rest/busiData/check?userSign=5
+ http://59.110.127.192:18084/Android/rest/busiData/notice?userSign=5
+ */
+
     //选择已处理
 -(void)dealMessageRequestWithType:(NSString *)type
 {
@@ -493,6 +575,10 @@
     [self.examTableView.mj_header endRefreshing];
     [self.maintainTableView.mj_footer endRefreshing];
     [self.maintainTableView.mj_header endRefreshing];
+    [self.checkTableView.mj_footer endRefreshing];
+    [self.checkTableView.mj_header endRefreshing];
+    [self.systemTableView.mj_footer endRefreshing];
+    [self.systemTableView.mj_header endRefreshing];
 }
 
 - (void)makeupComponentUI
@@ -501,6 +587,8 @@
     _alarmDataSource = [[NSMutableArray alloc]init];
     _examDataSource = [[NSMutableArray alloc]init];
     _maintainDataSource = [[NSMutableArray alloc]init];
+    _checkDataSource = [[NSMutableArray alloc]init];
+    _systemDataSource = [[NSMutableArray alloc]init];
     
     [self.view addSubview:self.topView];
     [self.view addSubview:self.scrolView];
@@ -508,6 +596,8 @@
     [self.scrolView addSubview:self.alarmTableView];
     [self.scrolView addSubview:self.examTableView];
     [self.scrolView addSubview:self.maintainTableView];
+    [self.scrolView addSubview:self.systemTableView];
+    [self.scrolView addSubview:self.systemTableView];
     
     [self updateComponentUI];
 }
@@ -517,12 +607,18 @@
     self.alarmTableView.y = 0;
     self.examTableView.y = 0;
     self.maintainTableView.y = 0;
+    self.checkTableView.y = 0;
+    self.systemTableView.y = 0;
     self.alarmTableView.height = self.scrolView.height;
     self.examTableView.height = self.scrolView.height;
     self.maintainTableView.height = self.scrolView.height;
+    self.checkTableView.height = self.scrolView.height;
+    self.systemTableView.height = self.scrolView.height;
     self.alarmTableView.x = 0;
     self.examTableView.x = self.scrolView.width;
     self.maintainTableView.x = self.scrolView.width*2;
+    self.checkTableView.x = self.scrolView.width*3;
+    self.systemTableView.x = self.scrolView.width*4;
    
     self.scrolView.contentSize = CGSizeMake(0, kScreen_Width);
     
@@ -530,52 +626,6 @@
     self.scrolView.height = self.view.height - self.topView.height;
     
      _currentTabelView = self.alarmTableView;
-}
-
-#pragma mark - action
-
--(void)topViewAction:(UIButton *)sender
-{
-    _nodataView.hidden = YES;
-    selectViewTag = sender.tag;
-    if (sender.tag == 11)
-        {
-        [self.topView.alarmButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
-        [self.topView.examButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-        [self.topView.maintainButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-        
-        [UIView animateWithDuration:0.15 animations:^{
-            [self.scrolView setContentOffset:CGPointMake(0, 0)];
-            self.topView.lineView.centerX = self.topView.alarmButton.centerX;
-        } ];
-        _currentTabelView = self.alarmTableView;
-        
-    }
-    else if (sender.tag == 12)
-        {
-        [self.topView.alarmButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-        [self.topView.examButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
-        [self.topView.maintainButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-        
-        [UIView animateWithDuration:0.15 animations:^{
-            [self.scrolView setContentOffset:CGPointMake(self.view.width, 0)];
-            self.topView.lineView.centerX = self.topView.examButton.centerX;
-        } ];
-        _currentTabelView = self.examTableView;
-    }
-    else if (sender.tag == 13)
-        {
-        [self.topView.alarmButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-        [self.topView.examButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-        [self.topView.maintainButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
-        
-        [UIView animateWithDuration:0.15 animations:^{
-            [self.scrolView setContentOffset:CGPointMake(self.view.width*2, 0)];
-            self.topView.lineView.centerX = self.topView.maintainButton.centerX;
-        } ];
-        _currentTabelView = self.maintainTableView;
-        }
-    [self dataRequest];
 }
 
 #pragma mark - MessageAlarmCellDeleagte
@@ -680,72 +730,19 @@
         }
 }
 
-#pragma mark - UITableViewDataSource & UITableViewDelegate
-/**
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if ([scrollView isEqual:self.scrolView])
-        {
-        NSInteger page = scrollView.contentOffset.x/SCREEN_WIDTH;
-        DLog(@"page =%ld",(long)page);
-        if (page == 0)
-            {
-            selectViewTag = 11;
-            [self.topView.alarmButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
-            [self.topView.examButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-            [self.topView.maintainButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-            
-            [UIView animateWithDuration:0.15 animations:^{
-                [self.scrolView setContentOffset:CGPointMake(0, 0)];
-                self.topView.lineView.centerX = self.topView.alarmButton.centerX;
-            } ];
-            _currentTabelView = self.alarmTableView;
-            
-        }
-        else if (page == 1)
-            {
-            selectViewTag = 12;
-            [self.topView.alarmButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-            [self.topView.examButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
-            [self.topView.maintainButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-            
-            [UIView animateWithDuration:0.15 animations:^{
-                [self.scrolView setContentOffset:CGPointMake(self.view.width, 0)];
-                self.topView.lineView.centerX = self.topView.examButton.centerX;
-            } ];
-            _currentTabelView = self.examTableView;
-            }
-        else if (page == 2)
-            {
-            selectViewTag = 13;
-            [self.topView.alarmButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-            [self.topView.examButton setTitleColor:kAppTitleBlackColor forState:UIControlStateNormal];
-            [self.topView.maintainButton setTitleColor:kAPPBlueColor forState:UIControlStateNormal];
-            
-            [UIView animateWithDuration:0.15 animations:^{
-                [self.scrolView setContentOffset:CGPointMake(self.view.width*2, 0)];
-                self.topView.lineView.centerX = self.topView.maintainButton.centerX;
-            } ];
-            _currentTabelView = self.maintainTableView;
-            }
-        [_currentTabelView reloadData];
-    }
-}
-*/
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.alarmTableView)
-        {
+    if (tableView == self.alarmTableView) {
         return self.alarmDataSource.count;
-        }
-    else if (tableView == self.examTableView)
-        {
+    } else if (tableView == self.examTableView) {
         return self.examDataSource.count;
-        }
-    else if (tableView == self.maintainTableView)
-        {
+    } else if (tableView == self.maintainTableView) {
         return self.maintainDataSource.count;
-        }
+    } else if (tableView == self.checkTableView) {
+        return self.checkDataSource.count;
+    } else if (tableView == self.systemTableView) {
+        return self.systemDataSource.count;
+    }
     return 0;
 }
 
@@ -774,8 +771,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.alarmTableView)
-        {
+    if (tableView == self.alarmTableView) {
         NSString *cellIdentifier = [NSString stringWithFormat:@"alarmTableView_%ld_%ld",(long)indexPath.section,(long)indexPath.row];
         MessageAlarmCell  *cell = (MessageAlarmCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil)
@@ -790,9 +786,7 @@
             [cell setCellContentWithModel:item];
         }
         return cell;
-        }
-    else if (tableView == self.examTableView)
-        {
+        } else if (tableView == self.examTableView) {
         NSString *cellIdentifier = [NSString stringWithFormat:@"examTableView_%ld_%ld",(long)indexPath.section,(long)indexPath.row];
         MessageExamCell  *cell = (MessageExamCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil)
@@ -807,9 +801,7 @@
             [cell setCellContentWithModel:item];
             }
         return cell;
-        }
-    else if (tableView == self.maintainTableView)
-        {
+        } else if (tableView == self.maintainTableView) {
         NSString *cellIdentifier = [NSString stringWithFormat:@"maintainTableView_%ld_%ld",(long)indexPath.section,(long)indexPath.row];
         MessageMaintainCell  *cell = (MessageMaintainCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil)
@@ -824,13 +816,44 @@
             [cell setCellContentWithModel:item];
             }
         return cell;
+        } else if (tableView == self.checkTableView) {
+            NSString *cellIdentifier = [NSString stringWithFormat:@"maintainTableView_%ld_%ld",(long)indexPath.section,(long)indexPath.row];
+            MessageMaintainCell  *cell = (MessageMaintainCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil)
+            {
+                cell = [[MessageMaintainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            if (_checkDataSource.count>0)
+            {
+                cell.cellDelegate = self;
+                MessageModel *item = [_checkDataSource objectAtIndex:indexPath.section];
+                [cell setCellContentWithModel:item];
+            }
+            return cell;
+        } else if (tableView == self.systemTableView) {
+            MessageNoticeTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageNoticeTableViewCell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (_systemDataSource.count>0)
+            {
+                MessageModel *item = [_systemDataSource objectAtIndex:indexPath.section];
+                cell.titleLab.text = item.messageTitle;
+                cell.timeLab.text = [item.time substringFromIndex:5];
+                cell.contentLab.text = item.messageContent;
+                NSLog(@"%@",cell.contentLab.text);
+            }
+            return cell;
         }
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 115;
+    if (tableView == _systemTableView) {
+        return 100;
+    } else {
+        return 115;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -839,13 +862,45 @@
 }
 
 #pragma mark - getter
-- (MessageTopView *)topView
+- (YYSegmentedView *)topView
 {
     if (!_topView) {
-        _topView = [[MessageTopView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 40)];
-        [_topView.alarmButton addTarget:self action:@selector(topViewAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_topView.examButton addTarget:self action:@selector(topViewAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_topView.maintainButton addTarget:self action:@selector(topViewAction:) forControlEvents:UIControlEventTouchUpInside];
+        __weak MessageViewController *ws = self;
+        
+        _topView = [[YYSegmentedView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 44.0f)];
+        _topView.backgroundColor = UIColorFromRGB(0x000000);
+        _topView.selectedIndex = 0;
+        _topView.titlesArray = @[@"告警",@"待维修",@"待保养",@"待检测",@"系统"];
+        _topView.itemHandle = ^(YYSegmentedView *stateView, NSInteger index) {
+            if (index == stateView.selectedIndex) {
+                return ;
+            }else {
+                [stateView.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+                stateView.selectedIndex = index;
+                ws.selectViewTag = index+11;
+                [UIView animateWithDuration:0.15 animations:^{
+                    [ws.scrolView setContentOffset:CGPointMake(self.view.width*index, 0)];
+                } ];
+                if (index == 0) {
+                    ws.currentTabelView = ws.alarmTableView;
+                    [ws.currentTabelView reloadData];
+                } else if (index == 1) {
+                    ws.currentTabelView = ws.examTableView;
+                    [ws.currentTabelView reloadData];
+                } else if (index == 2) {
+                    ws.currentTabelView = ws.maintainTableView;
+                    [ws.currentTabelView reloadData];
+                }  else if (index == 3) {
+                    ws.currentTabelView = ws.checkTableView;
+                    [ws.currentTabelView reloadData];
+                }  else if (index == 4) {
+                    ws.currentTabelView = ws.systemTableView;
+                } else {
+                    
+                }
+                [ws dataRequest];
+            }
+        };
     }
     return _topView;
 }
@@ -865,7 +920,7 @@
 {
     if (!_scrolView) {
         _scrolView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topView.frame), self.view.width, kScreen_Height - 64 - self.topView.height)];
-        _scrolView.contentSize = CGSizeMake(kScreen_Width *3, 0);
+        _scrolView.contentSize = CGSizeMake(kScreen_Width *5, 0);
         _scrolView.pagingEnabled = YES;
         _scrolView.delegate = self;
     }
@@ -875,7 +930,7 @@
 - (UITableView *)alarmTableView
 {
     if (!_alarmTableView) {
-        _alarmTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 40) style:UITableViewStyleGrouped];
+        _alarmTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
         _alarmTableView.dataSource = self;
         _alarmTableView.delegate = self;
         _alarmTableView.backgroundColor = [UIColor clearColor];
@@ -892,7 +947,7 @@
 - (UITableView *)examTableView
 {
     if (!_examTableView) {
-        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 40) style:UITableViewStyleGrouped];
+        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
         _examTableView.dataSource = self;
         _examTableView.delegate = self;
         _examTableView.backgroundColor = [UIColor clearColor];
@@ -908,7 +963,7 @@
 - (UITableView *)maintainTableView
 {
     if (!_maintainTableView) {
-        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 40) style:UITableViewStyleGrouped];
+        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
         _maintainTableView.dataSource = self;
         _maintainTableView.delegate = self;
         _maintainTableView.backgroundColor = [UIColor clearColor];
@@ -921,19 +976,41 @@
     return _maintainTableView;
 }
 
+- (UITableView *)checkTableView
+{
+    if (!_checkTableView) {
+        _checkTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
+        _checkTableView.dataSource = self;
+        _checkTableView.delegate = self;
+        _checkTableView.backgroundColor = [UIColor clearColor];
+        _checkTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        __weak typeof(self) weakSelf = self;
+        _checkTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [weakSelf dataRequest];
+        }];
+    }
+    return _checkTableView;
+}
+
+- (UITableView *)systemTableView
+{
+    if (!_systemTableView) {
+        _systemTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
+        [_systemTableView registerNib:[UINib nibWithNibName:NSStringFromClass([MessageNoticeTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"MessageNoticeTableViewCell"];
+        _systemTableView.dataSource = self;
+        _systemTableView.delegate = self;
+        _systemTableView.backgroundColor = [UIColor clearColor];
+        _systemTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        __weak typeof(self) weakSelf = self;
+        _systemTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [weakSelf dataRequest];
+        }];
+    }
+    return _systemTableView;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
