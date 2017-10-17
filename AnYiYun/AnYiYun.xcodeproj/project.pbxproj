@@ -232,6 +232,7 @@
 		A8E2A5391F30DB4C000F5408 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E2A5371F30DB4C000F5408 /* PopViewController.m */; };
 		A8E2A53A1F30DB4C000F5408 /* PopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E2A5381F30DB4C000F5408 /* PopViewController.xib */; };
 		A8E2A53E1F30F139000F5408 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E2A53C1F30F139000F5408 /* HelpViewController.m */; };
+		A8E2FB261F95F57A002A733D /* YYNaverBottomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E2FB251F95F57A002A733D /* YYNaverBottomButton.m */; };
 		A8E80E7A1F43533600394711 /* YYValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E791F43533600394711 /* YYValueFormatter.m */; };
 		A8E80E7D1F436B5700394711 /* EquipmentAccountHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E7C1F436B5700394711 /* EquipmentAccountHeaderFooterView.m */; };
 		A8E80E7F1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E80E7E1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib */; };
@@ -675,6 +676,8 @@
 		A8E2A5381F30DB4C000F5408 /* PopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopViewController.xib; sourceTree = "<group>"; };
 		A8E2A53B1F30F139000F5408 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		A8E2A53C1F30F139000F5408 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		A8E2FB241F95F57A002A733D /* YYNaverBottomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYNaverBottomButton.h; sourceTree = "<group>"; };
+		A8E2FB251F95F57A002A733D /* YYNaverBottomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNaverBottomButton.m; sourceTree = "<group>"; };
 		A8E80E781F43533600394711 /* YYValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYValueFormatter.h; sourceTree = "<group>"; };
 		A8E80E791F43533600394711 /* YYValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYValueFormatter.m; sourceTree = "<group>"; };
 		A8E80E7B1F436B5700394711 /* EquipmentAccountHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountHeaderFooterView.h; sourceTree = "<group>"; };
@@ -731,6 +734,8 @@
 				A8FC48C31F950AF40072B529 /* YYNaverTopView.h */,
 				A8FC48C41F950AF40072B529 /* YYNaverTopView.m */,
 				A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */,
+				A8E2FB241F95F57A002A733D /* YYNaverBottomButton.h */,
+				A8E2FB251F95F57A002A733D /* YYNaverBottomButton.m */,
 				A87A08CD1F94A1C700E66B89 /* NaviPointAnnotation.h */,
 				A87A08CE1F94A1C800E66B89 /* NaviPointAnnotation.m */,
 				A87A08D11F94A66100E66B89 /* SelectableOverlay.h */,
@@ -2043,6 +2048,7 @@
 				905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */,
 				A87C535B1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m in Sources */,
 				A81B121A1F2AC3EC001DD06B /* EquipmentAccountCell.m in Sources */,
+				A8E2FB261F95F57A002A733D /* YYNaverBottomButton.m in Sources */,
 				A87C53DD1F31DB3B008DE42B /* AABar.m in Sources */,
 				90CF078B1F1F3464008106D2 /* UITableView+Extension.m in Sources */,
 				A8DA96731F2BB1FD00F3032D /* SafetyMonitoringRootViewController.m in Sources */,

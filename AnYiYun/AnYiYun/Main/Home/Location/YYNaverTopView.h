@@ -13,6 +13,5 @@
 
 /*!地图顶部导航类型选项卡*/
 @property (strong, nonatomic) IBOutlet UILabel *navTitleLable;
-@property (strong, nonatomic) YYSegmentedView *navTypesView;
 
 @end

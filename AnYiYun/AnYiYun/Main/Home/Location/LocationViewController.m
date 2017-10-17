@@ -70,14 +70,32 @@
 {
     _mapTopView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYNaverTopView class]) owner:nil options:nil][0];
     _mapTopView.backgroundColor = [UIColor redColor];
-    _mapTopView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64.0f);
+    _mapTopView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44.0f+25.0f);
     [self.view addSubview:_mapTopView];
+    
+    YYSegmentedView *navTypesView = [[YYSegmentedView alloc] initWithFrame:CGRectMake(0.0f, 25.0f, SCREEN_WIDTH, 44.0f)];
+    navTypesView.backgroundColor = UIColorFromRGB(0x000000);
+    [self.view addSubview:navTypesView];
+    navTypesView.selectedIndex = 0;
+    navTypesView.titlesArray = @[@"步行",@"骑行",@"驾驶",@"公交"];
+    navTypesView.itemHandle = ^(YYSegmentedView *stateView, NSInteger index) {
+        if (index == stateView.selectedIndex) {
+            return ;
+        }else {
+            stateView.selectedIndex = index;
+            if (index == 0) {
+                
+            } else {
+                
+            }
+        }
+    };
     
     if (self.mapView == nil)
         {
-        self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64,
+        self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 44.0f+25.0f,
                                                                    self.view.bounds.size.width,
-                                                                   self.view.bounds.size.height-64-64)];
+                                                                   self.view.bounds.size.height-64-44.0f-25.0f)];
         [self.mapView setDelegate:self];
         self.mapView.showsUserLocation = YES;
         [self.view addSubview:self.mapView];
@@ -107,6 +125,33 @@
     [retView addSubview:incBtn];
     [retView addSubview:decBtn];
     [self.mapView addSubview:retView];
+    
+    _mapBottomButton = [[YYNaverBottomButton alloc] initWithFrame:CGRectZero];
+    _mapBottomButton.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 44.0f-25.0f-10.0f);
+    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT + (SCREEN_HEIGHT - 44.0f-25.0f-10.0f)/2.0f-128.0f);
+    [_mapBottomButton.topButon addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
+    [_mapBottomButton.topButon addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
+     UIControlEventTouchUpOutside];
+    [self.view addSubview:_mapBottomButton];
+}
+
+#pragma mark - Touch
+
+- (void) dragMoving: (UIControl *) c withEvent:ev
+{
+    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, [[[ev allTouches] anyObject] locationInView:self.view].y);
+}
+
+- (void) dragEnded: (UIControl *) c withEvent:ev
+{
+    CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
+    if (yFloat <= SCREEN_HEIGHT/2.0f) {
+        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f,44.0f+25.0f + (SCREEN_HEIGHT - 44.0f-25.0f-10.0f)/2.0f);
+    }else if (yFloat <= SCREEN_HEIGHT/2.0f) {
+        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f,44.0f+25.0f);
+    }  else {
+        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f,SCREEN_HEIGHT + (SCREEN_HEIGHT - 44.0f-25.0f-10.0f)/2.0f-128.0f);
+    }
 }
 
 #pragma mark - Action Handlers
