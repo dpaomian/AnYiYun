@@ -139,6 +139,10 @@
 		A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */; };
 		A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */; };
 		A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12511F2AC48D001DD06B /* FilterCollectionView.m */; };
+		A820C6701F9794CC000E139F /* YYNaverBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C66F1F9794CC000E139F /* YYNaverBottomView.m */; };
+		A820C6731F979E86000E139F /* RouteCollectionViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6721F979E86000E139F /* RouteCollectionViewInfo.m */; };
+		A820C6761F97BD6D000E139F /* YYNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6751F97BD6D000E139F /* YYNavViewController.m */; };
+		A820C6791F97BE7E000E139F /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6771F97BE7E000E139F /* SpeechSynthesizer.m */; };
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
 		A821B1271F26E676008B6678 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1261F26E676008B6678 /* SortModel.m */; };
@@ -510,6 +514,14 @@
 		A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionCell.xib; sourceTree = "<group>"; };
 		A81B12501F2AC48D001DD06B /* FilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionView.h; sourceTree = "<group>"; };
 		A81B12511F2AC48D001DD06B /* FilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionView.m; sourceTree = "<group>"; };
+		A820C66E1F9794CC000E139F /* YYNaverBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYNaverBottomView.h; sourceTree = "<group>"; };
+		A820C66F1F9794CC000E139F /* YYNaverBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNaverBottomView.m; sourceTree = "<group>"; };
+		A820C6711F979E86000E139F /* RouteCollectionViewInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteCollectionViewInfo.h; sourceTree = "<group>"; };
+		A820C6721F979E86000E139F /* RouteCollectionViewInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteCollectionViewInfo.m; sourceTree = "<group>"; };
+		A820C6741F97BD6D000E139F /* YYNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYNavViewController.h; sourceTree = "<group>"; };
+		A820C6751F97BD6D000E139F /* YYNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNavViewController.m; sourceTree = "<group>"; };
+		A820C6771F97BE7E000E139F /* SpeechSynthesizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesizer.m; sourceTree = "<group>"; };
+		A820C6781F97BE7E000E139F /* SpeechSynthesizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
 		A821B11F1F26E661008B6678 /* FilterCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyModel.h; sourceTree = "<group>"; };
 		A821B1201F26E661008B6678 /* FilterCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyModel.m; sourceTree = "<group>"; };
 		A821B1221F26E66D008B6678 /* BuildingModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingModle.h; sourceTree = "<group>"; };
@@ -742,17 +754,25 @@
 			children = (
 				3B02DF231F2ADE0300282116 /* LocationViewController.h */,
 				3B02DF241F2ADE0300282116 /* LocationViewController.m */,
+				A820C6741F97BD6D000E139F /* YYNavViewController.h */,
+				A820C6751F97BD6D000E139F /* YYNavViewController.m */,
 				A8FC48C31F950AF40072B529 /* YYNaverTopView.h */,
 				A8FC48C41F950AF40072B529 /* YYNaverTopView.m */,
 				A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */,
 				A8E2FB241F95F57A002A733D /* YYNaverBottomButton.h */,
 				A8E2FB251F95F57A002A733D /* YYNaverBottomButton.m */,
+				A820C66E1F9794CC000E139F /* YYNaverBottomView.h */,
+				A820C66F1F9794CC000E139F /* YYNaverBottomView.m */,
 				A87A08CD1F94A1C700E66B89 /* NaviPointAnnotation.h */,
 				A87A08CE1F94A1C800E66B89 /* NaviPointAnnotation.m */,
 				A87A08D11F94A66100E66B89 /* SelectableOverlay.h */,
 				A87A08D01F94A66100E66B89 /* SelectableOverlay.m */,
 				A8BBB76E1F9679BF00DCEF59 /* PreferenceView.h */,
 				A8BBB76D1F9679BF00DCEF59 /* PreferenceView.m */,
+				A820C6711F979E86000E139F /* RouteCollectionViewInfo.h */,
+				A820C6721F979E86000E139F /* RouteCollectionViewInfo.m */,
+				A820C6781F97BE7E000E139F /* SpeechSynthesizer.h */,
+				A820C6771F97BE7E000E139F /* SpeechSynthesizer.m */,
 			);
 			name = "Location_通用定位";
 			path = Location;
@@ -2011,6 +2031,7 @@
 				A87C53E21F31DB3B008DE42B /* AALabels.m in Sources */,
 				90272BDF1F224382000B1DC0 /* TAAbstractDotView.m in Sources */,
 				A84FA2CC1F283FB4006F3DB4 /* AllApplicationReusableView.m in Sources */,
+				A820C6701F9794CC000E139F /* YYNaverBottomView.m in Sources */,
 				90CF07421F1F3078008106D2 /* RootTabBarViewController.m in Sources */,
 				A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */,
 				A87C53DA1F31DB3B008DE42B /* AAAnimation.m in Sources */,
@@ -2109,6 +2130,7 @@
 				A81B12421F2AC446001DD06B /* EquipmentAccountViewController.m in Sources */,
 				A87C53EB1F31DB3B008DE42B /* AASeries.m in Sources */,
 				A87C53531F31720F008DE42B /* FirePowerSupplyRealtimeMonitoringViewController.m in Sources */,
+				A820C6791F97BE7E000E139F /* SpeechSynthesizer.m in Sources */,
 				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
 				A8DA967A1F2BBB3800F3032D /* MaintenanceRemindersCell.m in Sources */,
@@ -2128,6 +2150,7 @@
 				A84079CD1F364FC70029F7FA /* YYCurveViewController.m in Sources */,
 				90272BE81F2246AE000B1DC0 /* PublicWebViewController.m in Sources */,
 				A81B123E1F2AC446001DD06B /* BusinessItemViewController.m in Sources */,
+				A820C6731F979E86000E139F /* RouteCollectionViewInfo.m in Sources */,
 				90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */,
 				A84079C41F363FBB0029F7FA /* YYChartsBaseView.m in Sources */,
 				A87A08D21F94A66100E66B89 /* SelectableOverlay.m in Sources */,
@@ -2149,6 +2172,7 @@
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
 				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
 				A87A08CF1F94A1C900E66B89 /* NaviPointAnnotation.m in Sources */,
+				A820C6761F97BD6D000E139F /* YYNavViewController.m in Sources */,
 				A81B12461F2AC446001DD06B /* LoadDetectionViewController.m in Sources */,
 				A8451F951F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m in Sources */,
 				9024074C1F2A39B9001E2F38 /* DBDaoDataBase.m in Sources */,

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YYNaverBottomButton : UIView <UITableViewDelegate,UITableViewDataSource>
+@interface YYNaverBottomButton : UIButton
 
-/*!方案*/
-@property (nonatomic, strong) UITableView    *programmeTableView;
+/*!距离*/
+@property (nonatomic, strong) UILabel    *titleLab;
+/*!提示 */
+@property (nonatomic, strong) UILabel    *contentLab;
 
 @end

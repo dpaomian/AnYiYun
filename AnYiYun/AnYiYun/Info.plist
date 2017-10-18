@@ -68,6 +68,8 @@
 	<string>我们需要通过您的地理位置信息获取您周边的相关数据</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
+		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

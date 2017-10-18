@@ -14,6 +14,8 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "YYTools.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 //极光推送相关
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -35,6 +37,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+ 
+    /*AVSpeechSynthesizer *av = [[AVSpeechSynthesizer alloc]init];
+    AVSpeechUtterance *aaa = [[AVSpeechUtterance alloc]init];
+    
+    NSString * astring = @"准备出发,全程二十三点六公里,大约需要二十九分钟";
+    aaa = [AVSpeechUtterance speechUtteranceWithString:astring];
+    aaa.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CH"];  //语言
+    aaa.rate = 0.2;     //语速
+    [av speakUtterance:aaa];*/
+    
     /*!高德地图初始化，重要代码，勿动*/
     [AMapServices sharedServices].apiKey = @"94c9e6d0c24fd53d43e09d961850a75e";
     

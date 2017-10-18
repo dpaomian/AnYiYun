@@ -13,38 +13,23 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
+        self.layer.borderWidth = 1.0f;
+        
         self.backgroundColor = [UIColor whiteColor];
-        _programmeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) style:UITableViewStylePlain];
-        _programmeTableView.delegate = self;
-        _programmeTableView.dataSource = self;
-        _programmeTableView.scrollEnabled = NO;
-        _programmeTableView.tableFooterView = [UIView new];
-        [_programmeTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-        [self addSubview:_programmeTableView];
+        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(12, 6, SCREEN_WIDTH-20, 22)];
+        _titleLab.font = [UIFont systemFontOfSize:14.0f];
+        _titleLab.text = @"999米";
+        [self addSubview:_titleLab];
+        
+        _contentLab = [[UILabel alloc] initWithFrame:CGRectMake(12, CGRectGetMaxY(_titleLab.frame)+8, SCREEN_WIDTH-20, 22)];
+        _contentLab.font = [UIFont systemFontOfSize:12.0f];
+        _contentLab.text = @"[上滑查看详情]";
+        _contentLab.textColor = UIColorFromRGB(0x666666);
+        [self addSubview:_contentLab];
     }
     return self;
-}
-
-#pragma mark - UITableViewDataSource & UITableViewDelegate
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
-    return cell;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40.0f;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
