@@ -63,7 +63,7 @@
 {
         //为了方便展示步行路径规划，选择了固定的起终点
     self.startPoint = [AMapNaviPoint locationWithLatitude:39.993135 longitude:116.474175];
-    self.endPoint   = [AMapNaviPoint locationWithLatitude:39.908791 longitude:115.321257];
+    self.endPoint   = [AMapNaviPoint locationWithLatitude:39.908791 longitude:116.320257];
     
     self.routeIndicatorInfoArray = [NSMutableArray array];
 }
@@ -89,8 +89,12 @@
             stateView.selectedIndex = index;
             if (index == 0) {
                 [ws routePlanAction];
-            } else {
+            } else if (index == 1) {
                 [ws routeRidePlanAction];
+            } else if (index == 2) {
+                [ws singleRoutePlanAction];
+            } else {
+                
             }
         }
     };
@@ -130,32 +134,41 @@
     [retView addSubview:decBtn];
     [self.mapView addSubview:retView];
     
-    _mapBottomButton = [[YYNaverBottomButton alloc] initWithFrame:CGRectZero];
-    _mapBottomButton.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 44.0f-25.0f-10.0f);
-    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT + (SCREEN_HEIGHT - 44.0f-25.0f-10.0f)/2.0f-128.0f);
-    [_mapBottomButton.topButon addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
-    [_mapBottomButton.topButon addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
+    _mapBottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_mapBottomButton setBackgroundColor:[UIColor redColor]];
+    _mapBottomButton.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 64.0f);
+    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
+    [_mapBottomButton addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
+    [_mapBottomButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
      UIControlEventTouchUpOutside];
     [self.view addSubview:_mapBottomButton];
+    
+    _mapBottomListView = [[YYNaverBottomButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f)];
+    _mapBottomListView.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:_mapBottomListView];
 }
 
 #pragma mark - Touch
 
 - (void) dragMoving: (UIControl *) c withEvent:ev
 {
-    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, [[[ev allTouches] anyObject] locationInView:self.view].y);
+    CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
+    if (yFloat <= 44.0f+25.0f+64.0f/2.0f) {
+        yFloat = 44.0f+25.0f+64.0f/2.0f;
+    }
+    c.center = CGPointMake(SCREEN_WIDTH/2.0f, yFloat);
+    _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
 }
 
 - (void) dragEnded: (UIControl *) c withEvent:ev
 {
     CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
-    if (yFloat <= SCREEN_HEIGHT/2.0f) {
-        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f,44.0f+25.0f + (SCREEN_HEIGHT - 44.0f-25.0f-10.0f)/2.0f);
-    }else if (yFloat <= SCREEN_HEIGHT/2.0f) {
-        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f,44.0f+25.0f);
+    if (yFloat <= (SCREEN_WIDTH-64.0f)/3.0f*2.0f) {
+        c.center = CGPointMake(SCREEN_WIDTH/2.0f, 44.0f+25.0f+64.0f/2.0f);
     }  else {
-        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f,SCREEN_HEIGHT + (SCREEN_HEIGHT - 44.0f-25.0f-10.0f)/2.0f-128.0f);
+        c.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
     }
+    _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
 }
 
 #pragma mark - Action Handlers
@@ -237,12 +250,19 @@
                                               endPoint:self.endPoint];
 }
 
-- (void)singleRoutePlanAction:(id)sender
+- (void)singleRoutePlanAction
 {
+    /*
+     多路径规划：是
+     拥堵：最近不躲避；最快躲避
+     高速：不走
+     避免收费：最近避免；最快不避免
+     高速有限：否
+     */
     [self.driveManager calculateDriveRouteWithStartPoints:@[self.startPoint]
                                                 endPoints:@[self.endPoint]
                                                 wayPoints:nil
-                                          drivingStrategy:ConvertDrivingPreferenceToDrivingStrategy(NO,YES,NO,NO,YES)];
+                                          drivingStrategy:ConvertDrivingPreferenceToDrivingStrategy(NO,NO,NO,NO,NO)];
     /*是否是单路线规划，避免拥堵，避免收费，不走高速，高速优先*/
 }
 

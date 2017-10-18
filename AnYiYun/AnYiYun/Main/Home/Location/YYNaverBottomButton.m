@@ -10,31 +10,17 @@
 
 @implementation YYNaverBottomButton
 
-
-- (void)setBounds:(CGRect)bounds {
-    [super setBounds:bounds];
-    _programmeTableView.frame = CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds));
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        
-        _topButon = [UIButton buttonWithType:UIButtonTypeCustom];
-        _topButon.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64.0f);
-        [_topButon setBackgroundColor:[UIColor redColor]];
-        [self addSubview:_topButon];
-        
-        
-        _programmeTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _programmeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) style:UITableViewStylePlain];
         _programmeTableView.delegate = self;
         _programmeTableView.dataSource = self;
         _programmeTableView.scrollEnabled = NO;
         _programmeTableView.tableFooterView = [UIView new];
         [_programmeTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
         [self addSubview:_programmeTableView];
-        _programmeTableView.tableHeaderView = _topButon;
     }
     return self;
 }

@@ -30,7 +30,8 @@
 
 @property (nonatomic, strong) YYNaverTopView *mapTopView;
 @property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) YYNaverBottomButton *mapBottomButton;
+@property (nonatomic, strong) UIButton *mapBottomButton;
+@property (nonatomic, strong) YYNaverBottomButton *mapBottomListView;
 
 /*!路径规划选项卡*/
 @property (nonatomic, strong) YYSegmentedView *navTypesView;

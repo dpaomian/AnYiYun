@@ -11,8 +11,6 @@
 @interface YYNaverBottomButton : UIView <UITableViewDelegate,UITableViewDataSource>
 
 /*!方案*/
-@property (nonatomic, strong) UIButton       *topButon;
-/*!方案*/
 @property (nonatomic, strong) UITableView    *programmeTableView;
 
 @end
