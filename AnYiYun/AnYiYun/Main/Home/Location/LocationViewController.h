@@ -14,6 +14,7 @@
 
 #import <MAMapKit/MAMapKit.h>
 #import <AMapNaviKit/AMapNaviKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 #import "YYNavViewController.h"
 
 /**

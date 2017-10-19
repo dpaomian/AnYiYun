@@ -14,10 +14,12 @@
 
 #define kCollectionCellIdentifier   @"kCollectionCellIdentifier"
 
-@interface LocationViewController () <MAMapViewDelegate, AMapNaviWalkManagerDelegate, AMapNaviRideManagerDelegate, AMapNaviDriveManagerDelegate>
+@interface LocationViewController () <MAMapViewDelegate, AMapNaviWalkManagerDelegate, AMapNaviRideManagerDelegate, AMapNaviDriveManagerDelegate, AMapLocationManagerDelegate>
 
 @property (nonatomic, strong) AMapNaviPoint *startPoint;
 @property (nonatomic, strong) AMapNaviPoint *endPoint;
+
+@property (nonatomic, strong) AMapLocationManager *locationManager;
 
 @property (nonatomic, strong) NSMutableArray *routeIndicatorInfoArray;
 
@@ -60,13 +62,49 @@
     [self initAnnotations];
 }
 
+- (void)configLocationManager
+{
+    self.locationManager = [[AMapLocationManager alloc] init];
+    
+    [self.locationManager setDelegate:self];
+    
+    [self.locationManager setPausesLocationUpdatesAutomatically:NO];
+    
+    [self.locationManager setAllowsBackgroundLocationUpdates:YES];
+}
+
+- (void)startSerialLocation
+{
+        //开始定位
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)stopSerialLocation
+{
+        //停止定位
+    [self.locationManager stopUpdatingLocation];
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
+{
+        //定位错误
+    NSLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
+{
+        //定位结果
+    NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
+}
+
+
 #pragma mark - Initalization
 
 - (void)initProperties
 {
         //为了方便展示步行路径规划，选择了固定的起终点
-    self.startPoint = [AMapNaviPoint locationWithLatitude:39.993135 longitude:116.474175];
-    self.endPoint   = [AMapNaviPoint locationWithLatitude:39.908791 longitude:116.321257];
+    self.startPoint = [AMapNaviPoint locationWithLatitude:34.821333 longitude:113.565323];
+    self.endPoint   = [AMapNaviPoint locationWithLatitude:34.801233 longitude:113.565313];
     
     self.routeIndicatorInfoArray = [NSMutableArray array];
 }
@@ -200,7 +238,9 @@
 /*!导航*/
 - (void)navAction {
     YYNavViewController *nav = [[YYNavViewController alloc] init];
-    [self.navigationController pushViewController:nav animated:YES];
+    [self.navigationController presentViewController:nav animated:YES completion:^{
+        
+    }];
 }
 
 - (void)zoomPlusAction
@@ -556,8 +596,7 @@
     NSLog(@"onCalculateRouteSuccess");
     
     //算路成功后显示路径
-//    [self showDriveNaviRoutes];
-    [self.driveManager startEmulatorNavi];
+    [self showDriveNaviRoutes];
 }
 
 - (void)driveManager:(AMapNaviDriveManager *)driveManager onCalculateRouteFailure:(NSError *)error

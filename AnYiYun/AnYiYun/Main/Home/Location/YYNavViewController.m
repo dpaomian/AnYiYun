@@ -127,7 +127,7 @@
     NSLog(@"onCalculateRouteSuccess");
     
     //算路成功后开始GPS导航
-    [self.driveManager startGPSNavi];
+//    [self.driveManager startGPSNavi];
 }
 
 - (void)driveManager:(AMapNaviDriveManager *)driveManager onCalculateRouteFailure:(NSError *)error
@@ -164,7 +164,7 @@
 {
     NSLog(@"playNaviSoundString:{%ld:%@}", (long)soundStringType, soundString);
     
-//    [[SpeechSynthesizer sharedSpeechSynthesizer] speakString:soundString];
+    [[SpeechSynthesizer sharedSpeechSynthesizer] speakString:soundString];
 }
 
 - (void)driveManagerDidEndEmulatorNavi:(AMapNaviDriveManager *)driveManager
@@ -188,7 +188,9 @@
     //停止语音
     [[SpeechSynthesizer sharedSpeechSynthesizer] stopSpeak];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:NO completion:^{
+        
+    }];
 }
 
 - (void)driveViewTrunIndicatorViewTapped:(AMapNaviDriveView *)driveView
