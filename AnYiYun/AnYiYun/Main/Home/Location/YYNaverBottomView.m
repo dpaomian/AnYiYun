@@ -13,6 +13,9 @@
 - (void)setLinksMutableArray:(NSMutableArray *)linksMutableArray {
     _linksMutableArray = linksMutableArray;
     [self.programmeTableView reloadData];
+    if ([_linksMutableArray count]>0) {
+        [self.programmeTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

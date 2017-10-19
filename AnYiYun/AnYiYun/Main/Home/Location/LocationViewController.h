@@ -15,7 +15,9 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapNaviKit/AMapNaviKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
-#import "YYNavViewController.h"
+#import "SpeechSynthesizer.h"
+#import "UIButton+Category.h"
+#import "RouteCollectionViewInfo.h"
 
 /**
  定位
@@ -43,5 +45,14 @@
 @property (nonatomic, strong) AMapNaviDriveManager *driveManager;
 @property (nonatomic, strong) NSMutableArray *walkLinksMutableArray;
 @property (nonatomic, strong) NSMutableArray *rideLinksMutableArray;
+@property (nonatomic, strong) NSMutableArray *driveLinksMutableArray;
+
+@property (nonatomic, strong) AMapNaviWalkView *walkView;
+@property (nonatomic, strong) AMapNaviRideView *rideView;
+@property (nonatomic, strong) AMapNaviDriveView *driveView;
+
+@property (nonatomic, strong) UIButton *nearButton;
+@property (nonatomic, strong) UIButton *shortButton;
+@property (nonatomic, strong) UIButton *unKnowButton;
 
 @end

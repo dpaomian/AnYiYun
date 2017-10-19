@@ -141,7 +141,6 @@
 		A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12511F2AC48D001DD06B /* FilterCollectionView.m */; };
 		A820C6701F9794CC000E139F /* YYNaverBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C66F1F9794CC000E139F /* YYNaverBottomView.m */; };
 		A820C6731F979E86000E139F /* RouteCollectionViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6721F979E86000E139F /* RouteCollectionViewInfo.m */; };
-		A820C6761F97BD6D000E139F /* YYNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6751F97BD6D000E139F /* YYNavViewController.m */; };
 		A820C6791F97BE7E000E139F /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6771F97BE7E000E139F /* SpeechSynthesizer.m */; };
 		A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1201F26E661008B6678 /* FilterCompanyModel.m */; };
 		A821B1241F26E66D008B6678 /* BuildingModle.m in Sources */ = {isa = PBXBuildFile; fileRef = A821B1231F26E66D008B6678 /* BuildingModle.m */; };
@@ -518,8 +517,6 @@
 		A820C66F1F9794CC000E139F /* YYNaverBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNaverBottomView.m; sourceTree = "<group>"; };
 		A820C6711F979E86000E139F /* RouteCollectionViewInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteCollectionViewInfo.h; sourceTree = "<group>"; };
 		A820C6721F979E86000E139F /* RouteCollectionViewInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteCollectionViewInfo.m; sourceTree = "<group>"; };
-		A820C6741F97BD6D000E139F /* YYNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYNavViewController.h; sourceTree = "<group>"; };
-		A820C6751F97BD6D000E139F /* YYNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNavViewController.m; sourceTree = "<group>"; };
 		A820C6771F97BE7E000E139F /* SpeechSynthesizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesizer.m; sourceTree = "<group>"; };
 		A820C6781F97BE7E000E139F /* SpeechSynthesizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
 		A821B11F1F26E661008B6678 /* FilterCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyModel.h; sourceTree = "<group>"; };
@@ -754,8 +751,6 @@
 			children = (
 				3B02DF231F2ADE0300282116 /* LocationViewController.h */,
 				3B02DF241F2ADE0300282116 /* LocationViewController.m */,
-				A820C6741F97BD6D000E139F /* YYNavViewController.h */,
-				A820C6751F97BD6D000E139F /* YYNavViewController.m */,
 				A8FC48C31F950AF40072B529 /* YYNaverTopView.h */,
 				A8FC48C41F950AF40072B529 /* YYNaverTopView.m */,
 				A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */,
@@ -2172,7 +2167,6 @@
 				A810BF5C1F26043F00B5F2D2 /* LoadDatectionHeaderView.m in Sources */,
 				901788121F26213700CFED87 /* NSString+YYCategory.m in Sources */,
 				A87A08CF1F94A1C900E66B89 /* NaviPointAnnotation.m in Sources */,
-				A820C6761F97BD6D000E139F /* YYNavViewController.m in Sources */,
 				A81B12461F2AC446001DD06B /* LoadDetectionViewController.m in Sources */,
 				A8451F951F2DC3DB00A2CF5A /* EnergyConsumptionStatisticsModel.m in Sources */,
 				9024074C1F2A39B9001E2F38 /* DBDaoDataBase.m in Sources */,

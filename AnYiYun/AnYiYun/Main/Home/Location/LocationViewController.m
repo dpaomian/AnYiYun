@@ -14,7 +14,7 @@
 
 #define kCollectionCellIdentifier   @"kCollectionCellIdentifier"
 
-@interface LocationViewController () <MAMapViewDelegate, AMapNaviWalkManagerDelegate, AMapNaviRideManagerDelegate, AMapNaviDriveManagerDelegate, AMapLocationManagerDelegate>
+@interface LocationViewController () <MAMapViewDelegate, AMapNaviWalkManagerDelegate, AMapNaviRideManagerDelegate, AMapNaviDriveManagerDelegate, AMapLocationManagerDelegate,AMapNaviWalkViewDelegate,AMapNaviRideViewDelegate,AMapNaviDriveViewDelegate>
 
 @property (nonatomic, strong) AMapNaviPoint *startPoint;
 @property (nonatomic, strong) AMapNaviPoint *endPoint;
@@ -22,6 +22,7 @@
 @property (nonatomic, strong) AMapLocationManager *locationManager;
 
 @property (nonatomic, strong) NSMutableArray *routeIndicatorInfoArray;
+@property (nonatomic, strong) NSMutableArray *startAndEndPointArray;
 
 @end
 
@@ -33,10 +34,14 @@
 {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:kAPPNavColor];
+    
+    [self configLocationManager];
+    [self getUseDataRequest];
     
     _walkLinksMutableArray = [NSMutableArray array];
     _rideLinksMutableArray = [NSMutableArray array];
+    _driveLinksMutableArray = [NSMutableArray array];
     
     [self initProperties];
     
@@ -45,8 +50,64 @@
     [self initWalkManager];
     [self initRideManager];
     [self initDriveManager];
+    [self initDriveButtons];
+}
+
+//判断获取页面信息
+-(NSString *)getMiddleRequestValue
+{
+    NSString *requestString = @"rest/initApp/position";
+    if ([self.pushType isEqualToString:@"devicePatrol"])
+    {
+        requestString = @"rest/devicePatrol/position";
+    }
+    return requestString;
+}
+
+-(void)getUseDataRequest
+{
     
-    [self routePlanAction];
+    if (![BaseHelper checkNetworkStatus])
+    {
+        DLog(@"网络异常 请求被返回");
+        [BaseHelper waringInfo:@"网络异常,请检查网络是否可用！"];
+        return;
+    }
+    [MBProgressHUD showMessage:@""];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASE_PLAN_URL,[self getMiddleRequestValue]];
+    NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,
+                            @"deviceId":self.deviceIdString};
+    
+    DLog(@"请求地址 urlString = %@?%@",urlString,[param serializeToUrlString]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:urlString
+      parameters:param
+        progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         [MBProgressHUD hideHUD];
+         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+
+         DLog(@"定位请求回来的值 %@",string);
+         if (string.length>0)
+         {
+             NSArray *pointArray = [string componentsSeparatedByString:@","];
+             if (pointArray.count==2)
+             {
+                 double longitude = [[pointArray objectAtIndex:0] doubleValue];
+                 double latitude = [[pointArray objectAtIndex:1] doubleValue];
+                 DLog(@"%f------------%f",latitude,longitude);
+                 self.endPoint   = [AMapNaviPoint locationWithLatitude:latitude longitude:longitude];
+                 [self startSerialLocation];
+             }
+         }
+     }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             [MBProgressHUD hideHUD];
+             DLog(@"请求失败：%@",error);
+         }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,15 +116,13 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self initAnnotations];
 }
 
-- (void)configLocationManager
-{
+- (void)configLocationManager {
     self.locationManager = [[AMapLocationManager alloc] init];
     
     [self.locationManager setDelegate:self];
@@ -71,30 +130,40 @@
     [self.locationManager setPausesLocationUpdatesAutomatically:NO];
     
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
 }
 
-- (void)startSerialLocation
-{
+- (void)startSerialLocation {
         //开始定位
     [self.locationManager startUpdatingLocation];
 }
 
-- (void)stopSerialLocation
-{
+- (void)stopSerialLocation {
         //停止定位
     [self.locationManager stopUpdatingLocation];
 }
 
-- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error
-{
+- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error {
         //定位错误
     NSLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
 }
 
-- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
-{
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location {
         //定位结果
     NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
+    self.startPoint = [AMapNaviPoint locationWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+//    self.startPoint = [AMapNaviPoint locationWithLatitude:34.546428 longitude:113.491216];
+    if (_navTypesView.selectedIndex == 0) {
+        [self routePlanAction];
+    } else if (_navTypesView.selectedIndex == 1) {
+        [self routeRidePlanAction];
+    } else if (_navTypesView.selectedIndex == 2) {
+        [self singleRoutePlanAction];
+    } else if (_navTypesView.selectedIndex == 3) {
+        /*公交*/
+    }
+    [self stopSerialLocation];
 }
 
 
@@ -103,10 +172,11 @@
 - (void)initProperties
 {
         //为了方便展示步行路径规划，选择了固定的起终点
-    self.startPoint = [AMapNaviPoint locationWithLatitude:34.821333 longitude:113.565323];
-    self.endPoint   = [AMapNaviPoint locationWithLatitude:34.801233 longitude:113.565313];
+    self.startPoint = [[AMapNaviPoint alloc] init];
+    self.endPoint   = [[AMapNaviPoint alloc] init];
     
     self.routeIndicatorInfoArray = [NSMutableArray array];
+    self.startAndEndPointArray = [NSMutableArray array];
 }
 
 - (void)initMapView
@@ -133,17 +203,27 @@
                 ws.mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(ws.mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
                 [ws.walkLinksMutableArray removeAllObjects];
                 ws.mapBottomListView.linksMutableArray = ws.walkLinksMutableArray;
-                [ws routePlanAction];
+//                [ws routePlanAction];
+                ws.nearButton.hidden = YES;
+                ws.shortButton.hidden = YES;
+                ws.unKnowButton.hidden = YES;
+                [ws startSerialLocation];
             } else if (index == 1) {
                 ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
                 ws.mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(ws.mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
+                [ws startSerialLocation];
                 [ws.rideLinksMutableArray removeAllObjects];
                 ws.mapBottomListView.linksMutableArray = ws.rideLinksMutableArray;
-                [ws routeRidePlanAction];
+//                [ws routeRidePlanAction];
+                ws.nearButton.hidden = YES;
+                ws.shortButton.hidden = YES;
+                ws.unKnowButton.hidden = YES;
+                [ws startSerialLocation];
             } else if (index == 2) {
                 ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
                 ws.mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(ws.mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
-                [ws singleRoutePlanAction];
+//                [ws singleRoutePlanAction];
+                [ws startSerialLocation];
             } else {
                 
             }
@@ -203,6 +283,11 @@
     [navBtn setImage:[UIImage imageNamed:@"default_navi_car_icon.png"] forState:UIControlStateNormal];
     [navBtn addTarget:self action:@selector(navAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:navBtn];
+    
+    [self initWalkView];
+    [self initRideView];
+    [self initDriveView];
+    
 }
 
 #pragma mark - Touch
@@ -213,7 +298,7 @@
     if (yFloat <= 44.0f+25.0f+64.0f/2.0f) {
         yFloat = 44.0f+25.0f+64.0f/2.0f;
     }
-    c.center = CGPointMake(SCREEN_WIDTH/2.0f, yFloat);
+    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, yFloat);
     _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
 }
 
@@ -221,9 +306,9 @@
 {
     CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
     if (yFloat <= SCREEN_HEIGHT/2.0f) {
-        c.center = CGPointMake(SCREEN_WIDTH/2.0f, 44.0f+25.0f+64.0f/2.0f);
+        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, 44.0f+25.0f+64.0f/2.0f);
     }  else {
-        c.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
+        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
     }
     _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
 }
@@ -237,10 +322,26 @@
 
 /*!导航*/
 - (void)navAction {
-    YYNavViewController *nav = [[YYNavViewController alloc] init];
-    [self.navigationController presentViewController:nav animated:YES completion:^{
-        
-    }];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+    if (_navTypesView.selectedIndex == 0) {
+        self.walkView.hidden = NO;
+        self.rideView.hidden = YES;
+        self.driveView.hidden = YES;
+        [self.walkManager startGPSNavi];
+    } else if (_navTypesView.selectedIndex == 1) {
+        self.walkView.hidden = YES;
+        self.rideView.hidden = NO;
+        self.driveView.hidden = YES;
+        [self.rideManager startGPSNavi];
+    } else if (_navTypesView.selectedIndex == 2) {
+        self.walkView.hidden = YES;
+        self.rideView.hidden = YES;
+        self.driveView.hidden = NO;
+        [self.driveManager startGPSNavi];
+    } else if (_navTypesView.selectedIndex == 3) {
+        /*公交*/
+    }
 }
 
 - (void)zoomPlusAction
@@ -255,48 +356,191 @@
     [self.mapView setZoomLevel:(oldZoom - 1) animated:YES];
 }
 
-- (void)initWalkManager
-{
-    if (self.walkManager == nil)
-        {
+- (void)initWalkManager {
+    if (self.walkManager == nil) {
         self.walkManager = [[AMapNaviWalkManager alloc] init];
         [self.walkManager setDelegate:self];
-        }
+
+        [self.walkManager setAllowsBackgroundLocationUpdates:YES];
+        [self.walkManager setPausesLocationUpdatesAutomatically:NO];
+        
+        //将driveView添加为导航数据的Representative，使其可以接收到导航诱导数据
+        [self.walkManager addDataRepresentative:self.walkView];
+    }
 }
 
-- (void)initRideManager
-{
-    if (self.rideManager == nil)
-    {
+- (void)initRideManager {
+    if (self.rideManager == nil) {
         self.rideManager = [[AMapNaviRideManager alloc] init];
         [self.rideManager setDelegate:self];
+        
+        [self.rideManager setAllowsBackgroundLocationUpdates:YES];
+        [self.rideManager setPausesLocationUpdatesAutomatically:NO];
+        
+        //将driveView添加为导航数据的Representative，使其可以接收到导航诱导数据
+        [self.rideManager addDataRepresentative:self.rideView];
     }
 }
 
-- (void)initDriveManager
-{
-    if (self.driveManager == nil)
-    {
+- (void)initDriveManager {
+    if (self.driveManager == nil) {
         self.driveManager = [[AMapNaviDriveManager alloc] init];
         [self.driveManager setDelegate:self];
+        
+        [self.driveManager setAllowsBackgroundLocationUpdates:YES];
+        [self.driveManager setPausesLocationUpdatesAutomatically:NO];
+        
+        //将driveView添加为导航数据的Representative，使其可以接收到导航诱导数据
+        [self.driveManager addDataRepresentative:self.driveView];
     }
 }
 
-- (void)initAnnotations
-{
+- (void)initWalkView {
+    if (self.walkView == nil) {
+        self.walkView = [[AMapNaviWalkView alloc] initWithFrame:self.view.bounds];
+        self.walkView.hidden = YES;
+        self.walkView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.walkView setDelegate:self];
+        [self.view addSubview:self.walkView];
+    }
+}
+
+- (void)initRideView {
+    if (self.rideView == nil) {
+        self.rideView = [[AMapNaviRideView alloc] initWithFrame:self.view.bounds];
+        self.rideView.hidden = YES;
+        self.rideView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.rideView setDelegate:self];
+        [self.view addSubview:self.rideView];
+    }
+}
+
+- (void)initDriveView {
+    if (self.driveView == nil) {
+        self.driveView = [[AMapNaviDriveView alloc] initWithFrame:self.view.bounds];
+        self.driveView.hidden = YES;
+        self.driveView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.driveView setDelegate:self];
+        [self.view addSubview:self.driveView];
+    }
+}
+
+- (void)initDriveButtons {
+    __weak LocationViewController *ws = self;
+    if (self.nearButton == nil) {
+        _nearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_nearButton setBackgroundColor:UIColorFromRGB(0xCACACA)];
+        _nearButton.hidden = YES;
+        _nearButton.selected = YES;
+        _nearButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        _nearButton.titleLabel.numberOfLines = 0;
+        [_nearButton setTitle:@"" forState:UIControlStateNormal];
+        _nearButton.frame = CGRectMake(0, 0, SCREEN_WIDTH/4, 64);
+        [_nearButton setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
+        [_nearButton setTitleColor:UIColorFromRGB(0x5987F8) forState:UIControlStateSelected];
+        _nearButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_nearButton buttonClickedHandle:^(UIButton *sender) {
+            [ws selectNaviRouteWithID:[ws.routeIndicatorInfoArray[0] routeID]];
+            [ws reloadRoadListWithIndex:0];
+            sender.selected = YES;
+            ws.shortButton.selected = NO;
+            ws.unKnowButton.selected = NO;
+            [sender setBackgroundColor:UIColorFromRGB(0xCACACA)];
+            [ws.shortButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+            [ws.unKnowButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+        }];
+        [self.mapBottomButton addSubview:_nearButton];
+    }
+    if (self.shortButton == nil) {
+        _shortButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_shortButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+        _shortButton.hidden = YES;
+        _shortButton.selected = NO;
+        _shortButton.layer.borderColor = UIColorFromRGB(0xF0F0F0).CGColor;
+        _shortButton.layer.borderWidth = 1.0f;
+        _shortButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        _shortButton.titleLabel.numberOfLines = 0;
+        [_shortButton setTitle:@"" forState:UIControlStateNormal];
+        _shortButton.frame = CGRectMake(CGRectGetMaxX(_nearButton.frame), 0, SCREEN_WIDTH/4, 64);
+        [_shortButton setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
+        [_shortButton setTitleColor:UIColorFromRGB(0x5987F8) forState:UIControlStateSelected];
+        _shortButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_shortButton buttonClickedHandle:^(UIButton *sender) {
+            [ws selectNaviRouteWithID:[ws.routeIndicatorInfoArray[1] routeID]];
+            [ws reloadRoadListWithIndex:1];
+            sender.selected = YES;
+            ws.nearButton.selected = NO;
+            ws.unKnowButton.selected = NO;
+            [sender setBackgroundColor:UIColorFromRGB(0xCACACA)];
+            [ws.nearButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+            [ws.unKnowButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+        }];
+        [self.mapBottomButton addSubview:_shortButton];
+    }
+    
+    if (self.unKnowButton == nil) {
+        _unKnowButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_unKnowButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+        _unKnowButton.hidden = YES;
+        _unKnowButton.selected = NO;
+        _unKnowButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        _unKnowButton.titleLabel.numberOfLines = 0;
+        [_unKnowButton setTitle:@"" forState:UIControlStateNormal];
+        _unKnowButton.frame = CGRectMake(CGRectGetMaxX(_shortButton.frame), 0, SCREEN_WIDTH/4, 64);
+        [_unKnowButton setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
+        [_unKnowButton setTitleColor:UIColorFromRGB(0x5987F8) forState:UIControlStateSelected];
+        _unKnowButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_unKnowButton buttonClickedHandle:^(UIButton *sender) {
+            [ws selectNaviRouteWithID:[ws.routeIndicatorInfoArray[2] routeID]];
+            [ws reloadRoadListWithIndex:2];
+            sender.selected = YES;
+            ws.nearButton.selected = NO;
+            ws.shortButton.selected = NO;
+            [sender setBackgroundColor:UIColorFromRGB(0xCCCCCC)];
+            [ws.nearButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+            [ws.shortButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+        }];
+        [self.mapBottomButton addSubview:_unKnowButton];
+    }
+    
+    [_nearButton addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
+    [_nearButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
+     UIControlEventTouchUpOutside];
+    [_shortButton addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
+    [_shortButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
+     UIControlEventTouchUpOutside];
+    [_unKnowButton addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
+    [_unKnowButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
+     UIControlEventTouchUpOutside];
+}
+
+- (void)reloadRoadListWithIndex:(NSInteger)idx {
+    RouteCollectionViewInfo *info = (RouteCollectionViewInfo *)self.routeIndicatorInfoArray[idx];
+    [_driveLinksMutableArray removeAllObjects];
+    for (AMapNaviSegment *naviSegment in info.routeSegments) {
+        [_driveLinksMutableArray addObjectsFromArray:naviSegment.links];
+    }
+    _mapBottomListView.linksMutableArray = _walkLinksMutableArray;
+    [self.driveManager addDataRepresentative:self.driveView];
+}
+
+- (void)initAnnotations {
     NaviPointAnnotation *beginAnnotation = [[NaviPointAnnotation alloc] init];
     [beginAnnotation setCoordinate:CLLocationCoordinate2DMake(self.startPoint.latitude, self.startPoint.longitude)];
     beginAnnotation.title = @"起点";
     beginAnnotation.navPointType = NaviPointAnnotationStart;
 
-    [self.mapView addAnnotation:beginAnnotation];
 
     NaviPointAnnotation *endAnnotation = [[NaviPointAnnotation alloc] init];
     [endAnnotation setCoordinate:CLLocationCoordinate2DMake(self.endPoint.latitude, self.endPoint.longitude)];
     endAnnotation.title = @"终点";
     endAnnotation.navPointType = NaviPointAnnotationEnd;
 
-    [self.mapView addAnnotation:endAnnotation];
+    [self.mapView removeAnnotations:_startAndEndPointArray];
+    [_startAndEndPointArray removeAllObjects];
+    [_startAndEndPointArray addObject:beginAnnotation];
+    [_startAndEndPointArray addObject:endAnnotation];
+    [self.mapView addAnnotations:_startAndEndPointArray];
 }
 
 #pragma mark - Button Action
@@ -324,10 +568,19 @@
      避免收费：最近避免；最快不避免
      高速有限：否
      */
+    /**
+     * @brief 将驾车路线规划的偏好设置转换为驾车路径规划策略.注意：当prioritiseHighway为YES时，将忽略avoidHighway和avoidCost的设置
+     * @param multipleRoute 是否多路径规划
+     * @param avoidCongestion 是否躲避拥堵
+     * @param avoidHighway 是否不走高速
+     * @param avoidCost 是否避免收费
+     * @param prioritiseHighway 是否高速优先
+     * @return AMapNaviDrivingStrategy路径规划策略
+     */
     [self.driveManager calculateDriveRouteWithStartPoints:@[self.startPoint]
                                                 endPoints:@[self.endPoint]
                                                 wayPoints:nil
-                                          drivingStrategy:ConvertDrivingPreferenceToDrivingStrategy(YES,NO,NO,NO,NO)];
+                                          drivingStrategy:ConvertDrivingPreferenceToDrivingStrategy(YES,nil,NO,NO,NO)];
     /*是否是单路线规划，避免拥堵，避免收费，不走高速，高速优先*/
 }
 
@@ -426,11 +679,7 @@
     for (AMapNaviSegment *naviSegment in aRoute.routeSegments) {
         [_rideLinksMutableArray addObjectsFromArray:naviSegment.links];
     }
-    
     _mapBottomListView.linksMutableArray = _rideLinksMutableArray;
-    
-    //更新CollectonView的信息
-    DLog(@"------>长度:%ld米 | 预估时间:%ld秒 | 分段数:%ld",aRoute.routeLength,aRoute.routeTime,aRoute.routeSegments.count);
 
     [self.mapView showAnnotations:self.mapView.annotations animated:NO];
 }
@@ -468,10 +717,45 @@
         [self.mapView addOverlay:selectablePolyline];
         free(coords);
         
-        //更新CollectonView的信息
-
-        DLog(@"路径ID:%ld------>长度:%ld米 | 预估时间:%ld秒 | 分段数:%ld",[aRouteID integerValue],aRoute.routeLength,aRoute.routeTime,aRoute.routeSegments.count);
+        RouteCollectionViewInfo *info = [[RouteCollectionViewInfo alloc] init];
+        info.routeID = [aRouteID integerValue];
+        info.routeSegments = aRoute.routeSegments;
+        info.routeLength = (long)aRoute.routeLength;
+        info.routeTrafficLightCount = (long)aRoute.routeTrafficLightCount;
+        info.routeTime = (long)aRoute.routeTime;
         
+        __weak LocationViewController *ws = self;
+        [self.routeIndicatorInfoArray addObject:info];
+        [self.routeIndicatorInfoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                RouteCollectionViewInfo *info = (RouteCollectionViewInfo *)obj;
+                NSString *timeString = @"";
+                if (info.routeTime == 3600 || info.routeTime < 3600) {
+                    timeString = [NSString stringWithFormat:@"%ld%@",aRoute.routeTime/60,@"分"];
+                } else {
+                    NSInteger minites = aRoute.routeTime%3600;
+                    NSInteger hours = (aRoute.routeTime-minites)/3600;
+                    timeString = [NSString stringWithFormat:@"%ld%@%ld%@",hours,@"时",minites/60,@"分"];
+                }
+                if (idx == 0) {
+                    ws.nearButton.hidden = NO;
+                    [_nearButton setTitle:[NSString stringWithFormat:@"%ld%@\n%ld个红绿灯\n%@",info.routeLength<=1000?info.routeLength:info.routeLength/1000,info.routeLength<=1000?@"米":@"千米",info.routeTrafficLightCount,timeString] forState:UIControlStateNormal];
+                } else if (idx == 1) {
+                    ws.shortButton.hidden = NO;
+                    [_shortButton setTitle:[NSString stringWithFormat:@"%ld%@\n%ld个红绿灯\n%@",info.routeLength<=1000?info.routeLength:info.routeLength/1000,info.routeLength<=1000?@"米":@"千米",info.routeTrafficLightCount,timeString] forState:UIControlStateNormal];
+
+                } else if (idx == 2) {
+                    ws.unKnowButton.hidden = NO;
+                    [_unKnowButton setTitle:[NSString stringWithFormat:@"%ld%@\n%ld个红绿灯\n%@",info.routeLength<=1000?info.routeLength:info.routeLength/1000,info.routeLength<=1000?@"米":@"千米",info.routeTrafficLightCount,timeString] forState:UIControlStateNormal];
+
+                } else {
+                    *stop = YES;
+                }
+            });
+        }];
+        
+        _mapBottomButton.titleLab.text = @"";
+        _mapBottomButton.contentLab.text = @"";
     }
     
     [self.mapView showAnnotations:self.mapView.annotations animated:NO];
@@ -484,12 +768,50 @@
     //在开始导航前进行路径选择
     if ([self.driveManager selectNaviRouteWithRouteID:routeID])
     {
-//        [self selecteOverlayWithRouteID:routeID];
+        [self selecteOverlayWithRouteID:routeID];
     }
     else
     {
         NSLog(@"路径选择失败!");
     }
+}
+
+- (void)selecteOverlayWithRouteID:(NSInteger)routeID
+{
+    [self.mapView.overlays enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id<MAOverlay> overlay, NSUInteger idx, BOOL *stop)
+     {
+         if ([overlay isKindOfClass:[SelectableOverlay class]])
+         {
+             SelectableOverlay *selectableOverlay = overlay;
+             
+             /* 获取overlay对应的renderer. */
+             MAPolylineRenderer * overlayRenderer = (MAPolylineRenderer *)[self.mapView rendererForOverlay:selectableOverlay];
+             
+             if (selectableOverlay.routeID == routeID)
+             {
+                 /* 设置选中状态. */
+                 selectableOverlay.selected = YES;
+                 
+                 /* 修改renderer选中颜色. */
+                 overlayRenderer.fillColor   = selectableOverlay.selectedColor;
+                 overlayRenderer.strokeColor = selectableOverlay.selectedColor;
+                 
+                 /* 修改overlay覆盖的顺序. */
+                 [self.mapView exchangeOverlayAtIndex:idx withOverlayAtIndex:self.mapView.overlays.count - 1];
+             }
+             else
+             {
+                 /* 设置选中状态. */
+                 selectableOverlay.selected = NO;
+                 
+                 /* 修改renderer选中颜色. */
+                 overlayRenderer.fillColor   = selectableOverlay.regularColor;
+                 overlayRenderer.strokeColor = selectableOverlay.regularColor;
+             }
+             
+             [overlayRenderer glRender];
+         }
+     }];
 }
 
 #pragma mark - SubViews
@@ -504,8 +826,7 @@
 - (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager
 {
     NSLog(@"onCalculateRouteSuccess");
-    
-        //算路成功后显示路径
+    //算路成功后显示路径
     [self showNaviRoutes];
 }
 
@@ -527,6 +848,7 @@
 - (void)walkManager:(AMapNaviWalkManager *)walkManager playNaviSoundString:(NSString *)soundString soundStringType:(AMapNaviSoundType)soundStringType
 {
     NSLog(@"playNaviSoundString:{%ld:%@}", (long)soundStringType, soundString);
+    [[SpeechSynthesizer sharedSpeechSynthesizer] speakString:soundString];
 }
 
 - (void)walkManagerDidEndEmulatorNavi:(AMapNaviWalkManager *)walkManager
@@ -572,6 +894,7 @@
 - (void)rideManager:(AMapNaviRideManager *)rideManager playNaviSoundString:(NSString *)soundString soundStringType:(AMapNaviSoundType)soundStringType
 {
     NSLog(@"playNaviSoundString:{%ld:%@}", (long)soundStringType, soundString);
+    [[SpeechSynthesizer sharedSpeechSynthesizer] speakString:soundString];
 }
 
 - (void)rideManagerDidEndEmulatorNavi:(AMapNaviRideManager *)rideManager
@@ -626,12 +949,13 @@
 
 - (BOOL)driveManagerIsNaviSoundPlaying:(AMapNaviDriveManager *)driveManager
 {
-    return NO;
+    return [[SpeechSynthesizer sharedSpeechSynthesizer] isSpeaking];
 }
 
 - (void)driveManager:(AMapNaviDriveManager *)driveManager playNaviSoundString:(NSString *)soundString soundStringType:(AMapNaviSoundType)soundStringType
 {
     NSLog(@"playNaviSoundString:{%ld:%@}", (long)soundStringType, soundString);
+    [[SpeechSynthesizer sharedSpeechSynthesizer] speakString:soundString];
 }
 
 - (void)driveManagerDidEndEmulatorNavi:(AMapNaviDriveManager *)driveManager
@@ -697,13 +1021,77 @@
         
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:actualOverlay];
         
-        polylineRenderer.lineWidth = 8.f;
+        polylineRenderer.lineWidth = 4.f;
         polylineRenderer.strokeColor = selectableOverlay.isSelected ? selectableOverlay.selectedColor : selectableOverlay.regularColor;
         
         return polylineRenderer;
         }
     
     return nil;
+}
+
+#pragma mark - AMapNaviWalkViewDelegate
+- (void)walkViewCloseButtonClicked:(AMapNaviWalkView *)walkView {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    //停止导航
+    [self.walkManager stopNavi];
+    [self.walkManager removeDataRepresentative:self.walkView];
+    self.walkView.hidden = YES;
+    //停止语音
+    [[SpeechSynthesizer sharedSpeechSynthesizer] stopSpeak];
+}
+
+- (void)walkViewTrunIndicatorViewTapped:(AMapNaviWalkView *)walkView {
+    NSLog(@"TrunIndicatorViewTapped");
+}
+
+- (void)walkView:(AMapNaviWalkView *)walkView didChangeShowMode:(AMapNaviWalkViewShowMode)showMode {
+    NSLog(@"didChangeShowMode:%ld", (long)showMode);
+}
+
+
+#pragma mark - AMapNaviRideViewDelegate
+- (void)rideViewCloseButtonClicked:(AMapNaviRideView *)rideView {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    //停止导航
+    [self.rideManager stopNavi];
+    [self.rideManager removeDataRepresentative:self.rideView];
+    self.rideView.hidden = YES;
+    //停止语音
+    [[SpeechSynthesizer sharedSpeechSynthesizer] stopSpeak];
+}
+
+- (void)rideViewTrunIndicatorViewTapped:(AMapNaviRideView *)rideView {
+    NSLog(@"TrunIndicatorViewTapped");
+}
+
+- (void)rideView:(AMapNaviRideView *)rideView didChangeShowMode:(AMapNaviRideViewShowMode)showMode {
+    NSLog(@"didChangeShowMode:%ld", (long)showMode);
+}
+
+#pragma mark - AMapNaviDriveViewDelegate
+- (void)driveViewCloseButtonClicked:(AMapNaviDriveView *)driveView {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    //停止导航
+    [self.driveManager stopNavi];
+    [self.driveManager removeDataRepresentative:self.driveView];
+    self.driveView.hidden = YES;
+    //停止语音
+    [[SpeechSynthesizer sharedSpeechSynthesizer] stopSpeak];
+}
+
+- (void)driveViewTrunIndicatorViewTapped:(AMapNaviDriveView *)driveView {
+    NSLog(@"TrunIndicatorViewTapped");
+}
+
+- (void)driveView:(AMapNaviDriveView *)driveView didChangeShowMode:(AMapNaviDriveViewShowMode)showMode {
+    NSLog(@"didChangeShowMode:%ld", (long)showMode);
 }
 
 @end
