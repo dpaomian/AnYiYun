@@ -1,30 +1,18 @@
 //
-//  LocationViewController.m
+//  YYLocationViewController.m
 //  AnYiYun
 //
-//  Created by 韩亚周 on 2017/7/27.
-//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
+//  Created by 韩亚周 on 2017/10/22.
+//  Copyright © 2017年 wwr. All rights reserved.
 //
 
-#import "LocationViewController.h"
+#import "YYLocationViewController.h"
 
-#import "NaviPointAnnotation.h"
-#import "SelectableOverlay.h"
-#import "YYNaverTopView.h"
-
-@interface LocationViewController () <MAMapViewDelegate, AMapNaviWalkManagerDelegate, AMapNaviRideManagerDelegate, AMapNaviDriveManagerDelegate, AMapLocationManagerDelegate,AMapNaviWalkViewDelegate,AMapNaviRideViewDelegate,AMapNaviDriveViewDelegate,AMapSearchDelegate>
-
-@property (nonatomic, strong) AMapNaviPoint *startPoint;
-@property (nonatomic, strong) AMapNaviPoint *endPoint;
-
-@property (nonatomic, strong) AMapLocationManager *locationManager;
-
-@property (nonatomic, strong) NSMutableArray *routeIndicatorInfoArray;
-@property (nonatomic, strong) NSMutableArray *startAndEndPointArray;
+@interface YYLocationViewController ()
 
 @end
 
-@implementation LocationViewController
+@implementation YYLocationViewController
 
 #pragma mark - Life Cycle
 
@@ -51,7 +39,10 @@
     [self initDriveManager];
     [self initDriveButtons];
     [self initSearch];
-    [self initNavi];
+    [self initWalkNavi];
+    [self initRideNavi];
+    [self initDriveNavi];
+    [self transitNavi];
 }
 
 //判断获取页面信息
@@ -89,7 +80,7 @@
      {
          [MBProgressHUD hideHUD];
          NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-
+         
          DLog(@"定位请求回来的值 %@",string);
          if (string.length>0)
          {
@@ -114,7 +105,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -136,41 +127,62 @@
 }
 
 - (void)startSerialLocation {
-        //开始定位
+    //开始定位
     [self.locationManager startUpdatingLocation];
 }
 
 - (void)stopSerialLocation {
-        //停止定位
+    //停止定位
     [self.locationManager stopUpdatingLocation];
 }
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error {
-        //定位错误
+    //定位错误
     NSLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
 }
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location {
-        //定位结果
+    //定位结果
     NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
     self.startPoint = [AMapNaviPoint locationWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-//    self.startPoint = [AMapNaviPoint locationWithLatitude:34.546428 longitude:113.491216];
+    //    self.startPoint = [AMapNaviPoint locationWithLatitude:34.546428 longitude:113.491216];
     if (_navTypesView.selectedIndex == 0) {
-        [self routePlanAction];
+//        [self routePlanAction];
+        /* 出发点. */
+        _walkNavi.origin = [AMapGeoPoint locationWithLatitude:self.startPoint.latitude
+                                                     longitude:self.startPoint.longitude];
+        /* 目的地. */
+        _walkNavi.destination = [AMapGeoPoint locationWithLatitude:self.endPoint.latitude
+                                                          longitude:self.endPoint.longitude];
+        [self.search AMapDrivingRouteSearch:_driveNavi];
     } else if (_navTypesView.selectedIndex == 1) {
-        [self routeRidePlanAction];
+//        [self routeRidePlanAction];
+        /* 出发点. */
+        _rideNavi.origin = [AMapGeoPoint locationWithLatitude:self.startPoint.latitude
+                                                     longitude:self.startPoint.longitude];
+        /* 目的地. */
+        _rideNavi.destination = [AMapGeoPoint locationWithLatitude:self.endPoint.latitude
+                                                          longitude:self.endPoint.longitude];
+        [self.search AMapDrivingRouteSearch:_driveNavi];
     } else if (_navTypesView.selectedIndex == 2) {
-        [self singleRoutePlanAction];
+//        [self singleRoutePlanAction];
+        /* 出发点. */
+        _driveNavi.origin = [AMapGeoPoint locationWithLatitude:self.startPoint.latitude
+                                               longitude:self.startPoint.longitude];
+        /* 目的地. */
+        _driveNavi.destination = [AMapGeoPoint locationWithLatitude:self.endPoint.latitude
+                                                    longitude:self.endPoint.longitude];
+        [self.search AMapDrivingRouteSearch:_driveNavi];
     } else if (_navTypesView.selectedIndex == 3) {
         /*公交*/
-        self.navi.city = @"zhengzhou";
+        self.transitNavi.city = @"zhengzhou";
         /* 出发点. */
-        self.navi.origin = [AMapGeoPoint locationWithLatitude:self.startPoint.latitude
-                                                  longitude:self.startPoint.longitude];
+        self.transitNavi.origin = [AMapGeoPoint locationWithLatitude:self.startPoint.latitude
+                                                    longitude:self.startPoint.longitude];
         /* 目的地. */
-        self.navi.destination = [AMapGeoPoint locationWithLatitude:self.endPoint.latitude
-                                                       longitude:self.endPoint.longitude];
-        [self.search AMapTransitRouteSearch:self.navi];
+        self.transitNavi.destination = [AMapGeoPoint locationWithLatitude:self.endPoint.latitude
+                                                         longitude:self.endPoint.longitude];
+        [self.search AMapTransitRouteSearch:self.transitNavi];
     }
     [self stopSerialLocation];
 }
@@ -180,7 +192,7 @@
 
 - (void)initProperties
 {
-        //为了方便展示步行路径规划，选择了固定的起终点
+    //为了方便展示步行路径规划，选择了固定的起终点
     self.startPoint = [[AMapNaviPoint alloc] init];
     self.endPoint   = [[AMapNaviPoint alloc] init];
     
@@ -195,7 +207,7 @@
     _mapTopView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44.0f+25.0f);
     [self.view addSubview:_mapTopView];
     
-    __weak LocationViewController *ws = self;
+    __weak YYLocationViewController *ws = self;
     
     _navTypesView = [[YYSegmentedView alloc] initWithFrame:CGRectMake(0.0f, 25.0f, SCREEN_WIDTH, 44.0f)];
     _navTypesView.backgroundColor = UIColorFromRGB(0x000000);
@@ -208,50 +220,46 @@
         }else {
             stateView.selectedIndex = index;
             if (index == 0) {
-                ws.mapBottomListView.isTransit = NO;
                 ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
                 ws.mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(ws.mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
                 [ws.walkLinksMutableArray removeAllObjects];
                 ws.mapBottomListView.linksMutableArray = ws.walkLinksMutableArray;
-//                [ws routePlanAction];
+                //                [ws routePlanAction];
                 ws.nearButton.hidden = YES;
                 ws.shortButton.hidden = YES;
                 ws.unKnowButton.hidden = YES;
                 [ws startSerialLocation];
             } else if (index == 1) {
-                ws.mapBottomListView.isTransit = NO;
                 ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
                 ws.mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(ws.mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
                 [ws startSerialLocation];
                 [ws.rideLinksMutableArray removeAllObjects];
                 ws.mapBottomListView.linksMutableArray = ws.rideLinksMutableArray;
-//                [ws routeRidePlanAction];
+                //                [ws routeRidePlanAction];
                 ws.nearButton.hidden = YES;
                 ws.shortButton.hidden = YES;
                 ws.unKnowButton.hidden = YES;
                 [ws startSerialLocation];
             } else if (index == 2) {
-                ws.mapBottomListView.isTransit = NO;
                 ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
                 ws.mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(ws.mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
-//                [ws singleRoutePlanAction];
+                //                [ws singleRoutePlanAction];
                 [ws startSerialLocation];
             } else {
-                ws.mapBottomListView.isTransit = YES;
                 [ws startSerialLocation];
             }
         }
     };
     
     if (self.mapView == nil)
-        {
+    {
         self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 44.0f+25.0f,
                                                                    self.view.bounds.size.width,
                                                                    self.view.bounds.size.height-64-44.0f-25.0f)];
         [self.mapView setDelegate:self];
         self.mapView.showsUserLocation = YES;
         [self.view addSubview:self.mapView];
-        }
+    }
     
     UIButton *ret = [[UIButton alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.mapView.frame)*2.0f/3.0f, 40, 40)];
     ret.backgroundColor = [UIColor whiteColor];
@@ -286,9 +294,6 @@
     [_mapBottomButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
      UIControlEventTouchUpOutside];
     [self.view addSubview:_mapBottomButton];
-    _mapBottomListView.didSelectRowAtIndexPath = ^(YYNaverBottomView *yyBottomView, YYTransitListModel *yyListModel, NSIndexPath * yyIndexPath){
-        
-    };
     
     _mapBottomListView = [[YYNaverBottomView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f)];
     [self.view addSubview:_mapBottomListView];
@@ -376,7 +381,7 @@
     if (self.walkManager == nil) {
         self.walkManager = [[AMapNaviWalkManager alloc] init];
         [self.walkManager setDelegate:self];
-
+        
         [self.walkManager setAllowsBackgroundLocationUpdates:YES];
         [self.walkManager setPausesLocationUpdatesAutomatically:NO];
         
@@ -417,11 +422,33 @@
         self.search.delegate = self;
     }
 }
-
-- (void)initNavi {
-    if (self.navi == nil) {
-        self.navi = [[AMapTransitRouteSearchRequest alloc] init];
-        _navi.requireExtension = YES;
+/*!步行*/
+- (void)initWalkNavi {
+    if (self.walkNavi == nil) {
+        self.walkNavi = [[AMapWalkingRouteSearchRequest alloc] init];
+    }
+}
+/*!骑车*/
+- (void)initRideNavi {
+    if (self.rideNavi == nil) {
+        self.rideNavi = [[AMapRidingRouteSearchRequest alloc] init];
+    }
+}
+/*!驾车*/
+- (void)initDriveNavi {
+    if (self.driveNavi == nil) {
+        self.driveNavi = [[AMapDrivingRouteSearchRequest alloc] init];
+        /*途径点*/
+//        _driveNavi.waypoints = @[[AMapGeoPoint locationWithLatitude:45.780563 longitude:126.651764]];
+        _driveNavi.requireExtension = YES;
+        _driveNavi.strategy = 3;
+    }
+}
+/*!公交*/
+- (void)initTransitNavi {
+    if (self.transitNavi == nil) {
+        self.transitNavi = [[AMapTransitRouteSearchRequest alloc] init];
+        _transitNavi.requireExtension = YES;
     }
 }
 
@@ -456,7 +483,7 @@
 }
 
 - (void)initDriveButtons {
-    __weak LocationViewController *ws = self;
+    __weak YYLocationViewController *ws = self;
     if (self.nearButton == nil) {
         _nearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_nearButton setBackgroundColor:UIColorFromRGB(0xCACACA)];
@@ -559,13 +586,13 @@
     [beginAnnotation setCoordinate:CLLocationCoordinate2DMake(self.startPoint.latitude, self.startPoint.longitude)];
     beginAnnotation.title = @"起点";
     beginAnnotation.navPointType = NaviPointAnnotationStart;
-
-
+    
+    
     NaviPointAnnotation *endAnnotation = [[NaviPointAnnotation alloc] init];
     [endAnnotation setCoordinate:CLLocationCoordinate2DMake(self.endPoint.latitude, self.endPoint.longitude)];
     endAnnotation.title = @"终点";
     endAnnotation.navPointType = NaviPointAnnotationEnd;
-
+    
     [self.mapView removeAnnotations:_startAndEndPointArray];
     [_startAndEndPointArray removeAllObjects];
     [_startAndEndPointArray addObject:beginAnnotation];
@@ -577,7 +604,7 @@
 
 - (void)routePlanAction
 {
-        //进行步行路径规划
+    //进行步行路径规划
     [self.walkManager calculateWalkRouteWithStartPoints:@[self.startPoint]
                                               endPoints:@[self.endPoint]];
 }
@@ -619,25 +646,25 @@
 - (void)showNaviRoutes
 {
     if (self.walkManager.naviRoute == nil)
-        {
+    {
         return;
-        }
+    }
     
     [self.mapView removeOverlays:self.mapView.overlays];
     [self.routeIndicatorInfoArray removeAllObjects];
     
-        //将路径显示到地图上
+    //将路径显示到地图上
     AMapNaviRoute *aRoute = self.walkManager.naviRoute;
     int count = (int)[[aRoute routeCoordinates] count];
     
-        //添加路径Polyline
+    //添加路径Polyline
     CLLocationCoordinate2D *coords = (CLLocationCoordinate2D *)malloc(count * sizeof(CLLocationCoordinate2D));
     for (int i = 0; i < count; i++)
-        {
+    {
         AMapNaviPoint *coordinate = [[aRoute routeCoordinates] objectAtIndex:i];
         coords[i].latitude = [coordinate latitude];
         coords[i].longitude = [coordinate longitude];
-        }
+    }
     
     MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coords count:count];
     
@@ -658,9 +685,9 @@
     for (AMapNaviSegment *naviSegment in aRoute.routeSegments) {
         [_walkLinksMutableArray addObjectsFromArray:naviSegment.links];
     }
-
+    
     _mapBottomListView.linksMutableArray = _walkLinksMutableArray;
-
+    
     free(coords);
     
     [self.mapView showAnnotations:self.mapView.annotations animated:NO];
@@ -710,7 +737,7 @@
         [_rideLinksMutableArray addObjectsFromArray:naviSegment.links];
     }
     _mapBottomListView.linksMutableArray = _rideLinksMutableArray;
-
+    
     [self.mapView showAnnotations:self.mapView.annotations animated:NO];
 }
 
@@ -754,7 +781,7 @@
         info.routeTrafficLightCount = (long)aRoute.routeTrafficLightCount;
         info.routeTime = (long)aRoute.routeTime;
         
-        __weak LocationViewController *ws = self;
+        __weak YYLocationViewController *ws = self;
         [self.routeIndicatorInfoArray addObject:info];
         [self.routeIndicatorInfoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -773,11 +800,11 @@
                 } else if (idx == 1) {
                     ws.shortButton.hidden = NO;
                     [_shortButton setTitle:[NSString stringWithFormat:@"%ld%@\n%ld个红绿灯\n%@",info.routeLength<=1000?info.routeLength:info.routeLength/1000,info.routeLength<=1000?@"米":@"千米",info.routeTrafficLightCount,timeString] forState:UIControlStateNormal];
-
+                    
                 } else if (idx == 2) {
                     ws.unKnowButton.hidden = NO;
                     [_unKnowButton setTitle:[NSString stringWithFormat:@"%ld%@\n%ld个红绿灯\n%@",info.routeLength<=1000?info.routeLength:info.routeLength/1000,info.routeLength<=1000?@"米":@"千米",info.routeTrafficLightCount,timeString] forState:UIControlStateNormal];
-
+                    
                 } else {
                     *stop = YES;
                 }
@@ -1003,15 +1030,15 @@
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[NaviPointAnnotation class]])
-        {
+    {
         static NSString *annotationIdentifier = @"NaviPointAnnotationIdentifier";
         
         MAPinAnnotationView *pointAnnotationView = (MAPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
         if (pointAnnotationView == nil)
-            {
+        {
             pointAnnotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
                                                                   reuseIdentifier:annotationIdentifier];
-            }
+        }
         
         pointAnnotationView.animatesDrop   = NO;
         pointAnnotationView.canShowCallout = YES;
@@ -1020,32 +1047,32 @@
         NaviPointAnnotation *navAnnotation = (NaviPointAnnotation *)annotation;
         
         if (navAnnotation.navPointType == NaviPointAnnotationStart)
-            {
+        {
             [pointAnnotationView setPinColor:MAPinAnnotationColorGreen];
-            }
+        }
         else if (navAnnotation.navPointType == NaviPointAnnotationEnd)
-            {
+        {
             [pointAnnotationView setPinColor:MAPinAnnotationColorRed];
-            }
+        }
         /* 起点. */
         if ([[annotation title] isEqualToString:@"起点"])
-            {
+        {
             pointAnnotationView.image = [UIImage imageNamed:@"startPoint.png"];
-            }
+        }
         /* 终点. */
         else if([[annotation title] isEqualToString:@"终点"])
-            {
+        {
             pointAnnotationView.image = [UIImage imageNamed:@"endPoint.png"];
-            }
-        return pointAnnotationView;
         }
+        return pointAnnotationView;
+    }
     return nil;
 }
 
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay
 {
     if ([overlay isKindOfClass:[SelectableOverlay class]])
-        {
+    {
         SelectableOverlay * selectableOverlay = (SelectableOverlay *)overlay;
         id<MAOverlay> actualOverlay = selectableOverlay.overlay;
         
@@ -1055,7 +1082,7 @@
         polylineRenderer.strokeColor = selectableOverlay.isSelected ? selectableOverlay.selectedColor : selectableOverlay.regularColor;
         
         return polylineRenderer;
-        }
+    }
     
     return nil;
 }
@@ -1137,18 +1164,17 @@
     for (AMapPath *paths in rote.paths) {
         DLog(@"距离：%ld,时间:%ld,路段:%@",paths.distance,paths.duration,paths.steps);
     }
-    [_transitRouteLinksMutableArray removeAllObjects];
     for (AMapTransit *transits in rote.transits) {
-        YYTransitListModel *transitModel = [[YYTransitListModel alloc] init];
-        transitModel.cost = transits.cost;
-        transitModel.duration = transits.duration;
-        transitModel.nightflag = transits.nightflag;
-        transitModel.walkingDistance = transits.walkingDistance;
-        transitModel.segments = transits.segments;
-        transitModel.distance = transits.distance;
-        [_transitRouteLinksMutableArray addObject:transitModel];
+        for (AMapSegment *segments in transits.segments) {
+            for (AMapBusLine *buslines in segments.buslines) {
+                DLog(@"buslines.name : %@",buslines.name);
+            }
+        }
+        DLog(@"transits.duration: %ld分",transits.duration/60);
+        DLog(@"transits.distance : %ld米",transits.distance);
+        DLog(@"buslines.walkingDistance : %ld米",transits.walkingDistance);
+        [_transitRouteLinksMutableArray removeAllObjects];
     }
-    _mapBottomListView.linksMutableArray = _transitRouteLinksMutableArray;
     //解析response获取路径信息，具体解析见 Demo
 }
 
@@ -1156,5 +1182,6 @@
 {
     NSLog(@"Error: %@", error);
 }
+
 
 @end

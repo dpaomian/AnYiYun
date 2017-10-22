@@ -110,6 +110,12 @@
 		90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */; };
 		90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07B21F1F3BAB008106D2 /* LoginManager.m */; };
 		90EA5EA51F2DBDAE009DE784 /* DefultLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */; };
+		A802DDB81F9C935200D92192 /* YYLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDB71F9C935200D92192 /* YYLocationViewController.m */; };
+		A802DDBB1F9CDC9000D92192 /* YYSubtitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDBA1F9CDC9000D92192 /* YYSubtitleTableViewCell.m */; };
+		A802DDBE1F9CDE5100D92192 /* YYTransitListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDBD1F9CDE5100D92192 /* YYTransitListModel.m */; };
+		A802DDCB1F9CEECC00D92192 /* MessageStrategyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDC91F9CEECC00D92192 /* MessageStrategyCell.m */; };
+		A802DDCC1F9CEECC00D92192 /* MessageStrategyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A802DDCA1F9CEECC00D92192 /* MessageStrategyCell.xib */; };
+		A802DDCF1F9CFC3300D92192 /* MessageStrategyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDCE1F9CFC3300D92192 /* MessageStrategyModel.m */; };
 		A810BF4B1F25EDB400B5F2D2 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF4A1F25EDB400B5F2D2 /* BaseTableViewController.m */; };
 		A810BF541F25F43F00B5F2D2 /* YYSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF531F25F43F00B5F2D2 /* YYSegmentedView.m */; };
 		A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A810BF561F25F49300B5F2D2 /* YYSegmentedCollectionCell.m */; };
@@ -465,6 +471,17 @@
 		90CF07B21F1F3BAB008106D2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		90EA5EA31F2DBDAE009DE784 /* DefultLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefultLaunchView.h; path = AnYiYun/Libs/DefultLaunchView.h; sourceTree = SOURCE_ROOT; };
 		90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefultLaunchView.m; path = AnYiYun/Libs/DefultLaunchView.m; sourceTree = SOURCE_ROOT; };
+		A802DDB61F9C935200D92192 /* YYLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYLocationViewController.h; sourceTree = "<group>"; };
+		A802DDB71F9C935200D92192 /* YYLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYLocationViewController.m; sourceTree = "<group>"; };
+		A802DDB91F9CDC9000D92192 /* YYSubtitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYSubtitleTableViewCell.h; sourceTree = "<group>"; };
+		A802DDBA1F9CDC9000D92192 /* YYSubtitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYSubtitleTableViewCell.m; sourceTree = "<group>"; };
+		A802DDBC1F9CDE5100D92192 /* YYTransitListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYTransitListModel.h; sourceTree = "<group>"; };
+		A802DDBD1F9CDE5100D92192 /* YYTransitListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYTransitListModel.m; sourceTree = "<group>"; };
+		A802DDC81F9CEECC00D92192 /* MessageStrategyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStrategyCell.h; sourceTree = "<group>"; };
+		A802DDC91F9CEECC00D92192 /* MessageStrategyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageStrategyCell.m; sourceTree = "<group>"; };
+		A802DDCA1F9CEECC00D92192 /* MessageStrategyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageStrategyCell.xib; sourceTree = "<group>"; };
+		A802DDCD1F9CFC3300D92192 /* MessageStrategyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStrategyModel.h; sourceTree = "<group>"; };
+		A802DDCE1F9CFC3300D92192 /* MessageStrategyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageStrategyModel.m; sourceTree = "<group>"; };
 		A810BF491F25EDB400B5F2D2 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		A810BF4A1F25EDB400B5F2D2 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		A810BF521F25F43F00B5F2D2 /* YYSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYSegmentedView.h; path = AnYiYun/Main/Home/Main/Controller/YYSegmentedView.h; sourceTree = SOURCE_ROOT; };
@@ -751,6 +768,8 @@
 			children = (
 				3B02DF231F2ADE0300282116 /* LocationViewController.h */,
 				3B02DF241F2ADE0300282116 /* LocationViewController.m */,
+				A802DDB61F9C935200D92192 /* YYLocationViewController.h */,
+				A802DDB71F9C935200D92192 /* YYLocationViewController.m */,
 				A8FC48C31F950AF40072B529 /* YYNaverTopView.h */,
 				A8FC48C41F950AF40072B529 /* YYNaverTopView.m */,
 				A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */,
@@ -758,6 +777,10 @@
 				A8E2FB251F95F57A002A733D /* YYNaverBottomButton.m */,
 				A820C66E1F9794CC000E139F /* YYNaverBottomView.h */,
 				A820C66F1F9794CC000E139F /* YYNaverBottomView.m */,
+				A802DDB91F9CDC9000D92192 /* YYSubtitleTableViewCell.h */,
+				A802DDBA1F9CDC9000D92192 /* YYSubtitleTableViewCell.m */,
+				A802DDBC1F9CDE5100D92192 /* YYTransitListModel.h */,
+				A802DDBD1F9CDE5100D92192 /* YYTransitListModel.m */,
 				A87A08CD1F94A1C700E66B89 /* NaviPointAnnotation.h */,
 				A87A08CE1F94A1C800E66B89 /* NaviPointAnnotation.m */,
 				A87A08D11F94A66100E66B89 /* SelectableOverlay.h */,
@@ -1425,6 +1448,8 @@
 			children = (
 				901788171F262CD400CFED87 /* CompanyModel.h */,
 				901788181F262CD400CFED87 /* CompanyModel.m */,
+				A802DDCD1F9CFC3300D92192 /* MessageStrategyModel.h */,
+				A802DDCE1F9CFC3300D92192 /* MessageStrategyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1440,6 +1465,9 @@
 				901788271F26386E00CFED87 /* ModifyPasswordCell.m */,
 				3BC7CEAA1F2C70A000D7333C /* ShareAppView.h */,
 				3BC7CEAB1F2C70A000D7333C /* ShareAppView.m */,
+				A802DDC81F9CEECC00D92192 /* MessageStrategyCell.h */,
+				A802DDC91F9CEECC00D92192 /* MessageStrategyCell.m */,
+				A802DDCA1F9CEECC00D92192 /* MessageStrategyCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1917,6 +1945,7 @@
 				90CF072B1F1F2BFC008106D2 /* LaunchScreen.storyboard in Resources */,
 				90A2EC6D1F209E98008088C4 /* main_back@2x.png in Resources */,
 				A87C53D51F31DB3B008DE42B /* AAFunnel.js in Resources */,
+				A802DDCC1F9CEECC00D92192 /* MessageStrategyCell.xib in Resources */,
 				A87C53D61F31DB3B008DE42B /* AAHighcharts-3d.js in Resources */,
 				A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */,
 				3B34271A1F3C3058007F2700 /* sound.caf in Resources */,
@@ -2081,6 +2110,7 @@
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
 				90CF07871F1F3464008106D2 /* UIColor+Extension.m in Sources */,
 				A87C53E71F31DB3B008DE42B /* AAOptions3d.m in Sources */,
+				A802DDCF1F9CFC3300D92192 /* MessageStrategyModel.m in Sources */,
 				905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */,
 				A87C535B1F317337008DE42B /* FirePowerSupplyEquipmentManagementRootViewController.m in Sources */,
 				A81B121A1F2AC3EC001DD06B /* EquipmentAccountCell.m in Sources */,
@@ -2091,7 +2121,9 @@
 				A81B12161F2AC3CF001DD06B /* YYAlarmCell.m in Sources */,
 				A89FBFD11F23175A001405E8 /* CalendarViewController.m in Sources */,
 				905D5C9B1F28D83100DF4DF9 /* JXLayoutButton.m in Sources */,
+				A802DDBE1F9CDE5100D92192 /* YYTransitListModel.m in Sources */,
 				A87C53F01F31DB3B008DE42B /* AATitle.m in Sources */,
+				A802DDB81F9C935200D92192 /* YYLocationViewController.m in Sources */,
 				A81B124A1F2AC446001DD06B /* RealtimeMonitoringViewController.m in Sources */,
 				901788091F2620D200CFED87 /* YYCalendarView.m in Sources */,
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
@@ -2134,6 +2166,7 @@
 				3B02DF451F2ADE0300282116 /* MessageExamCell.m in Sources */,
 				A87C53CF1F31DB3B008DE42B /* AAChartModel.m in Sources */,
 				90CF07941F1F35B1008106D2 /* BaseLaunchConfig.m in Sources */,
+				A802DDCB1F9CEECC00D92192 /* MessageStrategyCell.m in Sources */,
 				3B02DF3D1F2ADE0300282116 /* LocationViewController.m in Sources */,
 				90CF07851F1F3464008106D2 /* NSString+Extension.m in Sources */,
 				90272BEB1F224833000B1DC0 /* HomeModel.m in Sources */,
@@ -2180,6 +2213,7 @@
 				A87C53DE1F31DB3B008DE42B /* AAChart.m in Sources */,
 				A87C53DB1F31DB3B008DE42B /* AAArea.m in Sources */,
 				90CF07A51F1F38F5008106D2 /* BaseCacheHelper.m in Sources */,
+				A802DDBB1F9CDC9000D92192 /* YYSubtitleTableViewCell.m in Sources */,
 				3B02DF421F2ADE0300282116 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
 				A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */,
