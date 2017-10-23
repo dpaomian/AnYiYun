@@ -27,7 +27,7 @@
         _programmeTableView.dataSource = self;
 //        _programmeTableView.scrollEnabled = NO;
         _programmeTableView.tableFooterView = [UIView new];
-        [_programmeTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+        [_programmeTableView registerClass:[YYSubtitleTableViewCell class] forCellReuseIdentifier:@"YYSubtitleTableViewCell"];
         [self addSubview:_programmeTableView];
     }
     return self;
@@ -43,25 +43,61 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    YYSubtitleTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"YYSubtitleTableViewCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
-    AMapNaviLink *link = (AMapNaviLink *)_linksMutableArray[indexPath.row];
-    NSString *roadNameString = @"";
-    if (link.roadName == nil || [link.roadName isEqual:[NSNull null]]) {
+    if (_isTransit) {
+        YYTransitListModel *cellModel = (YYTransitListModel *)_linksMutableArray[indexPath.row];
+        for (AMapSegment *segments in cellModel.segments) {
+            for (AMapBusLine *buslines in segments.buslines) {
+                cell.textLabel.text = buslines.name;
+            }
+        }
+        cell.detailTextLabel.textColor = UIColorFromRGB(0x666666);
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        NSString *timesString = @"";
+        if (cellModel.duration<=3600) {
+            timesString = [NSString stringWithFormat:@"%ld%@",cellModel.duration/60,@"分钟"];
+        } else {
+            NSInteger minites = cellModel.duration%3600;
+            NSInteger hours = (cellModel.duration-minites)/3600;
+            timesString = [NSString stringWithFormat:@"%ld%@%ld%@",hours,@"小时",minites/60,@"分钟"];
+        }
         
+        NSString *distanceString =  [NSString stringWithFormat:@"%ld%@",cellModel.distance<=1000?cellModel.distance:cellModel.distance/1000,cellModel.distance<=1000?@"米":@"公里"];
+        NSString *walkDistanceString =  [NSString stringWithFormat:@"%ld%@",cellModel.distance<=1000?cellModel.distance:cellModel.distance/1000,cellModel.distance<=1000?@"米":@"公里"];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@ - 步行%@",timesString, distanceString,walkDistanceString];
     } else {
-        roadNameString = link.roadName;
+        AMapNaviLink *link = (AMapNaviLink *)_linksMutableArray[indexPath.row];
+        NSString *roadNameString = @"";
+        if (link.roadName == nil || [link.roadName isEqual:[NSNull null]]) {
+            
+        } else {
+            roadNameString = link.roadName;
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %ld 米",roadNameString,link.length];
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        cell.detailTextLabel.text = nil;
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %ld 米",roadNameString,link.length];
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40.0f;
+    if (_isTransit) {
+        return 54.0f;
+    } else {
+        return 40.0f;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_isTransit) {
+        YYTransitListModel *cellModel = (YYTransitListModel *)_linksMutableArray[indexPath.row];
+        if (_didSelectRowAtIndexPath) {
+            _didSelectRowAtIndexPath(self, cellModel, indexPath);
+        }
+    } else {
+        return ;
+    }
 }
 
 

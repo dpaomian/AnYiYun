@@ -1,30 +1,31 @@
 //
-//  LocationViewController.h
+//  YYLocationViewController.h
 //  AnYiYun
 //
-//  Created by 韩亚周 on 2017/7/27.
-//  Copyright © 2017年 Henan lion  m&c technology co.,ltd. All rights reserved.
+//  Created by 韩亚周 on 2017/10/22.
+//  Copyright © 2017年 wwr. All rights reserved.
 //
 
 #import "BaseViewController.h"
-#import "MessageModel.h"
-#import "YYNaverTopView.h"
-#import "YYNaverBottomButton.h"
-#import "YYNaverBottomView.h"
 
 #import <MAMapKit/MAMapKit.h>
 #import <AMapNaviKit/AMapNaviKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 
+#import "MessageModel.h"
+#import "YYNaverTopView.h"
+#import "YYNaverBottomButton.h"
+#import "YYNaverBottomView.h"
 #import "SpeechSynthesizer.h"
 #import "UIButton+Category.h"
 #import "RouteCollectionViewInfo.h"
 
-/**
- 定位
- */
-@interface LocationViewController : BaseViewController
+#import "NaviPointAnnotation.h"
+#import "SelectableOverlay.h"
+#import "YYNaverTopView.h"
+
+@interface YYLocationViewController : BaseViewController <MAMapViewDelegate, AMapNaviWalkManagerDelegate, AMapNaviRideManagerDelegate, AMapNaviDriveManagerDelegate, AMapLocationManagerDelegate,AMapNaviWalkViewDelegate,AMapNaviRideViewDelegate,AMapNaviDriveViewDelegate,AMapSearchDelegate>
 
 @property (nonatomic,strong)MessageModel *itemModel;
 
@@ -47,7 +48,10 @@
 @property (nonatomic, strong) AMapNaviDriveManager *driveManager;
 
 @property (nonatomic, strong) AMapSearchAPI *search;
-@property (nonatomic, strong) AMapTransitRouteSearchRequest *navi;
+@property (nonatomic, strong) AMapWalkingRouteSearchRequest *walkNavi;
+@property (nonatomic, strong) AMapRidingRouteSearchRequest *rideNavi;
+@property (nonatomic, strong) AMapDrivingRouteSearchRequest *driveNavi;
+@property (nonatomic, strong) AMapTransitRouteSearchRequest *transitNavi;
 
 @property (nonatomic, strong) NSMutableArray *walkLinksMutableArray;
 @property (nonatomic, strong) NSMutableArray *rideLinksMutableArray;
@@ -61,5 +65,13 @@
 @property (nonatomic, strong) UIButton *nearButton;
 @property (nonatomic, strong) UIButton *shortButton;
 @property (nonatomic, strong) UIButton *unKnowButton;
+
+@property (nonatomic, strong) AMapNaviPoint *startPoint;
+@property (nonatomic, strong) AMapNaviPoint *endPoint;
+
+@property (nonatomic, strong) AMapLocationManager *locationManager;
+
+@property (nonatomic, strong) NSMutableArray *routeIndicatorInfoArray;
+@property (nonatomic, strong) NSMutableArray *startAndEndPointArray;
 
 @end

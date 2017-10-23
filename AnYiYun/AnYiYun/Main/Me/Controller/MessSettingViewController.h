@@ -7,7 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import "EquipmentAccountHeaderFooterView.h"
+#import "MessageStrategyCell.h"
+#import "MessageStrategyModel.h"
 
-@interface MessSettingViewController : BaseViewController
+@interface MessSettingViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView      *messageSettingTableView;
+
+@property (nonatomic, strong) NSMutableArray   *listMutableArray;
 
 @end
