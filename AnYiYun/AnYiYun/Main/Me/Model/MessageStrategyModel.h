@@ -18,4 +18,9 @@
 @property (nonatomic,strong)NSString *textFieldText2;
 @property (nonatomic,strong)NSString *text3;
 
+@property (nonatomic, assign) NSInteger   field1MixValue;
+@property (nonatomic, assign) NSInteger   field1MaxValue;
+@property (nonatomic, assign) NSInteger   field2MixValue;
+@property (nonatomic, assign) NSInteger   field2MaxValue;
+
 @end

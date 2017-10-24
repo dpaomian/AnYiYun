@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,6 +39,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="hbu-Cr-tct"/>
+                        </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="条，清理最早的" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jq2-Iq-Rf6">
                         <rect key="frame" x="127" y="19.5" width="93" height="16"/>
@@ -66,16 +69,16 @@
                             <constraint firstAttribute="height" constant="1" id="aS8-wx-lfM"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLW-ec-7L8">
-                        <rect key="frame" x="24" y="16" width="22" height="22"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLW-ec-7L8">
+                        <rect key="frame" x="20" y="16" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ZyY-Em-Zgt"/>
                             <constraint firstAttribute="width" constant="22" id="yHu-kD-3Up"/>
                         </constraints>
-                        <state key="normal" title="B"/>
-                        <state key="selected" title="A"/>
+                        <state key="normal" image="NOChoice"/>
+                        <state key="selected" title="A" image="Choice"/>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="archives_icon_2" translatesAutoresizingMaskIntoConstraints="NO" id="fvi-oO-y8V">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="archives_icon_2" translatesAutoresizingMaskIntoConstraints="NO" id="fvi-oO-y8V">
                         <rect key="frame" x="45" y="18" width="74" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -84,7 +87,7 @@
                     <constraint firstItem="gMz-Kl-imr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="48" id="FER-hg-vfg"/>
                     <constraint firstItem="DUW-05-Dlv" firstAttribute="leading" secondItem="zV1-YM-37g" secondAttribute="trailing" constant="4" id="Id4-b7-JDS"/>
                     <constraint firstItem="mp8-sy-ToB" firstAttribute="leading" secondItem="TVp-yF-sCk" secondAttribute="leading" id="JkP-6T-wlV"/>
-                    <constraint firstItem="rLW-ec-7L8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="PgW-sj-lIZ"/>
+                    <constraint firstItem="rLW-ec-7L8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="PgW-sj-lIZ"/>
                     <constraint firstItem="mp8-sy-ToB" firstAttribute="leading" secondItem="gMz-Kl-imr" secondAttribute="trailing" constant="4" id="alW-1Q-vMf"/>
                     <constraint firstItem="gMz-Kl-imr" firstAttribute="centerY" secondItem="DUW-05-Dlv" secondAttribute="centerY" id="hdG-Nb-ruf"/>
                     <constraint firstItem="gMz-Kl-imr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iME-AQ-x6v"/>
@@ -102,6 +105,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="alertImageView" destination="fvi-oO-y8V" id="B7F-Fe-nYp"/>
                 <outlet property="lable1" destination="gMz-Kl-imr" id="teE-sl-bUJ"/>
                 <outlet property="lable2" destination="Jq2-Iq-Rf6" id="euI-Vh-NB3"/>
                 <outlet property="lable3" destination="DUW-05-Dlv" id="byA-NT-WqJ"/>
@@ -115,6 +119,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Choice" width="22" height="22"/>
+        <image name="NOChoice" width="22" height="22"/>
         <image name="archives_icon_2" width="30" height="30"/>
     </resources>
 </document>

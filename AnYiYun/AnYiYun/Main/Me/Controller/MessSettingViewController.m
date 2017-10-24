@@ -43,6 +43,10 @@
             model.text2 = @"条，清理最早的";
             model.textFieldText2 = @"300";
             model.text3 = @"条";
+            model.field1MixValue = 50;
+            model.field1MaxValue = 500;
+            model.field2MixValue = 10;
+            model.field2MaxValue = 300;
         } else if (i == 1) {
             model.isSelected  = NO;
             model.needInput = YES;
@@ -51,6 +55,10 @@
             model.text2 = @"天，清理最早的";
             model.textFieldText2 = @"30";
             model.text3 = @"天";
+            model.field1MixValue = 5;
+            model.field1MaxValue = 90;
+            model.field2MixValue = 5;
+            model.field2MaxValue = 50;
         } else {
             model.isSelected  = NO;
             model.needInput = NO;
@@ -59,6 +67,10 @@
             model.text2 = @"";
             model.textFieldText2 = @"";
             model.text3 = @"";
+            model.field1MixValue = 0;
+            model.field1MaxValue = 0;
+            model.field2MixValue = 0;
+            model.field2MaxValue = 0;
         }
         [_listMutableArray addObject:model];
     }

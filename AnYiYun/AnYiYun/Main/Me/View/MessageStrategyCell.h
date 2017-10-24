@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MessageStrategyCell : UITableViewCell
+@interface MessageStrategyCell : UITableViewCell <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *selectedBtn;
 @property (weak, nonatomic) IBOutlet UILabel *lable1;
@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIView *lineView1;
 @property (weak, nonatomic) IBOutlet UILabel *lable3;
 @property (weak, nonatomic) IBOutlet UIView *lineView2;
+@property (weak, nonatomic) IBOutlet UIImageView *alertImageView;
+
 @property (weak, nonatomic) IBOutlet UITextField *textField2;
 
 @end
