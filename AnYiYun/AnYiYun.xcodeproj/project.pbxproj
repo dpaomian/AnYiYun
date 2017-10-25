@@ -145,6 +145,8 @@
 		A81B12521F2AC48D001DD06B /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B124E1F2AC48D001DD06B /* FilterCollectionCell.m */; };
 		A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */; };
 		A81B12541F2AC48D001DD06B /* FilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B12511F2AC48D001DD06B /* FilterCollectionView.m */; };
+		A81EF07F1FA1015D004CB1F7 /* YYPswCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A81EF07D1FA1015D004CB1F7 /* YYPswCell.m */; };
+		A81EF0801FA1015D004CB1F7 /* YYPswCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81EF07E1FA1015D004CB1F7 /* YYPswCell.xib */; };
 		A820C6701F9794CC000E139F /* YYNaverBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C66F1F9794CC000E139F /* YYNaverBottomView.m */; };
 		A820C6731F979E86000E139F /* RouteCollectionViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6721F979E86000E139F /* RouteCollectionViewInfo.m */; };
 		A820C6791F97BE7E000E139F /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A820C6771F97BE7E000E139F /* SpeechSynthesizer.m */; };
@@ -168,6 +170,10 @@
 		A84FA2DD1F287D90006F3DB4 /* YYTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DC1F287D90006F3DB4 /* YYTabBarView.m */; };
 		A84FA2E11F287E06006F3DB4 /* YYTabBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */; };
 		A84FA2E21F287E06006F3DB4 /* YYTabBarCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */; };
+		A850158D1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A850158B1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.m */; };
+		A850158E1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A850158C1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.xib */; };
+		A85015921FA0DA76002605DD /* YYPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A85015901FA0DA76002605DD /* YYPasswordViewController.m */; };
+		A85015931FA0DA76002605DD /* YYPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A85015911FA0DA76002605DD /* YYPasswordViewController.xib */; };
 		A86E1DBC1F2F31E8000CC2D0 /* DoubleGraphModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */; };
 		A87A08CF1F94A1C900E66B89 /* NaviPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A87A08CE1F94A1C800E66B89 /* NaviPointAnnotation.m */; };
 		A87A08D21F94A66100E66B89 /* SelectableOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = A87A08D01F94A66100E66B89 /* SelectableOverlay.m */; };
@@ -530,6 +536,9 @@
 		A81B124F1F2AC48D001DD06B /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionCell.xib; sourceTree = "<group>"; };
 		A81B12501F2AC48D001DD06B /* FilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionView.h; sourceTree = "<group>"; };
 		A81B12511F2AC48D001DD06B /* FilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionView.m; sourceTree = "<group>"; };
+		A81EF07C1FA1015D004CB1F7 /* YYPswCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYPswCell.h; sourceTree = "<group>"; };
+		A81EF07D1FA1015D004CB1F7 /* YYPswCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYPswCell.m; sourceTree = "<group>"; };
+		A81EF07E1FA1015D004CB1F7 /* YYPswCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YYPswCell.xib; sourceTree = "<group>"; };
 		A820C66E1F9794CC000E139F /* YYNaverBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYNaverBottomView.h; sourceTree = "<group>"; };
 		A820C66F1F9794CC000E139F /* YYNaverBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNaverBottomView.m; sourceTree = "<group>"; };
 		A820C6711F979E86000E139F /* RouteCollectionViewInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteCollectionViewInfo.h; sourceTree = "<group>"; };
@@ -574,6 +583,12 @@
 		A84FA2DE1F287E06006F3DB4 /* YYTabBarCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTabBarCollectionCell.h; sourceTree = "<group>"; };
 		A84FA2DF1F287E06006F3DB4 /* YYTabBarCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTabBarCollectionCell.m; sourceTree = "<group>"; };
 		A84FA2E01F287E06006F3DB4 /* YYTabBarCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYTabBarCollectionCell.xib; sourceTree = "<group>"; };
+		A850158A1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealtimeMonitoringChildSwitchCell.h; sourceTree = "<group>"; };
+		A850158B1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealtimeMonitoringChildSwitchCell.m; sourceTree = "<group>"; };
+		A850158C1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RealtimeMonitoringChildSwitchCell.xib; sourceTree = "<group>"; };
+		A850158F1FA0DA76002605DD /* YYPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYPasswordViewController.h; sourceTree = "<group>"; };
+		A85015901FA0DA76002605DD /* YYPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYPasswordViewController.m; sourceTree = "<group>"; };
+		A85015911FA0DA76002605DD /* YYPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YYPasswordViewController.xib; sourceTree = "<group>"; };
 		A86E1DBA1F2F31E8000CC2D0 /* DoubleGraphModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleGraphModel.h; sourceTree = "<group>"; };
 		A86E1DBB1F2F31E8000CC2D0 /* DoubleGraphModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleGraphModel.m; sourceTree = "<group>"; };
 		A87A08CD1F94A1C700E66B89 /* NaviPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaviPointAnnotation.h; sourceTree = "<group>"; };
@@ -1004,6 +1019,9 @@
 				A81B12371F2AC446001DD06B /* RealtimeMonitoringViewController.h */,
 				A81B12381F2AC446001DD06B /* RealtimeMonitoringViewController.m */,
 				A81B12391F2AC446001DD06B /* RealtimeMonitoringViewController.xib */,
+				A850158F1FA0DA76002605DD /* YYPasswordViewController.h */,
+				A85015901FA0DA76002605DD /* YYPasswordViewController.m */,
+				A85015911FA0DA76002605DD /* YYPasswordViewController.xib */,
 				A81B121E1F2AC446001DD06B /* AlarmInformationViewController.h */,
 				A81B121F1F2AC446001DD06B /* AlarmInformationViewController.m */,
 				A81B12201F2AC446001DD06B /* AlarmInformationViewController.xib */,
@@ -1089,6 +1107,9 @@
 				A8B3DF861F29D0EF00274ADF /* RealtimeMonitoringChildCell.h */,
 				A8B3DF871F29D0EF00274ADF /* RealtimeMonitoringChildCell.m */,
 				A8B3DF881F29D0EF00274ADF /* RealtimeMonitoringChildCell.xib */,
+				A850158A1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.h */,
+				A850158B1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.m */,
+				A850158C1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.xib */,
 				A81B12141F2AC3CF001DD06B /* YYAlarmCell.h */,
 				A81B12151F2AC3CF001DD06B /* YYAlarmCell.m */,
 				A81B121C1F2AC3F8001DD06B /* YYAlarmCell.xib */,
@@ -1098,6 +1119,9 @@
 				A8DA96771F2BBB3800F3032D /* MaintenanceRemindersCell.h */,
 				A8DA96781F2BBB3800F3032D /* MaintenanceRemindersCell.m */,
 				A8DA96791F2BBB3800F3032D /* MaintenanceRemindersCell.xib */,
+				A81EF07C1FA1015D004CB1F7 /* YYPswCell.h */,
+				A81EF07D1FA1015D004CB1F7 /* YYPswCell.m */,
+				A81EF07E1FA1015D004CB1F7 /* YYPswCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1916,6 +1940,7 @@
 				905D5C9D1F28DF6800DF4DF9 /* main_test@2x.png in Resources */,
 				A8451F8F1F2D901900A2CF5A /* SearchCollectionCell.xib in Resources */,
 				A81B12431F2AC446001DD06B /* EquipmentAccountViewController.xib in Resources */,
+				A85015931FA0DA76002605DD /* YYPasswordViewController.xib in Resources */,
 				A84FA2C81F283C26006F3DB4 /* AllApplicationCollectionViewCell.xib in Resources */,
 				A84079C91F3640950029F7FA /* YYCurveView.xib in Resources */,
 				901788081F2620D200CFED87 /* YYCalendarCollectionViewCell.xib in Resources */,
@@ -1923,6 +1948,7 @@
 				90A2EC6E1F209E98008088C4 /* main_back_white@2x.png in Resources */,
 				A81B124B1F2AC446001DD06B /* RealtimeMonitoringViewController.xib in Resources */,
 				A81B12481F2AC446001DD06B /* MaintenanceRemindersViewController.xib in Resources */,
+				A81EF0801FA1015D004CB1F7 /* YYPswCell.xib in Resources */,
 				A8FC48C71F950B0B0072B529 /* YYNaverTopView.xib in Resources */,
 				9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */,
 				3B5B934F1F3AE96D0075AF0B /* Assets.xcassets in Resources */,
@@ -1957,6 +1983,7 @@
 				A8FD78921F2C396800523E46 /* FireEquipmentAccountViewController.xib in Resources */,
 				A87C53D41F31DB3B008DE42B /* AAChartView.html in Resources */,
 				A8FD78901F2C396800523E46 /* FireAlarmInformationViewController.xib in Resources */,
+				A850158E1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2073,6 +2100,7 @@
 				A87C53551F31720F008DE42B /* FirePowerSupplySafetyMonitoringRootViewController.m in Sources */,
 				9046D5DA1F2B886A004E3DCC /* DeviceInfoViewController.m in Sources */,
 				3BC7CEAC1F2C70A000D7333C /* ShareAppView.m in Sources */,
+				A81EF07F1FA1015D004CB1F7 /* YYPswCell.m in Sources */,
 				90CF07801F1F3464008106D2 /* NSDate+Category.m in Sources */,
 				3B02DF3F1F2ADE0300282116 /* HistoryMessageViewController.m in Sources */,
 				901788281F26386E00CFED87 /* ModifyPasswordCell.m in Sources */,
@@ -2109,6 +2137,7 @@
 				90CF07831F1F3464008106D2 /* NSDictionary+XHLogHelper.m in Sources */,
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
 				90CF07871F1F3464008106D2 /* UIColor+Extension.m in Sources */,
+				A85015921FA0DA76002605DD /* YYPasswordViewController.m in Sources */,
 				A87C53E71F31DB3B008DE42B /* AAOptions3d.m in Sources */,
 				A802DDCF1F9CFC3300D92192 /* MessageStrategyModel.m in Sources */,
 				905D5CB71F28EE3000DF4DF9 /* PromptView.m in Sources */,
@@ -2160,6 +2189,7 @@
 				A820C6791F97BE7E000E139F /* SpeechSynthesizer.m in Sources */,
 				A81B12401F2AC446001DD06B /* EnergyConsumptionStatisticsViewController.m in Sources */,
 				90CF07581F1F3300008106D2 /* BaseAFNRequest.m in Sources */,
+				A850158D1FA0D21E002605DD /* RealtimeMonitoringChildSwitchCell.m in Sources */,
 				A8DA967A1F2BBB3800F3032D /* MaintenanceRemindersCell.m in Sources */,
 				A8FD788F1F2C396800523E46 /* FireAlarmInformationViewController.m in Sources */,
 				9017882E1F263B2200CFED87 /* UIImage+RoundRect.m in Sources */,

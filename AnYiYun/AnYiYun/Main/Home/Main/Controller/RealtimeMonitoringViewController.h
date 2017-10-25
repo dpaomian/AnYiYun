@@ -10,8 +10,10 @@
 #import "FilterCollectionView.h"
 #import "RealtimeMonitoringListModel.h"
 #import "RealtimeMonitoringChildCell.h"
+#import "RealtimeMonitoringChildSwitchCell.h"
 #import "DoubleGraphModel.h"
 #import "YYCurveViewController.h"
+#import "YYPasswordViewController.h"
 
 /*!实时监测*/
 @interface RealtimeMonitoringViewController : BaseViewController

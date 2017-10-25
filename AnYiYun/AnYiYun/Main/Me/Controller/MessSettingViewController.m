@@ -112,7 +112,7 @@
 }
 
 #pragma mark -
-#pragma mark UITableViewDelegate -
+#pragma mark UITableViewDataSource -
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -215,7 +215,7 @@
 }
 
 #pragma mark -
-#pragma mark UITableViewDataSource -
+#pragma mark UITableViewDelegate -
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
