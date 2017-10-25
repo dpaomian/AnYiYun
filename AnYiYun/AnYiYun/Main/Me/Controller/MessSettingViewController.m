@@ -18,17 +18,45 @@
     [super viewDidLoad];
     self.title = @"消息设置";
     
+    __weak MessSettingViewController *ws = self;
+    
+    _listMutableArray = [NSMutableArray array];
+    _currentModel = [[MessageStrategyModel alloc] init];
+    
     _messageSettingTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.messageSettingTableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountHeaderFooterView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:@"EquipmentAccountHeaderFooterView"];
     [self.messageSettingTableView registerNib:[UINib nibWithNibName:NSStringFromClass([MessageStrategyCell class]) bundle:nil] forCellReuseIdentifier:@"MessageStrategyCell"];
 
     _messageSettingTableView.delegate = self;
+    _messageSettingTableView.scrollEnabled = NO;
     _messageSettingTableView.dataSource = self;
     _messageSettingTableView.allowsMultipleSelection = NO;
     _messageSettingTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_messageSettingTableView];
     
-    _listMutableArray = [NSMutableArray array];
+    _saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _saveButton.frame = CGRectMake(SCREEN_WIDTH/2-80, 44*2+38*4+22, 160, 44);
+    [_saveButton setTitle:@"保存" forState:UIControlStateNormal];
+    [_saveButton setTitleColor:UIColorFromRGB(0xFFFFFF) forState:UIControlStateNormal];
+    _saveButton.layer.cornerRadius = 4.0f;
+    _saveButton.clipsToBounds = YES;
+    [_saveButton setBackgroundColor:UIColorFromRGB(0x5987F8)];
+    [_saveButton buttonClickedHandle:^(UIButton *sender) {
+        if ([ws.currentModel.textFieldText1 integerValue] < ws.currentModel.field1MixValue ||[ws.currentModel.textFieldText1 integerValue] > ws.currentModel.field1MaxValue) {
+            DLog(@"%ld~%ld之间的值",ws.currentModel.field1MixValue,ws.currentModel.field1MaxValue);
+        } else if ([ws.currentModel.textFieldText2 integerValue] <= [ws.currentModel.textFieldText1 integerValue]) {
+            DLog(@"必须小于%@",ws.currentModel.textFieldText1);
+        } else if ([ws.currentModel.textFieldText2 integerValue] < ws.currentModel.field2MixValue ||[ws.currentModel.textFieldText2 integerValue] > ws.currentModel.field2MaxValue) {
+            DLog(@"%ld~%ld之间的值",ws.currentModel.field2MixValue,ws.currentModel.field2MaxValue)
+        }  else if ([ws.currentModel.textFieldText1 isEqualToString:@""] || [ws.currentModel.textFieldText2 isEqualToString:@""] ) {
+            DLog(@"必填字段");
+        } else {
+            DLog(@"通过");
+        }
+    }];
+    [_messageSettingTableView addSubview:_saveButton];
+    
+    
     [self initData];
 }
 
@@ -36,6 +64,7 @@
     for (int i =0; i <3; i ++) {
         MessageStrategyModel *model = [[MessageStrategyModel alloc] init];
         if (i == 0) {
+            model.idex = 0;
             model.isSelected  = YES;
             model.needInput = YES;
             model.text1 = @"超过";
@@ -43,11 +72,14 @@
             model.text2 = @"条，清理最早的";
             model.textFieldText2 = @"300";
             model.text3 = @"条";
+            model.maxLength = 3;
             model.field1MixValue = 50;
             model.field1MaxValue = 500;
             model.field2MixValue = 10;
             model.field2MaxValue = 300;
+            _currentModel = model;
         } else if (i == 1) {
+            model.idex = 1;
             model.isSelected  = NO;
             model.needInput = YES;
             model.text1 = @"超过";
@@ -55,11 +87,13 @@
             model.text2 = @"天，清理最早的";
             model.textFieldText2 = @"30";
             model.text3 = @"天";
+            model.maxLength = 2;
             model.field1MixValue = 5;
             model.field1MaxValue = 90;
             model.field2MixValue = 5;
             model.field2MaxValue = 50;
         } else {
+            model.idex = 2;
             model.isSelected  = NO;
             model.needInput = NO;
             model.text1 = @"我自己处理，无需自动清理";
@@ -67,6 +101,7 @@
             model.text2 = @"";
             model.textFieldText2 = @"";
             model.text3 = @"";
+            model.maxLength = 0;
             model.field1MixValue = 0;
             model.field1MaxValue = 0;
             model.field2MixValue = 0;
@@ -109,6 +144,7 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    __weak MessSettingViewController *ws = self;
     MessageStrategyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageStrategyCell" forIndexPath:indexPath];
     MessageStrategyModel *cellModel = _listMutableArray[indexPath.row];
     cell.backgroundColor = [UIColor whiteColor];
@@ -117,7 +153,16 @@
     cell.lable2.text = cellModel.text2;
     cell.textField2.text = cellModel.textFieldText2;
     cell.lable3.text = cellModel.text3;
+    cell.maxLength = cellModel.maxLength;
     cell.selectedBtn.selected = cellModel.isSelected;
+    cell.textChangeHandle = ^(MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr) {
+        if (yytf == cell.textField1) {
+            cellModel.textFieldText1 = yyStr;
+        } else {
+            cellModel.textFieldText2 = yyStr;
+        }
+        ws.currentModel = cellModel;
+    };
     if (cellModel.isSelected) {
         cell.textField1.textColor = UIColorFromRGB(0x000000);
         cell.textField2.textColor = UIColorFromRGB(0x000000);
@@ -143,42 +188,6 @@
         cell.lineView1.backgroundColor = [UIColor clearColor];
         cell.lineView2.backgroundColor = [UIColor clearColor];
     }
-    /*if (indexPath.row == 0) {
-        cell.lable1.text = cellModel.text1;
-        cell.textField1.text = cellModel.textFieldText1;
-        cell.lable2.text = cellModel.text2;
-        cell.textField2.text = cellModel.textFieldText2;
-        cell.lable3.text = cellModel.text3;
-        cell.textField1.textColor = UIColorFromRGB(0x000000);
-        cell.textField2.textColor = UIColorFromRGB(0x000000);
-        cell.lineView1.backgroundColor = UIColorFromRGB(0xF44336);
-        cell.lineView2.backgroundColor = UIColorFromRGB(0xF44336);
-        cell.selectedBtn.selected = cell.selected;
-    } else if (indexPath.row == 1) {
-        cell.lable1.text = @"超过";
-        cell.textField1.text = @"90";
-        cell.textField1.userInteractionEnabled = NO;
-        cell.lable2.text = @"天，清理最早的";
-        cell.textField2.text = @"50";
-        cell.textField2.userInteractionEnabled = NO;
-        cell.lable3.text = @"天";
-        cell.textField1.textColor = UIColorFromRGB(0xF0F0F0);
-        cell.textField2.textColor = UIColorFromRGB(0xF0F0F0);
-        cell.lineView1.backgroundColor = UIColorFromRGB(0xF0F0F0);
-        cell.lineView2.backgroundColor = UIColorFromRGB(0xF0F0F0);
-        cell.selectedBtn.selected = cell.selected;
-    } else {
-        cell.lable1.text = @"我自己处理，无需自动清理";
-        cell.textField1.text = @"";
-        cell.textField1.userInteractionEnabled = NO;
-        cell.lable2.text = @"";
-        cell.textField2.text = @"";
-        cell.textField2.userInteractionEnabled = NO;
-        cell.lable3.text = @"";
-        cell.lineView1.backgroundColor = [UIColor clearColor];
-        cell.lineView2.backgroundColor = [UIColor clearColor];
-        cell.selectedBtn.selected = cell.selected;
-    }*/
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,6 +202,7 @@
             MessageStrategyModel *cellModel = ws.listMutableArray[idx];
             if (indexPath.row == idx) {
                 cellModel.isSelected = YES;
+                _currentModel = cellModel;
             } else {
                 cellModel.isSelected = NO;
             }

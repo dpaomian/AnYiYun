@@ -44,6 +44,26 @@
 
 /**批量修改某类型消息 为已读状态*/
 - (BOOL)updateHistoryMessageReadStatusWithType:(NSString *)type;
+/*
+ 超过N条自动清理
+ final String delSql = String.format("delete from %s where %s=? and %s=? and " +
+ "(select count(%s) from %s where %s=? and %s=?)> ? and %s in " +
+ "(select %s from %s where %s=? and %s=? order by %s asc limit " +
+ "(select count(%s) from %s where %s=? and %s=?) offset ?)",
+ TABLE, COLUM_USERID, COLUM_TYPE,
+ COLUM_MESSAGEID, TABLE, COLUM_USERID, COLUM_TYPE, COLUM_MESSAGEID,
+ COLUM_MESSAGEID, TABLE, COLUM_USERID, COLUM_TYPE, COLUM_CREATETIME,
+ COLUM_MESSAGEID, TABLE, COLUM_USERID, COLUM_TYPE);
+ 
+ 超过dayNum天，清理
+ final String delSql = String.format("delete from %s where %s=? and %s=? and " +
+ "(select count(%s) from %s where %s=? and %s=? and %s < ?)> 0 " +
+ "and %s < ?",
+ TABLE, COLUM_USERID, COLUM_TYPE,
+ COLUM_MESSAGEID, TABLE, COLUM_USERID, COLUM_TYPE, COLUM_CREATETIME,
+ COLUM_CREATETIME);
+ */
+
 
 
 @end

@@ -16,5 +16,7 @@
 @property (nonatomic, strong) UITableView      *messageSettingTableView;
 
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
+@property (nonatomic, strong) MessageStrategyModel   *currentModel;
+@property (nonatomic, strong) UIButton   *saveButton;
 
 @end

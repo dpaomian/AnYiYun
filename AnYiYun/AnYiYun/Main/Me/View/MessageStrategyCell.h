@@ -21,4 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textField2;
 
+@property (nonatomic, assign) NSInteger   maxLength;
+
+@property (nonatomic, copy) void (^textChangeHandle) (MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr);
+
 @end
