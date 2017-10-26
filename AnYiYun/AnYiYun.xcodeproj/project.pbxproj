@@ -110,7 +110,6 @@
 		90CF07AF1F1F3B14008106D2 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07AE1F1F3B14008106D2 /* LoadingViewController.m */; };
 		90CF07B31F1F3BAB008106D2 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CF07B21F1F3BAB008106D2 /* LoginManager.m */; };
 		90EA5EA51F2DBDAE009DE784 /* DefultLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */; };
-		A802DDB81F9C935200D92192 /* YYLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDB71F9C935200D92192 /* YYLocationViewController.m */; };
 		A802DDBB1F9CDC9000D92192 /* YYSubtitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDBA1F9CDC9000D92192 /* YYSubtitleTableViewCell.m */; };
 		A802DDBE1F9CDE5100D92192 /* YYTransitListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDBD1F9CDE5100D92192 /* YYTransitListModel.m */; };
 		A802DDCB1F9CEECC00D92192 /* MessageStrategyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A802DDC91F9CEECC00D92192 /* MessageStrategyCell.m */; };
@@ -243,6 +242,7 @@
 		A8BBB76F1F9679BF00DCEF59 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BBB76D1F9679BF00DCEF59 /* PreferenceView.m */; };
 		A8C4B1321F26342800E5F682 /* EnergyConsumptionStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */; };
 		A8C4B1331F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */; };
+		A8D177641FA18BC60086E853 /* UISwitch+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D177631FA18BC60086E853 /* UISwitch+Category.m */; };
 		A8DA96701F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DA966F1F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m */; };
 		A8DA96731F2BB1FD00F3032D /* SafetyMonitoringRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DA96721F2BB1FD00F3032D /* SafetyMonitoringRootViewController.m */; };
 		A8DA96761F2BB22C00F3032D /* EquipmentManagementRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DA96751F2BB22C00F3032D /* EquipmentManagementRootViewController.m */; };
@@ -477,8 +477,6 @@
 		90CF07B21F1F3BAB008106D2 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		90EA5EA31F2DBDAE009DE784 /* DefultLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefultLaunchView.h; path = AnYiYun/Libs/DefultLaunchView.h; sourceTree = SOURCE_ROOT; };
 		90EA5EA41F2DBDAE009DE784 /* DefultLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefultLaunchView.m; path = AnYiYun/Libs/DefultLaunchView.m; sourceTree = SOURCE_ROOT; };
-		A802DDB61F9C935200D92192 /* YYLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYLocationViewController.h; sourceTree = "<group>"; };
-		A802DDB71F9C935200D92192 /* YYLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYLocationViewController.m; sourceTree = "<group>"; };
 		A802DDB91F9CDC9000D92192 /* YYSubtitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYSubtitleTableViewCell.h; sourceTree = "<group>"; };
 		A802DDBA1F9CDC9000D92192 /* YYSubtitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYSubtitleTableViewCell.m; sourceTree = "<group>"; };
 		A802DDBC1F9CDE5100D92192 /* YYTransitListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYTransitListModel.h; sourceTree = "<group>"; };
@@ -714,6 +712,8 @@
 		A8C4B12F1F26342800E5F682 /* EnergyConsumptionStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnergyConsumptionStatisticsCell.h; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.h; sourceTree = SOURCE_ROOT; };
 		A8C4B1301F26342800E5F682 /* EnergyConsumptionStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnergyConsumptionStatisticsCell.m; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.m; sourceTree = SOURCE_ROOT; };
 		A8C4B1311F26342800E5F682 /* EnergyConsumptionStatisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnergyConsumptionStatisticsCell.xib; path = AnYiYun/Common/EnergyConsumptionStatisticsCell.xib; sourceTree = SOURCE_ROOT; };
+		A8D177621FA18BC60086E853 /* UISwitch+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISwitch+Category.h"; sourceTree = "<group>"; };
+		A8D177631FA18BC60086E853 /* UISwitch+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+Category.m"; sourceTree = "<group>"; };
 		A8DA966E1F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerDistributionTabBarRootViewController.h; sourceTree = "<group>"; };
 		A8DA966F1F2BAADE00F3032D /* PowerDistributionTabBarRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerDistributionTabBarRootViewController.m; sourceTree = "<group>"; };
 		A8DA96711F2BB1FD00F3032D /* SafetyMonitoringRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafetyMonitoringRootViewController.h; sourceTree = "<group>"; };
@@ -783,8 +783,6 @@
 			children = (
 				3B02DF231F2ADE0300282116 /* LocationViewController.h */,
 				3B02DF241F2ADE0300282116 /* LocationViewController.m */,
-				A802DDB61F9C935200D92192 /* YYLocationViewController.h */,
-				A802DDB71F9C935200D92192 /* YYLocationViewController.m */,
 				A8FC48C31F950AF40072B529 /* YYNaverTopView.h */,
 				A8FC48C41F950AF40072B529 /* YYNaverTopView.m */,
 				A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */,
@@ -1347,6 +1345,8 @@
 				90CF077D1F1F3464008106D2 /* UIViewController+Swizzling.m */,
 				A89511771F32426B00093DE9 /* UITextView+DisableCopy.h */,
 				A89511781F32426B00093DE9 /* UITextView+DisableCopy.m */,
+				A8D177621FA18BC60086E853 /* UISwitch+Category.h */,
+				A8D177631FA18BC60086E853 /* UISwitch+Category.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2152,7 +2152,6 @@
 				905D5C9B1F28D83100DF4DF9 /* JXLayoutButton.m in Sources */,
 				A802DDBE1F9CDE5100D92192 /* YYTransitListModel.m in Sources */,
 				A87C53F01F31DB3B008DE42B /* AATitle.m in Sources */,
-				A802DDB81F9C935200D92192 /* YYLocationViewController.m in Sources */,
 				A81B124A1F2AC446001DD06B /* RealtimeMonitoringViewController.m in Sources */,
 				901788091F2620D200CFED87 /* YYCalendarView.m in Sources */,
 				90CF07891F1F3464008106D2 /* UIResponder+FirstResponder.m in Sources */,
@@ -2259,6 +2258,7 @@
 				A87C53E61F31DB3B008DE42B /* AAOptions.m in Sources */,
 				9046D5F21F2B89BF004E3DCC /* DeviceFileViewController.m in Sources */,
 				901787FD1F26204C00CFED87 /* UserInfoCell.m in Sources */,
+				A8D177641FA18BC60086E853 /* UISwitch+Category.m in Sources */,
 				A81B12471F2AC446001DD06B /* MaintenanceRemindersViewController.m in Sources */,
 				A821B1211F26E661008B6678 /* FilterCompanyModel.m in Sources */,
 				A84079D11F3676980029F7FA /* LoadDetectionFilterCollectionView.m in Sources */,

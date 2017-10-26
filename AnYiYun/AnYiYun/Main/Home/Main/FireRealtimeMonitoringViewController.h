@@ -12,6 +12,9 @@
 #import "RealtimeMonitoringChildCell.h"
 #import "DoubleGraphModel.h"
 #import "YYCurveViewController.h"
+#import "RealtimeMonitoringChildSwitchCell.h"
+#import "YYPasswordViewController.h"
+#import "UISwitch+Category.h"
 
 /*!实时监测*/
 @interface FireRealtimeMonitoringViewController : BaseViewController

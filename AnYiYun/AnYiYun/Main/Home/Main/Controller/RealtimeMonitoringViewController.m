@@ -403,7 +403,15 @@
             cell.lineIconBtn.userInteractionEnabled = NO;
             [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
         }
-        [cell.yySwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
+        [cell.yySwitch switchChangeHandle:^(UISwitch *sender) {
+            YYPasswordViewController *inputPswVC = [[YYPasswordViewController alloc] initWithNibName:NSStringFromClass([YYPasswordViewController class]) bundle:nil];
+            inputPswVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            inputPswVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            inputPswVC.model = modelItem;
+            [ws presentViewController:inputPswVC animated:YES completion:^{
+                
+            }];
+        }];
         [cell.lineIconBtn buttonClickedHandle:^(UIButton *sender) {
             [ws loadCurveWithModel:modelItem andSection:indexPath.section];
         }];
@@ -431,17 +439,6 @@
         }];
         return cell;
     }
-}
-
-- (void)switchChange:(UISwitch *)swc {
-    DLog(@"状态为:%d",swc.on);
-    YYPasswordViewController *inputPswVC = [[YYPasswordViewController alloc] initWithNibName:NSStringFromClass([YYPasswordViewController class]) bundle:nil];
-    inputPswVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    inputPswVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:inputPswVC animated:YES completion:^{
-        
-    }];
-
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,10 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "RealtimeMonitoringListModel.h"
 #import "YYPswCell.h"
+#import "BaseAFNRequest.h"
 
 @interface YYPasswordViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>
 
+@property (strong, nonatomic) RealtimeMonitoringListModelList *model;
 @property (strong, nonatomic) IBOutlet UITableView *passwordTableView;
 @property (strong, nonatomic) IBOutlet UIButton *close;
 

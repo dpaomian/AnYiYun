@@ -386,30 +386,85 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     __weak FireRealtimeMonitoringViewController *ws = self;
-    RealtimeMonitoringChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RealtimeMonitoringChildCell" forIndexPath:indexPath];
     RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
     RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
-    cell.titleLab.text = modelItem.point_name;
-    cell.tailImageView.image = [UIImage imageNamed:([modelItem.point_state integerValue]==0)?@"onLine.png":@"outLine.png"];
-    [cell.contentBtn setTitle:[NSString stringWithFormat:@"%@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
-    if (modelItem.displayIcon) {
-        cell.lineIconBtn.userInteractionEnabled = YES;
-        cell.contentBtn.userInteractionEnabled = YES;
-        [cell.lineIconBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
+    if ([modelItem.point_type integerValue] == 201) {
+        RealtimeMonitoringChildSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RealtimeMonitoringChildSwitchCell" forIndexPath:indexPath];
+        cell.titleLab.text = modelItem.point_name;
+        cell.tailImageView.image = [UIImage imageNamed:([modelItem.point_state integerValue]==0)?@"onLine.png":@"outLine.png"];
+        cell.yySwitch.on = [modelItem.point_value boolValue];
+        
+        if (modelItem.displayIcon) {
+            cell.lineIconBtn.userInteractionEnabled = YES;
+            [cell.lineIconBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
+        } else {
+            cell.lineIconBtn.userInteractionEnabled = NO;
+            [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
+        }
+        [cell.yySwitch switchChangeHandle:^(UISwitch *sender) {
+            YYPasswordViewController *inputPswVC = [[YYPasswordViewController alloc] initWithNibName:NSStringFromClass([YYPasswordViewController class]) bundle:nil];
+            inputPswVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            inputPswVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            inputPswVC.model = modelItem;
+            [ws presentViewController:inputPswVC animated:YES completion:^{
+                
+            }];
+        }];
+        [cell.lineIconBtn buttonClickedHandle:^(UIButton *sender) {
+            [ws loadCurveWithModel:modelItem andSection:indexPath.section];
+        }];
+        return cell;
     } else {
-        cell.lineIconBtn.userInteractionEnabled = NO;
-        cell.contentBtn.userInteractionEnabled = NO;
-        [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
+        RealtimeMonitoringChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RealtimeMonitoringChildCell" forIndexPath:indexPath];
+        cell.titleLab.text = modelItem.point_name;
+        cell.tailImageView.image = [UIImage imageNamed:([modelItem.point_state integerValue]==0)?@"onLine.png":@"outLine.png"];
+        [cell.contentBtn setTitle:[NSString stringWithFormat:@"%@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
+        
+        if (modelItem.displayIcon) {
+            cell.lineIconBtn.userInteractionEnabled = YES;
+            cell.contentBtn.userInteractionEnabled = YES;
+            [cell.lineIconBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
+        } else {
+            cell.lineIconBtn.userInteractionEnabled = NO;
+            cell.contentBtn.userInteractionEnabled = NO;
+            [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
+        }
+        [cell.contentBtn buttonClickedHandle:^(UIButton *sender) {
+            [ws loadCurveWithModel:modelItem andSection:indexPath.section];
+        }];
+        [cell.lineIconBtn buttonClickedHandle:^(UIButton *sender) {
+            [ws loadCurveWithModel:modelItem andSection:indexPath.section];
+        }];
+        return cell;
     }
-    [cell.contentBtn buttonClickedHandle:^(UIButton *sender) {
-        [ws loadCurveWithModel:modelItem andSection:indexPath.section];
-    }];
-    [cell.lineIconBtn buttonClickedHandle:^(UIButton *sender) {
-        [ws loadCurveWithModel:modelItem andSection:indexPath.section];
-    }];
-    return cell;
-    
 }
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    __weak FireRealtimeMonitoringViewController *ws = self;
+//    RealtimeMonitoringChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RealtimeMonitoringChildCell" forIndexPath:indexPath];
+//    RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
+//    RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
+//    cell.titleLab.text = modelItem.point_name;
+//    cell.tailImageView.image = [UIImage imageNamed:([modelItem.point_state integerValue]==0)?@"onLine.png":@"outLine.png"];
+//    [cell.contentBtn setTitle:[NSString stringWithFormat:@"%@  %@",modelItem.point_value,modelItem.point_unit] forState:UIControlStateNormal];
+//    if (modelItem.displayIcon) {
+//        cell.lineIconBtn.userInteractionEnabled = YES;
+//        cell.contentBtn.userInteractionEnabled = YES;
+//        [cell.lineIconBtn setImage:[UIImage imageNamed:@"Polyline.png"] forState:UIControlStateNormal];
+//    } else {
+//        cell.lineIconBtn.userInteractionEnabled = NO;
+//        cell.contentBtn.userInteractionEnabled = NO;
+//        [cell.lineIconBtn setImage:nil forState:UIControlStateNormal];
+//    }
+//    [cell.contentBtn buttonClickedHandle:^(UIButton *sender) {
+//        [ws loadCurveWithModel:modelItem andSection:indexPath.section];
+//    }];
+//    [cell.lineIconBtn buttonClickedHandle:^(UIButton *sender) {
+//        [ws loadCurveWithModel:modelItem andSection:indexPath.section];
+//    }];
+//    return cell;
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

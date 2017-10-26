@@ -14,6 +14,7 @@
 #import "DoubleGraphModel.h"
 #import "YYCurveViewController.h"
 #import "YYPasswordViewController.h"
+#import "UISwitch+Category.h"
 
 /*!实时监测*/
 @interface RealtimeMonitoringViewController : BaseViewController

@@ -58,12 +58,40 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    __weak YYPasswordViewController *ws = self;
     YYPswCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYPswCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
-    [cell.textField becomeFirstResponder];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [cell.textField becomeFirstResponder];
+    });
     cell.inputOver = ^(YYPswCell *yyCell, NSString *yyStr) {
-        DLog(@"密码:  %@",yyStr);
+        NSString *urlString = [NSString stringWithFormat:@"%@rest/process/switchP",BASE_PLAN_URL];
+        
+        NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":ws.model.idF,@"now":[ws.model.point_value isEqualToString:@"关闭"]?@"0":@"1",@"psw":yyStr};
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        [manager GET:urlString
+          parameters:param
+            progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [MBProgressHUD hideHUD];
+                NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                BOOL dealState  = [string boolValue];
+                
+                if (dealState==NO) {
+                    [BaseHelper waringInfo:@"修改失败"];
+                } else {
+                    [MBProgressHUD showSuccess:@"修改成功"];
+                    [ws dismissViewControllerAnimated:YES completion:^{
+                        
+                    }];
+                }
+            }
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                 [MBProgressHUD hideHUD];
+                 [MBProgressHUD showError:@"修改失败"];
+             }];
     };
     return cell;
 }
