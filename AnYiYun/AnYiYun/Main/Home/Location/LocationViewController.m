@@ -238,6 +238,8 @@
                 [ws startSerialLocation];
             } else {
                 ws.mapBottomListView.isTransit = YES;
+                ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT);
+                ws.mapBottomListView.frame = CGRectMake(0, 44.0+25.0, SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f);
                 [ws startSerialLocation];
             }
         }
@@ -286,12 +288,16 @@
     [_mapBottomButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
      UIControlEventTouchUpOutside];
     [self.view addSubview:_mapBottomButton];
-    _mapBottomListView.didSelectRowAtIndexPath = ^(YYNaverBottomView *yyBottomView, YYTransitListModel *yyListModel, NSIndexPath * yyIndexPath){
-        
-    };
     
     _mapBottomListView = [[YYNaverBottomView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f)];
     [self.view addSubview:_mapBottomListView];
+    
+    _mapBottomListView.didSelectRowAtIndexPath = ^(YYNaverBottomView *yyBottomView, YYTransitListModel *yyListModel, NSIndexPath * yyIndexPath){
+        RoutePlanBusViewController *busVC = [[RoutePlanBusViewController alloc] init];
+        busVC.route = yyListModel.route;
+        busVC.currentCourse = yyIndexPath.row;
+        [ws.navigationController pushViewController:busVC animated:YES];
+    };
     
     UIButton *navBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-20-44.0f, SCREEN_HEIGHT-128.0f-22.0f, 44, 44)];
     navBtn.backgroundColor =UIColorFromRGBA(0x5987F8, 0.6);
@@ -1140,6 +1146,7 @@
     [_transitRouteLinksMutableArray removeAllObjects];
     for (AMapTransit *transits in rote.transits) {
         YYTransitListModel *transitModel = [[YYTransitListModel alloc] init];
+        transitModel.route = rote;
         transitModel.cost = transits.cost;
         transitModel.duration = transits.duration;
         transitModel.nightflag = transits.nightflag;

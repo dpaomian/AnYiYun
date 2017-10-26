@@ -22,10 +22,12 @@
     
     _listMutableArray = [NSMutableArray array];
     _currentModel = [[MessageStrategyModel alloc] init];
+    _soundNameString = @"";
     
     _messageSettingTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.messageSettingTableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountHeaderFooterView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:@"EquipmentAccountHeaderFooterView"];
     [self.messageSettingTableView registerNib:[UINib nibWithNibName:NSStringFromClass([MessageStrategyCell class]) bundle:nil] forCellReuseIdentifier:@"MessageStrategyCell"];
+    [self.messageSettingTableView registerClass:[YYValue1Cell class] forCellReuseIdentifier:@"YYValue1Cell"];
 
     _messageSettingTableView.delegate = self;
     _messageSettingTableView.scrollEnabled = NO;
@@ -35,7 +37,7 @@
     [self.view addSubview:_messageSettingTableView];
     
     _saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _saveButton.frame = CGRectMake(SCREEN_WIDTH/2-80, 44*2+38*4+22, 160, 44);
+    _saveButton.frame = CGRectMake(SCREEN_WIDTH/2-80, 44*2+40*4+22, 160, 44);
     [_saveButton setTitle:@"保存" forState:UIControlStateNormal];
     [_saveButton setTitleColor:UIColorFromRGB(0xFFFFFF) forState:UIControlStateNormal];
     _saveButton.layer.cornerRadius = 4.0f;
@@ -133,62 +135,73 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [[UIView alloc] initWithFrame:CGRectZero];
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1.0f)];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 44.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.0f;
+    return 1.0f;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    __weak MessSettingViewController *ws = self;
-    MessageStrategyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageStrategyCell" forIndexPath:indexPath];
-    MessageStrategyModel *cellModel = _listMutableArray[indexPath.row];
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.lable1.text = cellModel.text1;
-    cell.textField1.text = cellModel.textFieldText1;
-    cell.lable2.text = cellModel.text2;
-    cell.textField2.text = cellModel.textFieldText2;
-    cell.lable3.text = cellModel.text3;
-    cell.maxLength = cellModel.maxLength;
-    cell.selectedBtn.selected = cellModel.isSelected;
-    cell.textChangeHandle = ^(MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr) {
-        if (yytf == cell.textField1) {
-            cellModel.textFieldText1 = yyStr;
-        } else {
-            cellModel.textFieldText2 = yyStr;
-        }
-        ws.currentModel = cellModel;
-    };
-    if (cellModel.isSelected) {
-        cell.textField1.textColor = UIColorFromRGB(0x000000);
-        cell.textField2.textColor = UIColorFromRGB(0x000000);
-        cell.lineView1.backgroundColor = UIColorFromRGB(0xF44336);
-        cell.lineView2.backgroundColor = UIColorFromRGB(0xF44336);
-    } else {
-        cell.textField1.textColor = UIColorFromRGB(0xCACACA);
-        cell.textField2.textColor = UIColorFromRGB(0xCACACA);
-        cell.lineView1.backgroundColor = UIColorFromRGB(0xCACACA);
-        cell.lineView2.backgroundColor = UIColorFromRGB(0xCACACA);
-    }
-    if (cellModel.needInput) {
+    if (indexPath.section == 0) {
+        __weak MessSettingViewController *ws = self;
+        MessageStrategyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageStrategyCell" forIndexPath:indexPath];
+        MessageStrategyModel *cellModel = _listMutableArray[indexPath.row];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.lable1.text = cellModel.text1;
+        cell.textField1.text = cellModel.textFieldText1;
+        cell.lable2.text = cellModel.text2;
+        cell.textField2.text = cellModel.textFieldText2;
+        cell.lable3.text = cellModel.text3;
+        cell.maxLength = cellModel.maxLength;
+        cell.selectedBtn.selected = cellModel.isSelected;
+        cell.textChangeHandle = ^(MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr) {
+            if (yytf == cell.textField1) {
+                cellModel.textFieldText1 = yyStr;
+            } else {
+                cellModel.textFieldText2 = yyStr;
+            }
+            ws.currentModel = cellModel;
+        };
         if (cellModel.isSelected) {
-            cell.textField1.userInteractionEnabled = YES;
-            cell.textField2.userInteractionEnabled = YES;
+            cell.textField1.textColor = UIColorFromRGB(0x000000);
+            cell.textField2.textColor = UIColorFromRGB(0x000000);
+            cell.lineView1.backgroundColor = UIColorFromRGB(0xF44336);
+            cell.lineView2.backgroundColor = UIColorFromRGB(0xF44336);
+        } else {
+            cell.textField1.textColor = UIColorFromRGB(0xCACACA);
+            cell.textField2.textColor = UIColorFromRGB(0xCACACA);
+            cell.lineView1.backgroundColor = UIColorFromRGB(0xCACACA);
+            cell.lineView2.backgroundColor = UIColorFromRGB(0xCACACA);
+        }
+        if (cellModel.needInput) {
+            if (cellModel.isSelected) {
+                cell.textField1.userInteractionEnabled = YES;
+                cell.textField2.userInteractionEnabled = YES;
+            } else {
+                cell.textField1.userInteractionEnabled = NO;
+                cell.textField2.userInteractionEnabled = NO;
+            }
         } else {
             cell.textField1.userInteractionEnabled = NO;
             cell.textField2.userInteractionEnabled = NO;
+            cell.lineView1.backgroundColor = [UIColor clearColor];
+            cell.lineView2.backgroundColor = [UIColor clearColor];
         }
+        return cell;
     } else {
-        cell.textField1.userInteractionEnabled = NO;
-        cell.textField2.userInteractionEnabled = NO;
-        cell.lineView1.backgroundColor = [UIColor clearColor];
-        cell.lineView2.backgroundColor = [UIColor clearColor];
+        YYValue1Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYValue1Cell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = @"新消息提示音";
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        cell.textLabel.textColor = UIColorFromRGB(0x111111);
+        cell.detailTextLabel.text = _soundNameString;
+        return cell;
     }
-    return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 38;
@@ -196,8 +209,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    __weak MessSettingViewController *ws = self;
     if (indexPath.section==0) {
-        __weak MessSettingViewController *ws = self;
         [_listMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             MessageStrategyModel *cellModel = ws.listMutableArray[idx];
             if (indexPath.row == idx) {
@@ -211,6 +224,12 @@
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         
+        YYSoundTableViewController *soundVC = [[YYSoundTableViewController alloc] init];
+        soundVC.saveHandle = ^(YYSoundTableViewController *sound, NSString *yyStr) {
+            ws.soundNameString = yyStr;
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        };
+        [self.navigationController pushViewController:soundVC animated:YES];
     }
 }
 

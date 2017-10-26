@@ -10,6 +10,8 @@
 #import "EquipmentAccountHeaderFooterView.h"
 #import "MessageStrategyCell.h"
 #import "MessageStrategyModel.h"
+#import "YYValue1Cell.h"
+#import "YYSoundTableViewController.h"
 
 @interface MessSettingViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,5 +20,6 @@
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
 @property (nonatomic, strong) MessageStrategyModel   *currentModel;
 @property (nonatomic, strong) UIButton   *saveButton;
+@property (nonatomic, strong) NSString      *soundNameString;
 
 @end

@@ -252,6 +252,18 @@
 		A8E2A53A1F30DB4C000F5408 /* PopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E2A5381F30DB4C000F5408 /* PopViewController.xib */; };
 		A8E2A53E1F30F139000F5408 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E2A53C1F30F139000F5408 /* HelpViewController.m */; };
 		A8E2FB261F95F57A002A733D /* YYNaverBottomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E2FB251F95F57A002A733D /* YYNaverBottomButton.m */; };
+		A8E7D4E31FA21C02001CDE63 /* YYValue1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4E21FA21C02001CDE63 /* YYValue1Cell.m */; };
+		A8E7D4E61FA21D6E001CDE63 /* YYSoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4E51FA21D6E001CDE63 /* YYSoundTableViewController.m */; };
+		A8E7D4E81FA21E79001CDE63 /* sound.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8E7D4E71FA21E79001CDE63 /* sound.plist */; };
+		A8E7D4EC1FA229F1001CDE63 /* YYSoundSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4EA1FA229F1001CDE63 /* YYSoundSelectedCell.m */; };
+		A8E7D4ED1FA229F1001CDE63 /* YYSoundSelectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E7D4EB1FA229F1001CDE63 /* YYSoundSelectedCell.xib */; };
+		A8E7D4F01FA237CC001CDE63 /* RoutePlanBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4EF1FA237CC001CDE63 /* RoutePlanBusViewController.m */; };
+		A8E7D4F31FA23801001CDE63 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4F21FA23800001CDE63 /* CommonUtility.m */; };
+		A8E7D4F61FA2382D001CDE63 /* MANaviRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4F41FA2382D001CDE63 /* MANaviRoute.m */; };
+		A8E7D4F91FA23837001CDE63 /* ErrorInfoUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4F71FA23836001CDE63 /* ErrorInfoUtility.m */; };
+		A8E7D5001FA23863001CDE63 /* MANaviAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4FB1FA23862001CDE63 /* MANaviAnnotation.m */; };
+		A8E7D5011FA23863001CDE63 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4FC1FA23862001CDE63 /* LineDashPolyline.m */; };
+		A8E7D5021FA23863001CDE63 /* MANaviPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E7D4FF1FA23863001CDE63 /* MANaviPolyline.m */; };
 		A8E80E7A1F43533600394711 /* YYValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E791F43533600394711 /* YYValueFormatter.m */; };
 		A8E80E7D1F436B5700394711 /* EquipmentAccountHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E80E7C1F436B5700394711 /* EquipmentAccountHeaderFooterView.m */; };
 		A8E80E7F1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E80E7E1F436B6000394711 /* EquipmentAccountHeaderFooterView.xib */; };
@@ -730,6 +742,28 @@
 		A8E2A53C1F30F139000F5408 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		A8E2FB241F95F57A002A733D /* YYNaverBottomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYNaverBottomButton.h; sourceTree = "<group>"; };
 		A8E2FB251F95F57A002A733D /* YYNaverBottomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYNaverBottomButton.m; sourceTree = "<group>"; };
+		A8E7D4E11FA21C02001CDE63 /* YYValue1Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYValue1Cell.h; sourceTree = "<group>"; };
+		A8E7D4E21FA21C02001CDE63 /* YYValue1Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYValue1Cell.m; sourceTree = "<group>"; };
+		A8E7D4E41FA21D6E001CDE63 /* YYSoundTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYSoundTableViewController.h; sourceTree = "<group>"; };
+		A8E7D4E51FA21D6E001CDE63 /* YYSoundTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYSoundTableViewController.m; sourceTree = "<group>"; };
+		A8E7D4E71FA21E79001CDE63 /* sound.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sound.plist; sourceTree = "<group>"; };
+		A8E7D4E91FA229F1001CDE63 /* YYSoundSelectedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYSoundSelectedCell.h; sourceTree = "<group>"; };
+		A8E7D4EA1FA229F1001CDE63 /* YYSoundSelectedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYSoundSelectedCell.m; sourceTree = "<group>"; };
+		A8E7D4EB1FA229F1001CDE63 /* YYSoundSelectedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YYSoundSelectedCell.xib; sourceTree = "<group>"; };
+		A8E7D4EE1FA237CC001CDE63 /* RoutePlanBusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutePlanBusViewController.h; sourceTree = "<group>"; };
+		A8E7D4EF1FA237CC001CDE63 /* RoutePlanBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutePlanBusViewController.m; sourceTree = "<group>"; };
+		A8E7D4F11FA23800001CDE63 /* CommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
+		A8E7D4F21FA23800001CDE63 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
+		A8E7D4F41FA2382D001CDE63 /* MANaviRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANaviRoute.m; sourceTree = "<group>"; };
+		A8E7D4F51FA2382D001CDE63 /* MANaviRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviRoute.h; sourceTree = "<group>"; };
+		A8E7D4F71FA23836001CDE63 /* ErrorInfoUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorInfoUtility.m; sourceTree = "<group>"; };
+		A8E7D4F81FA23836001CDE63 /* ErrorInfoUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorInfoUtility.h; sourceTree = "<group>"; };
+		A8E7D4FA1FA23862001CDE63 /* MANaviAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviAnnotation.h; sourceTree = "<group>"; };
+		A8E7D4FB1FA23862001CDE63 /* MANaviAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANaviAnnotation.m; sourceTree = "<group>"; };
+		A8E7D4FC1FA23862001CDE63 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
+		A8E7D4FD1FA23862001CDE63 /* LineDashPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
+		A8E7D4FE1FA23863001CDE63 /* MANaviPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviPolyline.h; sourceTree = "<group>"; };
+		A8E7D4FF1FA23863001CDE63 /* MANaviPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANaviPolyline.m; sourceTree = "<group>"; };
 		A8E80E781F43533600394711 /* YYValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYValueFormatter.h; sourceTree = "<group>"; };
 		A8E80E791F43533600394711 /* YYValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYValueFormatter.m; sourceTree = "<group>"; };
 		A8E80E7B1F436B5700394711 /* EquipmentAccountHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentAccountHeaderFooterView.h; sourceTree = "<group>"; };
@@ -783,6 +817,8 @@
 			children = (
 				3B02DF231F2ADE0300282116 /* LocationViewController.h */,
 				3B02DF241F2ADE0300282116 /* LocationViewController.m */,
+				A8E7D4EE1FA237CC001CDE63 /* RoutePlanBusViewController.h */,
+				A8E7D4EF1FA237CC001CDE63 /* RoutePlanBusViewController.m */,
 				A8FC48C31F950AF40072B529 /* YYNaverTopView.h */,
 				A8FC48C41F950AF40072B529 /* YYNaverTopView.m */,
 				A8FC48C61F950B0B0072B529 /* YYNaverTopView.xib */,
@@ -804,6 +840,18 @@
 				A820C6721F979E86000E139F /* RouteCollectionViewInfo.m */,
 				A820C6781F97BE7E000E139F /* SpeechSynthesizer.h */,
 				A820C6771F97BE7E000E139F /* SpeechSynthesizer.m */,
+				A8E7D4F11FA23800001CDE63 /* CommonUtility.h */,
+				A8E7D4F21FA23800001CDE63 /* CommonUtility.m */,
+				A8E7D4F51FA2382D001CDE63 /* MANaviRoute.h */,
+				A8E7D4F41FA2382D001CDE63 /* MANaviRoute.m */,
+				A8E7D4F81FA23836001CDE63 /* ErrorInfoUtility.h */,
+				A8E7D4F71FA23836001CDE63 /* ErrorInfoUtility.m */,
+				A8E7D4FD1FA23862001CDE63 /* LineDashPolyline.h */,
+				A8E7D4FC1FA23862001CDE63 /* LineDashPolyline.m */,
+				A8E7D4FA1FA23862001CDE63 /* MANaviAnnotation.h */,
+				A8E7D4FB1FA23862001CDE63 /* MANaviAnnotation.m */,
+				A8E7D4FE1FA23863001CDE63 /* MANaviPolyline.h */,
+				A8E7D4FF1FA23863001CDE63 /* MANaviPolyline.m */,
 			);
 			name = "Location_通用定位";
 			path = Location;
@@ -1459,6 +1507,9 @@
 				9017881E1F26349000CFED87 /* SettingViewController.m */,
 				A88313CB1F9646EA003DF91B /* MessSettingViewController.h */,
 				A88313CC1F9646EA003DF91B /* MessSettingViewController.m */,
+				A8E7D4E41FA21D6E001CDE63 /* YYSoundTableViewController.h */,
+				A8E7D4E51FA21D6E001CDE63 /* YYSoundTableViewController.m */,
+				A8E7D4E71FA21E79001CDE63 /* sound.plist */,
 				901788201F26349E00CFED87 /* ShareViewController.h */,
 				901788211F26349E00CFED87 /* ShareViewController.m */,
 				901788231F2637BD00CFED87 /* ChangePwdViewController.h */,
@@ -1492,6 +1543,11 @@
 				A802DDC81F9CEECC00D92192 /* MessageStrategyCell.h */,
 				A802DDC91F9CEECC00D92192 /* MessageStrategyCell.m */,
 				A802DDCA1F9CEECC00D92192 /* MessageStrategyCell.xib */,
+				A8E7D4E11FA21C02001CDE63 /* YYValue1Cell.h */,
+				A8E7D4E21FA21C02001CDE63 /* YYValue1Cell.m */,
+				A8E7D4E91FA229F1001CDE63 /* YYSoundSelectedCell.h */,
+				A8E7D4EA1FA229F1001CDE63 /* YYSoundSelectedCell.m */,
+				A8E7D4EB1FA229F1001CDE63 /* YYSoundSelectedCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1951,6 +2007,7 @@
 				A81EF0801FA1015D004CB1F7 /* YYPswCell.xib in Resources */,
 				A8FC48C71F950B0B0072B529 /* YYNaverTopView.xib in Resources */,
 				9017880A1F2620D200CFED87 /* YYCalendarView.xib in Resources */,
+				A8E7D4E81FA21E79001CDE63 /* sound.plist in Resources */,
 				3B5B934F1F3AE96D0075AF0B /* Assets.xcassets in Resources */,
 				A81B121D1F2AC3F8001DD06B /* YYAlarmCell.xib in Resources */,
 				A87C53D81F31DB3B008DE42B /* AAHighchartsMore.js in Resources */,
@@ -1976,6 +2033,7 @@
 				A81B12531F2AC48D001DD06B /* FilterCollectionCell.xib in Resources */,
 				3B34271A1F3C3058007F2700 /* sound.caf in Resources */,
 				A84079CE1F364FC70029F7FA /* YYCurveViewController.xib in Resources */,
+				A8E7D4ED1FA229F1001CDE63 /* YYSoundSelectedCell.xib in Resources */,
 				A810BF631F260A1400B5F2D2 /* LoadDatectionCell.xib in Resources */,
 				A8A588271F77B75200F5D327 /* YYDevicePartCell.xib in Resources */,
 				A87C534F1F31720F008DE42B /* FirePowerSupplyEquipmentAccountViewController.xib in Resources */,
@@ -2073,12 +2131,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				90CF07201F1F2BFC008106D2 /* AppDelegate.m in Sources */,
+				A8E7D5021FA23863001CDE63 /* MANaviPolyline.m in Sources */,
 				90272BE11F224382000B1DC0 /* TADotView.m in Sources */,
 				901788111F26213700CFED87 /* MBProgressHUD+YY.m in Sources */,
 				A87C53F11F31DB3B008DE42B /* AATooltip.m in Sources */,
 				A8FC48C51F950AF40072B529 /* YYNaverTopView.m in Sources */,
 				901788071F2620D200CFED87 /* YYCalendarCollectionViewCell.m in Sources */,
 				A8B3DF891F29D0EF00274ADF /* RealtimeMonitoringChildCell.m in Sources */,
+				A8E7D4F61FA2382D001CDE63 /* MANaviRoute.m in Sources */,
 				A87C53E21F31DB3B008DE42B /* AALabels.m in Sources */,
 				90272BDF1F224382000B1DC0 /* TAAbstractDotView.m in Sources */,
 				A84FA2CC1F283FB4006F3DB4 /* AllApplicationReusableView.m in Sources */,
@@ -2116,6 +2176,7 @@
 				A8FD78971F2C396800523E46 /* FireRealtimeMonitoringViewController.m in Sources */,
 				A8BBB76F1F9679BF00DCEF59 /* PreferenceView.m in Sources */,
 				A8A14BC31F2DE91A008745F1 /* YYDatePicker.m in Sources */,
+				A8E7D5011FA23863001CDE63 /* LineDashPolyline.m in Sources */,
 				90272BE31F224382000B1DC0 /* SDCollectionViewCell.m in Sources */,
 				A8E80E7A1F43533600394711 /* YYValueFormatter.m in Sources */,
 				A8DA96761F2BB22C00F3032D /* EquipmentManagementRootViewController.m in Sources */,
@@ -2130,9 +2191,12 @@
 				901788161F2624A800CFED87 /* MeCell.m in Sources */,
 				A87C53E41F31DB3B008DE42B /* AALine.m in Sources */,
 				A87C53E51F31DB3B008DE42B /* AAMarker.m in Sources */,
+				A8E7D4F01FA237CC001CDE63 /* RoutePlanBusViewController.m in Sources */,
 				90CF073C1F1F2FAE008106D2 /* BaseViewController.m in Sources */,
 				A8E2A5391F30DB4C000F5408 /* PopViewController.m in Sources */,
 				90CF078E1F1F3464008106D2 /* UIView+Extension.m in Sources */,
+				A8E7D4E61FA21D6E001CDE63 /* YYSoundTableViewController.m in Sources */,
+				A8E7D4F31FA23801001CDE63 /* CommonUtility.m in Sources */,
 				A87C53E11F31DB3B008DE42B /* AAItemStyle.m in Sources */,
 				90CF07831F1F3464008106D2 /* NSDictionary+XHLogHelper.m in Sources */,
 				90CF078C1F1F3464008106D2 /* UITextView+placeholder.m in Sources */,
@@ -2170,6 +2234,8 @@
 				90A2EC691F209C43008088C4 /* FirstLaunchView.m in Sources */,
 				A8A14BC01F2DE0C9008745F1 /* MonthCalendarViewController.m in Sources */,
 				A81B12451F2AC446001DD06B /* HomeMainViewController.m in Sources */,
+				A8E7D4EC1FA229F1001CDE63 /* YYSoundSelectedCell.m in Sources */,
+				A8E7D4F91FA23837001CDE63 /* ErrorInfoUtility.m in Sources */,
 				A89511791F32426B00093DE9 /* UITextView+DisableCopy.m in Sources */,
 				A810BF581F25F49300B5F2D2 /* YYSegmentedCollectionCell.m in Sources */,
 				A87C53EC1F31DB3B008DE42B /* AASeriesElement.m in Sources */,
@@ -2192,6 +2258,7 @@
 				A8DA967A1F2BBB3800F3032D /* MaintenanceRemindersCell.m in Sources */,
 				A8FD788F1F2C396800523E46 /* FireAlarmInformationViewController.m in Sources */,
 				9017882E1F263B2200CFED87 /* UIImage+RoundRect.m in Sources */,
+				A8E7D4E31FA21C02001CDE63 /* YYValue1Cell.m in Sources */,
 				3B02DF451F2ADE0300282116 /* MessageExamCell.m in Sources */,
 				A87C53CF1F31DB3B008DE42B /* AAChartModel.m in Sources */,
 				90CF07941F1F35B1008106D2 /* BaseLaunchConfig.m in Sources */,
@@ -2245,6 +2312,7 @@
 				A802DDBB1F9CDC9000D92192 /* YYSubtitleTableViewCell.m in Sources */,
 				3B02DF421F2ADE0300282116 /* HistoryDetailCell.m in Sources */,
 				90CF078D1F1F3464008106D2 /* UIView+Border.m in Sources */,
+				A8E7D5001FA23863001CDE63 /* MANaviAnnotation.m in Sources */,
 				A81B123C1F2AC446001DD06B /* AlarmInformationViewController.m in Sources */,
 				90CF079E1F1F375B008106D2 /* BaseHelper.m in Sources */,
 				90272BE51F224382000B1DC0 /* UIView+SDExtension.m in Sources */,

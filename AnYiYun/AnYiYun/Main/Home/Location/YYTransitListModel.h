@@ -23,5 +23,7 @@
 @property (nonatomic, strong) NSArray<AMapSegment *> *segments;
 ///当前方案的总距离
 @property (nonatomic, assign) NSInteger  distance;
+///换乘路段 AMapSegment 数组
+@property (nonatomic, strong) AMapRoute *route;
 
 @end
