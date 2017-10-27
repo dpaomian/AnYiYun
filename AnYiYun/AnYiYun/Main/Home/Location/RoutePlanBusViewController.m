@@ -58,21 +58,21 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     [retView addSubview:decBtn];
     [self.mapView addSubview:retView];
     
-    _mapBottomButton = [YYNaverBottomButton buttonWithType:UIButtonTypeCustom];
-    [_mapBottomButton setBackgroundColor:[UIColor whiteColor]];
-    _mapBottomButton.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 64.0f);
-    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
-    [_mapBottomButton addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
-    [_mapBottomButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
-     UIControlEventTouchUpOutside];
-    [self.view addSubview:_mapBottomButton];
-    
-    _mapBottomListView = [[YYNaverBottomView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f)];
-    [self.view addSubview:_mapBottomListView];
-    
-    _mapBottomListView.didSelectRowAtIndexPath = ^(YYNaverBottomView *yyBottomView, YYTransitListModel *yyListModel, NSIndexPath * yyIndexPath){
-        
-    };
+//    _mapBottomButton = [YYNaverBottomButton buttonWithType:UIButtonTypeCustom];
+//    [_mapBottomButton setBackgroundColor:[UIColor whiteColor]];
+//    _mapBottomButton.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 64.0f);
+//    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
+//    [_mapBottomButton addTarget:self action:@selector(dragMoving:withEvent: )forControlEvents: UIControlEventTouchDragInside];
+//    [_mapBottomButton addTarget:self action:@selector(dragEnded:withEvent: )forControlEvents: UIControlEventTouchUpInside |
+//     UIControlEventTouchUpOutside];
+//    [self.view addSubview:_mapBottomButton];
+//
+//    _mapBottomListView = [[YYNaverBottomView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f)];
+//    [self.view addSubview:_mapBottomListView];
+//
+//    _mapBottomListView.didSelectRowAtIndexPath = ^(YYNaverBottomView *yyBottomView, YYTransitListModel *yyListModel, NSIndexPath * yyIndexPath){
+//
+//    };
 
     [self presentCurrentCourse];
     [self addDefaultAnnotations];
@@ -96,28 +96,28 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     }
 }
 
-#pragma mark - Touch
-
-- (void) dragMoving: (UIControl *) c withEvent:ev
-{
-    CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
-    if (yFloat <= 64.0f/2.0f) {
-        yFloat = 64.0f/2.0f;
-    }
-    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, yFloat);
-    _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f);
-}
-
-- (void) dragEnded: (UIControl *) c withEvent:ev
-{
-    CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
-    if (yFloat <= SCREEN_HEIGHT/2.0f) {
-        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, 64.0f/2.0f);
-    }  else {
-        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
-    }
-    _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f);
-}
+//#pragma mark - Touch
+//
+//- (void) dragMoving: (UIControl *) c withEvent:ev
+//{
+//    CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
+//    if (yFloat <= 64.0f/2.0f) {
+//        yFloat = 64.0f/2.0f;
+//    }
+//    _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, yFloat);
+//    _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f);
+//}
+//
+//- (void) dragEnded: (UIControl *) c withEvent:ev
+//{
+//    CGFloat yFloat =  [[[ev allTouches] anyObject] locationInView:self.view].y;
+//    if (yFloat <= SCREEN_HEIGHT/2.0f) {
+//        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, 64.0f/2.0f);
+//    }  else {
+//        _mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
+//    }
+//    _mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(_mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f);
+//}
 
 /* 展示当前路线方案. */
 - (void)presentCurrentCourse

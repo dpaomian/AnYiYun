@@ -47,11 +47,13 @@
     [self initMapView];
     
     [self initWalkManager];
-    [self initRideManager];
-    [self initDriveManager];
-    [self initDriveButtons];
     [self initSearch];
     [self initNavi];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self initRideManager];
+        [self initDriveManager];
+        [self initDriveButtons];
+    });
 }
 
 //判断获取页面信息

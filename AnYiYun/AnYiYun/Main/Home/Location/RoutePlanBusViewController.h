@@ -23,7 +23,7 @@
 @property (nonatomic, strong) MAPointAnnotation *startAnnotation;
 @property (nonatomic, strong) MAPointAnnotation *destinationAnnotation;
 
-@property (nonatomic, strong) YYNaverBottomButton *mapBottomButton;
-@property (nonatomic, strong) YYNaverBottomView *mapBottomListView;
+//@property (nonatomic, strong) YYNaverBottomButton *mapBottomButton;
+//@property (nonatomic, strong) YYNaverBottomView *mapBottomListView;
 
 @end

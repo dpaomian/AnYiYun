@@ -37,6 +37,55 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([NSArray arrayWithArray:[defaults objectForKey:@"YYMS"]].count==0) {
+        NSArray *array = @[@{@"idex":@"0",
+                           @"isSelected":@"1",
+                           @"needInput":@"1",
+                           @"text1":@"超过",
+                           @"textFieldText1":@"500",
+                           @"text2":@"条，清理最早的",
+                           @"textFieldText2":@"300",
+                           @"text3":@"条",
+                           @"maxLength":@"3",
+                           @"field1MixValue":@"50",
+                           @"field1MaxValue":@"500",
+                           @"field2MixValue":@"10",
+                           @"field2MaxValue":@"300"},
+                         @{@"idex":@"1",
+                           @"isSelected":@"0",
+                           @"needInput":@"1",
+                           @"text1":@"超过",
+                           @"textFieldText1":@"90",
+                           @"text2":@"天，清理最早的",
+                           @"textFieldText2":@"30",
+                           @"text3":@"天",
+                           @"maxLength":@"2",
+                           @"field1MixValue":@"5",
+                           @"field1MaxValue":@"90",
+                           @"field2MixValue":@"5",
+                           @"field2MaxValue":@"50"},
+                         @{@"idex":@"2",
+                           @"isSelected":@"0",
+                           @"needInput":@"0",
+                           @"text1":@"我自己处理，无需自动清理",
+                           @"textFieldText1":@"",
+                           @"text2":@"",
+                           @"textFieldText2":@"",
+                           @"text3":@"",
+                           @"maxLength":@"0",
+                           @"field1MixValue":@"0",
+                           @"field1MaxValue":@"0",
+                           @"field2MixValue":@"0",
+                           @"field2MaxValue":@"0"}
+                         ];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:array forKey:@"YYMS"];
+        [defaults synchronize];
+    } else {
+        DLog(@"%@",[defaults objectForKey:@"YYMS"]);
+    }
     /*!高德地图初始化，重要代码，勿动*/
     [AMapServices sharedServices].apiKey = @"94c9e6d0c24fd53d43e09d961850a75e";
     
