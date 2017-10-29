@@ -279,13 +279,84 @@
     NSString * idString = [array count]>0?array[0]:@"";
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":idString,@"type":@"103"};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
-//        [ws.curveMutableArray1 removeAllObjects];
-//        [ws.curveMutableArray2 removeAllObjects];
         NSMutableArray * dataArray = [NSMutableArray arrayWithArray:object];
         NSMutableArray *lines = [NSMutableArray array];
         [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray * value1Array = [NSArray arrayWithArray:obj];
             NSInteger myIdex = idx;
+            if (dataArray.count >1) {
+                NSDateComponents *nowComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:[NSDate date]];
+                NSMutableArray *arrayOne = [NSMutableArray arrayWithArray:dataArray[0]];
+                NSMutableArray *arrayTwo = [NSMutableArray arrayWithArray:dataArray[1]];
+                /*说明有漏掉的,需要手动补充 */
+                if ([arrayOne count] > 0 && [arrayOne count] < nowComponents.hour*6+nowComponents.minute/10) {
+                    NSDictionary *firstDci = [NSDictionary dictionaryWithDictionary:[arrayOne firstObject]];
+                    for (int i = 0; i < nowComponents.hour; i ++) {
+                        NSString *timeString = @"00.00";
+                        int currentIndex = 0;
+                        for (int j = 0; j < 6; j ++) {
+                            timeString = [NSString stringWithFormat:@"%02d.%02d",i,j];
+                            BOOL isHaveThiData = NO;
+                            for (int k = currentIndex; k < arrayOne.count; k ++) {
+                                NSDictionary *dataDic = [NSDictionary dictionaryWithDictionary:arrayOne[k]];
+                                if ([dataDic[@"time"] floatValue] == [timeString floatValue]) {
+                                    isHaveThiData = YES;
+                                    break ;
+                                } else {
+                                    isHaveThiData = NO;
+                                    currentIndex = k;
+                                    if ([dataDic[@"time"] floatValue] > [timeString floatValue]) {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!isHaveThiData) {
+                                [arrayOne insertObject:@{@"id":firstDci[@"id"],
+                                                         @"name":firstDci[@"name"],
+                                                         @"sid":firstDci[@"id"],
+                                                         @"time":timeString,
+                                                         @"timeLong":firstDci[@"timeLong"],
+                                                         @"value":@"0.0"} atIndex:currentIndex];
+                            }
+                        }
+                    }
+                    [dataArray replaceObjectAtIndex:idx withObject:arrayOne];
+                }
+                /*说明有漏掉的,需要手动补充 */
+                if ([arrayTwo count] > 0 && [arrayTwo count] < nowComponents.hour*6+nowComponents.minute/10) {
+                    NSDictionary *firstDci = [NSDictionary dictionaryWithDictionary:[arrayTwo firstObject]];
+                    for (int i = 0; i < nowComponents.hour; i ++) {
+                        NSString *timeString = @"00.00";
+                        int currentIndex = 0;
+                        for (int j = 0; j < 6; j ++) {
+                            timeString = [NSString stringWithFormat:@"%02d.%02d",i,j];
+                            BOOL isHaveThiData = NO;
+                            for (int k = currentIndex; k < arrayTwo.count; k ++) {
+                                NSDictionary *dataDic = [NSDictionary dictionaryWithDictionary:arrayTwo[k]];
+                                if ([dataDic[@"time"] floatValue] == [timeString floatValue]) {
+                                    isHaveThiData = YES;
+                                    break ;
+                                } else {
+                                    isHaveThiData = NO;
+                                    currentIndex = k;
+                                    if ([dataDic[@"time"] floatValue] > [timeString floatValue]) {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!isHaveThiData) {
+                                [arrayTwo insertObject:@{@"id":firstDci[@"id"],
+                                                         @"name":firstDci[@"name"],
+                                                         @"sid":firstDci[@"id"],
+                                                         @"time":timeString,
+                                                         @"timeLong":firstDci[@"timeLong"],
+                                                         @"value":@"0.0"} atIndex:currentIndex];
+                            }
+                        }
+                    }
+                    [dataArray replaceObjectAtIndex:idx withObject:arrayTwo];
+                }
+            }
             NSMutableArray *arrayOne = [NSMutableArray array];
             NSMutableArray *arrayTwo = [NSMutableArray array];
             [value1Array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

@@ -37,7 +37,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([NSArray arrayWithArray:[defaults objectForKey:@"YYMS"]].count==0) {
         NSArray *array = @[@{@"idex":@"0",

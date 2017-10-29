@@ -44,45 +44,63 @@
     _saveButton.clipsToBounds = YES;
     [_saveButton setBackgroundColor:UIColorFromRGB(0x5987F8)];
     [_saveButton buttonClickedHandle:^(UIButton *sender) {
-        if ([ws.currentModel.textFieldText1 integerValue] < ws.currentModel.field1MixValue ||[ws.currentModel.textFieldText1 integerValue] > ws.currentModel.field1MaxValue) {
-            DLog(@"%ld~%ld之间的值",ws.currentModel.field1MixValue,ws.currentModel.field1MaxValue);
-        } else if ([ws.currentModel.textFieldText2 integerValue] >= [ws.currentModel.textFieldText1 integerValue]) {
-            DLog(@"必须小于%@",ws.currentModel.textFieldText1);
-        } else if ([ws.currentModel.textFieldText2 integerValue] < ws.currentModel.field2MixValue ||[ws.currentModel.textFieldText2 integerValue] > ws.currentModel.field2MaxValue) {
-            DLog(@"%ld~%ld之间的值",ws.currentModel.field2MixValue,ws.currentModel.field2MaxValue)
-        }  else if ([ws.currentModel.textFieldText1 isEqualToString:@""] || [ws.currentModel.textFieldText2 isEqualToString:@""] ) {
-            DLog(@"必填字段");
+        if (ws.currentModel.idex == 2) {
+            
         } else {
-            DLog(@"通过");
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSMutableArray *messageSettingArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:[defaults objectForKey:@"YYMS"]]];
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"idex":[NSString stringWithFormat:@"%ld",ws.currentModel.idex],
-                                                                                       @"isSelected":[NSString stringWithFormat:@"%d",ws.currentModel.isSelected],
-                                                                                       @"needInput":[NSString stringWithFormat:@"%d",ws.currentModel.needInput],
-                                                                                       @"text1":ws.currentModel.text1,
-                                                                                       @"textFieldText1":ws.currentModel.textFieldText1,
-                                                                                       @"text2":ws.currentModel.text2,
-                                                                                       @"textFieldText2":ws.currentModel.textFieldText2,
-                                                                                       @"text3":ws.currentModel.text3,
-                                                                                       @"maxLength":[NSString stringWithFormat:@"%ld",ws.currentModel.maxLength],
-                                                                                       @"field1MixValue":[NSString stringWithFormat:@"%ld",ws.currentModel.field1MixValue],
-                                                                                       @"field1MaxValue":[NSString stringWithFormat:@"%ld",ws.currentModel.field1MaxValue],
-                                                                                       @"field2MixValue":[NSString stringWithFormat:@"%ld",ws.currentModel.field2MixValue],
-                                                                                       @"field2MaxValue":[NSString stringWithFormat:@"%ld",ws.currentModel.field2MaxValue]}];
-            MessageStrategyModel *model = ws.listMutableArray[ws.currentModel.idex];
-            model.idex = ws.currentModel.idex;
-            model.isSelected = ws.currentModel.isSelected;
+            if ([ws.currentModel.textFieldText1 integerValue] < ws.currentModel.field1MixValue ||[ws.currentModel.textFieldText1 integerValue] > ws.currentModel.field1MaxValue) {
+                DLog(@"%ld~%ld之间的值",ws.currentModel.field1MixValue,ws.currentModel.field1MaxValue);
+            } else if ([ws.currentModel.textFieldText2 integerValue] >= [ws.currentModel.textFieldText1 integerValue]) {
+                DLog(@"必须小于%@",ws.currentModel.textFieldText1);
+            } else if ([ws.currentModel.textFieldText2 integerValue] < ws.currentModel.field2MixValue ||[ws.currentModel.textFieldText2 integerValue] > ws.currentModel.field2MaxValue) {
+                DLog(@"%ld~%ld之间的值",ws.currentModel.field2MixValue,ws.currentModel.field2MaxValue)
+            }  else if ([ws.currentModel.textFieldText1 isEqualToString:@""] || [ws.currentModel.textFieldText2 isEqualToString:@""] ) {
+                DLog(@"必填字段");
+            } else {
+                DLog(@"通过");
+            }
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        MessageStrategyModel *model = ws.listMutableArray[ws.currentModel.idex];
+        model.idex = ws.currentModel.idex;
+        model.isSelected = ws.currentModel.isSelected;
+        model.needInput = ws.currentModel.needInput;
+        model.textFieldText1 = ws.currentModel.textFieldText1;
+        model.textFieldText2 = ws.currentModel.textFieldText2;
+        /*YYMS   YY Message Setting*/
+        [ws.listMutableArray replaceObjectAtIndex:ws.currentModel.idex withObject:model];
+        __block NSMutableArray *messageSettingArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:[defaults objectForKey:@"YYMS"]]];
+        [ws.listMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            MessageStrategyModel *modelItem = obj;
+            if (modelItem.idex == ws.currentModel.idex) {
+                modelItem.isSelected = YES;
+            } else {
+                modelItem.isSelected = NO;
+            }
             model.needInput = ws.currentModel.needInput;
             model.textFieldText1 = ws.currentModel.textFieldText1;
             model.textFieldText2 = ws.currentModel.textFieldText2;
-            /*YYMS   YY Message Setting*/
-            [messageSettingArray replaceObjectAtIndex:ws.currentModel.idex withObject:dic];
-            [ws.listMutableArray replaceObjectAtIndex:ws.currentModel.idex withObject:model];
-            [defaults setObject:messageSettingArray forKey:@"YYMS"];
-            [defaults synchronize];
-        }
+            [messageSettingArray replaceObjectAtIndex:idx withObject:@{@"idex":[NSString stringWithFormat:@"%ld",modelItem.idex],
+                                                                       @"isSelected":[NSString stringWithFormat:@"%d",modelItem.isSelected],
+                                                                       @"needInput":[NSString stringWithFormat:@"%d",modelItem.needInput],
+                                                                       @"text1":modelItem.text1,
+                                                                       @"textFieldText1":modelItem.textFieldText1,
+                                                                       @"text2":modelItem.text2,
+                                                                       @"textFieldText2":modelItem.textFieldText2,
+                                                                       @"text3":modelItem.text3,
+                                                                       @"maxLength":[NSString stringWithFormat:@"%ld",modelItem.maxLength],
+                                                                       @"field1MixValue":[NSString stringWithFormat:@"%ld",modelItem.field1MixValue],
+                                                                       @"field1MaxValue":[NSString stringWithFormat:@"%ld",modelItem.field1MaxValue],
+                                                                       @"field2MixValue":[NSString stringWithFormat:@"%ld",modelItem.field2MixValue],
+                                                                       @"field2MaxValue":[NSString stringWithFormat:@"%ld",modelItem.field2MaxValue]}];
+        }];
+        [defaults setObject:messageSettingArray forKey:@"YYMS"];
+        [defaults synchronize];
+        [MBProgressHUD showSuccess:@"保存成功"];
+        [ws.navigationController popViewControllerAnimated:YES];
     }];
+    
     [_messageSettingTableView addSubview:_saveButton];
+    
     [self initData];
 }
 
@@ -90,6 +108,7 @@
     __weak MessSettingViewController *ws = self;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *messageSettingArray = [NSArray arrayWithArray:[defaults objectForKey:@"YYMS"]];
+    [_listMutableArray removeAllObjects];
     [messageSettingArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:obj];
         MessageStrategyModel *model = [[MessageStrategyModel alloc] init];
