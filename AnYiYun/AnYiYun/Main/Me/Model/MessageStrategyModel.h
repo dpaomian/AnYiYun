@@ -14,6 +14,11 @@
 @property (nonatomic, assign) NSInteger   idex;
 @property (nonatomic, assign) BOOL   isSelected;
 @property (nonatomic, assign) BOOL   needInput;
+@property (nonatomic, assign) BOOL   showAlertIcon1;
+@property (nonatomic, assign) BOOL   showAlertView1;
+@property (nonatomic, assign) BOOL   showAlertIcon2;
+@property (nonatomic, assign) BOOL   showAlertView2;
+@property (nonatomic,strong)NSString *alertText;
 @property (nonatomic,strong)NSString *text1;
 @property (nonatomic,strong)NSString *textFieldText1;
 @property (nonatomic,strong)NSString *text2;

@@ -36,6 +36,7 @@
     _messageSettingTableView.dataSource = self;
     _messageSettingTableView.allowsMultipleSelection = NO;
     _messageSettingTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _messageSettingTableView.backgroundColor = UIColorFromRGB(0xFFFFFF);
     [self.view addSubview:_messageSettingTableView];
     
     _saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -51,54 +52,90 @@
         } else {
             if ([ws.currentModel.textFieldText1 integerValue] < ws.currentModel.field1MixValue ||[ws.currentModel.textFieldText1 integerValue] > ws.currentModel.field1MaxValue) {
                 DLog(@"%ld~%ld之间的值",ws.currentModel.field1MixValue,ws.currentModel.field1MaxValue);
+                ws.currentModel.showAlertIcon1 = YES;
+                ws.currentModel.showAlertView1 = YES;
+                ws.currentModel.showAlertIcon2 = NO;
+                ws.currentModel.showAlertView2 = NO;
+                ws.currentModel.alertText = [NSString stringWithFormat:@"%ld~%ld之间的值",ws.currentModel.field1MixValue,ws.currentModel.field1MaxValue];
+                [ws.messageSettingTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:ws.currentModel.idex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             } else if ([ws.currentModel.textFieldText2 integerValue] >= [ws.currentModel.textFieldText1 integerValue]) {
+                ws.currentModel.showAlertIcon1 = NO;
+                ws.currentModel.showAlertView1 = NO;
+                ws.currentModel.showAlertIcon2 = YES;
+                ws.currentModel.showAlertView2 = YES;
                 DLog(@"必须小于%@",ws.currentModel.textFieldText1);
+                ws.currentModel.alertText = [NSString stringWithFormat:@"必须小于%@",ws.currentModel.textFieldText1];
+                [ws.messageSettingTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:ws.currentModel.idex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             } else if ([ws.currentModel.textFieldText2 integerValue] < ws.currentModel.field2MixValue ||[ws.currentModel.textFieldText2 integerValue] > ws.currentModel.field2MaxValue) {
+                ws.currentModel.showAlertIcon1 = NO;
+                ws.currentModel.showAlertView1 = NO;
+                ws.currentModel.showAlertIcon2 = YES;
+                ws.currentModel.showAlertView2 = YES;
+                ws.currentModel.alertText = [NSString stringWithFormat:@"%ld~%ld之间的值",ws.currentModel.field2MixValue,ws.currentModel.field2MaxValue];
+                [ws.messageSettingTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:ws.currentModel.idex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 DLog(@"%ld~%ld之间的值",ws.currentModel.field2MixValue,ws.currentModel.field2MaxValue)
             }  else if ([ws.currentModel.textFieldText1 isEqualToString:@""] || [ws.currentModel.textFieldText2 isEqualToString:@""] ) {
                 DLog(@"必填字段");
+                ws.currentModel.alertText = @"必填字段";
+                if ([ws.currentModel.textFieldText1 isEqualToString:@""]) {
+                    ws.currentModel.showAlertIcon1 = YES;
+                    ws.currentModel.showAlertView1 = YES;
+                    ws.currentModel.showAlertIcon2 = NO;
+                    ws.currentModel.showAlertView2 = NO;
+                } else {
+                    ws.currentModel.showAlertIcon1 = NO;
+                    ws.currentModel.showAlertView1 = NO;
+                    ws.currentModel.showAlertIcon2 = YES;
+                    ws.currentModel.showAlertView2 = YES;
+                }
+                [ws.messageSettingTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:ws.currentModel.idex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             } else {
+                ws.currentModel.alertText = @"";
+                ws.currentModel.showAlertIcon1 = NO;
+                ws.currentModel.showAlertView1 = NO;
+                ws.currentModel.showAlertIcon2 = NO;
+                ws.currentModel.showAlertView2 = NO;
                 DLog(@"通过");
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                MessageStrategyModel *model = ws.listMutableArray[ws.currentModel.idex];
+                model.idex = ws.currentModel.idex;
+                model.isSelected = ws.currentModel.isSelected;
+                model.needInput = ws.currentModel.needInput;
+                model.textFieldText1 = ws.currentModel.textFieldText1;
+                model.textFieldText2 = ws.currentModel.textFieldText2;
+                /*YYMS   YY Message Setting*/
+                [ws.listMutableArray replaceObjectAtIndex:ws.currentModel.idex withObject:model];
+                __block NSMutableArray *messageSettingArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:[defaults objectForKey:@"YYMS"]]];
+                [ws.listMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    MessageStrategyModel *modelItem = obj;
+                    if (modelItem.idex == ws.currentModel.idex) {
+                        modelItem.isSelected = YES;
+                    } else {
+                        modelItem.isSelected = NO;
+                    }
+                    model.needInput = ws.currentModel.needInput;
+                    model.textFieldText1 = ws.currentModel.textFieldText1;
+                    model.textFieldText2 = ws.currentModel.textFieldText2;
+                    [messageSettingArray replaceObjectAtIndex:idx withObject:@{@"idex":[NSString stringWithFormat:@"%ld",modelItem.idex],
+                                                                               @"isSelected":[NSString stringWithFormat:@"%d",modelItem.isSelected],
+                                                                               @"needInput":[NSString stringWithFormat:@"%d",modelItem.needInput],
+                                                                               @"text1":modelItem.text1,
+                                                                               @"textFieldText1":modelItem.textFieldText1,
+                                                                               @"text2":modelItem.text2,
+                                                                               @"textFieldText2":modelItem.textFieldText2,
+                                                                               @"text3":modelItem.text3,
+                                                                               @"maxLength":[NSString stringWithFormat:@"%ld",modelItem.maxLength],
+                                                                               @"field1MixValue":[NSString stringWithFormat:@"%ld",modelItem.field1MixValue],
+                                                                               @"field1MaxValue":[NSString stringWithFormat:@"%ld",modelItem.field1MaxValue],
+                                                                               @"field2MixValue":[NSString stringWithFormat:@"%ld",modelItem.field2MixValue],
+                                                                               @"field2MaxValue":[NSString stringWithFormat:@"%ld",modelItem.field2MaxValue]}];
+                }];
+                [defaults setObject:messageSettingArray forKey:@"YYMS"];
+                [defaults synchronize];
+                [MBProgressHUD showSuccess:@"保存成功"];
+                [ws.navigationController popViewControllerAnimated:YES];
             }
         }
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        MessageStrategyModel *model = ws.listMutableArray[ws.currentModel.idex];
-        model.idex = ws.currentModel.idex;
-        model.isSelected = ws.currentModel.isSelected;
-        model.needInput = ws.currentModel.needInput;
-        model.textFieldText1 = ws.currentModel.textFieldText1;
-        model.textFieldText2 = ws.currentModel.textFieldText2;
-        /*YYMS   YY Message Setting*/
-        [ws.listMutableArray replaceObjectAtIndex:ws.currentModel.idex withObject:model];
-        __block NSMutableArray *messageSettingArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:[defaults objectForKey:@"YYMS"]]];
-        [ws.listMutableArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            MessageStrategyModel *modelItem = obj;
-            if (modelItem.idex == ws.currentModel.idex) {
-                modelItem.isSelected = YES;
-            } else {
-                modelItem.isSelected = NO;
-            }
-            model.needInput = ws.currentModel.needInput;
-            model.textFieldText1 = ws.currentModel.textFieldText1;
-            model.textFieldText2 = ws.currentModel.textFieldText2;
-            [messageSettingArray replaceObjectAtIndex:idx withObject:@{@"idex":[NSString stringWithFormat:@"%ld",modelItem.idex],
-                                                                       @"isSelected":[NSString stringWithFormat:@"%d",modelItem.isSelected],
-                                                                       @"needInput":[NSString stringWithFormat:@"%d",modelItem.needInput],
-                                                                       @"text1":modelItem.text1,
-                                                                       @"textFieldText1":modelItem.textFieldText1,
-                                                                       @"text2":modelItem.text2,
-                                                                       @"textFieldText2":modelItem.textFieldText2,
-                                                                       @"text3":modelItem.text3,
-                                                                       @"maxLength":[NSString stringWithFormat:@"%ld",modelItem.maxLength],
-                                                                       @"field1MixValue":[NSString stringWithFormat:@"%ld",modelItem.field1MixValue],
-                                                                       @"field1MaxValue":[NSString stringWithFormat:@"%ld",modelItem.field1MaxValue],
-                                                                       @"field2MixValue":[NSString stringWithFormat:@"%ld",modelItem.field2MixValue],
-                                                                       @"field2MaxValue":[NSString stringWithFormat:@"%ld",modelItem.field2MaxValue]}];
-        }];
-        [defaults setObject:messageSettingArray forKey:@"YYMS"];
-        [defaults synchronize];
-        [MBProgressHUD showSuccess:@"保存成功"];
-        [ws.navigationController popViewControllerAnimated:YES];
     }];
     
     [_messageSettingTableView addSubview:_saveButton];
@@ -114,6 +151,11 @@
     [messageSettingArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:obj];
         MessageStrategyModel *model = [[MessageStrategyModel alloc] init];
+        model.showAlertIcon1 = NO;
+        model.showAlertIcon2 = NO;
+        model.showAlertView1 = NO;
+        model.showAlertView2 = NO;
+        model.alertText = @"";
         model.idex = [dic[@"idex"] integerValue];
         model.isSelected  = [dic[@"isSelected"] boolValue];
         model.needInput = [dic[@"needInput"] boolValue];
@@ -150,6 +192,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     EquipmentAccountHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"EquipmentAccountHeaderFooterView"];
+    headerView.yybkView.backgroundColor = UIColorFromRGB(0xDBDBDB);
     headerView.headerTitleLab.text = section==0?@"自动清理策略":@"通知铃声";
     headerView.headerTitleLab.textColor = UIColorFromRGB(0x000000);
     return headerView;
@@ -180,6 +223,12 @@
         cell.lable3.text = cellModel.text3;
         cell.maxLength = cellModel.maxLength;
         cell.selectedBtn.selected = cellModel.isSelected;
+        cell.textEditBeginHandle = ^(MessageStrategyCell *yyCell, UITextField *yytf){
+            yyCell.alertImageView.hidden = YES;
+            yyCell.alertImageView2.hidden = YES;
+            yyCell.alertLabel1.hidden = YES;
+            yyCell.alertLabel2.hidden = YES;
+        };
         cell.textChangeHandle = ^(MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr) {
             if (yytf == cell.textField1) {
                 cellModel.textFieldText1 = yyStr;
@@ -198,20 +247,53 @@
             cell.textField2.textColor = UIColorFromRGB(0xCACACA);
             cell.lineView1.backgroundColor = UIColorFromRGB(0xCACACA);
             cell.lineView2.backgroundColor = UIColorFromRGB(0xCACACA);
+            cell.backgroundColor = [UIColor clearColor];
         }
         if (cellModel.needInput) {
             if (cellModel.isSelected) {
-                cell.textField1.rightViewMode = UITextFieldViewModeAlways;
-                cell.textField2.rightViewMode = UITextFieldViewModeAlways;
                 cell.textField1.userInteractionEnabled = YES;
                 cell.textField2.userInteractionEnabled = YES;
+                
+                cell.alertLabel1.text = cellModel.alertText;
+                cell.alertLabel2.text = cellModel.alertText;
+                if (cellModel.showAlertIcon1) {
+                    cell.textField1.rightViewMode = UITextFieldViewModeAlways;
+                } else {
+                    cell.textField1.rightViewMode = UITextFieldViewModeNever;
+                }
+                if (cellModel.showAlertIcon2) {
+                    cell.textField2.rightViewMode = UITextFieldViewModeAlways;
+                } else {
+                    cell.textField2.rightViewMode = UITextFieldViewModeNever;
+                }
+                if (cellModel.showAlertView1) {
+                    cell.alertImageView.hidden = NO;
+                    cell.alertLabel1.hidden = NO;
+                } else {
+                    cell.alertImageView.hidden = YES;
+                    cell.alertLabel1.hidden = YES;
+                }
+                if (cellModel.showAlertView2) {
+                    cell.alertImageView2.hidden = NO;
+                    cell.alertLabel2.hidden = NO;
+                } else {
+                    cell.alertImageView2.hidden = YES;
+                    cell.alertLabel2.hidden = YES;
+                }
             } else {
                 cell.textField1.userInteractionEnabled = NO;
                 cell.textField2.userInteractionEnabled = NO;
+                
+                cell.alertLabel1.text = cellModel.alertText;
+                cell.alertLabel2.text = cellModel.alertText;
+                cell.textField1.rightViewMode = UITextFieldViewModeNever;
+                cell.textField2.rightViewMode = UITextFieldViewModeNever;
+                cell.alertImageView.hidden = YES;
+                cell.alertLabel1.hidden = YES;
+                cell.alertImageView2.hidden = YES;
+                cell.alertLabel2.hidden = YES;
             }
         } else {
-            cell.textField1.rightViewMode = UITextFieldViewModeNever;
-            cell.textField2.rightViewMode = UITextFieldViewModeNever;
             cell.textField1.userInteractionEnabled = NO;
             cell.textField2.userInteractionEnabled = NO;
             cell.lineView1.backgroundColor = [UIColor clearColor];
@@ -232,7 +314,7 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 38;
+    return 46;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -249,7 +331,8 @@
             }
             [ws.listMutableArray replaceObjectAtIndex:idx withObject:cellModel];
         }];
-        [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+//        [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView reloadData];
     } else {
         
         YYSoundTableViewController *soundVC = [[YYSoundTableViewController alloc] init];

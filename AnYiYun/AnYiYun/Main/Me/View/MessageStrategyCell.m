@@ -14,10 +14,13 @@
     [super awakeFromNib];
     _textField1.delegate = self;
     _textField2.delegate = self;
+    UIImage* img=[UIImage imageNamed:@"rectangle.png"];
+    img= [img resizableImageWithCapInsets:UIEdgeInsetsMake(14,10,10,40) resizingMode:UIImageResizingModeStretch];
+    self.alertImageView.image = img;
+    self.alertImageView2.image = img;
+    _textField2.rightView = [[UIImageView alloc] initWithImage:img];
     _textField1.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Alert.png"]];
-//    _textField1.rightViewMode = UITextFieldViewModeAlways;
     _textField2.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Alert.png"]];
-//    _textField2.rightViewMode = UITextFieldViewModeAlways;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -30,6 +33,12 @@
 - (NSString *) trimming:(NSString *)s {
     
     return [s stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (_textEditBeginHandle) {
+        _textEditBeginHandle(self, textField);
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

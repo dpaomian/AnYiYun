@@ -18,11 +18,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *lable3;
 @property (weak, nonatomic) IBOutlet UIView *lineView2;
 @property (weak, nonatomic) IBOutlet UIImageView *alertImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *alertImageView2;
+@property (strong, nonatomic) IBOutlet UILabel *alertLabel1;
+@property (strong, nonatomic) IBOutlet UILabel *alertLabel2;
 
 @property (weak, nonatomic) IBOutlet UITextField *textField2;
 
 @property (nonatomic, assign) NSInteger   maxLength;
 
+@property (nonatomic, copy) void (^textEditBeginHandle) (MessageStrategyCell *yyCell, UITextField *yytf);
 @property (nonatomic, copy) void (^textChangeHandle) (MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr);
 
 @end

@@ -25,13 +25,13 @@
                   symbolName = "-[DBDaoDataBase getAllHistoryGroupInfo]"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531050338.274619"
+                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531077152.28938"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "19">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -40,13 +40,13 @@
                   symbolName = "__Block_byref_object_copy_"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531050338.276322"
+                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531077152.291256"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -55,13 +55,13 @@
                   symbolName = "__Block_byref_object_dispose_"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531050338.277816"
+                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531077152.293321"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
