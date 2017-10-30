@@ -18,9 +18,7 @@
     [super viewDidLoad];
     
     _soundMutableArray = [NSMutableArray array];
-    
-    _selectedString = @"1007";
-    
+        
     _sound = kSystemSoundID_Vibrate;
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"sound" ofType:@"plist"];
@@ -38,7 +36,10 @@
 }
 
 - (void)yySave:(UIBarButtonItem *)sender {
-    _saveHandle(self, _soundDictionary[self.selectedString]);
+    _saveHandle(self, _soundDictionary[self.selectedDic]);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_soundDictionary forKey:@"YYSOUND"];
+    [defaults synchronize];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -60,7 +61,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YYSoundSelectedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYSoundSelectedCell" forIndexPath:indexPath];
     NSString *key = _soundMutableArray[indexPath.row];
-    if ([key isEqualToString:_selectedString]) {
+    
+    if ([key isEqualToString:[[_selectedDic allKeys] firstObject]]) {
         cell.selected = YES;
     } else {
         cell.selected = NO;
@@ -72,9 +74,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = _soundMutableArray[indexPath.row];
-    _selectedString = key;
+    _selectedDic = [@{key:_soundDictionary[key]} mutableCopy];
     [tableView reloadData];
-    _sound=[key intValue];
+    _sound=[[key isEqualToString:@"999"]?@"1007":key intValue];
     AudioServicesPlaySystemSound(_sound);//播放声音
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//静音模式下震动
 }

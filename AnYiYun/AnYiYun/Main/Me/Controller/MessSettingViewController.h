@@ -20,6 +20,6 @@
 @property (nonatomic, strong) NSMutableArray   *listMutableArray;
 @property (nonatomic, strong) MessageStrategyModel   *currentModel;
 @property (nonatomic, strong) UIButton   *saveButton;
-@property (nonatomic, strong) NSString      *soundNameString;
+@property (nonatomic, strong) NSMutableDictionary      *soundDic;
 
 @end

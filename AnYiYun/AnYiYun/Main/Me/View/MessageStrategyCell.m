@@ -14,6 +14,10 @@
     [super awakeFromNib];
     _textField1.delegate = self;
     _textField2.delegate = self;
+    _textField1.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Alert.png"]];
+//    _textField1.rightViewMode = UITextFieldViewModeAlways;
+    _textField2.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Alert.png"]];
+//    _textField2.rightViewMode = UITextFieldViewModeAlways;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

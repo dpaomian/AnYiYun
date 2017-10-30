@@ -22,7 +22,9 @@
     
     _listMutableArray = [NSMutableArray array];
     _currentModel = [[MessageStrategyModel alloc] init];
-    _soundNameString = @"";
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _soundDic = [NSMutableDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:[defaults objectForKey:@"YYSOUND"]]];
     
     _messageSettingTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.messageSettingTableView registerNib:[UINib nibWithNibName:NSStringFromClass([EquipmentAccountHeaderFooterView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:@"EquipmentAccountHeaderFooterView"];
@@ -199,6 +201,8 @@
         }
         if (cellModel.needInput) {
             if (cellModel.isSelected) {
+                cell.textField1.rightViewMode = UITextFieldViewModeAlways;
+                cell.textField2.rightViewMode = UITextFieldViewModeAlways;
                 cell.textField1.userInteractionEnabled = YES;
                 cell.textField2.userInteractionEnabled = YES;
             } else {
@@ -206,6 +210,8 @@
                 cell.textField2.userInteractionEnabled = NO;
             }
         } else {
+            cell.textField1.rightViewMode = UITextFieldViewModeNever;
+            cell.textField2.rightViewMode = UITextFieldViewModeNever;
             cell.textField1.userInteractionEnabled = NO;
             cell.textField2.userInteractionEnabled = NO;
             cell.lineView1.backgroundColor = [UIColor clearColor];
@@ -213,13 +219,15 @@
         }
         return cell;
     } else {
+        
         YYValue1Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"YYValue1Cell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor whiteColor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = @"新消息提示音";
         cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
         cell.textLabel.textColor = UIColorFromRGB(0x111111);
-        cell.detailTextLabel.text = _soundNameString;
+        cell.detailTextLabel.text = _soundDic[[[_soundDic allKeys] firstObject]];
         return cell;
     }
 }
@@ -245,8 +253,10 @@
     } else {
         
         YYSoundTableViewController *soundVC = [[YYSoundTableViewController alloc] init];
-        soundVC.saveHandle = ^(YYSoundTableViewController *sound, NSString *yyStr) {
-            ws.soundNameString = yyStr;
+        soundVC.selectedDic = _soundDic;
+        soundVC.saveHandle = ^(YYSoundTableViewController *sound, NSDictionary *yySoundDic) {
+            [ws.soundDic removeAllObjects];
+            [ws.soundDic addEntriesFromDictionary:yySoundDic];
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         };
         [self.navigationController pushViewController:soundVC animated:YES];

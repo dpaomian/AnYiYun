@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>999</key>
+	<string> 默认铃声</string>
 	<key>1000</key>
 	<string>new-mail</string>
 	<key>1001</key>

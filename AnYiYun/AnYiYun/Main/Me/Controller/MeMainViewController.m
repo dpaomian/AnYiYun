@@ -231,14 +231,14 @@
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             }
-    else if ([textTitle isEqualToString:@"消息"])
+    else if ([textTitle isEqualToString:@"设备服务"])
         {
 //        HistoryMessageViewController *vc = [[HistoryMessageViewController alloc]init];
 //        vc.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:vc animated:YES];
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
             vc.titleStr = @"设备服务";
-            vc.myUrl = @"http://101.201.108.246/index.html";
+            vc.myUrl = @"http://101.201.108.246";
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }

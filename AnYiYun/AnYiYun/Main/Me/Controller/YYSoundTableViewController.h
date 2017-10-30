@@ -13,9 +13,9 @@
 
 @property (nonatomic, strong) NSDictionary *soundDictionary;
 @property (nonatomic, strong) NSMutableArray *soundMutableArray;
-@property (nonatomic, strong) NSString      *selectedString;
+@property (nonatomic, strong) NSMutableDictionary      *selectedDic;
 @property (nonatomic, assign) SystemSoundID sound;
 
-@property (nonatomic, copy) void (^saveHandle) (YYSoundTableViewController *sound, NSString *yyStr);
+@property (nonatomic, copy) void (^saveHandle) (YYSoundTableViewController *sound, NSDictionary *yySoundDic);
 
 @end

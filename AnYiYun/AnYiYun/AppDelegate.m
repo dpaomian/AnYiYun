@@ -85,6 +85,15 @@
     } else {
         DLog(@"%@",[defaults objectForKey:@"YYMS"]);
     }
+    NSDictionary *soundDic = [NSDictionary dictionaryWithDictionary:[defaults objectForKey:@"YYSOUND"]];
+    if ([soundDic allKeys].count > 0) {
+        
+    } else {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@{@"999":@"默认铃声"} forKey:@"YYSOUND"];
+    }
+    
+    
     /*!高德地图初始化，重要代码，勿动*/
     [AMapServices sharedServices].apiKey = @"94c9e6d0c24fd53d43e09d961850a75e";
     
@@ -246,6 +255,15 @@ forRemoteNotification:(NSDictionary *)userInfo
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [JPUSHService handleRemoteNotification:userInfo];
     DLog(@"iOS6及以下系统，收到通知:%@", [self logDic:userInfo]);
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *soundDic = [NSDictionary dictionaryWithDictionary:[defaults objectForKey:@"YYSOUND"]];
+    NSString *key = [[soundDic allKeys] firstObject];
+    SystemSoundID sound = kSystemSoundID_Vibrate;
+    sound = [[key isEqualToString:@"999"]?@"1007":key intValue];
+    AudioServicesPlaySystemSound(sound);//播放声音
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//静音模式下震动
+    
     [self reloadMessageNotification];
 }
 
@@ -255,6 +273,14 @@ fetchCompletionHandler:
 (void (^)(UIBackgroundFetchResult))completionHandler {
     [JPUSHService handleRemoteNotification:userInfo];
     DLog(@"iOS7及以上系统，收到通知:%@", [self logDic:userInfo]);
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *soundDic = [NSDictionary dictionaryWithDictionary:[defaults objectForKey:@"YYSOUND"]];
+    NSString *key = [[soundDic allKeys] firstObject];
+    SystemSoundID sound = kSystemSoundID_Vibrate;
+    sound = [[key isEqualToString:@"999"]?@"1007":key intValue];
+    AudioServicesPlaySystemSound(sound);//播放声音
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//静音模式下震动
     
     if ([[UIDevice currentDevice].systemVersion floatValue]<10.0 || application.applicationState>0) {
         [self reloadMessageNotification];

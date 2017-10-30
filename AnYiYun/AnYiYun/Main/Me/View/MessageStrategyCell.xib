@@ -25,17 +25,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="500" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mp8-sy-ToB">
-                        <rect key="frame" x="79" y="14" width="44" height="18"/>
+                        <rect key="frame" x="79" y="14" width="50" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="m8H-uL-xBW"/>
+                            <constraint firstAttribute="width" constant="50" id="m8H-uL-xBW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     </textField>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="500" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zV1-YM-37g">
-                        <rect key="frame" x="224" y="14" width="44" height="18"/>
+                        <rect key="frame" x="230" y="14" width="50" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="cjI-C9-yQb"/>
+                            <constraint firstAttribute="width" constant="50" id="cjI-C9-yQb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -44,26 +44,26 @@
                         </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="条，清理最早的" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jq2-Iq-Rf6">
-                        <rect key="frame" x="127" y="19.5" width="93" height="16"/>
+                        <rect key="frame" x="133" y="19.5" width="93" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="条" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUW-05-Dlv">
-                        <rect key="frame" x="272" y="19.5" width="13.5" height="16"/>
+                        <rect key="frame" x="284" y="19.5" width="13.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVp-yF-sCk">
-                        <rect key="frame" x="79" y="32" width="44" height="1"/>
+                        <rect key="frame" x="79" y="32" width="50" height="1"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="kUV-4R-2Bc"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-ed-hIB">
-                        <rect key="frame" x="224" y="33" width="44" height="1"/>
+                        <rect key="frame" x="230" y="33" width="50" height="1"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="aS8-wx-lfM"/>
@@ -78,8 +78,8 @@
                         <state key="normal" image="NOChoice"/>
                         <state key="selected" title="A" image="Choice"/>
                     </button>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="archives_icon_2" translatesAutoresizingMaskIntoConstraints="NO" id="fvi-oO-y8V">
-                        <rect key="frame" x="45" y="18" width="74" height="70"/>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="fvi-oO-y8V">
+                        <rect key="frame" x="96" y="34" width="33" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
@@ -121,6 +121,6 @@
     <resources>
         <image name="Choice" width="22" height="22"/>
         <image name="NOChoice" width="22" height="22"/>
-        <image name="archives_icon_2" width="30" height="30"/>
+        <image name="rectangle" width="33" height="22"/>
     </resources>
 </document>

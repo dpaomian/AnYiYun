@@ -219,6 +219,7 @@
                 ws.nearButton.hidden = YES;
                 ws.shortButton.hidden = YES;
                 ws.unKnowButton.hidden = YES;
+                ws.navBtn.hidden = NO;
                 [ws startSerialLocation];
             } else if (index == 1) {
                 ws.mapBottomListView.isTransit = NO;
@@ -231,14 +232,17 @@
                 ws.nearButton.hidden = YES;
                 ws.shortButton.hidden = YES;
                 ws.unKnowButton.hidden = YES;
+                ws.navBtn.hidden = NO;
                 [ws startSerialLocation];
             } else if (index == 2) {
+                ws.navBtn.hidden = NO;
                 ws.mapBottomListView.isTransit = NO;
                 ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT - (64.0f/2.0f)-64.0f);
                 ws.mapBottomListView.frame = CGRectMake(0, CGRectGetMaxY(ws.mapBottomButton.frame), SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f-64.0f);
 //                [ws singleRoutePlanAction];
                 [ws startSerialLocation];
             } else {
+                ws.navBtn.hidden = YES;
                 ws.mapBottomListView.isTransit = YES;
                 ws.mapBottomButton.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT);
                 ws.mapBottomListView.frame = CGRectMake(0, 44.0+25.0, SCREEN_WIDTH, SCREEN_HEIGHT-64.0f-44.0f-25.0f);
@@ -301,12 +305,12 @@
         [ws.navigationController pushViewController:busVC animated:YES];
     };
     
-    UIButton *navBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-20-44.0f, SCREEN_HEIGHT-128.0f-22.0f, 44, 44)];
-    navBtn.backgroundColor =UIColorFromRGBA(0x5987F8, 0.6);
-    navBtn.layer.cornerRadius = 22.0f ;
-    [navBtn setImage:[UIImage imageNamed:@"default_navi_car_icon.png"] forState:UIControlStateNormal];
-    [navBtn addTarget:self action:@selector(navAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:navBtn];
+    _navBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-20-44.0f, SCREEN_HEIGHT-128.0f-22.0f, 44, 44)];
+    _navBtn.backgroundColor =UIColorFromRGBA(0x5987F8, 0.6);
+    _navBtn.layer.cornerRadius = 22.0f ;
+    [_navBtn setImage:[UIImage imageNamed:@"default_navi_car_icon.png"] forState:UIControlStateNormal];
+    [_navBtn addTarget:self action:@selector(navAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_navBtn];
     
     [self initWalkView];
     [self initRideView];

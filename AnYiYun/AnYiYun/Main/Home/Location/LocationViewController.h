@@ -63,5 +63,6 @@
 @property (nonatomic, strong) UIButton *nearButton;
 @property (nonatomic, strong) UIButton *shortButton;
 @property (nonatomic, strong) UIButton *unKnowButton;
+@property (nonatomic, strong) UIButton *navBtn;
 
 @end
