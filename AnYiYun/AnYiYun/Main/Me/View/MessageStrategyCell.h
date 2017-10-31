@@ -26,6 +26,7 @@
 
 @property (nonatomic, assign) NSInteger   maxLength;
 
+//@property (nonatomic, copy) void (^textEndEditHandle) (MessageStrategyCell *yyCell, UITextField *yytf);
 @property (nonatomic, copy) void (^textEditBeginHandle) (MessageStrategyCell *yyCell, UITextField *yytf);
 @property (nonatomic, copy) void (^textChangeHandle) (MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr);
 

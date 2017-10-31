@@ -25,13 +25,13 @@
                   symbolName = "-[DBDaoDataBase getAllHistoryGroupInfo]"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531077152.28938"
+                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531133763.572054"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -40,13 +40,13 @@
                   symbolName = "__Block_byref_object_copy_"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531077152.291256"
+                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531133763.574121"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -55,13 +55,13 @@
                   symbolName = "__Block_byref_object_dispose_"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531077152.293321"
+                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531133763.575721"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -79,6 +79,54 @@
             startingLineNumber = "109"
             endingLineNumber = "109"
             landmarkName = "-addHistoryMessageGroupInfoTableClassify:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnYiYun/AppDelegate.m"
+            timestampString = "531125593.894264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "-application:didReceiveRemoteNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnYiYun/AppDelegate.m"
+            timestampString = "531125593.926615"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "-application:didReceiveRemoteNotification:fetchCompletionHandler:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnYiYun/AppDelegate.m"
+            timestampString = "531125593.926862"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "-jpushNotificationCenter:willPresentNotification:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

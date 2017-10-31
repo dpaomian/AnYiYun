@@ -41,6 +41,12 @@
     }
 }
 
+//- (void)textFieldDidEndEditing:(UITextField *)textField {
+//    if (_textEndEditHandle) {
+//        _textEndEditHandle(self, textField);
+//    }
+//}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     _alertImageView.hidden = YES;
 //    [NSCharacterSet decimalDigitCharacterSet];
@@ -73,14 +79,6 @@
             }
             return YES;
         }
-    }
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    if ([textField.text integerValue] <300) {
-        _alertImageView.hidden = NO;
-    } else {
-        _alertImageView.hidden = YES;
     }
 }
 

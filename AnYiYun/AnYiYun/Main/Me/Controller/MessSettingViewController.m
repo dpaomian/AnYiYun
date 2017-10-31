@@ -40,7 +40,7 @@
     [self.view addSubview:_messageSettingTableView];
     
     _saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _saveButton.frame = CGRectMake(SCREEN_WIDTH/2-80, 44*2+40*4+22, 160, 44);
+    _saveButton.frame = CGRectMake(SCREEN_WIDTH/2-80, 44*2+46*4+22, 160, 44);
     [_saveButton setTitle:@"保存" forState:UIControlStateNormal];
     [_saveButton setTitleColor:UIColorFromRGB(0xFFFFFF) forState:UIControlStateNormal];
     _saveButton.layer.cornerRadius = 4.0f;
@@ -138,7 +138,8 @@
         }
     }];
     
-    [_messageSettingTableView addSubview:_saveButton];
+    [self.view addSubview:_saveButton];
+    [self.view bringSubviewToFront:_saveButton];
     
     [self initData];
 }
@@ -192,21 +193,33 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     EquipmentAccountHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"EquipmentAccountHeaderFooterView"];
-    headerView.yybkView.backgroundColor = UIColorFromRGB(0xDBDBDB);
+    headerView.yybkView.backgroundColor = UIColorFromRGB(0xEFEFEF);
     headerView.headerTitleLab.text = section==0?@"自动清理策略":@"通知铃声";
     headerView.headerTitleLab.textColor = UIColorFromRGB(0x000000);
     return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1.0f)];
+    if (section == 1) {
+        UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 400.0f)];
+        footerview.backgroundColor = UIColorFromRGB(0xEFEFEF);
+        return footerview;
+    } else {
+        UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1.0f)];
+        footerview.backgroundColor = UIColorFromRGB(0xEFEFEF);
+        return footerview;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 44.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1.0f;
+    if (section == 1) {
+        return 400.0f;
+    } else {
+        return 1.0f;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -229,6 +242,12 @@
             yyCell.alertLabel1.hidden = YES;
             yyCell.alertLabel2.hidden = YES;
         };
+//        cell.textEndEditHandle = ^(MessageStrategyCell *yyCell, UITextField *yytf) {
+//            yyCell.alertImageView.hidden = YES;
+//            yyCell.alertImageView2.hidden = YES;
+//            yyCell.alertLabel1.hidden = YES;
+//            yyCell.alertLabel2.hidden = YES;
+//        };
         cell.textChangeHandle = ^(MessageStrategyCell *yyCell, UITextField *yytf, NSString *yyStr) {
             if (yytf == cell.textField1) {
                 cellModel.textFieldText1 = yyStr;
