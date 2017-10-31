@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EquipmentAccountHeaderFooterView : UITableViewHeaderFooterView
+@property (strong, nonatomic) IBOutlet UIView *yybkView;
 
 @property (weak, nonatomic) IBOutlet UILabel *headerTitleLab;
 
