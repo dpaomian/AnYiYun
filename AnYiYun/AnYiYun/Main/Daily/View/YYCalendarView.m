@@ -297,4 +297,8 @@
     }
 }
 
+- (CGSize)intrinsicContentSize {
+    return UILayoutFittingExpandedSize;
+}
+
 @end
