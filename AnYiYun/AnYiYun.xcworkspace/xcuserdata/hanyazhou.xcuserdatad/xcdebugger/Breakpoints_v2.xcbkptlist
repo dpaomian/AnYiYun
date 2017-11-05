@@ -25,13 +25,13 @@
                   symbolName = "-[DBDaoDataBase getAllHistoryGroupInfo]"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531396369.305097"
+                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531455942.424785"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "19">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -40,13 +40,13 @@
                   symbolName = "__Block_byref_object_copy_"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531396369.306826"
+                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531455942.426822"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -55,13 +55,13 @@
                   symbolName = "__Block_byref_object_dispose_"
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531396369.308352"
+                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
+                  timestampString = "531455942.42921"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -127,6 +127,22 @@
             startingLineNumber = "303"
             endingLineNumber = "303"
             landmarkName = "-jpushNotificationCenter:willPresentNotification:withCompletionHandler:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnYiYun/Main/Login/API/LoginManager.m"
+            timestampString = "531455942.412018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "+loginWithAccount:inVC:completionBlockWithSuccess:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
