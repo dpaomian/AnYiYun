@@ -43,7 +43,15 @@
 
 -(void)setRightBarItem
 {
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"right_more.png" hightImageName:@"right_more.png" target:self action:@selector(rightBarButtonAction)];
+    UIBarButtonItem *moreItem = [UIBarButtonItem itemWithImageName:@"right_more.png" hightImageName:@"right_more.png" target:self action:@selector(rightBarButtonAction)];
+    UIBarButtonItem *refreshItem =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    self.navigationItem.rightBarButtonItems = @[moreItem, refreshItem];
+}
+
+- (void)refresh {
+    NSString * urlStr = @"http://101.201.108.246/help";
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
+    [_webView loadRequest:request];
 }
 
 //点击弹出框
