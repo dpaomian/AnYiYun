@@ -26,12 +26,12 @@
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531630853.770511"
+                  timestampString = "531885679.589329"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "19">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531630853.774256"
+                  timestampString = "531885679.592681"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -56,12 +56,12 @@
                   moduleName = "AnYiYun"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/henanrumi/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "531630853.777241"
+                  timestampString = "531885679.594244"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>

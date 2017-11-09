@@ -15,5 +15,6 @@
 
 @property(strong,nonatomic)NSString *myUrl;
 @property(strong,nonatomic)NSString *titleStr;
+@property (nonatomic, assign) BOOL needRefresh;
 
 @end
