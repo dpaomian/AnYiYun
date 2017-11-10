@@ -38,7 +38,7 @@
 }
 
 -(void)setRightBarItem {
-    if ([self.titleStr isEqualToString:@"资讯"]) {
+    if ([self.titleStr isEqualToString:@"资讯"] || [self.titleStr isEqualToString:@""]) {
         self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     }
 }
