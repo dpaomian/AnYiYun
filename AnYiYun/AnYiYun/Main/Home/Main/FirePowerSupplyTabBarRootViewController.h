@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 /*!电气火灾*/
-@interface FirePowerSupplyTabBarRootViewController : UITabBarController
+@interface FirePowerSupplyTabBarRootViewController : UITabBarController <UITabBarControllerDelegate>
 
 @end

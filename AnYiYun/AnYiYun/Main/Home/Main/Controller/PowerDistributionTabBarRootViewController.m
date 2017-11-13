@@ -26,6 +26,8 @@
     
     self.tabBar.backgroundColor = UIColorFromRGB(0xFFFFFF);
     
+    self.delegate = self;
+    
     [self setRightBarItem];
     
     PopViewController *popVC = [[PopViewController alloc] initWithNibName:NSStringFromClass([PopViewController class]) bundle:nil];
@@ -35,6 +37,16 @@
 
     [self addChildVC:[[SafetyMonitoringRootViewController alloc] init] title:@"安全监控" image:@"monitor_icon.png" selectedImage:@"monitor_icon_blue.png"];
     [self addChildVC:[[EquipmentManagementRootViewController alloc] init] title:@"设备管理" image:@"Management_icon.png" selectedImage:@"Management_icon_blue.png"];
+}
+
+#pragma mark  -
+#pragma mark  UITabBarControllerDelegate -
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if (tabBarController.selectedIndex == 0) {
+        self.title = @"智慧用电";
+    } else {
+        self.title = @"设备管理";
+    }
 }
 
 -(void)setRightBarItem

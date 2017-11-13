@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 /*!智慧用电*/
-@interface PowerDistributionTabBarRootViewController : UITabBarController
+@interface PowerDistributionTabBarRootViewController : UITabBarController <UITabBarControllerDelegate>
 
 @end
