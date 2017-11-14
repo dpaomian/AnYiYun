@@ -9,61 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AnYiYun/Common/DataBase/DBDaoDataBase.m"
-            timestampString = "531036198.086941"
+            filePath = "AnYiYun/Main/Home/Message/Controller/HistoryDetailViewController.m"
+            timestampString = "532339958.178146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-getAllHistoryGroupInfo"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DBDaoDataBase getAllHistoryGroupInfo]"
-                  moduleName = "AnYiYun"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "532273653.66518"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_copy_"
-                  moduleName = "AnYiYun"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "532273653.667101"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_dispose_"
-                  moduleName = "AnYiYun"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yazhouhan/Documents/GitHub/AnYiYun/AnYiYun/AnYiYun/Common/DataBase/DBDaoDataBase.m"
-                  timestampString = "532273653.669114"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -72,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AnYiYun/Common/DataBase/DBDaoDataBase.m"
-            timestampString = "531036198.087341"
+            filePath = "AnYiYun/Main/Home/Message/Controller/HistoryMessageViewController.m"
+            timestampString = "532339975.715897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-addHistoryMessageGroupInfoTableClassify:"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

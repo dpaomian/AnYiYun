@@ -645,7 +645,7 @@
 {
     _selectModel = contentModel;
 
-    NSString *message = @"您确认要选择\"提交检修\"么？";
+    NSString *message = @"您确认要选择\"报修\"么？";
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alertView.tag = 101;
     [alertView show];
