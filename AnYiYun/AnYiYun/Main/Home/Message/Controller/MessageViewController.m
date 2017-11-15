@@ -52,6 +52,8 @@
 {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     self.title = @"消息中心";
     self.view.backgroundColor = RGB(239, 239, 244);
     
@@ -668,6 +670,7 @@
 
     LocationViewController *vc = [[LocationViewController alloc]init];
     vc.deviceIdString = contentModel.deviceId;
+    vc.deviceNameString = [contentModel.messageContent componentsSeparatedByString:@" "][0];
     vc.hidesBottomBarWhenPushed = YES;
     vc.itemModel = contentModel;
     [self.navigationController pushViewController:vc animated:YES];

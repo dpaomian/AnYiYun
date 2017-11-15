@@ -238,7 +238,7 @@
 //        [self.navigationController pushViewController:vc animated:YES];
             PublicWebViewController *vc = [[PublicWebViewController alloc] init];
             vc.titleStr = @"设备服务";
-            vc.myUrl = @"http://101.201.108.246";
+            vc.myUrl = @"http://101.201.108.246/shop";
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }

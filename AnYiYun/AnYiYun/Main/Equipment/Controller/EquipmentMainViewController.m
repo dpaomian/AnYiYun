@@ -17,8 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /*http://101.201.108.246/thinksaas/?username=15937109396&password=123456*/
+
+    
     _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    NSString * urlStr = @"http://101.201.108.246/index.html";
+    NSString * urlStr = [NSString stringWithFormat:@"http://101.201.108.246/thinksaas/?username=%@&password=%@",[BaseHelper isSpaceString:[PersonInfo shareInstance].loginTextAccount andReplace:@""],[BaseHelper isSpaceString:[PersonInfo shareInstance].password andReplace:@""]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [_webView loadRequest:request];
     _webView.delegate = self;

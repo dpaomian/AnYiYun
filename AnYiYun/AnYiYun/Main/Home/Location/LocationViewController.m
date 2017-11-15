@@ -194,6 +194,16 @@
 {
     _mapTopView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([YYNaverTopView class]) owner:nil options:nil][0];
     _mapTopView.backgroundColor = [UIColor redColor];
+    _mapTopView.navTitleLable.text = [NSString stringWithFormat:@"  从\"我的位置\"到 安装位置\"%@\"",_deviceNameString];
+    
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:_mapTopView.navTitleLable.text];
+    [attributedStr addAttribute:NSFontAttributeName
+                          value:[UIFont fontWithName:@"Helvetica-Bold" size:14.0]
+                          range:[_mapTopView.navTitleLable.text rangeOfString:@"\"我的位置\""]];
+    [attributedStr addAttribute:NSFontAttributeName
+                          value:[UIFont fontWithName:@"Helvetica-Bold" size:14.0]
+                          range:[_mapTopView.navTitleLable.text rangeOfString:[NSString stringWithFormat:@"\"%@\"",_deviceNameString]]];
+    _mapTopView.navTitleLable.attributedText = attributedStr;
     _mapTopView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44.0f+25.0f);
     [self.view addSubview:_mapTopView];
     

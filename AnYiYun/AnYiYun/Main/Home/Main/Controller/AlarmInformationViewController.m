@@ -220,6 +220,7 @@
             {
                 LocationViewController *locationVC = [[LocationViewController alloc]init];
                 locationVC.deviceIdString = modelItem.deviceId;
+                locationVC.deviceNameString = [modelItem.content componentsSeparatedByString:@" "][0];
                 locationVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:locationVC animated:YES];
             }

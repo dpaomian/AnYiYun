@@ -44,21 +44,23 @@
     _menuArray = [[NSMutableArray alloc]init];
     
     [self setLeftBarItem];
-
-        //广告
-    [self getPictureRequestAction];
-        //公告
-        //[self getNotifyRequestAction];
-        //菜单
-    [self getMenuRequestAction];
     
-        //消息中心
-        // [self getMessageRequestAction];
-    [self getSafetyRequestAction];
-        //推广
-    [self getAdverRequestAction];
+//        //广告
+//    [self getPictureRequestAction];
+//        //公告
+//        //[self getNotifyRequestAction];
+//        //菜单
+//    [self getMenuRequestAction];
+//
+//        //消息中心
+//        // [self getMessageRequestAction];
+//    [self getSafetyRequestAction];
+//        //推广
+//    [self getAdverRequestAction];
     
     [self makeView];
+    
+    [self.bpTableView.mj_header beginRefreshing];
 }
 
 
@@ -129,6 +131,10 @@
 -(void)makeView
 {
     [self.view addSubview:self.bpTableView];
+    self.bpTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            //广告
+        [self getPictureRequestAction];
+    }];
     [self initTableHeadView];
 }
 
@@ -185,6 +191,9 @@
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"1"} urlString:urlString paraments:param successBlock:^(id object) {
         NSInteger result = [object[@"errCode"] integerValue];
+            //菜单
+        [self getMenuRequestAction];
+        
         if (result==0)
             {
             NSDictionary *picDic = object;
@@ -202,6 +211,7 @@
             }
         else
             {
+            [self.bpTableView.mj_header endRefreshing];
             DLog(@"获取应用模块广告图片失败：%@",object[@"msg"]);
             }
         
@@ -262,15 +272,21 @@
       parameters:param
         progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
+     
+         //推广
+     [self getAdverRequestAction];
+     
      NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
      NSString *timeString = [BaseHelper getUserTimeStringWith:string];
      safeTimeString = timeString;
      DLog(@"安全运行时间 %@ %@",string,timeString);
-         
-         NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
-         [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+     
+     [_bpTableView reloadData];
+//         NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
+//         [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             [self.bpTableView.mj_header endRefreshing];
              DLog(@"获取安全运行失败：%@",error);
          }];
 }
@@ -283,6 +299,9 @@
     NSString *urlString = [NSString stringWithFormat:@"%@rest/busiData/adver",BASE_PLAN_URL];
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object) {
+        
+        [self.bpTableView.mj_header endRefreshing];
+        
         NSArray *dataArray = (NSArray *)object;
         
         for (int i=0; i<dataArray.count; i++)
@@ -298,6 +317,7 @@
             }
         
     } failureBlock:^(NSError *error) {
+        [self.bpTableView.mj_header endRefreshing];
         DLog(@"获取推广失败：%@",error);
     } progress:nil];
 }
@@ -309,9 +329,12 @@
     NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID};
     [BaseAFNRequest requestWithType:HttpRequestTypeGet additionParam:@{@"isNeedAlert":@"0"} urlString:urlString paraments:param successBlock:^(id object)
     {
+        //消息中心
+    [self getSafetyRequestAction];
+    
         NSDictionary *menuDic = object;
         NSArray *keyArray = [menuDic allKeys];
-        
+        [_menuArray removeAllObjects];
         for (int i=0; i<keyArray.count; i++)
         {
             HomeModuleModel *model = [[HomeModuleModel alloc]init];
@@ -389,6 +412,7 @@
         [self initTableHeadView];
         
     } failureBlock:^(NSError *error) {
+        [self.bpTableView.mj_header endRefreshing];
         DLog(@"获取推广失败：%@",error);
     } progress:nil];
 }
