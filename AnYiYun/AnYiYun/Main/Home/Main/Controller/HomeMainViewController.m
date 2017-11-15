@@ -216,6 +216,7 @@
             }
         
     } failureBlock:^(NSError *error) {
+        [self getMenuRequestAction];
         DLog(@"获取应用模块广告图片失败：%@",error);
     } progress:nil];
 }
@@ -286,7 +287,8 @@
 //         [_bpTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
      }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             [self.bpTableView.mj_header endRefreshing];
+//             [self.bpTableView.mj_header endRefreshing];
+             [self getAdverRequestAction];
              DLog(@"获取安全运行失败：%@",error);
          }];
 }
@@ -412,7 +414,8 @@
         [self initTableHeadView];
         
     } failureBlock:^(NSError *error) {
-        [self.bpTableView.mj_header endRefreshing];
+//        [self.bpTableView.mj_header endRefreshing];
+        [self getSafetyRequestAction];
         DLog(@"获取推广失败：%@",error);
     } progress:nil];
 }

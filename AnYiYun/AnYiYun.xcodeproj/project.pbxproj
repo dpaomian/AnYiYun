@@ -2478,8 +2478,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdlion.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c92040f4-a3a9-4985-8e08-2a81800dc4f4";
-				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosADHOC;
+				PROVISIONING_PROFILE = "565f4e65-d66b-40cb-96b5-4ac6eda4d3bc";
+				PROVISIONING_PROFILE_SPECIFIER = com.gdlion.iosAdHocPush;
 			};
 			name = Debug;
 		};

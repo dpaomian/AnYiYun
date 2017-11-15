@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) YYCurveViewController *fullScreenCurveVC;
 
+- (void)dataRequest;
+
 @end

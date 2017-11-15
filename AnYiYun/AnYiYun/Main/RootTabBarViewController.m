@@ -95,13 +95,28 @@
     
         // 接收到推送 进入消息列表
     UINavigationController *nav = self.childViewControllers.firstObject;
-    MessageViewController *vc = [[MessageViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    MAIN(^{
-        [nav pushViewController:vc animated:YES];
-    });
-    
-    
+        DLog(@"%@",nav.viewControllers);
+        
+        __block BOOL hasInMessage = NO;
+        [nav.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[MessageViewController class]]) {
+                hasInMessage = YES;
+                *stop = YES;
+            } else {
+                hasInMessage = NO;
+            }
+        }];
+        MessageViewController *vc = [[MessageViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        MAIN(^{
+            if (hasInMessage) {
+                [vc dataRequest];
+                DLog(@"有");
+            } else {
+                DLog(@"没有");
+                [nav pushViewController:vc animated:YES];
+            }
+        });
     }
     else
     {
