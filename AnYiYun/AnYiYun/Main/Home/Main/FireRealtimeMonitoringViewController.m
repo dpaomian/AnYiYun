@@ -439,6 +439,12 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
+    RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
+    [self loadCurveWithModel:modelItem andSection:indexPath.section];
+}
+
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    __weak FireRealtimeMonitoringViewController *ws = self;
 //    RealtimeMonitoringChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RealtimeMonitoringChildCell" forIndexPath:indexPath];

@@ -441,6 +441,12 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    RealtimeMonitoringListModel *model = _listMutableArray[indexPath.section];
+    RealtimeMonitoringListModelList *modelItem = model.itemsMutableArray[indexPath.row];
+    [self loadCurveWithModel:modelItem andSection:indexPath.section];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

@@ -53,7 +53,7 @@
 }
 
 - (void)refresh {
-    NSString * urlStr = @"http://101.201.108.246/index.html";
+    NSString * urlStr = [NSString stringWithFormat:@"http://101.201.108.246/thinksaas/?username=%@&password=%@",[BaseHelper isSpaceString:[PersonInfo shareInstance].loginTextAccount andReplace:@""],[BaseHelper isSpaceString:[PersonInfo shareInstance].password andReplace:@""]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [_webView loadRequest:request];
 }

@@ -10,6 +10,7 @@
 #import "RealtimeMonitoringListModel.h"
 #import "YYPswCell.h"
 #import "BaseAFNRequest.h"
+#import "NSString+YYCategory.h"
 
 @interface YYPasswordViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource>
 

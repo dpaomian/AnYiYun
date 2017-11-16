@@ -32,6 +32,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"安装位置";
+    
     [self.view setBackgroundColor:kAPPNavColor];
     
     [self configLocationManager];

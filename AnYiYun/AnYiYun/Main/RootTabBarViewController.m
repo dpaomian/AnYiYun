@@ -18,6 +18,9 @@
 
 @interface RootTabBarViewController ()
 
+@property (nonatomic, strong) MessageViewController *messageVc;
+@property (nonatomic, strong) UINavigationController *nav;
+
 @end
 
 @implementation RootTabBarViewController
@@ -27,6 +30,11 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessageIsUnRead:) name:@"getMessageIsRead" object:nil];
+    
+    
+    _nav = self.childViewControllers.firstObject;
+    _messageVc = [[MessageViewController alloc]init];
+    _messageVc.hidesBottomBarWhenPushed = YES;
     
     self.tabBar.backgroundColor = UIColorFromRGB(0xFFFFFF);
     [self addChildVC:[[HomeMainViewController alloc] init] title:@"首页" image:@"bottom_btn_1" selectedImage:@"ic_tab_home_blue"];
@@ -93,12 +101,11 @@
         //接收到推送 有新消息
         [self updateMainMessageRead:YES];
     
+    DLog(@"%@",_nav.viewControllers);
         // 接收到推送 进入消息列表
-    UINavigationController *nav = self.childViewControllers.firstObject;
-        DLog(@"%@",nav.viewControllers);
-        
+    __weak RootTabBarViewController *ws = self;
         __block BOOL hasInMessage = NO;
-        [nav.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [ws.nav.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[MessageViewController class]]) {
                 hasInMessage = YES;
                 *stop = YES;
@@ -106,15 +113,11 @@
                 hasInMessage = NO;
             }
         }];
-        MessageViewController *vc = [[MessageViewController alloc]init];
-        vc.hidesBottomBarWhenPushed = YES;
         MAIN(^{
             if (hasInMessage) {
-                [vc dataRequest];
-                DLog(@"有");
+                [ws.messageVc dataRequest];
             } else {
-                DLog(@"没有");
-                [nav pushViewController:vc animated:YES];
+                [ws.nav pushViewController:ws.messageVc animated:YES];
             }
         });
     }

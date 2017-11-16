@@ -68,7 +68,7 @@
     cell.inputOver = ^(YYPswCell *yyCell, NSString *yyStr) {
         NSString *urlString = [NSString stringWithFormat:@"%@rest/process/switchP",BASE_PLAN_URL];
         
-        NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":ws.model.idF,@"now":[ws.model.point_value isEqualToString:@"关闭"]?@"0":@"1",@"psw":yyStr};
+        NSDictionary *param = @{@"userSign":[PersonInfo shareInstance].accountID,@"pointId":ws.model.idF,@"now":[ws.model.point_value isEqualToString:@"关闭"]?@"0":@"1",@"psw":[yyStr SHA256]};
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];

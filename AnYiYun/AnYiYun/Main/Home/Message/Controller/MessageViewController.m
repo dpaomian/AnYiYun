@@ -622,7 +622,7 @@
     self.checkTableView.x = self.scrolView.width*3;
     self.systemTableView.x = self.scrolView.width*4;
    
-    self.scrolView.contentSize = CGSizeMake(0, kScreen_Width);
+//    self.scrolView.contentSize = CGSizeMake(0, kScreen_Width);
     
     self.scrolView.y = CGRectGetMaxY(self.topView.frame);
     self.scrolView.height = self.view.height - self.topView.height;
@@ -950,7 +950,7 @@
 - (UITableView *)examTableView
 {
     if (!_examTableView) {
-        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
+        _examTableView = [[UITableView alloc] initWithFrame:CGRectMake(kScreen_Width, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
         _examTableView.dataSource = self;
         _examTableView.delegate = self;
         _examTableView.backgroundColor = [UIColor clearColor];
@@ -966,7 +966,7 @@
 - (UITableView *)maintainTableView
 {
     if (!_maintainTableView) {
-        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
+        _maintainTableView = [[UITableView alloc] initWithFrame:CGRectMake(kScreen_Width*2, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
         _maintainTableView.dataSource = self;
         _maintainTableView.delegate = self;
         _maintainTableView.backgroundColor = [UIColor clearColor];
@@ -982,7 +982,7 @@
 - (UITableView *)checkTableView
 {
     if (!_checkTableView) {
-        _checkTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
+        _checkTableView = [[UITableView alloc] initWithFrame:CGRectMake(kScreen_Width*3, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
         _checkTableView.dataSource = self;
         _checkTableView.delegate = self;
         _checkTableView.backgroundColor = [UIColor clearColor];
@@ -998,7 +998,7 @@
 - (UITableView *)systemTableView
 {
     if (!_systemTableView) {
-        _systemTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
+        _systemTableView = [[UITableView alloc] initWithFrame:CGRectMake(kScreen_Width*4, 0, kScreen_Width, kScreen_Height - 64 - 44) style:UITableViewStyleGrouped];
         [_systemTableView registerNib:[UINib nibWithNibName:NSStringFromClass([MessageNoticeTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"MessageNoticeTableViewCell"];
         _systemTableView.dataSource = self;
         _systemTableView.delegate = self;
